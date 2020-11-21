@@ -11,7 +11,7 @@ html:
   use_repository_button: true
   use_issues_button: true
   extra_footer: <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-  google_analytics_id: G-SRKK1J7TS3
+  google_analytics_id: UA-183782120-1
   
 repository:
   url: "https://github.com/thomasfermi/Algorithms-for-Automated-Driving"
