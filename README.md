@@ -18,4 +18,4 @@ If you find a bug in the exercise code or some confusing explanations in the boo
 
 Once you finish the book or decide to stop working through it, please consider giving me some feedback by filling out [this questionnaire](https://forms.gle/TioqZiUsB5e5wSVG7) (If you open the link in your browser's incognito mode, the questionnaire should be anonymous).
 
-Please follow this [link]() to read the book!
+Please follow this [link](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Introduction/intro.html) to read the book!

@@ -12,6 +12,14 @@ sphinx:
   config:
     html_show_copyright: false
 
+repository:
+  url                       : https://github.com/thomasfermi/Algorithms-for-Automated-Driving  
+  path_to_book              : book  
+  branch                    : master  
+
+launch_buttons:
+  thebe                  : true
+
 latex:
   latex_documents:
     targetname: book.tex
