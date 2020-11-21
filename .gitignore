@@ -1,0 +1,11 @@
+untracked
+*.rar
+*.pdf
+__pycache__
+.ipynb_checkpoints
+debug
+.vscode
+literature
+mpc-tools-casadi
+_build
+MPC.ipynb

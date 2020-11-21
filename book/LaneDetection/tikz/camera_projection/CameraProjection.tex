@@ -1,0 +1,42 @@
+\documentclass[border=10pt,multi,tikz,convert={outfile=\jobname.svg}]{standalone}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc,arrows.meta,positioning,backgrounds}
+\begin{document}
+\tdplotsetmaincoords{-60}{-35}
+\begin{tikzpicture}
+  [
+    tdplot_main_coords,
+    >=Stealth,
+    my dashed/.style={dashed, thick, ->, shorten >=-15pt, shorten <=-15pt, every node/.append style={font=\footnotesize}},
+    my box/.style={thin, gray!70},
+    my blue/.style={red, line cap=round, -{Triangle[width=3*#1]}, line width=#1, shorten >=#1*1.75pt, every node/.append style={fill, circle, inner sep=0pt, minimum size=#1*3.5pt, anchor=center, outer sep=0pt}},
+    my label/.append style={midway, font=\scriptsize},
+    my vectors/.style={green!50!black, {Stealth[scale=.75]}-{Stealth[scale=.75]}},
+    my red/.style={thick, red, line cap=round},
+    my grey/.style={gray!70},
+    description/.style={draw=gray!70, thick, line cap=round, every node/.style={align=center, font=\scriptsize\sffamily, anchor=north}},
+  ]
+%   \draw [help lines] (-2,0,0) -- (2,0,0) node[anchor=north west]{$x$} (0,0,0) -- (0,7,0) node[anchor=north east]{$y$} (0,0,0) -- (0,0,2) node[anchor=north]{$z$} (-2,7,0) -- (2,7,0);
+  \draw [my grey] (0,4,0) -- (0,7,0) (-2,7,0) -- (2,7,0);
+  \coordinate (o) at (0,0,0);
+  \path [draw=gray!70, text=gray, fill=gray!20, opacity=0.8, text opacity=1] (-1.5,4,1.75) coordinate (a) -- ++(0,0,-3.5) coordinate (b) -- ++(3,0,0) coordinate (c) -- ++(0,0,3.5) coordinate (d) -- cycle node [pos=.95, above, sloped, anchor=south west] {$Z_c=f$} ;
+%   \foreach \i in {a,b,c,d} \node [red, font=\scriptsize] at (\i) {\i};
+  \draw [my grey] (-2,0,0) -- (2,0,0) (0,0,0) -- (0,4,0) (0,0,0) -- (0,0,2);
+  \draw [thick, ->, every node/.style={font=\footnotesize, inner sep=0pt}, color=blue] (o) node [anchor=north west] {} (o) edge node [pos=1, anchor=north east] {$Z_c$} ++(0,1,0) edge node [pos=1, anchor=north] {$Y_c$} ++(0,0,1) -- ++(1,0,0) node [anchor=north west] {$X_c$};
+  \draw [my box] (o) ++(0,4,-.5) coordinate (p1) -- ++(1,0,0) coordinate (p2) -- ++(0,0,-1.25) coordinate (p3);
+  \foreach \i in {0,1,...,4} \draw [my box] (p1) ++(\i*.25,0,0) -- ++(0,0,-.25);
+  \foreach \i in {0,1,...,5} \draw [my box] (p2) ++(0,0,-\i*.25) -- ++(-.25,0,0);
+  \draw [my box] (p1) ++(0,0,-.25) -- ++(.75,0,0) -- ++(0,0,-1);
+  \draw [my dashed, cyan] ($(b)!1/2!(c)$) -- ($(d)!1/2!(a)$) node [below=15pt, anchor=north] {$y$};
+  \draw [my dashed, cyan] ($(b)!1/2!(a)$) -- ($(d)!1/2!(c)$) node [above right=17pt, anchor=north west] {$x$};
+  \draw [my dashed, green!50!black, <->] (a) node [below=15pt, anchor=north] {$v$} -- (b) -- (c) node [above right=17pt, anchor=north west] {$u$};
+  %\path [green!50!black, every node/.style={font=\scriptsize, inner sep=0pt}] (p2) node [above right, anchor=south west] {$(u,v)$};
+\path [red, every node/.style={font=\scriptsize, inner sep=0pt}] (p2) node [above right, anchor=south west] {~$p$};
+  \path (p2) ++(-.125,0,0) coordinate (q2) ++(0,0,-.125) coordinate (r2);
+  \draw [my blue=1] ($(0,4,0)+($(q2)-(p1)$)$) coordinate (s2) -- (r2) node (d1) {};
+  \scoped[on background layer]{\draw [my blue=1.75] ($($1.75*($(s2)-(0,4,0)$)$)+(0,7,0)$) -- ++($1.75*($(r2)-(s2)$)$) node (d2) [label={[label distance=-28pt]above:{$P=(X_c,Y_c,Z_c)$}}] {};}
+  \draw [my red] (o) -- (d1.center);
+  \scoped[on background layer]{\draw [my red] (d1.center) -- (d2.center);}
+  %\path [description] (0,6.5,0) [out=-95, in=95] to (-.75,6.5,.25) node {optical \\ axis};
+\end{tikzpicture}
+\end{document}

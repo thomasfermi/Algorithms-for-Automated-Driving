@@ -1,0 +1,19 @@
+# Book settings
+title: Algorithms for Automated Driving
+author: Mario Theers
+logo: car_sketch_wide.png
+
+html: 
+  favicon: car_sketch.png
+  home_page_in_navbar : false
+  extra_footer: <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+sphinx:
+  config:
+    html_show_copyright: false
+
+latex:
+  latex_documents:
+    targetname: book.tex
+
+exclude_patterns: [Control/MPC.ipynb]
