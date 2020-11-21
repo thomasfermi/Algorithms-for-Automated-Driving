@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lane Boundary Segmentation &#8212; Algorithms for Automated Driving</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/car_sketch.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="From Pixels to Meters" href="InversePerspectiveMapping.html" />
+    <link rel="prev" title="Basics of Image Formation" href="CameraBasics.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Lane Detection
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LaneDetectionOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CameraBasics.html">
+   Basics of Image Formation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lane Boundary Segmentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="InversePerspectiveMapping.html">
+   From Pixels to Meters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Control
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/ControlOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PID.html">
+   PID Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/BicycleModel.html">
+   Kinematic Bicycle Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PurePursuit.html">
+   Pure Pursuit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
+   Exercise Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
+   Carla Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/NextChapters.html">
+   Future Chapters
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/LaneDetection/Segmentation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-train-a-neural-net-for-lane-boundary-segmentation">
+   Exercise: Train a neural net for lane boundary segmentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gathering-training-data">
+     Gathering training data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-a-model">
+     Building a model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lane-boundary-segmentation">
+<h1>Lane Boundary Segmentation<a class="headerlink" href="#lane-boundary-segmentation" title="Permalink to this headline">¶</a></h1>
+<p>For our lane-detection pipeline, we want to train a neural network, which takes an image and estimates for each pixel the probability that it belongs to the left lane boundary, the probability that it belongs to the right lane boundary, and the probability that it belongs to neither. This problem is called semantic segmentation.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>For this section, I assume the following</p>
+<ol class="simple">
+<li><p>You know what a neural network is and have trained one yourself before</p></li>
+<li><p>You know the concept of <em>semantic segmentation</em></p></li>
+</ol>
+<p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend the following free resource</p>
+<dl class="glossary simple">
+<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/">CS231n: Convolutional Neural Networks for Visual Recognition</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but you can read the slides when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the 2020 version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
+</dd>
+</dl>
+<p>Even if you fulfill <strong>prerequisite 2</strong>, please read this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n). Be sure that you understand the section about dice loss.</p>
+<p>We will use dice loss for two reasons</p>
+<ul class="simple">
+<li><p>Dice loss gives good results even if there is <em>class imbalance</em>: The classes in our problem are “none”, “left boundary”, and “right boundary”. Since lane boundaries are pretty thin, most of the pixels in our data set will be labeled “none”. This means our data set does inhibit <em>class imbalance</em>. A loss function like cross-entropy will not work that well, because the model can get a very low loss just by guessing that each pixel is “none”. This is not possible when using dice loss.</p></li>
+<li><p>The dice loss is not only a good loss function, but we can also use it as a <em>metric</em> since its value is very intuitive.</p></li>
+</ul>
+<p>Finally, you need to have access to a GPU in order to do the exercise. But <em>owning</em> a GPU is not a prerequisite. You can use <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, which allows you to run your python code on google servers. To get access to a GPU on Colab, you should click on “Runtime”, then  “change Runtime type”, and finally select “GPU” as “Hardware accelerator”. For more details on how to work with Colab, see <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a>.</p>
+</div>
+<div class="section" id="exercise-train-a-neural-net-for-lane-boundary-segmentation">
+<h2>Exercise: Train a neural net for lane boundary segmentation<a class="headerlink" href="#exercise-train-a-neural-net-for-lane-boundary-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>The lane segmentation model should take an image of shape (512,1024,3) as an input. Here, 512 is the image height, 1024 is the image width and 3 is for the three color channels red, green, and blue.
+We train the model with input images and corresponding labels of shape (512,1024), where <code class="docutils literal notranslate"><span class="pre">label[v,u]</span></code> can have the value 0,1, or 2, meaning pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is “no boundary”, “left boundary”, or “right boundary”.</p>
+<p>The output of the model shall be a tensor <code class="docutils literal notranslate"><span class="pre">output</span></code> of shape (512,1024,3).</p>
+<ul class="simple">
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,0]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is <strong>not</strong> part of any lane boundary.</p></li>
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,1]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the left lane boundary.</p></li>
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,2]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the right lane boundary.</p></li>
+</ul>
+<div class="section" id="gathering-training-data">
+<h3>Gathering training data<a class="headerlink" href="#gathering-training-data" title="Permalink to this headline">¶</a></h3>
+<p>We can collect training data using the Carla simulator. I wrote a script <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> that</p>
+<ul class="simple">
+<li><p>creates a <em>vehicle</em> on the Carla map</p></li>
+<li><p>attaches an rgb camera <em>sensor</em> to the vehicle</p></li>
+<li><p>moves the vehicle to different positions and</p>
+<ol class="simple">
+<li><p>stores an image from the camera sensor</p></li>
+<li><p>stores world coordinates of the lane boundaries obtained from Carla’s high definition map</p></li>
+<li><p>stores a transformation matrix <span class="math notranslate nohighlight">\(T_{cw}\)</span> that maps world coordinates to coordinates in the camera reference frame</p></li>
+<li><p>stores a label image, that is created from the lane boundary coordinates and the transformation matrix as shown in the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
+</ol>
+</li>
+</ul>
+<p>Note that from the four data items (image, lane boundaries, trafo matrix, label image), only the image and the label image are necessary for training our deep learning model.</p>
+<p>All data is collected on the “Town04” Carla map since this is the only map with usable highways (“Town06” has highways which are either perfectly straight or have a 90-degree turn). For simplicity’s sake, we are building a system just for the highway. Hence, only parts of the map with low road curvature are used, which excludes urban roads.</p>
+<p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
+<p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="1059fde6-a877-465f-8427-79cc55860620" name="12e35f0b-613b-451e-8990-c7d695cbe282" type="radio">
+</input><label class="tabbed-label" for="1059fde6-a877-465f-8427-79cc55860620">
+Recommended: Downloading the data</label><div class="tabbed-content docutils">
+<p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
+</div>
+<input id="f4a5ecc1-c063-42d3-9c46-ba436199f29f" name="12e35f0b-613b-451e-8990-c7d695cbe282" type="radio">
+</input><label class="tabbed-label" for="f4a5ecc1-c063-42d3-9c46-ba436199f29f">
+Alternative: Generating data yourself</label><div class="tabbed-content docutils">
+<p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
+conda activate aad 
+python -m code.solutions.lane_detection.collect_data
+</pre></div>
+</div>
+<p>Now you need to wait some seconds because the script tells the Carla simulator to load the “Town04” map. A window will open that shows different scenes as well as augmented-reality lane boundaries. Each scene that you see will be saved to your hard drive. Wait a while until you have collected enough data, then click the close button. Finally, open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code> and follow the instructions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I do not advise you to read the actual code inside <code class="docutils literal notranslate"><span class="pre">collect_data</span></code>, since I mainly wrote it for functionality, and not for education. If you are really curious, you can of course read it, but first you should</p>
+<ul class="simple">
+<li><p>have finished the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
+<li><p>learned about Carla by studying the <a class="reference external" href="https://carla.readthedocs.io/en/latest/">documentation</a> and running some official python example clients</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-a-model">
+<h3>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this headline">¶</a></h3>
+<p>To create and train a model, you can choose any deep learning framework you like. Regarding model performance:</p>
+<div class="warning admonition">
+<p class="admonition-title">Expected performance</p>
+<p>You should achieve a dice loss of <span class="math notranslate nohighlight">\(0.2\)</span> or less on the validation data set!</p>
+</div>
+<p>If you want some <strong>guidance</strong>, I recommend using <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a> (smp). You can modify the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">example on the smp github repo</a> to work for lane segmentation. You should start with the code in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code> (and leave it in its directory to make sure the utility imports keep working). Then copy what you need from the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> cell by cell. For each cell, read what it does and think whether it needs modifications.</p>
+<p>This exercise is probably the hardest in this book. If you want, you can get some hints.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
+</div>
+<div class="tabbed-set docutils">
+<input checked="checked" id="6ef1fb5b-3b3f-4cb9-9c53-ccdaf18c8aae" name="71733c00-af63-4491-a9e7-b6173aeac1af" type="radio">
+</input><label class="tabbed-label" for="6ef1fb5b-3b3f-4cb9-9c53-ccdaf18c8aae">
+No hints</label><div class="tabbed-content docutils">
+<p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
+</div>
+<input id="7cc685a3-6227-425b-8c33-bbf877ce10ca" name="71733c00-af63-4491-a9e7-b6173aeac1af" type="radio">
+</input><label class="tabbed-label" for="7cc685a3-6227-425b-8c33-bbf877ce10ca">
+Limited hints</label><div class="tabbed-content docutils">
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
+<li><p>I would disable the “horizontal flip” image augmentation, because it exchanges left and right; something we want to distinguish!</p></li>
+<li><p>I recommend you to use dice loss for training. You cannot use the library function <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> directly, since it is for binary segmentation. However, you can view our multiclass segmentation problem as two binary segmentation problems. You can compute the dice loss for each using <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> and then take the average. Write your own <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> python class based on this idea. Note that you should use <code class="docutils literal notranslate"><span class="pre">smp.utils.base.Loss</span></code> as a base class.</p></li>
+<li><p>For this data set you can get very good results in around 5 epochs. So you do not need 40 like in the example.</p></li>
+<li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
+</ul>
+</div>
+<input id="7a0181e7-e3c5-4d06-a066-cf98901e1111" name="71733c00-af63-4491-a9e7-b6173aeac1af" type="radio">
+</input><label class="tabbed-label" for="7a0181e7-e3c5-4d06-a066-cf98901e1111">
+Detailed hints</label><div class="tabbed-content docutils">
+<p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
+<ul class="simple">
+<li><p><strong>DataLoader</strong>: Ine the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class, you need to change</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLASSES</span></code>: We only have the three classes “background”, “left_boundary”, and “right_boundary”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> function: In the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> the input images and label images have the same name. In our case, if the input image is called <code class="docutils literal notranslate"><span class="pre">something.png</span></code>, the label is called <code class="docutils literal notranslate"><span class="pre">something_label.png</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>: You can completely skip the two lines after “extract certain classes from mask (e.g. cars)”. This will be useful for the dice loss implementation later on.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">visualize</span></code>: You can just pass <code class="docutils literal notranslate"><span class="pre">mask</span></code> instead of <code class="docutils literal notranslate"><span class="pre">mask.squeeze(-1)</span></code> to the <code class="docutils literal notranslate"><span class="pre">visualize</span></code> function.</p></li>
+</ul>
+</li>
+<li><p><strong>Augmentations</strong>: Disable the “horizontal flip” image augmentation, because it exchanges left and right; something we want to distinguish! The function <code class="docutils literal notranslate"><span class="pre">get_validation_augmentation()</span></code> can return <code class="docutils literal notranslate"><span class="pre">None</span></code>, since our image shape is already divisible by 32.</p></li>
+<li><p><strong>Create model and train</strong>:  I would recommend to change</p>
+<ul>
+<li><p><strong>ENCODER</strong>: ‘efficientnet-b0’ performs well and is quite fast. But of course you can try others (see <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/README.md">smp README</a>)</p></li>
+<li><p><strong>CLASSES</strong>: Just use <code class="docutils literal notranslate"><span class="pre">Dataset.CLASSES</span></code></p></li>
+<li><p><strong>ACTIVATION</strong>: Choose ‘softmax2d’, since we are doing multiclass segmentation.</p></li>
+<li><p><strong>loss</strong>: I recommend you to use dice loss for training. You cannot use the library function <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> directly, since it is for binary segmentation. It expects a prediction tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> and a ground-truth tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> (ground-truth tensor is another term for label tensor). However, our multiclass prediction has shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">3,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> (where 3=number of classes), and our ground-truth tensor from the DataLoader is of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code>. Write your own <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> python class which uses <code class="docutils literal notranslate"><span class="pre">smp.utils.base.Loss</span></code> as a base class. The <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> should have two members: <code class="docutils literal notranslate"><span class="pre">BinaryDiceLossLeft</span></code> and <code class="docutils literal notranslate"><span class="pre">BinaryDiceLossRight</span></code>, which are of type <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss</span></code>. Implement a function <code class="docutils literal notranslate"><span class="pre">forward(self,</span> <span class="pre">y_pr,</span> <span class="pre">y_gt)</span></code> for <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code>, which computes a <code class="docutils literal notranslate"><span class="pre">loss_left</span></code> and a <code class="docutils literal notranslate"><span class="pre">loss_right</span></code> and returns <code class="docutils literal notranslate"><span class="pre">0.5*(loss_left+loss_right)</span></code>. You compute <code class="docutils literal notranslate"><span class="pre">loss_left</span></code> by passing the correct data into <code class="docutils literal notranslate"><span class="pre">self.BinaryDiceLossLeft.forward()</span></code>.</p></li>
+<li><p><strong>metrics</strong>: You can set <code class="docutils literal notranslate"><span class="pre">metrics=[]</span></code>, since our loss function already is a good metric here.</p></li>
+<li><p><strong>epochs</strong>: For this data set you can get very good results in around 5 epochs. So you do not need 40 like in the example.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Store your model</p>
+<p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code> as shown in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./LaneDetection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="CameraBasics.html" title="previous page">Basics of Image Formation</a>
+    <a class='right-next' id="next-link" href="InversePerspectiveMapping.html" title="next page">From Pixels to Meters</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mario Theers<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

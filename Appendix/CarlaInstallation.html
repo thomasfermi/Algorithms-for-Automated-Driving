@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carla Installation &#8212; Algorithms for Automated Driving</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/car_sketch.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Future Chapters" href="NextChapters.html" />
+    <link rel="prev" title="Exercise Setup" href="ExerciseSetup.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Lane Detection
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/LaneDetectionOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/CameraBasics.html">
+   Basics of Image Formation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/Segmentation.html">
+   Lane Boundary Segmentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html">
+   From Pixels to Meters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Control
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/ControlOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PID.html">
+   PID Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/BicycleModel.html">
+   Kinematic Bicycle Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PurePursuit.html">
+   Pure Pursuit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ExerciseSetup.html">
+   Exercise Setup
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Carla Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NextChapters.html">
+   Future Chapters
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Appendix/CarlaInstallation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="carla-installation">
+<h1>Carla Installation<a class="headerlink" href="#carla-installation" title="Permalink to this headline">¶</a></h1>
+<p>For some parts of this course you <strong>can</strong> use the Carla simulator.
+It is most convenient to install Carla on your local machine. However, it might not be powerful enough, since Carla is quite ressource hungry. If you find that Carla is not running well on your machine, you can try running it on Colab. Personally, I found that running Carla through Colab was an unpleasant experience.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="e0f84ea7-d213-490e-bc9b-6dbd09879717" name="9e367e48-2eb4-48f1-b2db-3e6bfa2a9e08" type="radio">
+</input><label class="tabbed-label" for="e0f84ea7-d213-490e-bc9b-6dbd09879717">
+Local installation</label><div class="tabbed-content docutils">
+<p>You can get Carla at <a class="reference external" href="https://github.com/carla-simulator/carla/blob/master/Docs/download.md">the Carla github repo</a>. Download version 0.9.10 (or newer if no breaking API changes will be introduced in the future) and move it to a location where you want to keep it.
+The Carla simulation can be controlled via a python API. In your Carla folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">PythonAPI</span></code> which contains the python package as well as some examples.
+I recommend that you use an anaconda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> for this course (see <a class="reference internal" href="ExerciseSetup.html"><span class="doc std std-doc">Exercise Setup</span></a>). An easy way to <em>install</em> the carla python package into your anaconda enviroment is the following:</p>
+<ul class="simple">
+<li><p>Go to your anaconda installation folder and then into the <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> subfolder of your environment. The path may be something like <code class="docutils literal notranslate"><span class="pre">~/anaconda3/envs/aad/lib/pythonX.X/site-packages/</span></code> or <code class="docutils literal notranslate"><span class="pre">C:\Users\{YOUR_USERNAME}\anaconda3\envs\aad\Lib\site-packages</span></code></p></li>
+<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">carla.pth</span></code> and open it with a text editor</p></li>
+<li><p>Paste in the path to the carla egg file, then save. The carla egg file is located in <code class="docutils literal notranslate"><span class="pre">{PATH_TO_YOUR_CARLA_FOLDER}/PythonAPI/carla/dist/</span></code>. Hence, I pasted <code class="docutils literal notranslate"><span class="pre">C:\Users\mario\Documents\Carla_0910\PythonAPI\carla\dist\carla-0.9.10-py3.7-win-amd64.egg</span></code> into the <code class="docutils literal notranslate"><span class="pre">carla.pth</span></code> file.
+Do not move the Carla folder afterwards, since it will break this link and hence the anaconda installation.</p></li>
+</ul>
+</div>
+<input id="22c4029a-fb11-4b68-af6b-83f4aa4f23ae" name="9e367e48-2eb4-48f1-b2db-3e6bfa2a9e08" type="radio">
+</input><label class="tabbed-label" for="22c4029a-fb11-4b68-af6b-83f4aa4f23ae">
+Running on Colab</label><div class="tabbed-content docutils">
+<p>If you want to run Carla on <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, check out <a class="reference external" href="https://github.com/MichaelBosello/carla-colab">Michael Bossello’s carla-colab repository</a>. When you follow this link, you will see a nice image of the Carla simulator and above there is a button “Open in Colab”. Click that button. Then go through the notebook step by step and follow the instructions. Note that if you move your python code to the remote machine, and execute it, the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statements will not work. Add the following lines before the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statement</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/home/colab/carla/PythonAPI/carla/dist/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will let python know where to look for the carla python package.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ExerciseSetup.html" title="previous page">Exercise Setup</a>
+    <a class='right-next' id="next-link" href="NextChapters.html" title="next page">Future Chapters</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mario Theers<br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

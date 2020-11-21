@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="455">
+ <title>Bayer pattern on sensor</title>
+ <desc>A Bayer pattern on a sensor in isometric perspective/projection</desc>
+ <defs>
+  <filter id="filter_l">
+   <feColorMatrix type="matrix" values="0.8,0,0,0,0 0,0.8,0,0,0 0,0,0.8,0,0 0,0,0,1,0"/>
+  </filter>
+  <filter id="filter_r">
+   <feColorMatrix type="matrix" values="0.6,0,0,0,0 0,0.6,0,0,0 0,0,0.6,0,0 0,0,0,1,0"/>
+  </filter>
+  <pattern id="pattern_grid" patternUnits="userSpaceOnUse" width="1" height="1">
+   <rect x="0" y="0" width="1" height="1" fill="#999999" stroke="#666666" stroke-width="0.04"/>
+  </pattern>
+  <g id="base" fill="url(#pattern_grid)">
+   <rect transform="matrix(-2,-1 2,-1 0,0)" width="8" height="8"/>
+   <rect transform="matrix(-2,-1 0, 2 0,0)" width="8" height="0.5" filter="url(#filter_l)"/>
+   <rect transform="matrix( 2,-1 0, 2 0,0)" width="8" height="0.5" filter="url(#filter_r)"/>
+  </g>
+  <g id="px">
+   <rect transform="matrix(-2,-1 2,-1 0,0)" width="1" height="1"/>
+   <rect transform="matrix(-2,-1 0, 2 0,0)" width="1" height="0.5" filter="url(#filter_l)"/>
+   <rect transform="matrix( 2,-1 0, 2 0,0)" width="1" height="0.5" filter="url(#filter_r)"/>
+  </g>
+  <use id="r" xlink:href="#px" fill="#ff0000"/>
+  <use id="g" xlink:href="#px" fill="#00ff00"/>
+  <use id="b" xlink:href="#px" fill="#0000ff"/>
+  <g id="bg">
+   <use xlink:href="#b"/>
+   <use xlink:href="#g" x="2" y="1"/>
+  </g>
+  <g id="rggb">
+   <use xlink:href="#g" x="2" y="-1"/>
+   <use xlink:href="#r" x="4"/>
+   <use xlink:href="#bg"/>
+  </g>
+ </defs>
+
+ <g transform="translate(46,228) scale(25) scale(0.866,1)" stroke="#000000" stroke-width="0.01" stroke-linejoin="bevel">
+  <use xlink:href="#base" x="14" y="8"/>
+  <use xlink:href="#rggb" x="12" y="-6"/>
+  <use xlink:href="#rggb" x="8"  y="-4"/>
+  <use xlink:href="#rggb" x="4"  y="-2"/>
+  <use xlink:href="#rggb"/>
+
+  <use xlink:href="#bg"   x="16" y="-4"/>
+  <use xlink:href="#rggb" x="12" y="-2"/>
+  <use xlink:href="#rggb" x="8"  y="0"/>
+  <use xlink:href="#rggb" x="4"  y="2"/>
+
+  <use xlink:href="#g"    x="18" y="-1"/>
+  <use xlink:href="#bg"   x="16" y="0"/>
+  <use xlink:href="#rggb" x="12" y="2"/>
+  <use xlink:href="#rggb" x="8"  y="4"/>
+
+  <use xlink:href="#g"    x="14" y="5"/>
+  <use xlink:href="#b"    x="12" y="6"/>
+ </g>
+</svg>
