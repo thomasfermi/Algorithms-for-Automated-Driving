@@ -52,9 +52,9 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
@@ -281,29 +281,29 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 </div>
 <p>Since the above drawing is generated programmatically (using <a class="reference external" href="https://en.wikipedia.org/wiki/PGF/TikZ">tikz</a>), we can change the value of <span class="math notranslate nohighlight">\(\delta\)</span> until the vehicle trajectory goes through the target point:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="11f89847-800c-4958-b5f7-8e12cbb10db1" name="6c3e316b-e8cf-4cce-8a91-6bcb58cc8e88" type="radio">
-</input><label class="tabbed-label" for="11f89847-800c-4958-b5f7-8e12cbb10db1">
+<input checked="checked" id="e84c4a46-2b59-47f0-9671-7a167c5a312b" name="8c6b36b6-1ec6-43d9-bf15-e77fd1ea546e" type="radio">
+</input><label class="tabbed-label" for="e84c4a46-2b59-47f0-9671-7a167c5a312b">
 δ = 25°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-25">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_25.svg"><img alt="../_images/PurePursuit_delta_25.svg" src="../_images/PurePursuit_delta_25.svg" width="90%" /></a>
 </div>
 </div>
-<input id="30bd399b-736d-4ebe-a33f-8aef2ff68234" name="6c3e316b-e8cf-4cce-8a91-6bcb58cc8e88" type="radio">
-</input><label class="tabbed-label" for="30bd399b-736d-4ebe-a33f-8aef2ff68234">
+<input id="352ab020-0433-4d57-8a72-cc13c6b95111" name="8c6b36b6-1ec6-43d9-bf15-e77fd1ea546e" type="radio">
+</input><label class="tabbed-label" for="352ab020-0433-4d57-8a72-cc13c6b95111">
 δ = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-20">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_20.svg"><img alt="../_images/PurePursuit_delta_20.svg" src="../_images/PurePursuit_delta_20.svg" width="90%" /></a>
 </div>
 </div>
-<input id="00be545d-a96e-4ace-90c0-9d6d960f1ce8" name="6c3e316b-e8cf-4cce-8a91-6bcb58cc8e88" type="radio">
-</input><label class="tabbed-label" for="00be545d-a96e-4ace-90c0-9d6d960f1ce8">
+<input id="0ee790e9-6851-4355-9694-3d9cb59a88fa" name="8c6b36b6-1ec6-43d9-bf15-e77fd1ea546e" type="radio">
+</input><label class="tabbed-label" for="0ee790e9-6851-4355-9694-3d9cb59a88fa">
 δ = 15°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-15">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_15.svg"><img alt="../_images/PurePursuit_delta_15.svg" src="../_images/PurePursuit_delta_15.svg" width="90%" /></a>
 </div>
 </div>
-<input id="75d42c69-7c47-4c2a-b4f0-c85668999f27" name="6c3e316b-e8cf-4cce-8a91-6bcb58cc8e88" type="radio">
-</input><label class="tabbed-label" for="75d42c69-7c47-4c2a-b4f0-c85668999f27">
+<input id="30fb28c8-ba74-4f7b-b642-e8402c29eb10" name="8c6b36b6-1ec6-43d9-bf15-e77fd1ea546e" type="radio">
+</input><label class="tabbed-label" for="30fb28c8-ba74-4f7b-b642-e8402c29eb10">
 δ = 11.3°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-11p3">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_11p3.svg"><img alt="../_images/PurePursuit_delta_11p3.svg" src="../_images/PurePursuit_delta_11p3.svg" width="90%" /></a>
@@ -360,7 +360,7 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
             ref: "master",
         },
         codeMirrorConfig: {

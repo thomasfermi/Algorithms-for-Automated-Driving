@@ -52,9 +52,9 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
@@ -288,13 +288,13 @@
 </div>
 <p>Otherwise visit this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> and click on the green button that says “Code”. In the pop-up menu, please select “Download zip”. Extract the zip to a directory of your choice.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="927a2773-afaa-4717-8a9b-5dd2851b6cfb" name="64423abf-7c63-4ed5-afbc-d03f65747ed5" type="radio">
-</input><label class="tabbed-label" for="927a2773-afaa-4717-8a9b-5dd2851b6cfb">
+<input checked="checked" id="0eb501ca-6b83-4a63-86b3-6042a6782f1d" name="4b022720-36e5-4eb8-ab71-174fb0985e39" type="radio">
+</input><label class="tabbed-label" for="0eb501ca-6b83-4a63-86b3-6042a6782f1d">
 Local installation</label><div class="tabbed-content docutils">
 <p>Nothing more to do.</p>
 </div>
-<input id="bf553625-c3f3-49d2-8fe3-76a1f5ec019b" name="64423abf-7c63-4ed5-afbc-d03f65747ed5" type="radio">
-</input><label class="tabbed-label" for="bf553625-c3f3-49d2-8fe3-76a1f5ec019b">
+<input id="c5b939c5-d65e-4ace-9bf0-827cb3e5e439" name="4b022720-36e5-4eb8-ab71-174fb0985e39" type="radio">
+</input><label class="tabbed-label" for="c5b939c5-d65e-4ace-9bf0-827cb3e5e439">
 Google Colab</label><div class="tabbed-content docutils">
 <p>Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a>. In the top left navigation you can see “My Drive”. Right click “My Drive” and select “New folder”. Name this folder “aad”. You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder “Algorithms-for-Automated-Driving” that you have downloaded from github. Select all folders except the “book” folder and drag and drop them into the empty “aad” folder in your Google Drive.</p>
 </div>
@@ -303,8 +303,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <div class="section" id="python-environment">
 <h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ee61f322-656d-4d4c-986b-316f202d13d8" name="648785b5-d975-47b0-9472-024d95bcdc77" type="radio">
-</input><label class="tabbed-label" for="ee61f322-656d-4d4c-986b-316f202d13d8">
+<input checked="checked" id="10b6952f-5a29-4acf-be22-7f33c944b501" name="58613d68-6f25-4036-b76d-4bf56cd0239d" type="radio">
+</input><label class="tabbed-label" for="10b6952f-5a29-4acf-be22-7f33c944b501">
 Local installation</label><div class="tabbed-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
 Please create a conda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> (Algorithms for Automated Driving) for this course using the environment.yml file within “Algorithms-for-Automated-Driving/code”</p>
@@ -318,8 +318,8 @@ conda env create -f environment.yml
 </div>
 <p>If you are working on Windows, consider <a class="reference external" href="https://www.scivision.dev/conda-powershell-python/">adding anaconda to your PowerShell</a>.</p>
 </div>
-<input id="72462dae-0639-4c0b-835b-694dcde2fcd8" name="648785b5-d975-47b0-9472-024d95bcdc77" type="radio">
-</input><label class="tabbed-label" for="72462dae-0639-4c0b-835b-694dcde2fcd8">
+<input id="5c819e8a-1f4b-4184-938f-3964f8478963" name="58613d68-6f25-4036-b76d-4bf56cd0239d" type="radio">
+</input><label class="tabbed-label" for="5c819e8a-1f4b-4184-938f-3964f8478963">
 Google Colab</label><div class="tabbed-content docutils">
 <p>When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it.</p>
 </div>
@@ -329,8 +329,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="088b00ed-8579-4971-b119-5dd9c0e02d91" name="2d658b56-9ee9-4a7e-b636-832e5773c099" type="radio">
-</input><label class="tabbed-label" for="088b00ed-8579-4971-b119-5dd9c0e02d91">
+<input checked="checked" id="0caaed98-c3cc-42f5-9f09-8aa658134b3b" name="f3f7b6f1-f79c-4389-8b98-d470f32fc25e" type="radio">
+</input><label class="tabbed-label" for="0caaed98-c3cc-42f5-9f09-8aa658134b3b">
 Local installation</label><div class="tabbed-content docutils">
 <p>To edit the source code, I recommend to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, since it has nice integration for jupyter notebooks. You can open the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder with Visual Studio code and then easily navigate between the <code class="docutils literal notranslate"><span class="pre">tests</span></code> and the <code class="docutils literal notranslate"><span class="pre">exercises</span></code>. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
@@ -342,8 +342,8 @@ jupyter lab
 When you open the .ipynb file be sure to select the “aad” conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won’t do anything on your machine. You can also delete these Colab-specific cells if you want.</p>
 </div>
-<input id="2756dabc-8a86-4bd1-9981-c75237c522d6" name="2d658b56-9ee9-4a7e-b636-832e5773c099" type="radio">
-</input><label class="tabbed-label" for="2756dabc-8a86-4bd1-9981-c75237c522d6">
+<input id="53d8c069-f3c9-4b14-911c-fe39d3cb2f0f" name="f3f7b6f1-f79c-4389-8b98-d470f32fc25e" type="radio">
+</input><label class="tabbed-label" for="53d8c069-f3c9-4b14-911c-fe39d3cb2f0f">
 Google Colab</label><div class="tabbed-content docutils">
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
 Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a> and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select “Open with Google Colaboratory”. If you do not see this option, click “Connect more apps” and search for “colab”. Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on “drive”, “My Drive”, “aad”, “code”, “exercises”, “lane_detection”, “camera_geometry.py”. This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.</p>
@@ -360,7 +360,7 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
             ref: "master",
         },
         codeMirrorConfig: {
