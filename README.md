@@ -11,7 +11,7 @@ The software you will write is in python, and you will apply it in the [open-sou
 
 To work through this book, you
 * should understand the following math and physics concepts: derivative, integral, trigonometry, sine/cosine of an angle, matrix, vector, coordinate system, velocity, acceleration, angular velocity, cross product, rotation matrix
-* should be familiar with programming in python. In particular, you should be comfortable with multidimensional arrays in numpy.
+* should be familiar with programming in python. In particular, you should be comfortable with multidimensional arrays in numpy. You do **not** need a powerful computer (see [Exercise Setup](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Appendix/ExerciseSetup.html))
 * need to know what supervised learning is, and how to train a neural network with a deep learning framework like pytorch, fastai, tensorflow, keras, or something similar. This prerequisite is only necessary for the chapter on lane detection. If you do not fulfill it, you can skip this chapter, or study one of the [courses I recommend](../LaneDetection/Segmentation.ipynb) and then come back here.
 
 If you find a bug in the exercise code or some confusing explanations in the book, please [raise an issue on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving). You can also just raise an issue to ask questions about the material. Once you finish the book or decide to stop working through it, please consider giving me some feedback by filling out [this questionnaire](https://forms.gle/TioqZiUsB5e5wSVG7) (If you open the link in your browser's incognito mode, the questionnaire should be anonymous).
