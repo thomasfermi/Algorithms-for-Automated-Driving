@@ -1,0 +1,15 @@
+# Documentation requirements (copied from official jupyter book)
+folium
+numpy
+matplotlib
+ipywidgets
+pandas
+nbclient
+sympy
+plotly
+bokeh
+altair
+sphinx-click
+sphinx_inline_tabs
+jupytext~=1.6.0
+sphinxext-rediraffe~=0.2.3
