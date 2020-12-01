@@ -52,9 +52,9 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
@@ -350,13 +350,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d2b8506b-a530-464e-a12f-27141c37f546" name="66a90393-e54b-4ba8-9cb2-db65c1e53766" type="radio">
-</input><label class="tabbed-label" for="d2b8506b-a530-464e-a12f-27141c37f546">
+<input checked="checked" id="a60a37fd-9233-4240-b1bc-20ff9908b3e6" name="27482809-b331-4a03-9d81-10e9b4a1cdb0" type="radio">
+</input><label class="tabbed-label" for="a60a37fd-9233-4240-b1bc-20ff9908b3e6">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="be40d5b0-efae-46bf-b620-5aea56a5156c" name="66a90393-e54b-4ba8-9cb2-db65c1e53766" type="radio">
-</input><label class="tabbed-label" for="be40d5b0-efae-46bf-b620-5aea56a5156c">
+<input id="e87877b8-dcf4-49fa-993e-fafeec5b1e54" name="27482809-b331-4a03-9d81-10e9b4a1cdb0" type="radio">
+</input><label class="tabbed-label" for="e87877b8-dcf4-49fa-993e-fafeec5b1e54">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -390,13 +390,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6190cdbe-6ca9-4f6b-9698-bffd7618a377" name="fe06538e-5fcb-44b0-8f51-e417e8acdcf4" type="radio">
-</input><label class="tabbed-label" for="6190cdbe-6ca9-4f6b-9698-bffd7618a377">
+<input checked="checked" id="20f26e98-85c8-4fe3-afa0-77341407eea4" name="e1322828-934d-46bf-843b-cce4f273a6ed" type="radio">
+</input><label class="tabbed-label" for="20f26e98-85c8-4fe3-afa0-77341407eea4">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="ff763d59-3177-4f7b-beed-8611cded9618" name="fe06538e-5fcb-44b0-8f51-e417e8acdcf4" type="radio">
-</input><label class="tabbed-label" for="ff763d59-3177-4f7b-beed-8611cded9618">
+<input id="4aed6f6b-e088-4399-8218-f4326920b6ae" name="e1322828-934d-46bf-843b-cce4f273a6ed" type="radio">
+</input><label class="tabbed-label" for="4aed6f6b-e088-4399-8218-f4326920b6ae">
 Limited hints</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
@@ -406,8 +406,8 @@ Limited hints</label><div class="tabbed-content docutils">
 <li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
 </ul>
 </div>
-<input id="89183dc1-8938-44e0-8fb3-8c1627871d19" name="fe06538e-5fcb-44b0-8f51-e417e8acdcf4" type="radio">
-</input><label class="tabbed-label" for="89183dc1-8938-44e0-8fb3-8c1627871d19">
+<input id="e4a022f3-c4d7-49f6-bb7b-4d9eddedd168" name="e1322828-934d-46bf-843b-cce4f273a6ed" type="radio">
+</input><label class="tabbed-label" for="e4a022f3-c4d7-49f6-bb7b-4d9eddedd168">
 Detailed hints</label><div class="tabbed-content docutils">
 <p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
 <ul class="simple">
@@ -445,7 +445,7 @@ Detailed hints</label><div class="tabbed-content docutils">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
             ref: "master",
         },
         codeMirrorConfig: {
