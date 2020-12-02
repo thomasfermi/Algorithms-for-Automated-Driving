@@ -1,14 +1,8 @@
-# Documentation requirements (copied from official jupyter book)
-folium
+# Documentation requirements (more or less copied from official jupyter book)
 numpy
 matplotlib
 ipywidgets
-pandas
 nbclient
-sympy
-plotly
-bokeh
-altair
 sphinx-click
 sphinx_inline_tabs
 jupytext~=1.6.0
