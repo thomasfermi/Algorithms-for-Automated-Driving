@@ -1,9 +1,0 @@
-# Documentation requirements (more or less copied from official jupyter book)
-numpy
-matplotlib
-ipywidgets
-nbclient
-sphinx-click
-sphinx_inline_tabs
-jupytext~=1.6.0
-sphinxext-rediraffe~=0.2.3

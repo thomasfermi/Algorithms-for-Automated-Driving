@@ -1,0 +1,7 @@
+name: aad_binder
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy
+  - ipywidgets
