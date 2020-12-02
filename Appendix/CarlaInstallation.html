@@ -44,6 +44,7 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -271,8 +272,8 @@
 <p>For some parts of this course you <strong>can</strong> use the Carla simulator.
 It is most convenient to install Carla on your local machine. However, it might not be powerful enough, since Carla is quite ressource hungry. If you find that Carla is not running well on your machine, you can try running it on Colab. Personally, I found that running Carla through Colab was an unpleasant experience.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a83b4b02-6b04-4693-b8ec-5be1ff16a3c9" name="97a4638c-f4cb-4d88-868a-617db7b94533" type="radio">
-</input><label class="tabbed-label" for="a83b4b02-6b04-4693-b8ec-5be1ff16a3c9">
+<input checked="checked" id="657a51b2-5272-4423-a69d-ff4f5555c199" name="cb0d046c-1138-4021-baa8-e6982f753bea" type="radio">
+</input><label class="tabbed-label" for="657a51b2-5272-4423-a69d-ff4f5555c199">
 Local installation</label><div class="tabbed-content docutils">
 <p>You can get Carla at <a class="reference external" href="https://github.com/carla-simulator/carla/blob/master/Docs/download.md">the Carla github repo</a>. Download version 0.9.10 (or newer if no breaking API changes will be introduced in the future) and move it to a location where you want to keep it.
 The Carla simulation can be controlled via a python API. In your Carla folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">PythonAPI</span></code> which contains the python package as well as some examples.
@@ -284,8 +285,8 @@ I recommend that you use an anaconda environment called <code class="docutils li
 Do not move the Carla folder afterwards, since it will break this link and hence the anaconda installation.</p></li>
 </ul>
 </div>
-<input id="efda55bf-1598-4c03-92ea-53665038bd48" name="97a4638c-f4cb-4d88-868a-617db7b94533" type="radio">
-</input><label class="tabbed-label" for="efda55bf-1598-4c03-92ea-53665038bd48">
+<input id="8e43d54f-acf8-4591-95a9-a90ebc7879c8" name="cb0d046c-1138-4021-baa8-e6982f753bea" type="radio">
+</input><label class="tabbed-label" for="8e43d54f-acf8-4591-95a9-a90ebc7879c8">
 Running on Colab</label><div class="tabbed-content docutils">
 <p>If you want to run Carla on <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, check out <a class="reference external" href="https://github.com/MichaelBosello/carla-colab">Michael Bossello’s carla-colab repository</a>. When you follow this link, you will see a nice image of the Carla simulator and above there is a button “Open in Colab”. Click that button. Then go through the notebook step by step and follow the instructions. Note that if you move your python code to the remote machine, and execute it, the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statements will not work. Add the following lines before the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statement</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
