@@ -351,13 +351,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b3741543-ee73-41da-b3e5-7adfc6865d83" name="a5101520-216c-4bdd-8529-6865c8115ff9" type="radio">
-</input><label class="tabbed-label" for="b3741543-ee73-41da-b3e5-7adfc6865d83">
+<input checked="checked" id="19d3317c-40f8-4f84-aa8e-1a78d4062b58" name="44db9938-58fb-4714-bb35-a82923972f53" type="radio">
+</input><label class="tabbed-label" for="19d3317c-40f8-4f84-aa8e-1a78d4062b58">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="e0100f1d-ed9c-4a25-83ba-0f654e965cf4" name="a5101520-216c-4bdd-8529-6865c8115ff9" type="radio">
-</input><label class="tabbed-label" for="e0100f1d-ed9c-4a25-83ba-0f654e965cf4">
+<input id="0c85fe07-bd72-45b3-815e-fbe59202b41e" name="44db9938-58fb-4714-bb35-a82923972f53" type="radio">
+</input><label class="tabbed-label" for="0c85fe07-bd72-45b3-815e-fbe59202b41e">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -391,13 +391,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2ce0aa26-518b-48a9-b4f8-f535127fd277" name="221bc606-481b-4935-bcc8-2ba64da4f1c7" type="radio">
-</input><label class="tabbed-label" for="2ce0aa26-518b-48a9-b4f8-f535127fd277">
+<input checked="checked" id="7d68198f-5878-4d12-879d-ae6d644b37fc" name="1350d013-8213-41be-9474-9000c8d04244" type="radio">
+</input><label class="tabbed-label" for="7d68198f-5878-4d12-879d-ae6d644b37fc">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="6d85776e-c47a-4217-a73f-0a9cdc17625e" name="221bc606-481b-4935-bcc8-2ba64da4f1c7" type="radio">
-</input><label class="tabbed-label" for="6d85776e-c47a-4217-a73f-0a9cdc17625e">
+<input id="b31a2358-1f4d-4174-aa99-e8661f79c6ca" name="1350d013-8213-41be-9474-9000c8d04244" type="radio">
+</input><label class="tabbed-label" for="b31a2358-1f4d-4174-aa99-e8661f79c6ca">
 Limited hints</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
@@ -407,8 +407,8 @@ Limited hints</label><div class="tabbed-content docutils">
 <li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
 </ul>
 </div>
-<input id="5d13bcb2-81d5-4ff6-bd26-4546f812a12e" name="221bc606-481b-4935-bcc8-2ba64da4f1c7" type="radio">
-</input><label class="tabbed-label" for="5d13bcb2-81d5-4ff6-bd26-4546f812a12e">
+<input id="fc988440-2a69-481a-8cf6-340cc058d486" name="1350d013-8213-41be-9474-9000c8d04244" type="radio">
+</input><label class="tabbed-label" for="fc988440-2a69-481a-8cf6-340cc058d486">
 Detailed hints</label><div class="tabbed-content docutils">
 <p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
 <ul class="simple">
@@ -437,6 +437,10 @@ Detailed hints</label><div class="tabbed-content docutils">
 <div class="tip admonition">
 <p class="admonition-title">Store your model</p>
 <p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code> as shown in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Optional: Working on kaggle</p>
+<p>The traing data I prepared for you can also be found on <a class="reference external" href="https://www.kaggle.com/thomasfermi/lane-detection-for-carla-driving-simulator">kaggle</a>. If you like, you can create your model online with a kaggle notebook. They also offer free GPU access. Consider publishing your notebook on kaggle once you are happy with your solution. I would love to see it 😃.</p>
 </div>
 </div>
 </div>
