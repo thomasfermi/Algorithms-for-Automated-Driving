@@ -12,6 +12,7 @@ dependencies:
   - albumentations==0.5.1
   - pytorch==1.7.0
   - torchvision==0.8.1
+  - sphinxcontrib-bibtex<2.0.0
   - pip
   - pip:
     - segmentation-models-pytorch==0.1.2
