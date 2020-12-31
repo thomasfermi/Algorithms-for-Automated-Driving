@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -50,7 +49,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -272,8 +271,8 @@
 <p>For some parts of this course you <strong>can</strong> use the Carla simulator.
 It is most convenient to install Carla on your local machine. However, it might not be powerful enough, since Carla is quite ressource hungry. If you find that Carla is not running well on your machine, you can try running it on Colab. Personally, I found that running Carla through Colab was an unpleasant experience.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3fcbd353-c555-4587-ba42-d6e51114c70f" name="4c95f279-2392-403e-ad69-9d9330fe11ec" type="radio">
-</input><label class="tabbed-label" for="3fcbd353-c555-4587-ba42-d6e51114c70f">
+<input checked="checked" id="12edb6cf-677c-49c2-a055-749f85dc5aba" name="ab0c3173-9730-4a00-98bc-f46eb64a36a5" type="radio">
+</input><label class="tabbed-label" for="12edb6cf-677c-49c2-a055-749f85dc5aba">
 Local installation</label><div class="tabbed-content docutils">
 <p>You can get Carla at <a class="reference external" href="https://github.com/carla-simulator/carla/blob/master/Docs/download.md">the Carla github repo</a>. Download version 0.9.10 (or newer if no breaking API changes will be introduced in the future) and move it to a location where you want to keep it.
 The Carla simulation can be controlled via a python API. In your Carla folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">PythonAPI</span></code> which contains the python package as well as some examples.
@@ -285,8 +284,8 @@ I recommend that you use an anaconda environment called <code class="docutils li
 Do not move the Carla folder afterwards, since it will break this link and hence the anaconda installation.</p></li>
 </ul>
 </div>
-<input id="661bf3a1-c530-4dfc-9c23-ab1e140503a2" name="4c95f279-2392-403e-ad69-9d9330fe11ec" type="radio">
-</input><label class="tabbed-label" for="661bf3a1-c530-4dfc-9c23-ab1e140503a2">
+<input id="eff36f8f-f788-4ce1-866a-10b6800ce928" name="ab0c3173-9730-4a00-98bc-f46eb64a36a5" type="radio">
+</input><label class="tabbed-label" for="eff36f8f-f788-4ce1-866a-10b6800ce928">
 Running on Colab</label><div class="tabbed-content docutils">
 <p>If you want to run Carla on <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, check out <a class="reference external" href="https://github.com/MichaelBosello/carla-colab">Michael Bossello’s carla-colab repository</a>. When you follow this link, you will see a nice image of the Carla simulator and above there is a button “Open in Colab”. Click that button. Then go through the notebook step by step and follow the instructions. Note that if you move your python code to the remote machine, and execute it, the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statements will not work. Add the following lines before the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statement</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
