@@ -350,13 +350,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="839631e0-bf8d-4c7b-9705-e6d77dda7fd1" name="606220ba-f289-4b8a-9017-efb61b247c5f" type="radio">
-</input><label class="tabbed-label" for="839631e0-bf8d-4c7b-9705-e6d77dda7fd1">
+<input checked="checked" id="9ad0cc45-ffda-4c11-9a65-eda1edb68f65" name="36737f3b-017a-43de-bcbb-e45d014df82c" type="radio">
+</input><label class="tabbed-label" for="9ad0cc45-ffda-4c11-9a65-eda1edb68f65">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="04603d66-7daa-4d0b-97a4-ad37328dcbbc" name="606220ba-f289-4b8a-9017-efb61b247c5f" type="radio">
-</input><label class="tabbed-label" for="04603d66-7daa-4d0b-97a4-ad37328dcbbc">
+<input id="6e4e52b5-c5a4-41bc-8ea7-3ba875558449" name="36737f3b-017a-43de-bcbb-e45d014df82c" type="radio">
+</input><label class="tabbed-label" for="6e4e52b5-c5a4-41bc-8ea7-3ba875558449">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -390,13 +390,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4e34637b-9da3-4457-97c7-142eb18c93d5" name="67b5e552-556f-42ce-9214-41bd94d0f676" type="radio">
-</input><label class="tabbed-label" for="4e34637b-9da3-4457-97c7-142eb18c93d5">
+<input checked="checked" id="44a844f3-cbee-406c-bb23-c9e8c5bdf0b5" name="8904062b-5c22-4ce5-b520-fe1746675bf6" type="radio">
+</input><label class="tabbed-label" for="44a844f3-cbee-406c-bb23-c9e8c5bdf0b5">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="99f3d4f1-42e4-4ead-9819-b9693722fc97" name="67b5e552-556f-42ce-9214-41bd94d0f676" type="radio">
-</input><label class="tabbed-label" for="99f3d4f1-42e4-4ead-9819-b9693722fc97">
+<input id="bd10c3e3-c5ea-4236-832a-67d3d6f91b7e" name="8904062b-5c22-4ce5-b520-fe1746675bf6" type="radio">
+</input><label class="tabbed-label" for="bd10c3e3-c5ea-4236-832a-67d3d6f91b7e">
 Limited hints</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
@@ -406,8 +406,8 @@ Limited hints</label><div class="tabbed-content docutils">
 <li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
 </ul>
 </div>
-<input id="2dd53087-92b2-4572-8928-7cfad25332cf" name="67b5e552-556f-42ce-9214-41bd94d0f676" type="radio">
-</input><label class="tabbed-label" for="2dd53087-92b2-4572-8928-7cfad25332cf">
+<input id="7e928118-b738-46a4-96ca-e27577a7418b" name="8904062b-5c22-4ce5-b520-fe1746675bf6" type="radio">
+</input><label class="tabbed-label" for="7e928118-b738-46a4-96ca-e27577a7418b">
 Detailed hints</label><div class="tabbed-content docutils">
 <p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
 <ul class="simple">
