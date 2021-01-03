@@ -280,6 +280,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further Reading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -335,6 +340,16 @@
 <li><p>Apply homography (warpPerspective) to the camera image in order to compute the image that you would get from a camera with <em>default</em> extrinsics. In the openpilot documentation this is referred to as <a class="reference external" href="https://github.com/commaai/openpilot/tree/master/common/transformations">calibrated frame</a>.</p></li>
 <li><p>Train a neural net with the default-perspective images. The output of the neural network is the path the vehicle should take (somewhat close to the center between the lane boundaries). I am not totally sure, but based on their <a class="reference external" href="https://medium.com/&#64;comma_ai/towards-a-superhuman-driving-agent-1f7391e2e8ec">medium article</a> I think they create labels like this: Take recorded videos and estimate vehicle trajectory using visual odometry. Then for each image frame, transform this trajectory into the vehicle reference frame at that point in time and use this as a label.</p></li>
 </ul>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>If you want to read some more about lane detection, I recommend the following ressources:</p>
+<dl class="glossary simple">
+<dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
+</dd>
+<dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

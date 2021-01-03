@@ -29,6 +29,15 @@ It is interesting to see how a real world lane-detection system works. Luckily, 
 * Apply homography (warpPerspective) to the camera image in order to compute the image that you would get from a camera with *default* extrinsics. In the openpilot documentation this is referred to as [calibrated frame](https://github.com/commaai/openpilot/tree/master/common/transformations).
 * Train a neural net with the default-perspective images. The output of the neural network is the path the vehicle should take (somewhat close to the center between the lane boundaries). I am not totally sure, but based on their [medium article](https://medium.com/@comma_ai/towards-a-superhuman-driving-agent-1f7391e2e8ec) I think they create labels like this: Take recorded videos and estimate vehicle trajectory using visual odometry. Then for each image frame, transform this trajectory into the vehicle reference frame at that point in time and use this as a label.
 
+## Further Reading
+If you want to read some more about lane detection, I recommend the following ressources:
+```{glossary}
+[Papers with code](https://paperswithcode.com/task/lane-detection/)
+  Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.
+[awesome-lane-detection](https://github.com/amusi/awesome-lane-detection)
+  This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.
+```
+
 
 ## References
 
