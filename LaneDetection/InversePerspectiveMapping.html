@@ -458,17 +458,11 @@ First, we load an image</p>
 <img alt="../_images/InversePerspectiveMapping_41_0.svg" src="../_images/InversePerspectiveMapping_41_0.svg" /></div>
 </div>
 <p>Now we import the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class and create an instance of it. For that we specfiy the path to a model that we have stored with pytorch’s <code class="docutils literal notranslate"><span class="pre">save</span></code> function.</p>
-<div class="cell docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solutions.lane_detection.lane_detector</span> <span class="kn">import</span> <span class="n">LaneDetector</span>
 <span class="n">model_path</span> <span class="o">=</span><span class="s2">&quot;../../code/solutions/lane_detection/best_model_multi_dice_loss.pth&quot;</span>
 <span class="n">ld</span> <span class="o">=</span> <span class="n">LaneDetector</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /opt/conda/conda-bld/pytorch_1603729047590/work/c10/cuda/CUDAFunctions.cpp:100.)
-  return torch._C._cuda_getDeviceCount() &gt; 0
 </pre></div>
 </div>
 </div>
