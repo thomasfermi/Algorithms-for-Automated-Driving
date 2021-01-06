@@ -1,0 +1,91 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage{tikz}
+\usepackage{verbatim}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\usetikzlibrary{shapes.misc,shadows}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{positioning,backgrounds}
+	
+	\pgfmathsetmacro{\dist}{4}
+	\pgfmathsetmacro{\deltavar}{25}
+	\pgfmathsetmacro{\ax}{tan(90-\deltavar)*\dist*(-1)}
+
+	\pgfmathsetmacro{\imgrot}{-40}
+
+	\draw [<->,thick] (-4,0) node (yaxis) [above] {$y$}
+		|- (0,-3) node (xaxis) [right] {$x$};
+		
+	\draw[color=black] (-1.5,-3) arc (0:40:1.3);
+	\draw (-1.8,-2.7) node[black] {$\theta$};
+
+	\draw (5,4) node[red] {$\begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix}$};
+
+	\begin{scope} [rotate=\imgrot]
+		
+
+	% NODES
+	
+	
+	\node(tire1)[draw=blue, thick, fill=white, 
+				shape=rounded rectangle,  
+				drop shadow={opacity=.5,shadow xshift=0pt},
+				minimum width=1.8cm, 
+				minimum height=0.5cm,
+				rotate=90+\imgrot]  at (0,0)   {};
+				
+	\node(tire2)[draw=blue, thick, fill=white, 
+				shape=rounded rectangle,  
+				drop shadow={opacity=.5,shadow xshift=0pt},
+				minimum width=1.8cm, 
+				minimum height=0.5cm,
+				rotate=\deltavar-90+\imgrot]  at (0,\dist)   {};
+				
+	\node(triangle_left) at (\ax,0){};
+	
+	
+	
+	% TRIANGLE
+	 \draw[line width=2, color=blue]  (tire1.center) -- (tire2.center); 
+	\draw[dashed]  (triangle_left.center) -- (tire2.center);
+	\draw[dashed]  (triangle_left.center) -- (tire1.center);
+	
+	% length R and L 
+	\draw[<->]  (\ax, -1) -- (0,-1) node[midway, fill=white] {$R$};
+	\draw[<->]  (1.7, 0) -- (1.7,\dist) node[midway, fill=white] {$L$};
+	
+	% angle delta top
+	\draw[dashed, blue] (0, \dist-7.9) -- (0,\dist);
+	\draw[dashed,->,red, line width=1] (0, \dist) -- (0,\dist+2.3);
+	\draw[dashed, blue] (0, \dist) -- ({-sin(\deltavar)*2},{\dist+2)});
+	\draw[color=black] (0,\dist+1.5) arc (90:90+\deltavar:1.5);
+	\draw (-0.2, \dist+1.1) node[black] {$\delta$};
+	
+	
+	 %angle delta left
+	\draw[color=black] ({\ax+2},0) arc (0:\deltavar:2);
+	\draw (\ax+1.3, 0.3) node[black] {$\delta$};
+	 
+	% circular arc
+	 \draw[thick, ->] (0,0) arc (0:40:-\ax); 
+	
+	% ICR
+	\node[red] at (\ax,0.5){ICR};
+	\draw[red, fill] (triangle_left) circle(0.05);
+
+	%car 
+	%\node [transform shape] () at (0,2) {\includegraphics[width=0.2\linewidth]{car.pdf}};
+	
+	\end{scope}
+	
+	\end{tikzpicture}
+\end{document}
+
+
+
+
+

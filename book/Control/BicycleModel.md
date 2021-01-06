@@ -160,7 +160,18 @@ If we define the state of our bicycle model as $(x,y,\theta,v)$, then it has the
 $$\frac{d}{dt}\begin{pmatrix} x\\ y\\ \theta\\ v \end{pmatrix} 
 =\begin{pmatrix} v\cos(\theta)\\ v\sin(\theta) \\ v\tan(\delta)/L \\ a \end{pmatrix}$$
 
-Here, $a$ is the forwards acceleration. We could have picked any other point between the front and rear wheel as the reference point $(x,y)$. In this case the formulas would have been slightly more complicated.
+Here, $a$ is the forwards acceleration, and the expressions $\frac{dx}{dt} = v \cos(\theta)$ and $\frac{dy}{dt} = v \sin(\theta)$ are motivated geometrically by the following sketch
+
+```{figure} tikz/BicycleModel/BicycleModel_x_y_theta.svg
+---
+width: 70%
+name: BicycleModel_x_y_theta
+---
+The orientation of the vehicle is $(\cos(\theta), \sin(\theta))^T$. Hence its velocity is  $v(\cos(\theta), \sin(\theta))^T$.
+```
+
+
+We could have picked any other point between the front and rear wheel as the reference point $(x,y)$. In this case the formulas would have been slightly more complicated.
 
 ```{tip}
 If you found this material difficult, or if you are interested in learning more, I recommend the [great lectures on Vehicle Dynamics and Control by Prof. Georg Schildbach on youtube](https://www.youtube.com/playlist?list=PLW3FM5Kyc2_4PGkumkAHNXzWtgHhaYe1d).
