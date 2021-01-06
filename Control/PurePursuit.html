@@ -295,33 +295,33 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 <p>Let us draw the bicycle model and a given path we should follow. We also draw a circle of radius <span class="math notranslate nohighlight">\(l_d\)</span> around the center of the rear wheel. The intersection of this circle with the path is our target point TP. According to the kinematic bicycle model, the vehicle will move along the orange arc, which is determined by the front wheel angle <span class="math notranslate nohighlight">\(\delta\)</span>. We want to choose <span class="math notranslate nohighlight">\(\delta\)</span>, such that the orange vehicle trajectory will move to the target point.</p>
 <div class="figure align-default" id="purepursuitwrongdelta">
 <a class="reference internal image-reference" href="../_images/PurePursuitWrongDelta.svg"><img alt="../_images/PurePursuitWrongDelta.svg" src="../_images/PurePursuitWrongDelta.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Bicycle model should follow a path. With the current front wheel angle <span class="math notranslate nohighlight">\(\delta\)</span>, it will not reach the target point TP.</span><a class="headerlink" href="#purepursuitwrongdelta" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Bicycle model should follow a path. With the current front wheel angle <span class="math notranslate nohighlight">\(\delta\)</span>, it will not reach the target point TP.</span><a class="headerlink" href="#purepursuitwrongdelta" title="Permalink to this image">¶</a></p>
 </div>
 <p>Since the above drawing is generated programmatically (using <a class="reference external" href="https://en.wikipedia.org/wiki/PGF/TikZ">tikz</a>), we can change the value of <span class="math notranslate nohighlight">\(\delta\)</span> until the vehicle trajectory goes through the target point:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7c2f05b2-5701-471c-887a-e5e5d77487d3" name="5711904d-6ef2-4fa2-ab32-2f0b5f588e1a" type="radio">
-</input><label class="tabbed-label" for="7c2f05b2-5701-471c-887a-e5e5d77487d3">
+<input checked="checked" id="17674dfa-f701-4008-9155-39c05117037c" name="a9cde7e9-4941-46e2-8e58-f171f824b9ff" type="radio">
+</input><label class="tabbed-label" for="17674dfa-f701-4008-9155-39c05117037c">
 δ = 25°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-25">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_25.svg"><img alt="../_images/PurePursuit_delta_25.svg" src="../_images/PurePursuit_delta_25.svg" width="90%" /></a>
 </div>
 </div>
-<input id="aa594940-ef5a-4ce1-a7a4-328fa246ff05" name="5711904d-6ef2-4fa2-ab32-2f0b5f588e1a" type="radio">
-</input><label class="tabbed-label" for="aa594940-ef5a-4ce1-a7a4-328fa246ff05">
+<input id="0f2fc5c0-f2a5-4493-966b-4cdf00a31264" name="a9cde7e9-4941-46e2-8e58-f171f824b9ff" type="radio">
+</input><label class="tabbed-label" for="0f2fc5c0-f2a5-4493-966b-4cdf00a31264">
 δ = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-20">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_20.svg"><img alt="../_images/PurePursuit_delta_20.svg" src="../_images/PurePursuit_delta_20.svg" width="90%" /></a>
 </div>
 </div>
-<input id="d50b947a-8fa0-4709-8555-18cba6271f4b" name="5711904d-6ef2-4fa2-ab32-2f0b5f588e1a" type="radio">
-</input><label class="tabbed-label" for="d50b947a-8fa0-4709-8555-18cba6271f4b">
+<input id="9ff414b0-e28e-42ce-aaf5-82192f36172f" name="a9cde7e9-4941-46e2-8e58-f171f824b9ff" type="radio">
+</input><label class="tabbed-label" for="9ff414b0-e28e-42ce-aaf5-82192f36172f">
 δ = 15°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-15">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_15.svg"><img alt="../_images/PurePursuit_delta_15.svg" src="../_images/PurePursuit_delta_15.svg" width="90%" /></a>
 </div>
 </div>
-<input id="24e47e37-7a6d-4a82-b228-08f872f9f89c" name="5711904d-6ef2-4fa2-ab32-2f0b5f588e1a" type="radio">
-</input><label class="tabbed-label" for="24e47e37-7a6d-4a82-b228-08f872f9f89c">
+<input id="406eae64-d86e-4ca6-8920-f0ea7007bf88" name="a9cde7e9-4941-46e2-8e58-f171f824b9ff" type="radio">
+</input><label class="tabbed-label" for="406eae64-d86e-4ca6-8920-f0ea7007bf88">
 δ = 11.3°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-11p3">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_11p3.svg"><img alt="../_images/PurePursuit_delta_11p3.svg" src="../_images/PurePursuit_delta_11p3.svg" width="90%" /></a>
@@ -331,7 +331,7 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 <p>But there is a more elegant solution than just trying out a bunch of different <span class="math notranslate nohighlight">\(\delta\)</span> values. We can actually compute the optimal <span class="math notranslate nohighlight">\(\delta\)</span> based on the magenta triangle in the sketch below</p>
 <div class="figure align-default" id="purepursuitlawofsines">
 <a class="reference internal image-reference" href="../_images/PurePursuitLawOfSines.svg"><img alt="../_images/PurePursuitLawOfSines.svg" src="../_images/PurePursuitLawOfSines.svg" width="90%" /></a>
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">The magenta triangle helps us to establish a formula for <span class="math notranslate nohighlight">\(\delta\)</span>.</span><a class="headerlink" href="#purepursuitlawofsines" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">The magenta triangle helps us to establish a formula for <span class="math notranslate nohighlight">\(\delta\)</span>.</span><a class="headerlink" href="#purepursuitlawofsines" title="Permalink to this image">¶</a></p>
 </div>
 <p>First, we note that the distance from ICR to TP is equal to <span class="math notranslate nohighlight">\(R\)</span>, since TP lies on the orange circle of radius <span class="math notranslate nohighlight">\(R\)</span> around ICR. Hence, the magenta triangle is <a class="reference external" href="https://en.wikipedia.org/wiki/Isosceles_triangle">isosceles</a> and <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3\)</span>. From the figure we can see that <span class="math notranslate nohighlight">\(\gamma_3+\alpha=90°\)</span>. Hence <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3=90°-\alpha\)</span>. Since the sum of all angles in a triangle equals <span class="math notranslate nohighlight">\(180°\)</span>, we have</p>
 <div class="math notranslate nohighlight">

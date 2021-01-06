@@ -394,7 +394,12 @@ Note that the velocity vectors could be pointing into the opposite direction and
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{d}{dt}\begin{pmatrix} x\\ y\\ \theta\\ v \end{pmatrix} 
 =\begin{pmatrix} v\cos(\theta)\\ v\sin(\theta) \\ v\tan(\delta)/L \\ a \end{pmatrix}\end{split}\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(a\)</span> is the forwards acceleration. We could have picked any other point between the front and rear wheel as the reference point <span class="math notranslate nohighlight">\((x,y)\)</span>. In this case the formulas would have been slightly more complicated.</p>
+<p>Here, <span class="math notranslate nohighlight">\(a\)</span> is the forwards acceleration, and the expressions <span class="math notranslate nohighlight">\(\frac{dx}{dt} = v \cos(\theta)\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt} = v \sin(\theta)\)</span> are motivated geometrically by the following sketch</p>
+<div class="figure align-default" id="bicyclemodel-x-y-theta">
+<a class="reference internal image-reference" href="../_images/BicycleModel_x_y_theta.svg"><img alt="../_images/BicycleModel_x_y_theta.svg" src="../_images/BicycleModel_x_y_theta.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">The orientation of the vehicle is <span class="math notranslate nohighlight">\((\cos(\theta), \sin(\theta))^T\)</span>. Hence its velocity is  <span class="math notranslate nohighlight">\(v(\cos(\theta), \sin(\theta))^T\)</span>.</span><a class="headerlink" href="#bicyclemodel-x-y-theta" title="Permalink to this image">¶</a></p>
+</div>
+<p>We could have picked any other point between the front and rear wheel as the reference point <span class="math notranslate nohighlight">\((x,y)\)</span>. In this case the formulas would have been slightly more complicated.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you found this material difficult, or if you are interested in learning more, I recommend the <a class="reference external" href="https://www.youtube.com/playlist?list=PLW3FM5Kyc2_4PGkumkAHNXzWtgHhaYe1d">great lectures on Vehicle Dynamics and Control by Prof. Georg Schildbach on youtube</a>.</p>
