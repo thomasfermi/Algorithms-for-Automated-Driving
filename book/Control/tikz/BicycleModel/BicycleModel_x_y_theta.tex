@@ -17,13 +17,14 @@
 
 	\pgfmathsetmacro{\imgrot}{-40}
 
-	\draw [<->,thick] (-4,0) node (yaxis) [above] {$y$}
-		|- (0,-3) node (xaxis) [right] {$x$};
+	\draw [<->,thick] (-6,1) node (yaxis) [above] {$Y$}
+		|- (2,-3) node (xaxis) [right] {$X$};
 		
 	\draw[color=black] (-1.5,-3) arc (0:40:1.3);
 	\draw (-1.8,-2.7) node[black] {$\theta$};
 
-	\draw (5,4) node[red] {$\begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix}$};
+
+	\draw (5,4) node[magenta] {$\begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix}$};
 
 	\begin{scope} [rotate=\imgrot]
 		
@@ -60,7 +61,7 @@
 	
 	% angle delta top
 	\draw[dashed, blue] (0, \dist-7.9) -- (0,\dist);
-	\draw[dashed,->,red, line width=1] (0, \dist) -- (0,\dist+2.3);
+	\draw[dashed,->,magenta, line width=1] (0, \dist) -- (0,\dist+2.3);
 	\draw[dashed, blue] (0, \dist) -- ({-sin(\deltavar)*2},{\dist+2)});
 	\draw[color=black] (0,\dist+1.5) arc (90:90+\deltavar:1.5);
 	\draw (-0.2, \dist+1.1) node[black] {$\delta$};
@@ -75,12 +76,17 @@
 	
 	% ICR
 	\node[red] at (\ax,0.5){ICR};
-	\draw[red, fill] (triangle_left) circle(0.05);
+	\draw[red,fill] (triangle_left) circle(0.05);
 
 	%car 
 	\node [transform shape] () at (0,2) {\includegraphics[width=0.22\linewidth]{../../images/car_pixabay.pdf}};
 	
 	\end{scope}
+
+	\draw[dashed, black]  (-6,0) -- (tire1.center);
+	\node[black] at (-6.3,0){$y$};
+	\draw[dashed, black]  (tire1.center) -- (0,-3);
+	\node[black] at (0,-3.3){$x$};
 	
 	\end{tikzpicture}
 \end{document}
