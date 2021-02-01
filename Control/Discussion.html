@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -306,7 +306,11 @@ In this case, we are outside of the validity regime of the kinematic bicycle mod
 <p class="sidebar-title"></p>
 <p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
 </div>
-<p>It is interesting to look at a real-world control system for automated driving: <a class="reference external" href="https://github.com/commaai/openpilot/">openpilot</a>. The relevant code is available on <a class="reference external" href="https://github.com/commaai/openpilot/">github</a> in <code class="docutils literal notranslate"><span class="pre">openpilot/selfdrive/controls/</span></code>. As you can see <a class="reference external" href="https://github.com/commaai/openpilot/blob/master/selfdrive/controls/lib/vehicle_model.py">here</a>, the software is using the dynamic bicycle model. Model Predictive control is used to <a class="reference external" href="https://github.com/commaai/openpilot/blob/059cf6b43e579b8634090a0ecac4fb1c6c7a205e/selfdrive/controls/plannerd.py">plan</a> a trajectory. Lateral control is based on this plan, and dependent on the vehicle a different algorithm is used. You will find lateral control with PID, or <a class="reference external" href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">LQR</a> in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/ee99b59bade8d3b5057a5b3f22ad8b3edd102c78/selfdrive/controls/controlsd.py">source code</a>. There is also something called “indi” but I do not know what that is. <a class="reference external" href="https://github.com/commaai/openpilot/blob/254814cc793dc4668ea9fd25f092b0712fb5b8a0/selfdrive/controls/lib/longcontrol.py">Longitudinal control</a> is done using a <a class="reference external" href="https://github.com/commaai/openpilot/blob/f575a9ec12990ac2a764a5f416795d1c618f4609/selfdrive/controls/lib/pid.py">PIController</a>.</p>
+<p>It is interesting to look at a real-world control system for automated driving: <a class="reference external" href="https://github.com/commaai/openpilot/">openpilot</a>.
+The relevant code is available on <a class="reference external" href="https://github.com/commaai/openpilot/">github</a> in <code class="docutils literal notranslate"><span class="pre">openpilot/selfdrive/controls/</span></code>.
+As you can see <a class="reference external" href="https://github.com/commaai/openpilot/blob/master/selfdrive/controls/lib/vehicle_model.py">here</a>, the software is using the dynamic bicycle model. Model Predictive control is used to <a class="reference external" href="https://github.com/commaai/openpilot/blob/059cf6b43e579b8634090a0ecac4fb1c6c7a205e/selfdrive/controls/plannerd.py">plan</a> a trajectory.
+Lateral control is based on this plan, and dependent on the vehicle a different algorithm is used.
+You will find lateral control with PID, <a class="reference external" href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">LQR</a> or <a class="reference external" href="http://www.aerostudents.com/courses/advanced-flight-control/nonlinearDynamicInversion.pdf">INDI</a> in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/ee99b59bade8d3b5057a5b3f22ad8b3edd102c78/selfdrive/controls/controlsd.py">source code</a>. <a class="reference external" href="https://github.com/commaai/openpilot/blob/254814cc793dc4668ea9fd25f092b0712fb5b8a0/selfdrive/controls/lib/longcontrol.py">Longitudinal control</a> is done using a <a class="reference external" href="https://github.com/commaai/openpilot/blob/f575a9ec12990ac2a764a5f416795d1c618f4609/selfdrive/controls/lib/pid.py">PIController</a>.</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
@@ -370,7 +374,7 @@ In this case, we are outside of the validity regime of the kinematic bicycle mod
     </div>
 
     
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     
