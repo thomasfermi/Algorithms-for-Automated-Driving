@@ -102,7 +102,7 @@ In this exercise you will implement both pure pursuit and PID.
 
 If you did not do the chapter on lane detection, you probably did not set up your python environment, and you did not download the exercise code. In this case, please visit [the appendix](../Appendix/ExerciseSetup.md) to do this now.
 
-To start working, open `code/tests/control/target_point.ipynb` and follow the instructions. Next, open `code/tests/control/control.ipynb` and follow the instructions. If you completed these exercises successfully, you **can** also run your controller in a Carla simulation:
+To start working, open `code/tests/control/target_point.ipynb` and follow the instructions. Next, open `code/tests/control/control.ipynb` and follow the instructions. This exercise uses a simplistic vehicle simulator within the Jupyter Notebook to test your code. If you completed these exercises successfully, you **can** also run your controller in a Carla simulation:
 
 * Start Carla by executing the file `CarlaUE4.exe` (Windows) or `CarlaUE4.sh` (Linux) in your Carla folder (If you did not download Carla yet, see [the appendix](../Appendix/CarlaInstallation.md)). 
 * Execute `python -m code.tests.control.carla_sim --ex` from the parent directory of `code` and witness your control algorithm in action! If you omit the `--ex` flag, you will see the sample solution.
