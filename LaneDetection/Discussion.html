@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -43,11 +43,8 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -57,6 +54,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -193,21 +191,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -225,7 +223,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -246,21 +244,22 @@
 </div>
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -293,6 +292,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -310,8 +310,8 @@
 <li><p>The semantic segmentation approach will have problems when there are lane changes. A cleaner solution would be <em>instance segmentation</em>.</p></li>
 <li><p>We created the lane boundary labels automatically using Carla’s high definition map. Creating labels for a camera installed in a real car is way more challenging. The options I know of are</p>
 <ol class="simple">
-<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <a class="bibtex reference internal" href="#bojarski2020nvidia" id="id1">[BCD+20]</a>).</p></li>
-<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <a class="bibtex reference internal" href="#llamas2019" id="id2">[BS19]</a>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
+<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <a href="#id1"><span class="problematic" id="id2">:cite:`bojarski2020nvidia`</span></a>).</p></li>
+<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <a href="#id3"><span class="problematic" id="id4">:cite:`llamas2019`</span></a>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
 <li><p>If you have some system that detects lane markings on a short distance reliably, you can combine that with visual-inertial odometry to create good labels. Examples of such short-distance lane-detection systems would be a <a class="reference external" href="https://en.wikipedia.org/wiki/Lidar">lidar</a>, or a camera-based lane-detection system that works well for the first say 5 meters, but is not so good further away. Once you logged some seconds or minutes of driving, you can use <a class="reference external" href="https://en.wikipedia.org/wiki/Visual_odometry#Visual_inertial_odometry">visual-inertial odometry</a> to obtain the vehicle trajectory and then stitch together a local map of lane boundaries. Subsequently, you can project those mapped lane boundaries into each image you have logged.</p></li>
 </ol>
 </li>
@@ -321,11 +321,11 @@
 </div>
 <div class="section" id="comparison-to-literature">
 <h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this headline">¶</a></h2>
-<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <a class="bibtex reference internal" href="LaneDetectionOverview.html#gansbeke2019endtoend" id="id3">[GBN+19]</a>, we want to list the differences</p>
+<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <a href="#id5"><span class="problematic" id="id6">:cite:`gansbeke2019endtoend`</span></a>, we want to list the differences</p>
 <ul class="simple">
-<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <a class="bibtex reference internal" href="LaneDetectionOverview.html#gansbeke2019endtoend" id="id4">[GBN+19]</a> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
+<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <a href="#id7"><span class="problematic" id="id8">:cite:`gansbeke2019endtoend`</span></a> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
 <li><p>For the image segmentation we are using an off-the-shelf neural network from the great pytorch library <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a>.</p></li>
-<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <a class="bibtex reference internal" href="LaneDetectionOverview.html#gansbeke2019endtoend" id="id5">[GBN+19]</a>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
+<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <a href="#id9"><span class="problematic" id="id10">:cite:`gansbeke2019endtoend`</span></a>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
 </ul>
 </div>
 <div class="section" id="comparison-to-a-real-adas-system-openpilot">
@@ -334,7 +334,7 @@
 <p class="sidebar-title"></p>
 <p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
 </div>
-<p>It is interesting to see how a real world lane-detection system works. Luckily, there is one ADAS company that open sources their software: comma.ai. As you can read in the <a class="reference external" href="https://github.com/commaai/openpilot">source code of their product openpilot</a> their lane-detection system is designed roughly as follows</p>
+<p>It is interesting to see how a real world lane-detection system works. Luckily, there is one ADAS company that open sources their software: <a class="reference external" href="http://comma.ai">comma.ai</a>. As you can read in the <a class="reference external" href="https://github.com/commaai/openpilot">source code of their product openpilot</a> their lane-detection system is designed roughly as follows</p>
 <ul class="simple">
 <li><p>Perform online <a class="reference external" href="https://github.com/commaai/openpilot/blob/0b849d5a4e417d73e4b821b909839f379d70e75d/selfdrive/locationd/calibrationd.py">calibration</a> to estimate camera extrinsics</p></li>
 <li><p>Apply homography (warpPerspective) to the camera image in order to compute the image that you would get from a camera with <em>default</em> extrinsics. In the openpilot documentation this is referred to as <a class="reference external" href="https://github.com/commaai/openpilot/tree/master/common/transformations">calibrated frame</a>.</p></li>
@@ -345,26 +345,14 @@
 <h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <p>If you want to read some more about lane detection, I recommend the following ressources:</p>
 <dl class="glossary simple">
-<dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
+<dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a><a class="headerlink" href="#term-Papers-with-code" title="Permalink to this term">¶</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
 </dd>
-<dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
+<dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a><a class="headerlink" href="#term-awesome-lane-detection" title="Permalink to this term">¶</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-LaneDetection/Discussion-0"><dl class="citation">
-<dt class="bibtex label" id="llamas2019"><span class="brackets"><a class="fn-backref" href="#id2">BS19</a></span></dt>
-<dd><p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
-</dd>
-<dt class="bibtex label" id="bojarski2020nvidia"><span class="brackets"><a class="fn-backref" href="#id1">BCD+20</a></span></dt>
-<dd><p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
-</dd>
-<dt class="bibtex label" id="gansbeke2019endtoend"><span class="brackets">GBN+19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>)</span></dt>
-<dd><p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
-</dd>
-</dl>
-</p>
 </div>
 </div>
 
@@ -390,15 +378,15 @@
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="InversePerspectiveMapping.html" title="previous page">From Pixels to Meters</a>
     <a class='right-next' id="next-link" href="../Control/ControlOverview.html" title="next page">Overview</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

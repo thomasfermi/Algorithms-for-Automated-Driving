@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -43,11 +43,8 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -57,6 +54,9 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -193,21 +193,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -225,7 +225,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -246,21 +246,22 @@
 </div>
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -293,6 +294,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -433,7 +435,7 @@ The sketch allows us to determine the mapping of a three-dimensional point <span
 To continue our discussion, we need to introduce the concept of homogeneous coordinates</p>
 <div class="admonition-homogeneous-coordinates admonition">
 <p class="admonition-title">Homogeneous Coordinates</p>
-<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<a class="bibtex reference internal" href="#hartley2003multiple" id="id1">[HZ03]</a>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
+<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<a href="#id1"><span class="problematic" id="id2">:cite:`hartley2003multiple`</span></a>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
 </div>
 <p>So if we interpret the above equation as an equation for a homogeneous vector, we can absorb the scalar factor <span class="math notranslate nohighlight">\(1/Z_c\)</span> and rewrite the equation as</p>
 <div class="math notranslate nohighlight" id="equation-eq-intrinsic-matrix-multiplication">
@@ -502,12 +504,6 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-LaneDetection/CameraBasics-0"><dl class="citation">
-<dt class="bibtex label" id="hartley2003multiple"><span class="brackets"><a class="fn-backref" href="#id1">HZ03</a></span></dt>
-<dd><p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
-</dd>
-</dl>
-</p>
 </div>
 </div>
 
@@ -533,15 +529,15 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="LaneDetectionOverview.html" title="previous page">Overview</a>
     <a class='right-next' id="next-link" href="Segmentation.html" title="next page">Lane Boundary Segmentation</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

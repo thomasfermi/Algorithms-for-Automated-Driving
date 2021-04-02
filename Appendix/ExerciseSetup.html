@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -43,11 +43,8 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -57,6 +54,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -193,21 +191,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -225,7 +223,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -246,21 +244,22 @@
 </div>
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -288,6 +287,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -306,13 +306,13 @@
 </div>
 <p>Otherwise visit this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> and click on the green button that says “Code”. In the pop-up menu, please select “Download zip”. Extract the zip to a directory of your choice.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b4d025b2-8d32-4c60-9aa3-f89c71c00dd8" name="7490edc5-7d7a-4e35-8b74-fcea434310db" type="radio">
-</input><label class="tabbed-label" for="b4d025b2-8d32-4c60-9aa3-f89c71c00dd8">
+<input checked="checked" id="7337fe61-2e8f-44d8-88e9-598fa4b716a7" name="f074c5e1-dc94-48c5-929b-3b468df3ece6" type="radio">
+</input><label class="tabbed-label" for="7337fe61-2e8f-44d8-88e9-598fa4b716a7">
 Local installation</label><div class="tabbed-content docutils">
 <p>Nothing more to do.</p>
 </div>
-<input id="e865c96a-8d0b-4230-990a-cdfd1fa7b63a" name="7490edc5-7d7a-4e35-8b74-fcea434310db" type="radio">
-</input><label class="tabbed-label" for="e865c96a-8d0b-4230-990a-cdfd1fa7b63a">
+<input id="0d2e87fe-1508-4b84-9f08-0a0d34c2ebad" name="f074c5e1-dc94-48c5-929b-3b468df3ece6" type="radio">
+</input><label class="tabbed-label" for="0d2e87fe-1508-4b84-9f08-0a0d34c2ebad">
 Google Colab</label><div class="tabbed-content docutils">
 <p>Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a>. In the top left navigation you can see “My Drive”. Right click “My Drive” and select “New folder”. Name this folder “aad”. You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder “Algorithms-for-Automated-Driving” that you have downloaded from github. Select all folders except the “book” folder and drag and drop them into the empty “aad” folder in your Google Drive.</p>
 </div>
@@ -321,8 +321,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <div class="section" id="python-environment">
 <h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="402d1cdb-5cf2-485e-bcc5-805fec4a9009" name="abe0b62f-aa40-4f88-ab99-c505b12f1a0d" type="radio">
-</input><label class="tabbed-label" for="402d1cdb-5cf2-485e-bcc5-805fec4a9009">
+<input checked="checked" id="f97ca60f-ca4c-44d3-ac70-639bd3e63c93" name="119e295c-e0ee-4e0c-8c7d-d77aaea2ab4d" type="radio">
+</input><label class="tabbed-label" for="f97ca60f-ca4c-44d3-ac70-639bd3e63c93">
 Local installation</label><div class="tabbed-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
 Please create a conda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> (Algorithms for Automated Driving) for this course using the environment.yml file within “Algorithms-for-Automated-Driving/code”</p>
@@ -336,8 +336,8 @@ conda env create -f environment.yml
 </div>
 <p>If you are working on Windows, consider <a class="reference external" href="https://www.scivision.dev/conda-powershell-python/">adding anaconda to your PowerShell</a>.</p>
 </div>
-<input id="e092d156-6294-4bca-aaed-b7cb473c2757" name="abe0b62f-aa40-4f88-ab99-c505b12f1a0d" type="radio">
-</input><label class="tabbed-label" for="e092d156-6294-4bca-aaed-b7cb473c2757">
+<input id="e779f50a-4a23-4251-a6e5-124a3796cfb3" name="119e295c-e0ee-4e0c-8c7d-d77aaea2ab4d" type="radio">
+</input><label class="tabbed-label" for="e779f50a-4a23-4251-a6e5-124a3796cfb3">
 Google Colab</label><div class="tabbed-content docutils">
 <p>When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it.</p>
 </div>
@@ -347,8 +347,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="627ea5dd-6996-4754-bb3d-5c98c2aec816" name="5243275e-ccaa-4954-8a3c-8adda8be7aa0" type="radio">
-</input><label class="tabbed-label" for="627ea5dd-6996-4754-bb3d-5c98c2aec816">
+<input checked="checked" id="baa79b8f-0035-4a21-933f-ea4940bb7e9c" name="2b359a12-98f8-46b3-8222-711138170e86" type="radio">
+</input><label class="tabbed-label" for="baa79b8f-0035-4a21-933f-ea4940bb7e9c">
 Local installation</label><div class="tabbed-content docutils">
 <p>To edit the source code, I recommend to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, since it has nice integration for jupyter notebooks. You can open the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder with Visual Studio code and then easily navigate between the <code class="docutils literal notranslate"><span class="pre">tests</span></code> and the <code class="docutils literal notranslate"><span class="pre">exercises</span></code>. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
@@ -360,8 +360,8 @@ jupyter lab
 When you open the .ipynb file be sure to select the “aad” conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won’t do anything on your machine. You can also delete these Colab-specific cells if you want.</p>
 </div>
-<input id="d1bb7f4a-373c-4d3c-83fc-a2ef9303fcec" name="5243275e-ccaa-4954-8a3c-8adda8be7aa0" type="radio">
-</input><label class="tabbed-label" for="d1bb7f4a-373c-4d3c-83fc-a2ef9303fcec">
+<input id="d662fd38-f2cd-4984-9a11-720ca1a5643e" name="2b359a12-98f8-46b3-8222-711138170e86" type="radio">
+</input><label class="tabbed-label" for="d662fd38-f2cd-4984-9a11-720ca1a5643e">
 Google Colab</label><div class="tabbed-content docutils">
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
 Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a> and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select “Open with Google Colaboratory”. If you do not see this option, click “Connect more apps” and search for “colab”. Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on “drive”, “My Drive”, “aad”, “code”, “exercises”, “lane_detection”, “camera_geometry.py”. This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.</p>
@@ -396,15 +396,15 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="../Control/Discussion.html" title="previous page">Discussion</a>
     <a class='right-next' id="next-link" href="CarlaInstallation.html" title="next page">Carla Installation</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">

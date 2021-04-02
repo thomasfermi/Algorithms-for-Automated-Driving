@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -43,11 +43,8 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -57,6 +54,9 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -193,21 +193,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -225,7 +225,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -246,21 +246,22 @@
 </div>
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
+            <i class="fas fa-list"></i>
+            Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -290,6 +291,7 @@
 
         </nav>
         
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -309,7 +311,7 @@
 </ol>
 <p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend the following free resource</p>
 <dl class="glossary simple">
-<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/">CS231n: Convolutional Neural Networks for Visual Recognition</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but you can read the slides when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the 2020 version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
+<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">¶</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but you can read the slides when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the 2020 version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
 </dd>
 </dl>
 <p>Even if you fulfill <strong>prerequisite 2</strong>, please read this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n). Be sure that you understand the section about dice loss.</p>
@@ -350,13 +352,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1d16a7bf-8633-4bba-b4e8-5977e920a8b6" name="f7fcc3be-c1c0-4a5c-be9d-b5974e7681b8" type="radio">
-</input><label class="tabbed-label" for="1d16a7bf-8633-4bba-b4e8-5977e920a8b6">
+<input checked="checked" id="8be3f13c-c55e-47a2-b494-95da8c024fef" name="47efdaa3-fe2b-4a2d-ba12-c03ab1f7614d" type="radio">
+</input><label class="tabbed-label" for="8be3f13c-c55e-47a2-b494-95da8c024fef">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="a897b5a5-a849-47b9-854c-d1e3a4746858" name="f7fcc3be-c1c0-4a5c-be9d-b5974e7681b8" type="radio">
-</input><label class="tabbed-label" for="a897b5a5-a849-47b9-854c-d1e3a4746858">
+<input id="7a5b532b-3cff-4892-8dae-3b8fed604235" name="47efdaa3-fe2b-4a2d-ba12-c03ab1f7614d" type="radio">
+</input><label class="tabbed-label" for="7a5b532b-3cff-4892-8dae-3b8fed604235">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -390,13 +392,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="dbab714d-1632-45e5-a5a1-dbbb84df917c" name="4f07ba34-ea36-4c4a-b3d0-8bf971e72eb1" type="radio">
-</input><label class="tabbed-label" for="dbab714d-1632-45e5-a5a1-dbbb84df917c">
+<input checked="checked" id="c0ebab04-4e19-48a4-aac4-d172143e9b8d" name="29e598ca-c511-4f3d-b106-75c0d5b44cb2" type="radio">
+</input><label class="tabbed-label" for="c0ebab04-4e19-48a4-aac4-d172143e9b8d">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="b075dd74-6355-4886-b4fb-465c0a20c053" name="4f07ba34-ea36-4c4a-b3d0-8bf971e72eb1" type="radio">
-</input><label class="tabbed-label" for="b075dd74-6355-4886-b4fb-465c0a20c053">
+<input id="74f70b2a-cba9-418b-88a0-dd51ecc970e2" name="29e598ca-c511-4f3d-b106-75c0d5b44cb2" type="radio">
+</input><label class="tabbed-label" for="74f70b2a-cba9-418b-88a0-dd51ecc970e2">
 Limited hints</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
@@ -406,8 +408,8 @@ Limited hints</label><div class="tabbed-content docutils">
 <li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
 </ul>
 </div>
-<input id="560e19de-69ed-4faf-9a27-da8a02220409" name="4f07ba34-ea36-4c4a-b3d0-8bf971e72eb1" type="radio">
-</input><label class="tabbed-label" for="560e19de-69ed-4faf-9a27-da8a02220409">
+<input id="6080b6af-1e1d-4b98-881d-18de7d051a61" name="29e598ca-c511-4f3d-b106-75c0d5b44cb2" type="radio">
+</input><label class="tabbed-label" for="6080b6af-1e1d-4b98-881d-18de7d051a61">
 Detailed hints</label><div class="tabbed-content docutils">
 <p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
 <ul class="simple">
@@ -467,15 +469,15 @@ Detailed hints</label><div class="tabbed-content docutils">
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="CameraBasics.html" title="previous page">Basics of Image Formation</a>
     <a class='right-next' id="next-link" href="InversePerspectiveMapping.html" title="next page">From Pixels to Meters</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
