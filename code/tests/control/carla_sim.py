@@ -11,7 +11,7 @@ import random
 from pathlib import Path
 import numpy as np
 import pygame
-from ...util.carla_util import carla_vec_to_np_array, carla_img_to_array, CarlaSyncMode, find_weather_presets, draw_image, get_font, should_quit
+from ...util.carla_util import carla_vec_to_np_array, carla_img_to_array, CarlaSyncMode, find_weather_presets, draw_image, get_font, check_events
 from ...util.geometry_util import dist_point_linestring
 import argparse
 
@@ -73,6 +73,7 @@ def send_control(vehicle, throttle, steer, brake,
     brake = np.clip(brake, 0.0, 1.0)
     control = carla.VehicleControl(throttle, steer, brake, hand_brake, reverse)
     vehicle.apply_control(control)
+    return throttle, steer, brake
 
 
 
@@ -161,7 +162,7 @@ def main(use_lane_detector=False, ex=False):
         # Create a synchronous mode context.
         with CarlaSyncMode(world, *sensors, fps=FPS) as sync_mode:
             while True:
-                if should_quit():
+                if check_events(controller):
                     return
                 clock.tick()          
                 
@@ -188,8 +189,15 @@ def main(use_lane_detector=False, ex=False):
                 print("vx vy vz w {:.2f} {:.2f} {:.2f} {:.5f}".format(vx,vy,vz,w))
 
                 speed = np.linalg.norm( carla_vec_to_np_array(vehicle.get_velocity()))
-                throttle, steer = controller.get_control(traj, speed, desired_speed=25, dt=1./FPS)
-                send_control(vehicle, throttle, steer, 0)
+                desired_speed = 25
+                throttle, steer = controller.get_control(traj, speed, desired_speed=desired_speed, dt=1./FPS)
+                throttle, steer, brake = send_control(vehicle, throttle, steer, 0)
+
+                # To visualize the current throttle, steer and brake values
+                info_text = [
+                    ('Throttle:', throttle, 0.0, 1.0),
+                    ('Steer:', steer, -1.0, 1.0),
+                    ('Brake:', brake, 0.0, 1.0)]
 
                 fps = round(1.0 / snapshot.timestamp.delta_seconds)
 
@@ -200,21 +208,75 @@ def main(use_lane_detector=False, ex=False):
 
                 # Draw the display.
                 draw_image(display, image_rgb)
+
+                # Add Notification Panel Surface
+                # Notification shade is valid to 18% of window and complete height
+                info_surface = pygame.Surface((int(args.width * 0.18), args.height))
+                info_surface.set_alpha(100)
+                display.blit(info_surface, (0, 0))
+
+                # Offset for information
+                v_offset = 4
+                bar_h_offset = 100
+                bar_width = 106
+
+                # Add information to the notification panel
+                v_offset += 6
                 display.blit(
                     font.render('     FPS (real) % 5d ' % clock.get_fps(), True, (255, 255, 255)),
-                    (8, 10))
+                    (8, v_offset))
+                v_offset += 18
                 display.blit(
                     font.render('     FPS (simulated): % 5d ' % fps, True, (255, 255, 255)),
-                    (8, 28))
+                    (8, v_offset))
+                v_offset += 18
                 display.blit(
-                    font.render('     speed: {:.2f} m/s'.format(speed), True, (255, 255, 255)),
-                    (8, 46))
+                    font.render('     Speed: {:.2f} km/hr'.format(speed * 3.6), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
                 display.blit(
-                    font.render('     cross track error: {:03d} cm'.format(cross_track_error), True, (255, 255, 255)),
-                    (8, 64))
+                    font.render('     Desired speed: {:.2f} km/hr'.format(desired_speed * 3.6), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
                 display.blit(
-                    font.render('     max cross track error: {:03d} cm'.format(max_error), True, (255, 255, 255)),
-                    (8, 82))
+                    font.render('     Cross Track Error: {:03d} cm'.format(0), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
+                display.blit(
+                    font.render('     Max Cross Track Error: {:03d} cm'.format(max_error), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
+                display.blit(
+                    font.render('     Kp: {:03d}'.format(controller.pid.Kp), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
+                display.blit(
+                    font.render('     Ki: {:03f}'.format(controller.pid.Ki), True, (255, 255, 255)),
+                    (8, v_offset))
+                v_offset += 18
+                display.blit(
+                    font.render('     Kd: {:03f}'.format(controller.pid.Kd), True, (255, 255, 255)),
+                    (8, v_offset))
+
+                v_offset += 18
+                v_offset += 18
+
+                # Render debug information
+                for info in info_text:
+                    rect_border = pygame.Rect((bar_h_offset, v_offset + 8), (bar_width, 6))
+                    pygame.draw.rect(display, (255, 255, 255), rect_border, 1)
+                    f = (info[1] - info[2]) / (info[3] - info[2])  # (Value - min) / (Max - min)
+                    if info[2] < 0.0:
+                        rect = pygame.Rect((bar_h_offset + f * (bar_width - 6), v_offset + 8), (6, 6))
+                    else:
+                        rect = pygame.Rect((bar_h_offset, v_offset + 8), (f * bar_width, 6))
+                    pygame.draw.rect(display, (255, 255, 255), rect)
+
+                    context = info[0]
+                    display.blit(font.render(context, True, (255, 255, 255)), (8, v_offset))
+
+                    # Before adding more info, make sure that v_offset is increased
+                    v_offset += 18
 
                 pygame.display.flip()
 

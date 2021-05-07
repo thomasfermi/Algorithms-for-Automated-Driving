@@ -89,13 +89,19 @@ def get_font():
     return pygame.font.Font(font, 14)
 
 
-def should_quit():
+def check_events(controller):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             return True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_ESCAPE:
                 return True
+            if event.key == pygame.K_i:
+                controller.pid.Ki += 0.1
+            if event.key == pygame.K_p:
+                controller.pid.Kp += 1
+            if event.key == pygame.K_o:
+                controller.pid.Kd += 0.1
     return False
 
 def find_weather_presets():
