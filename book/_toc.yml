@@ -17,6 +17,10 @@
 
     #- file: Control/MPC.ipynb
     - file: Control/Discussion.md
+    
+- part: Camera Calibration
+  chapters:
+    - file: CameraCalibration/VanishingPointCameraCalibration.ipynb
 
 - part: Appendix
   chapters:
