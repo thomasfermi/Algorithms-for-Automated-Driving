@@ -41,6 +41,6 @@ If you want to read some more about lane detection, I recommend the following re
 
 ## References
 
-```{bibliography} references.bib
+```{bibliography}
 :filter: docname in docnames
 ```
