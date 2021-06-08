@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basics of Image Formation &#8212; Algorithms for Automated Driving</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -62,14 +59,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lane Boundary Segmentation" href="Segmentation.html" />
     <link rel="prev" title="Overview" href="LaneDetectionOverview.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -78,25 +75,25 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Lane Detection
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="LaneDetectionOverview.html">
    Overview
@@ -123,12 +120,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Control
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/ControlOverview.html">
    Overview
@@ -155,12 +152,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Appendix
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Appendix/ExerciseSetup.html">
    Exercise Setup
@@ -178,6 +175,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -245,12 +243,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -259,12 +257,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digital-images">
    Digital images
@@ -292,8 +289,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -435,7 +431,7 @@ The sketch allows us to determine the mapping of a three-dimensional point <span
 To continue our discussion, we need to introduce the concept of homogeneous coordinates</p>
 <div class="admonition-homogeneous-coordinates admonition">
 <p class="admonition-title">Homogeneous Coordinates</p>
-<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<a href="#id1"><span class="problematic" id="id2">:cite:`hartley2003multiple`</span></a>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
+<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<span id="id1">[<a class="reference internal" href="#id6">HZ03</a>]</span>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
 </div>
 <p>So if we interpret the above equation as an equation for a homogeneous vector, we can absorb the scalar factor <span class="math notranslate nohighlight">\(1/Z_c\)</span> and rewrite the equation as</p>
 <div class="math notranslate nohighlight" id="equation-eq-intrinsic-matrix-multiplication">
@@ -504,6 +500,12 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id2"><dl class="citation">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">HZ03</a></span></dt>
+<dd><p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 
@@ -556,21 +558,19 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-183782120-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

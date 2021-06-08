@@ -22,6 +22,6 @@ You will find lateral control with PID, [LQR](https://en.wikipedia.org/wiki/Line
 
 ## References
 
-```{bibliography} references.bib
+```{bibliography} 
 :filter: docname in docnames
 ```

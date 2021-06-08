@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -60,14 +57,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Overview" href="../Control/ControlOverview.html" />
     <link rel="prev" title="From Pixels to Meters" href="InversePerspectiveMapping.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,25 +73,25 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Lane Detection
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="LaneDetectionOverview.html">
    Overview
@@ -121,12 +118,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Control
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/ControlOverview.html">
    Overview
@@ -153,12 +150,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Appendix
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Appendix/ExerciseSetup.html">
    Exercise Setup
@@ -176,6 +173,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -243,12 +241,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -257,12 +255,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-the-presented-approach">
    Limitations of the presented approach
@@ -290,8 +287,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -310,8 +306,8 @@
 <li><p>The semantic segmentation approach will have problems when there are lane changes. A cleaner solution would be <em>instance segmentation</em>.</p></li>
 <li><p>We created the lane boundary labels automatically using Carla’s high definition map. Creating labels for a camera installed in a real car is way more challenging. The options I know of are</p>
 <ol class="simple">
-<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <a href="#id1"><span class="problematic" id="id2">:cite:`bojarski2020nvidia`</span></a>).</p></li>
-<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <a href="#id3"><span class="problematic" id="id4">:cite:`llamas2019`</span></a>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
+<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <span id="id1">[<a class="reference internal" href="#id8">BCD+20</a>]</span>).</p></li>
+<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <span id="id2">[<a class="reference internal" href="#id11">BS19</a>]</span>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
 <li><p>If you have some system that detects lane markings on a short distance reliably, you can combine that with visual-inertial odometry to create good labels. Examples of such short-distance lane-detection systems would be a <a class="reference external" href="https://en.wikipedia.org/wiki/Lidar">lidar</a>, or a camera-based lane-detection system that works well for the first say 5 meters, but is not so good further away. Once you logged some seconds or minutes of driving, you can use <a class="reference external" href="https://en.wikipedia.org/wiki/Visual_odometry#Visual_inertial_odometry">visual-inertial odometry</a> to obtain the vehicle trajectory and then stitch together a local map of lane boundaries. Subsequently, you can project those mapped lane boundaries into each image you have logged.</p></li>
 </ol>
 </li>
@@ -321,11 +317,11 @@
 </div>
 <div class="section" id="comparison-to-literature">
 <h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this headline">¶</a></h2>
-<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <a href="#id5"><span class="problematic" id="id6">:cite:`gansbeke2019endtoend`</span></a>, we want to list the differences</p>
+<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <span id="id3">[<a class="reference internal" href="LaneDetectionOverview.html#id3">GBN+19</a>]</span>, we want to list the differences</p>
 <ul class="simple">
-<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <a href="#id7"><span class="problematic" id="id8">:cite:`gansbeke2019endtoend`</span></a> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
+<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <span id="id4">[<a class="reference internal" href="LaneDetectionOverview.html#id3">GBN+19</a>]</span> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
 <li><p>For the image segmentation we are using an off-the-shelf neural network from the great pytorch library <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a>.</p></li>
-<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <a href="#id9"><span class="problematic" id="id10">:cite:`gansbeke2019endtoend`</span></a>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
+<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <span id="id5">[<a class="reference internal" href="LaneDetectionOverview.html#id3">GBN+19</a>]</span>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
 </ul>
 </div>
 <div class="section" id="comparison-to-a-real-adas-system-openpilot">
@@ -353,6 +349,18 @@
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id6"><dl class="citation">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">BS19</a></span></dt>
+<dd><p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id1">BCD+20</a></span></dt>
+<dd><p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">GBN+19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>)</span></dt>
+<dd><p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 
@@ -405,21 +413,19 @@
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-183782120-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

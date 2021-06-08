@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise Setup &#8212; Algorithms for Automated Driving</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -60,14 +57,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Carla Installation" href="CarlaInstallation.html" />
     <link rel="prev" title="Discussion" href="../Control/Discussion.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,25 +73,25 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Lane Detection
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../LaneDetection/LaneDetectionOverview.html">
    Overview
@@ -121,12 +118,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Control
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/ControlOverview.html">
    Overview
@@ -153,12 +150,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Appendix
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Exercise Setup
@@ -176,6 +173,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -243,12 +241,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -257,12 +255,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downloading-the-exercises">
    Downloading the exercises
@@ -285,8 +282,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -306,13 +302,13 @@
 </div>
 <p>Otherwise visit this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> and click on the green button that says “Code”. In the pop-up menu, please select “Download zip”. Extract the zip to a directory of your choice.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7337fe61-2e8f-44d8-88e9-598fa4b716a7" name="f074c5e1-dc94-48c5-929b-3b468df3ece6" type="radio">
-</input><label class="tabbed-label" for="7337fe61-2e8f-44d8-88e9-598fa4b716a7">
+<input checked="checked" id="85478c47-ecc4-4d43-82a5-d4a9d74572ed" name="8caa3310-5d73-4dd8-a872-2636d7807d97" type="radio">
+</input><label class="tabbed-label" for="85478c47-ecc4-4d43-82a5-d4a9d74572ed">
 Local installation</label><div class="tabbed-content docutils">
 <p>Nothing more to do.</p>
 </div>
-<input id="0d2e87fe-1508-4b84-9f08-0a0d34c2ebad" name="f074c5e1-dc94-48c5-929b-3b468df3ece6" type="radio">
-</input><label class="tabbed-label" for="0d2e87fe-1508-4b84-9f08-0a0d34c2ebad">
+<input id="a928d14e-a480-4b42-9ad6-dc760cad9f97" name="8caa3310-5d73-4dd8-a872-2636d7807d97" type="radio">
+</input><label class="tabbed-label" for="a928d14e-a480-4b42-9ad6-dc760cad9f97">
 Google Colab</label><div class="tabbed-content docutils">
 <p>Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a>. In the top left navigation you can see “My Drive”. Right click “My Drive” and select “New folder”. Name this folder “aad”. You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder “Algorithms-for-Automated-Driving” that you have downloaded from github. Select all folders except the “book” folder and drag and drop them into the empty “aad” folder in your Google Drive.</p>
 </div>
@@ -321,8 +317,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <div class="section" id="python-environment">
 <h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f97ca60f-ca4c-44d3-ac70-639bd3e63c93" name="119e295c-e0ee-4e0c-8c7d-d77aaea2ab4d" type="radio">
-</input><label class="tabbed-label" for="f97ca60f-ca4c-44d3-ac70-639bd3e63c93">
+<input checked="checked" id="5d23318f-80fb-47fc-915b-0d7fe3b4f720" name="e64adb06-c6b6-4c9a-be18-77c87f083aaf" type="radio">
+</input><label class="tabbed-label" for="5d23318f-80fb-47fc-915b-0d7fe3b4f720">
 Local installation</label><div class="tabbed-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
 Please create a conda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> (Algorithms for Automated Driving) for this course using the environment.yml file within “Algorithms-for-Automated-Driving/code”</p>
@@ -336,8 +332,8 @@ conda env create -f environment.yml
 </div>
 <p>If you are working on Windows, consider <a class="reference external" href="https://www.scivision.dev/conda-powershell-python/">adding anaconda to your PowerShell</a>.</p>
 </div>
-<input id="e779f50a-4a23-4251-a6e5-124a3796cfb3" name="119e295c-e0ee-4e0c-8c7d-d77aaea2ab4d" type="radio">
-</input><label class="tabbed-label" for="e779f50a-4a23-4251-a6e5-124a3796cfb3">
+<input id="e550ea40-ed94-4957-a011-84132bd8605e" name="e64adb06-c6b6-4c9a-be18-77c87f083aaf" type="radio">
+</input><label class="tabbed-label" for="e550ea40-ed94-4957-a011-84132bd8605e">
 Google Colab</label><div class="tabbed-content docutils">
 <p>When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it.</p>
 </div>
@@ -347,8 +343,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="baa79b8f-0035-4a21-933f-ea4940bb7e9c" name="2b359a12-98f8-46b3-8222-711138170e86" type="radio">
-</input><label class="tabbed-label" for="baa79b8f-0035-4a21-933f-ea4940bb7e9c">
+<input checked="checked" id="259751ff-8844-4311-913b-ea596ee4f5c8" name="aa42bb98-98b8-4061-9ee3-f67cf9828206" type="radio">
+</input><label class="tabbed-label" for="259751ff-8844-4311-913b-ea596ee4f5c8">
 Local installation</label><div class="tabbed-content docutils">
 <p>To edit the source code, I recommend to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, since it has nice integration for jupyter notebooks. You can open the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder with Visual Studio code and then easily navigate between the <code class="docutils literal notranslate"><span class="pre">tests</span></code> and the <code class="docutils literal notranslate"><span class="pre">exercises</span></code>. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
@@ -360,8 +356,8 @@ jupyter lab
 When you open the .ipynb file be sure to select the “aad” conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won’t do anything on your machine. You can also delete these Colab-specific cells if you want.</p>
 </div>
-<input id="d662fd38-f2cd-4984-9a11-720ca1a5643e" name="2b359a12-98f8-46b3-8222-711138170e86" type="radio">
-</input><label class="tabbed-label" for="d662fd38-f2cd-4984-9a11-720ca1a5643e">
+<input id="da6dab21-e047-4bf0-88cc-afb35360348b" name="aa42bb98-98b8-4061-9ee3-f67cf9828206" type="radio">
+</input><label class="tabbed-label" for="da6dab21-e047-4bf0-88cc-afb35360348b">
 Google Colab</label><div class="tabbed-content docutils">
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
 Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a> and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select “Open with Google Colaboratory”. If you do not see this option, click “Connect more apps” and search for “colab”. Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on “drive”, “My Drive”, “aad”, “code”, “exercises”, “lane_detection”, “camera_geometry.py”. This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.</p>
@@ -423,21 +419,19 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-183782120-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

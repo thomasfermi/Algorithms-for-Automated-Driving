@@ -64,6 +64,6 @@ Once you have finished all exercises of this chapter, you will have implemented 
 In the next chapter, we will write a lane-keeping system for a vehicle in the Carla simulator. This lane-keeping system needs the desired speed and a reference path as inputs. You can take the centerline between the lane boundaries that your `LaneDetector` class computes, and feed that into your lane-keeping system. 
 
 ## References
-```{bibliography} references.bib
+```{bibliography}
 :filter: docname in docnames
 ```
