@@ -31,22 +31,8 @@ class CameraCalibrator():
         return self.get_vanishing_point(image)
 
     def get_vanishing_point(self, poly_left, poly_right):
-        m1, c1 = poly_left
-        m2, c2 = poly_right
-
-        u_i = (c2 - c1) / (m1 - m2)
-        v_i = m1*u_i + c1
-        return u_i, v_i
+        raise NotImplementedError
 
     def get_py_from_vp(u_i, v_i, K):
-        p_infinity = np.array([u_i, v_i, 1])
-        K_inv = np.linalg.inv(K)
-        K_inv_p_infinity = K_inv @ p_infinity
-        K_inv_p_infinity
-        
-        r3 = K_inv_p_infinity / np.linalg.norm(K_inv_p_infinity)
-        yaw = np.arctan2(r3[0], r3[2])
-        pitch = -np.arcsin(r3[1])
-        
-        return (pitch, yaw)
+        raise NotImplementedError
         

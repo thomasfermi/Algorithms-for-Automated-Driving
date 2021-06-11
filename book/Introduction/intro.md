@@ -9,9 +9,10 @@ name: directive-fig
 ---
 ```
 
-Each chapter of this (mini-)book guides you in programming one important software component for automated driving. Currently, this book contains two chapters: **Lane Detection**, and **Control**. You will implement software that 
+Each chapter of this (mini-)book guides you in programming one important software component for automated driving. Currently, this book contains three chapters: **Lane Detection**, **Control** and **Camera Calibration**. You will implement software that 
 * detects lane boundaries from an image using deep learning
 * controls steering wheel and throttle to keep the vehicle within the detected lane at the desired speed
+* find the extrinsic parameters of the camera to make things more consistent. 
 
 The software you will write is in python, and you will apply it in the [open-source driving simulator Carla](https://carla.org/). Ideally, your computer is powerful enough to run Carla, but if it is not, you can still work through the exercises using a simplistic simulator I created for this course. I recommend to work through the chapters in order, but each chapter is self-contained and can be studied on its own.
 
