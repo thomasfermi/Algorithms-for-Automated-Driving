@@ -38,7 +38,7 @@ class CameraCalibrator():
         v_i = m1*u_i + c1
         return u_i, v_i
 
-    def get_py_from_vp(u_i, v_i, K):
+    def get_py_from_vp(self, u_i, v_i, K):
         p_infinity = np.array([u_i, v_i, 1])
         K_inv = np.linalg.inv(K)
         K_inv_p_infinity = K_inv @ p_infinity
