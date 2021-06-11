@@ -1,28 +1,26 @@
-- file: Introduction/intro.md
-
-- part: Lane Detection
+format: jb-book
+root: Introduction/intro
+parts:
+- caption: Lane Detection
   chapters:
-    - file: LaneDetection/LaneDetectionOverview.md
-    - file: LaneDetection/CameraBasics.ipynb
-    - file: LaneDetection/Segmentation.ipynb
-    - file: LaneDetection/InversePerspectiveMapping.ipynb
-    - file: LaneDetection/Discussion.md
-
-- part: Control
+  - file: LaneDetection/LaneDetectionOverview.md
+  - file: LaneDetection/CameraBasics.ipynb
+  - file: LaneDetection/Segmentation.ipynb
+  - file: LaneDetection/InversePerspectiveMapping.ipynb
+  - file: LaneDetection/Discussion.md
+- caption: Control
   chapters:
-    - file: Control/ControlOverview.md 
-    - file: Control/PID.ipynb
-    - file: Control/BicycleModel.md
-    - file: Control/PurePursuit.md
-    - file: Control/Discussion.md
-    
-- part: Camera Calibration
+  - file: Control/ControlOverview.md
+  - file: Control/PID.ipynb
+  - file: Control/BicycleModel.md
+  - file: Control/PurePursuit.md
+  - file: Control/Discussion.md
+- caption: Camera Calibration
   chapters:
-    - file: CameraCalibration/VanishingPointCameraCalibration.ipynb
-    - file: CameraCalibration/Discussion.md
-
-- part: Appendix
+  - file: CameraCalibration/VanishingPointCameraCalibration.ipynb
+  - file: CameraCalibration/Discussion.md
+- caption: Appendix
   chapters:
-    - file: Appendix/ExerciseSetup.md
-    - file: Appendix/CarlaInstallation.md
-    - file: Appendix/NextChapters.md
+  - file: Appendix/ExerciseSetup.md
+  - file: Appendix/CarlaInstallation.md
+  - file: Appendix/NextChapters.md
