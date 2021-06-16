@@ -141,7 +141,7 @@ def main(use_lane_detector=False, ex=False):
                  # TODO: Change this line so that it works with your lane detector implementation
                  ld = LaneDetector()
             #windshield cam
-            cam_windshield_transform = carla.Transform(carla.Location(x=0.5, z=cg.height), carla.Rotation(pitch=-1*cg.pitch_deg))
+            cam_windshield_transform = carla.Transform(carla.Location(x=0.5, z=cg.height), carla.Rotation(pitch=cg.pitch_deg))
             bp = blueprint_library.find('sensor.camera.rgb')
             fov = cg.field_of_view_deg
             bp.set_attribute('image_size_x', str(cg.image_width))

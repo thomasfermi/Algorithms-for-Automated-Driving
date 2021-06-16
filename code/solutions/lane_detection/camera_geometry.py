@@ -22,7 +22,7 @@ def project_polyline(polyline_world, trafo_world_to_cam, K):
 
 
 class CameraGeometry(object):
-    def __init__(self, height=1.3, pitch_deg=5, image_width=1024, image_height=512, field_of_view_deg=45):
+    def __init__(self, height=1.3, yaw_deg=0, pitch_deg=-5, roll_deg=0, image_width=1024, image_height=512, field_of_view_deg=45):
         # scalar constants
         self.height = height
         self.pitch_deg = pitch_deg
@@ -33,9 +33,16 @@ class CameraGeometry(object):
         self.intrinsic_matrix = get_intrinsic_matrix(field_of_view_deg, image_width, image_height)
         self.inverse_intrinsic_matrix = np.linalg.inv(self.intrinsic_matrix)
         ## Note that "rotation_cam_to_road" has the math symbol R_{rc} in the book
-        pitch = pitch_deg * np.pi/180
-        cpitch, spitch = np.cos(pitch), np.sin(pitch)
-        self.rotation_cam_to_road = np.array([[1,0,0],[0,cpitch,spitch],[0,-spitch,cpitch]])
+        yaw = np.deg2rad(yaw_deg)
+        pitch = np.deg2rad(pitch_deg)
+        roll = np.deg2rad(roll_deg)
+        cy, sy = np.cos(yaw), np.sin(yaw)
+        cp, sp = np.cos(pitch), np.sin(pitch)
+        cr, sr = np.cos(roll), np.sin(roll)
+        rotation_road_to_cam = np.array([[cr*cy+sp*sr+sy, cr*sp*sy-cy*sr, -cp*sy],
+                                            [cp*sr, cp*cr, sp],
+                                            [cr*sy-cy*sp*sr, -cr*cy*sp -sr*sy, cp*cy]])
+        self.rotation_cam_to_road = rotation_road_to_cam.T # for rotation matrices, taking the transpose is the same as inversion
         self.translation_cam_to_road = np.array([0,-self.height,0])
         self.trafo_cam_to_road = np.eye(4)
         self.trafo_cam_to_road[0:3,0:3] = self.rotation_cam_to_road

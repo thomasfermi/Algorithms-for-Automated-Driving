@@ -220,7 +220,7 @@ def main():
         # create camera and attach to vehicle
         cam_rgb_transform = carla.Transform(
             carla.Location(x=0.5, z=cg.height),
-            carla.Rotation(pitch=-1 * cg.pitch_deg),
+            carla.Rotation(pitch=cg.pitch_deg),
         )
         trafo_matrix_vehicle_to_cam = np.array(
             cam_rgb_transform.get_inverse_matrix()
