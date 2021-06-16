@@ -18,8 +18,8 @@ def get_py_from_vp(u_i, v_i, K):
     K_inv = np.linalg.inv(K)
     r3 = K_inv @ p_infinity    
     r3 /= np.linalg.norm(r3)
-    yaw = np.arctan2(r3[0], r3[2])
-    pitch = -np.arcsin(r3[1])
+    yaw = -np.arctan2(r3[0], r3[2])
+    pitch = np.arcsin(r3[1])    
     
     return pitch, yaw
 
@@ -84,7 +84,7 @@ class CalibratedLaneDetector(LaneDetector):
 
     def update_cam_geometry(self, pitch, yaw):
         # TODO: CameraGeometry currently does not allow to set different yaw value :(
-        self.cg = CameraGeometry(pitch_deg = np.rad2deg(pitch))
+        self.cg = CameraGeometry(pitch_deg = np.rad2deg(pitch), yaw_deg=np.rad2deg(yaw))
         self.cut_v, self.grid = self.cg.precompute_grid()
     
     def visualize_vanishing_point(self, image, line_left, line_right, vanishing_point, mpl_axis):

@@ -40,6 +40,8 @@ class CameraGeometry(object):
         # scalar constants
         self.height = height
         self.pitch_deg = pitch_deg
+        self.roll_deg = roll_deg
+        self.yaw_deg = yaw_deg
         self.image_width = image_width
         self.image_height = image_height
         self.field_of_view_deg = field_of_view_deg
