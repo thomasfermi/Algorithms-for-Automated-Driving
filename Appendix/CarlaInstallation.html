@@ -268,8 +268,8 @@
 <p>For some parts of this course you <strong>can</strong> use the Carla simulator.
 It is most convenient to install Carla on your local machine. However, it might not be powerful enough, since Carla is quite ressource hungry. If you find that Carla is not running well on your machine, you can try running it on Colab. Personally, I found that running Carla through Colab was an unpleasant experience.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b7b6ab7f-7e3a-4748-af30-6462a7f91939" name="57f7977d-992a-4451-9b90-af87e85777d0" type="radio">
-</input><label class="tabbed-label" for="b7b6ab7f-7e3a-4748-af30-6462a7f91939">
+<input checked="checked" id="10391f52-7bfa-4457-a997-858ad6f89ddf" name="db4508e9-a678-4c6f-ab21-037f59195452" type="radio">
+</input><label class="tabbed-label" for="10391f52-7bfa-4457-a997-858ad6f89ddf">
 Local installation</label><div class="tabbed-content docutils">
 <p>You can get Carla at <a class="reference external" href="https://github.com/carla-simulator/carla/blob/master/Docs/download.md">the Carla github repo</a>. Download version 0.9.10 (or newer if no breaking API changes will be introduced in the future) and move it to a location where you want to keep it.
 The Carla simulation can be controlled via a python API. In your Carla folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">PythonAPI</span></code> which contains the python package as well as some examples.
@@ -281,8 +281,8 @@ I recommend that you use an anaconda environment called <code class="docutils li
 Do not move the Carla folder afterwards, since it will break this link and hence the anaconda installation.</p></li>
 </ul>
 </div>
-<input id="a7211b29-1861-4b91-acb1-7ff7798abfb8" name="57f7977d-992a-4451-9b90-af87e85777d0" type="radio">
-</input><label class="tabbed-label" for="a7211b29-1861-4b91-acb1-7ff7798abfb8">
+<input id="bd34d7e1-b21e-4e7d-bbdc-a0e2086f6900" name="db4508e9-a678-4c6f-ab21-037f59195452" type="radio">
+</input><label class="tabbed-label" for="bd34d7e1-b21e-4e7d-bbdc-a0e2086f6900">
 Running on Colab</label><div class="tabbed-content docutils">
 <p>If you want to run Carla on <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, check out <a class="reference external" href="https://github.com/MichaelBosello/carla-colab">Michael Bossello’s carla-colab repository</a>. When you follow this link, you will see a nice image of the Carla simulator and above there is a button “Open in Colab”. Click that button. Then go through the notebook step by step and follow the instructions. Note that if you move your python code to the remote machine, and execute it, the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statements will not work. Add the following lines before the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">carla</span></code> statement</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
