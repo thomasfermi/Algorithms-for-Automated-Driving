@@ -45,8 +45,8 @@ class CameraCalibrator():
         K_inv_p_infinity
         
         r3 = K_inv_p_infinity / np.linalg.norm(K_inv_p_infinity)
-        yaw = np.arctan2(r3[0], r3[2])
-        pitch = -np.arcsin(r3[1])
+        yaw = -np.arctan2(r3[0], r3[2])
+        pitch = np.arcsin(r3[1])
         
         return (pitch, yaw)
         
