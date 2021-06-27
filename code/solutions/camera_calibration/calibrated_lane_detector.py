@@ -39,6 +39,27 @@ class CalibratedLaneDetector(LaneDetector):
 
         self.pitch_yaw_history = []
         self.calibration_success = False
+
+    def __call__(self, image):
+        _, left_probs, right_probs = self.detect(image)
+        line_left  = self._fit_line_v_of_u(left_probs)
+        line_right = self._fit_line_v_of_u(right_probs)
+        if line_left is None or line_right is None:
+            return None
+        vanishing_point = get_intersection(line_left, line_right)
+        if vanishing_point is None:
+            return None
+
+        u_i, v_i = vanishing_point
+        pitch, yaw = get_py_from_vp(u_i, v_i, self.cg.intrinsic_matrix)
+        self.add_to_pitch_yaw_history(pitch, yaw)
+
+        # only return lane lines once calibrated
+        if self.calibration_success:
+            left_poly = self.fit_poly(left_probs)
+            right_poly = self.fit_poly(right_probs)            
+            return left_poly, right_poly
+        return None
     
     def _fit_line_v_of_u(self, probs):
         probs_flat = np.ravel(probs[self.calib_cut_v:, :])
@@ -47,28 +68,10 @@ class CalibratedLaneDetector(LaneDetector):
             self.uv_grid[:,0][mask], self.uv_grid[:,1][mask], deg=1, w=probs_flat[mask], full=True)
         mean_residuals = residuals/len(self.uv_grid[:,0][mask])
         #print(mean_residuals)
-        if mean_residuals < 15:
-            return np.poly1d(coeffs)
-        else:
+        if mean_residuals > 15:
             return None
-
-    def calibrate(self, image, mpl_axis=None):
-        _, left_probs, right_probs = self.detect(image)
-        line_left  = self._fit_line_v_of_u(left_probs)
-        line_right = self._fit_line_v_of_u(right_probs)
-        if line_left is None or line_right is None:
-            return False
-        vanishing_point = get_intersection(line_left, line_right)
-        if vanishing_point is None:
-            return False      
-          
-        if mpl_axis is not None:
-            self.visualize_vanishing_point(
-                image, line_left, line_right, vanishing_point, mpl_axis)
-        u_i, v_i = vanishing_point
-        pitch, yaw = get_py_from_vp(u_i, v_i, self.cg.intrinsic_matrix)
-        self.add_to_pitch_yaw_history(pitch, yaw)
-        return True
+        else:
+            return np.poly1d(coeffs)
 
     def add_to_pitch_yaw_history(self, pitch, yaw):
         self.pitch_yaw_history.append([pitch, yaw])
@@ -79,33 +82,9 @@ class CalibratedLaneDetector(LaneDetector):
             self.update_cam_geometry(mean_pitch, mean_yaw)
             self.calibration_success = True
             self.pitch_yaw_history = []
-            print("yaw, pitch = ", mean_yaw*180/np.pi, mean_pitch*180/np.pi)
+            print("yaw, pitch = ", np.rad2deg(mean_yaw), np.rad2deg(mean_pitch))
 
     def update_cam_geometry(self, pitch, yaw):
-        # TODO: CameraGeometry currently does not allow to set different yaw value :(
         self.cg = CameraGeometry(pitch_deg = np.rad2deg(pitch), yaw_deg=np.rad2deg(yaw))
         self.cut_v, self.grid = self.cg.precompute_grid()
-    
-    def visualize_vanishing_point(self, image, line_left, line_right, vanishing_point, mpl_axis):
-        u = np.arange(0,self.cg.image_width, 1)
-        v_left = line_left(u)
-        v_right = line_right(u)
 
-        mpl_axis.imshow(image)
-        # plot detected lane lines
-        mpl_axis.plot(u,v_left)
-        mpl_axis.plot(u,v_right)
-        mpl_axis.set_xlim(0,self.cg.image_width)
-        mpl_axis.set_ylim(self.cg.image_height,0)
-
-        # plot intersection of lane lines
-        u_i, v_i = vanishing_point
-        mpl_axis.scatter([u_i],[v_i], marker="o", s=100, color="r", zorder=10)
-
-    def __call__(self, img):
-        self.calibrate(img)
-        # only return lane lines once calibrated
-        if self.calibration_success:
-            return super().__call__(img)
-        else:
-            return None

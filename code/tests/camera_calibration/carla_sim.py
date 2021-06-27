@@ -188,7 +188,8 @@ def main(yaw_err_deg=0, pitch_err_deg = 0, use_calibrated_lane_detector=False, e
                     if ld.calibration_success:
                         traj = get_trajectory_from_lane_detector(ld, image_windshield)
                     else:
-                        ld.calibrate(carla_img_to_array(image_windshield))
+                        # run ld to perform calibration, but do not use result
+                        ld(carla_img_to_array(image_windshield))
                         traj = get_trajectory_from_map(m, vehicle)
                         print("ld still calibrating")
                 else: #standard lane detector
