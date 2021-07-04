@@ -12,8 +12,7 @@ class CalibratedLaneDetector(LaneDetector):
         self.calib_cut_v = calib_cut_v
         self.uv_grid = self.init_uv_grid() # build u,v grid
         self.pitch_yaw_history = deque([], maxlen=history_len) # maintains queue of latest n predictions.
-        self.calibration_success = False
-        self.mean_residuals_thresh = 15
+        self.mean_residuals_thresh = 2.5 #TODO: adjust this thresh hold to avoid calibration process at curves.
         self.mean_pitch, self.mean_yaw = None, None
         
     def init_uv_grid(self):
@@ -39,20 +38,13 @@ class CalibratedLaneDetector(LaneDetector):
     def get_intersection(line1, line2):
         m1, c1 = line1
         m2, c2 = line2
-        if m1 == m2:
-            return None
-        u_i = (c2 - c1) / (m1 - m2)
-        v_i = m1*u_i + c1
-        return u_i, v_i
-
+        #TODO: find intersection of the line.
+        raise NotImplementedError
+        
     @staticmethod
     def get_py_from_vp(u_i, v_i, K):
-        p_infinity = np.array([u_i, v_i, 1])
-        K_inv = np.linalg.inv(K)
-        r3 = K_inv @ p_infinity    
-        r3 /= np.linalg.norm(r3)
-        yaw = -np.arctan2(r3[0], r3[2])
-        pitch = np.arcsin(r3[1])    
+        #TODO compute pitch and yaw given the camera intrinsic matrix and vanishing point.
+        raise NotImplementedError
         return pitch, yaw
 
     def calibrate(self, image, mpl_axis=None):
