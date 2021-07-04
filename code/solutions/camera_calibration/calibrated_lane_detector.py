@@ -88,10 +88,9 @@ class CalibratedLaneDetector(LaneDetector):
             print("yaw, pitch = ", np.rad2deg(mean_yaw), np.rad2deg(mean_pitch))
 
     def update_cam_geometry(self, pitch, yaw):
-        # TODO: CameraGeometry currently does not allow to set different yaw value :(
         self.cg = CameraGeometry(pitch_deg = np.rad2deg(pitch), yaw_deg=np.rad2deg(yaw))
         self.cut_v, self.grid = self.cg.precompute_grid()
-    
+        
     def visualize_vanishing_point(self, image, line_left, line_right, vanishing_point, mpl_axis):
         u = np.arange(0, self.cg.image_width, 1)
         v_left = line_left(u)
@@ -107,4 +106,3 @@ class CalibratedLaneDetector(LaneDetector):
         # plot intersection of lane lines
         u_i, v_i = vanishing_point
         mpl_axis.scatter([u_i], [v_i], marker="o", s=100, color="y", zorder=10)
-
