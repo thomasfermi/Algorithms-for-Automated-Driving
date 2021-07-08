@@ -44,18 +44,12 @@ class CalibratedLaneDetector(LaneDetector):
         _, left_probs, right_probs = self.detect(image)
         line_left  = self._fit_line_v_of_u(left_probs)
         line_right = self._fit_line_v_of_u(right_probs)
-        use_for_calib = True
-        if line_left is None or line_right is None:
-            use_for_calib = False
-        if use_for_calib:
+        if (line_left is not None) and (line_right is not None):
             vanishing_point = get_intersection(line_left, line_right)
-            if vanishing_point is None:
-                use_for_calib = False
-
-        if use_for_calib:
-            u_i, v_i = vanishing_point
-            pitch, yaw = get_py_from_vp(u_i, v_i, self.cg.intrinsic_matrix)
-            self.add_to_pitch_yaw_history(pitch, yaw)
+            if vanishing_point is not None:                
+                u_i, v_i = vanishing_point
+                pitch, yaw = get_py_from_vp(u_i, v_i, self.cg.intrinsic_matrix)
+                self.add_to_pitch_yaw_history(pitch, yaw)
 
         # only return lane lines once calibrated
         if self.calibration_success:
@@ -89,12 +83,12 @@ class CalibratedLaneDetector(LaneDetector):
 
     def update_cam_geometry(self, pitch, yaw):
         self.cg = CameraGeometry(
-            height=self.cg.height, 
-            roll_deg=self.cg.roll_deg,
-            image_width=self.cg.image_width,
-            image_height=self.cg.image_height, 
-            field_of_view_deg=self.cg.field_of_view_deg,
+            height = self.cg.height, 
+            roll_deg = self.cg.roll_deg,
+            image_width = self.cg.image_width,
+            image_height = self.cg.image_height, 
+            field_of_view_deg = self.cg.field_of_view_deg,
             pitch_deg = np.rad2deg(pitch), 
-            yaw_deg=np.rad2deg(yaw) )
+            yaw_deg = np.rad2deg(yaw) )
         self.cut_v, self.grid = self.cg.precompute_grid()
 
