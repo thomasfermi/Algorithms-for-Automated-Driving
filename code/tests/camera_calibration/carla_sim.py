@@ -14,9 +14,10 @@ import pygame
 from ...util.carla_util import carla_vec_to_np_array, carla_img_to_array, CarlaSyncMode, find_weather_presets, draw_image, get_font, should_quit
 from ...util.geometry_util import dist_point_linestring
 import argparse
+import cv2
 
 
-
+half_image = True
 
 save_gif = True
 
@@ -31,8 +32,8 @@ if save_gif:
 
 def get_trajectory_from_lane_detector(ld, image):
     # get lane boundaries using the lane detector
-    image_arr = carla_img_to_array(image)
-    poly_left, poly_right = ld(image_arr)
+    img = carla_img_to_array(image)
+    poly_left, poly_right = ld(img)
     # trajectory to follow is the mean of left and right lane boundary
     # note that we multiply with -0.5 instead of 0.5 in the formula for y below
     # according to our lane detector x is forward and y is left, but
@@ -92,7 +93,7 @@ def main(yaw_err_deg=0, pitch_err_deg = 0, use_calibrated_lane_detector=False, e
             #from ...exercises.camera_calibration.calibrated_lane_detector import CameraGeometry    
         else:
             from ...solutions.camera_calibration.calibrated_lane_detector import CalibratedLaneDetector
-            from ...solutions.camera_calibration.calibrated_lane_detector import CameraGeometry
+            from ...solutions.lane_detection.camera_geometry_numba import CameraGeometry
 
     if ex:
         from ...exercises.control.pure_pursuit import PurePursuitPlusPID
@@ -140,14 +141,16 @@ def main(yaw_err_deg=0, pitch_err_deg = 0, use_calibrated_lane_detector=False, e
         actor_list.append(camera_rgb)
         sensors = [camera_rgb]
 
-        
-
+        if half_image:
+            cam_geom = CameraGeometry(image_width=512, image_height=256)
+        else:
+            cam_geom = CameraGeometry()
            
         if not ex:
             if use_calibrated_lane_detector:
-                ld = CalibratedLaneDetector(model_path=Path("code/solutions/lane_detection/best_model_multi_dice_loss.pth").absolute())
+                ld = CalibratedLaneDetector(model_path=Path("code/solutions/lane_detection/best_model_multi_dice_loss.pth").absolute(), cam_geom=cam_geom, calib_cut_v = 100)
             else:
-                ld = LaneDetector(model_path=Path("code/solutions/lane_detection/best_model_multi_dice_loss.pth").absolute())
+                ld = LaneDetector(model_path=Path("code/solutions/lane_detection/best_model_multi_dice_loss.pth").absolute(), cam_geom=cam_geom)
         else:
             # TODO: Change this so that it works with your lane detector implementation
             if use_calibrated_lane_detector:
@@ -155,7 +158,7 @@ def main(yaw_err_deg=0, pitch_err_deg = 0, use_calibrated_lane_detector=False, e
             else:
                 ld = LaneDetector()
         #windshield cam
-        cg = CameraGeometry()
+        cg = cam_geom
         cam_windshield_transform = carla.Transform(carla.Location(x=0.5, z=cg.height), carla.Rotation(pitch=cg.pitch_deg+pitch_err_deg, yaw=cg.yaw_deg + yaw_err_deg))
         bp = blueprint_library.find('sensor.camera.rgb')
         fov = cg.field_of_view_deg
@@ -189,7 +192,9 @@ def main(yaw_err_deg=0, pitch_err_deg = 0, use_calibrated_lane_detector=False, e
                         traj = get_trajectory_from_lane_detector(ld, image_windshield)
                     else:
                         # run ld to perform calibration, but do not use result
-                        ld(carla_img_to_array(image_windshield))
+                        img = carla_img_to_array(image_windshield)
+                        print(img.shape)
+                        ld(img)
                         traj = get_trajectory_from_map(m, vehicle)
                         print("ld still calibrating")
                 else: #standard lane detector
