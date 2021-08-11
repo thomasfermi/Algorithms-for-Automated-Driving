@@ -74,3 +74,11 @@ class LaneDetector():
         if isinstance(img, str):
             img = self.read_imagefile_to_array(img)
         return self.detect_and_fit(img)
+
+    def run_and_viz(self, img):
+        _, left, right = self.detect(img)
+        left_poly = self.fit_poly(left)
+        right_poly = self.fit_poly(right)
+        return left_poly, right_poly, left, right
+
+    

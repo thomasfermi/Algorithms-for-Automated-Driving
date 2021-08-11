@@ -80,13 +80,12 @@ def draw_image(surface, image, blend=False):
         image_surface.set_alpha(100)
     surface.blit(image_surface, (0, 0))
 
-
-def get_font():
-    fonts = [x for x in pygame.font.get_fonts()]
-    default_font = 'ubuntumono'
-    font = default_font if default_font in fonts else fonts[0]
-    font = pygame.font.match_font(font)
-    return pygame.font.Font(font, 14)
+def draw_image_np(surface, image, blend=False):
+    array = image
+    image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
+    if blend:
+        image_surface.set_alpha(100)
+    surface.blit(image_surface, (0, 0))
 
 
 def should_quit():

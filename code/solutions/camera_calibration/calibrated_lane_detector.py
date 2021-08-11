@@ -1,5 +1,5 @@
 import numpy as np
-from ..lane_detection.lane_detector import LaneDetector
+from ..lane_detection.lane_detector_mobile import LaneDetector
 from ..lane_detection.camera_geometry import CameraGeometry
 
 
@@ -23,10 +23,9 @@ def get_py_from_vp(u_i, v_i, K):
     return pitch, yaw
 
 class CalibratedLaneDetector(LaneDetector):
-    def __init__(self, calib_cut_v = 200, cam_geom=CameraGeometry(), model_path='./lane_segmentation_model.pth', 
-        encoder = 'efficientnet-b0', encoder_weights = 'imagenet'):
+    def __init__(self, calib_cut_v = 200, cam_geom=CameraGeometry(), model_path='./fastai_model.pth'):
         # call parent class constructor
-        super().__init__(cam_geom, model_path, encoder, encoder_weights)
+        super().__init__(cam_geom, model_path)
 
         self.calib_cut_v = calib_cut_v
 
@@ -37,10 +36,13 @@ class CalibratedLaneDetector(LaneDetector):
                 uv.append(np.array([u,v]))
         self.uv_grid = np.array(uv)
 
+        self.estimated_pitch_deg = 0
+        self.estimated_yaw_deg = 0
+        self.update_cam_geometry()
         self.pitch_yaw_history = []
         self.calibration_success = False
 
-    def __call__(self, image):
+    def run_and_viz(self, image):
         _, left_probs, right_probs = self.detect(image)
         line_left  = self._fit_line_v_of_u(left_probs)
         line_right = self._fit_line_v_of_u(right_probs)
@@ -51,16 +53,23 @@ class CalibratedLaneDetector(LaneDetector):
                 pitch, yaw = get_py_from_vp(u_i, v_i, self.cg.intrinsic_matrix)
                 self.add_to_pitch_yaw_history(pitch, yaw)
 
-        # only return lane lines once calibrated
-        if self.calibration_success:
-            left_poly = self.fit_poly(left_probs)
-            right_poly = self.fit_poly(right_probs)            
-            return left_poly, right_poly
-        return None
+        left_poly = self.fit_poly(left_probs)
+        right_poly = self.fit_poly(right_probs)
+        return left_poly, right_poly, left_probs, right_probs
+
+
+    def __call__(self, image):
+        if isinstance(image, str):
+            image = self.read_imagefile_to_array(image)
+        left_poly, right_poly, _, _ = self.run_and_viz(image)
+        return left_poly, right_poly
+
     
     def _fit_line_v_of_u(self, probs):
         probs_flat = np.ravel(probs[self.calib_cut_v:, :])
         mask = probs_flat > 0.3
+        if mask.sum() == 0:
+            return None
         coeffs, residuals, _, _, _ = np.polyfit(
             self.uv_grid[:,0][mask], self.uv_grid[:,1][mask], deg=1, w=probs_flat[mask], full=True)
         mean_residuals = residuals/len(self.uv_grid[:,0][mask])
@@ -76,19 +85,21 @@ class CalibratedLaneDetector(LaneDetector):
             py = np.array(self.pitch_yaw_history)
             mean_pitch = np.mean(py[:,0])
             mean_yaw = np.mean(py[:,1])
-            self.update_cam_geometry(mean_pitch, mean_yaw)
+            self.estimated_pitch_deg = np.rad2deg(mean_pitch)
+            self.estimated_yaw_deg = np.rad2deg(mean_yaw)
+            self.update_cam_geometry()
             self.calibration_success = True
             self.pitch_yaw_history = []
-            print("yaw, pitch = ", np.rad2deg(mean_yaw), np.rad2deg(mean_pitch))
+            print("yaw, pitch = ", self.estimated_yaw_deg, self.estimated_pitch_deg)
 
-    def update_cam_geometry(self, pitch, yaw):
+    def update_cam_geometry(self):
         self.cg = CameraGeometry(
             height = self.cg.height, 
             roll_deg = self.cg.roll_deg,
             image_width = self.cg.image_width,
             image_height = self.cg.image_height, 
             field_of_view_deg = self.cg.field_of_view_deg,
-            pitch_deg = np.rad2deg(pitch), 
-            yaw_deg = np.rad2deg(yaw) )
+            pitch_deg = self.estimated_pitch_deg, 
+            yaw_deg = self.estimated_yaw_deg )
         self.cut_v, self.grid = self.cg.precompute_grid()
 

@@ -184,7 +184,7 @@ def main():
     display = pygame.display.set_mode(
         (width, height), pygame.HWSURFACE | pygame.DOUBLEBUF
     )
-    font = get_font()
+    font = pygame.font.SysFont("monospace", 12)
     clock = pygame.time.Clock()
 
     client = carla.Client("localhost", 2000)
