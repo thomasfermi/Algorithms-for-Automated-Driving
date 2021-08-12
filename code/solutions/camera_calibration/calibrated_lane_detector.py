@@ -1,5 +1,5 @@
 import numpy as np
-from ..lane_detection.lane_detector_mobile import LaneDetector
+from ..lane_detection.lane_detector import LaneDetector
 from ..lane_detection.camera_geometry import CameraGeometry
 
 
