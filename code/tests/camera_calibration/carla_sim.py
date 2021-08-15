@@ -248,8 +248,7 @@ def main(yaw_deg=0, pitch_deg = 0, ex=False, save_video=False, half_image=False)
                     print("frame=",frame)
                     imgdata = pygame.surfarray.array3d(pygame.display.get_surface())
                     imgdata = imgdata.swapaxes(0,1)
-                    if frame < 1200:
-                        images.append(imgdata)
+                    images.append(imgdata)
                 
 
     finally:
