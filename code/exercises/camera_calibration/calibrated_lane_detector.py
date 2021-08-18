@@ -6,20 +6,12 @@ from ..lane_detection.camera_geometry import CameraGeometry
 def get_intersection(line1, line2):
     m1, c1 = line1
     m2, c2 = line2
-    if m1 == m2:
-        return None
-    u_i = (c2 - c1) / (m1 - m2)
-    v_i = m1*u_i + c1
-    return u_i, v_i
+    #TODO: find intersection of the line.
+    raise NotImplementedError
 
 def get_py_from_vp(u_i, v_i, K):
-    p_infinity = np.array([u_i, v_i, 1])
-    K_inv = np.linalg.inv(K)
-    r3 = K_inv @ p_infinity    
-    r3 /= np.linalg.norm(r3)
-    yaw = -np.arctan2(r3[0], r3[2])
-    pitch = np.arcsin(r3[1])    
-    
+    #TODO compute pitch and yaw given the camera intrinsic matrix and vanishing point.
+    raise NotImplementedError
     return pitch, yaw
 
 class CalibratedLaneDetector(LaneDetector):
@@ -39,7 +31,7 @@ class CalibratedLaneDetector(LaneDetector):
         self.estimated_pitch_deg = 0
         self.estimated_yaw_deg = 0
         self.update_cam_geometry()
-        self.mean_residuals_thresh = 15
+        self.mean_residuals_thresh = 2.5 #TODO: adjust this thresh hold to avoid calibration process at curves.
         self.pitch_yaw_history = []
         self.calibration_success = False
 
