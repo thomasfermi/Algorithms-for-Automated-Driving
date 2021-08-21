@@ -29,17 +29,10 @@ class CalibratedLaneDetector(LaneDetector):
 
         self.calib_cut_v = calib_cut_v
 
-        # build u,v grid
-        uv = []
-        for v in range(calib_cut_v, self.cg.image_height):
-            for u in range(self.cg.image_width):
-                uv.append(np.array([u,v]))
-        self.uv_grid = np.array(uv)
-
         self.estimated_pitch_deg = 0
         self.estimated_yaw_deg = 0
-        self.update_cam_geometry()
         self.mean_residuals_thresh = 15
+        self.update_cam_geometry()
         self.pitch_yaw_history = []
         self.calibration_success = False
 
@@ -67,13 +60,13 @@ class CalibratedLaneDetector(LaneDetector):
 
     
     def _fit_line_v_of_u(self, probs):
-        probs_flat = np.ravel(probs[self.calib_cut_v:, :])
-        mask = probs_flat > 0.3
-        if mask.sum() == 0:
+        v_list, u_list = np.nonzero(probs > 0.3)
+        if v_list.size == 0:
             return None
         coeffs, residuals, _, _, _ = np.polyfit(
-            self.uv_grid[:,0][mask], self.uv_grid[:,1][mask], deg=1, w=probs_flat[mask], full=True)
-        mean_residuals = residuals/len(self.uv_grid[:,0][mask])
+            u_list, v_list, deg=1, full=True)
+            
+        mean_residuals = residuals/len(u_list)
         #print(mean_residuals)
         if mean_residuals > self.mean_residuals_thresh:
             return None
