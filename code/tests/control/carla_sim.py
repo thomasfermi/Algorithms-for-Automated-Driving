@@ -25,7 +25,7 @@ main_image_shape = (800, 600)
 def get_trajectory_from_lane_detector(ld, image):
     # get lane boundaries using the lane detector
     img = carla_img_to_array(image)
-    poly_left, poly_right, left_mask, right_mask = ld.run_and_viz(img)
+    poly_left, poly_right, left_mask, right_mask = ld.get_fit_and_probs(img)
     # trajectory to follow is the mean of left and right lane boundary
     # note that we multiply with -0.5 instead of 0.5 in the formula for y below
     # according to our lane detector x is forward and y is left, but

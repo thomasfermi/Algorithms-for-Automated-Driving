@@ -20,8 +20,7 @@ class LaneDetector():
     def read_imagefile_to_array(self, filename):
         image = cv2.imread(filename)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        return image
-    
+        return image   
 
     def detect_from_file(self, filename):
         img_array = self.read_imagefile_to_array(filename)
@@ -38,12 +37,6 @@ class LaneDetector():
         model_output = self._predict(img_array)
         background, left, right = model_output[0,0,:,:], model_output[0,1,:,:], model_output[0,2,:,:] 
         return background, left, right
-    
-    def detect_and_fit(self, img_array):
-        _, left, right = self.detect(img_array)
-        left_poly = self.fit_poly(left)
-        right_poly = self.fit_poly(right)
-        return left_poly, right_poly
 
     def fit_poly(self, probs):
         probs_flat = np.ravel(probs[self.cut_v:, :])
@@ -54,12 +47,13 @@ class LaneDetector():
             coeffs = np.array([0.,0.,0.,0.])
         return np.poly1d(coeffs)
 
-    def __call__(self, img):
-        if isinstance(img, str):
-            img = self.read_imagefile_to_array(img)
-        return self.detect_and_fit(img)
+    def __call__(self, image):
+        if isinstance(image, str):
+            image = self.read_imagefile_to_array(image)
+        left_poly, right_poly, _, _ = self.get_fit_and_probs(image)
+        return left_poly, right_poly
 
-    def run_and_viz(self, img):
+    def get_fit_and_probs(self, img):
         _, left, right = self.detect(img)
         left_poly = self.fit_poly(left)
         right_poly = self.fit_poly(right)

@@ -21,7 +21,6 @@ class LaneDetector():
         img_array = self.read_imagefile_to_array(filename)
         return self.detect(img_array)
 
-
     def detect(self, img_array):
         """
         Detects which pixels are part of a lane boundary.
@@ -39,12 +38,6 @@ class LaneDetector():
         """
         # TODO: Use your lane segmentation deep learning model to implement this function
         raise NotImplementedError
-    
-    def detect_and_fit(self, img_array):
-        _, left, right = self.detect(img_array)
-        left_poly = self.fit_poly(left)
-        right_poly = self.fit_poly(right)
-        return left_poly, right_poly
 
     def fit_poly(self, probs):
         """ 
@@ -70,12 +63,13 @@ class LaneDetector():
         # TODO: Implement this function. You will need self.cut_v, and self.grid 
         raise NotImplementedError
 
-    def __call__(self, img):
-        if isinstance(img, str):
-            img = self.read_imagefile_to_array(img)
-        return self.detect_and_fit(img)
+    def __call__(self, image):
+        if isinstance(image, str):
+            image = self.read_imagefile_to_array(image)
+        left_poly, right_poly, _, _ = self.get_fit_and_probs(image)
+        return left_poly, right_poly
 
-    def run_and_viz(self, img):
+    def get_fit_and_probs(self, img):
         _, left, right = self.detect(img)
         left_poly = self.fit_poly(left)
         right_poly = self.fit_poly(right)

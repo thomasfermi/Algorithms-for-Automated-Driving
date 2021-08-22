@@ -36,7 +36,7 @@ class CalibratedLaneDetector(LaneDetector):
         self.pitch_yaw_history = []
         self.calibration_success = False
 
-    def run_and_viz(self, image):
+    def get_fit_and_probs(self, image):
         _, left_probs, right_probs = self.detect(image)
         line_left  = self._fit_line_v_of_u(left_probs)
         line_right = self._fit_line_v_of_u(right_probs)
@@ -55,7 +55,7 @@ class CalibratedLaneDetector(LaneDetector):
     def __call__(self, image):
         if isinstance(image, str):
             image = self.read_imagefile_to_array(image)
-        left_poly, right_poly, _, _ = self.run_and_viz(image)
+        left_poly, right_poly, _, _ = self.get_fit_and_probs(image)
         return left_poly, right_poly
 
     
