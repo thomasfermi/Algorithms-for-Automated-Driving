@@ -45,14 +45,6 @@ class CalibratedLaneDetector(LaneDetector):
         left_poly = self.fit_poly(left_probs)
         right_poly = self.fit_poly(right_probs)
         return left_poly, right_poly, left_probs, right_probs
-
-
-    def __call__(self, image):
-        if isinstance(image, str):
-            image = self.read_imagefile_to_array(image)
-        left_poly, right_poly, _, _ = self.get_fit_and_probs(image)
-        return left_poly, right_poly
-
     
     def _fit_line_v_of_u(self, probs):
         v_list, u_list = np.nonzero(probs > 0.3)
