@@ -3,11 +3,13 @@ Algorithms for Automated Driving
 
 ![](book/Introduction/carla_vehicle_lanes.jpg "")
 
-Each chapter of this (mini-)book guides you in programming one important software component for automated driving. Currently, this book contains two chapters: **Lane Detection**, and **Control**. You will implement software that 
-* detects lane boundaries from an image using deep learning
+Each chapter of this (mini-)book guides you in programming one important software component for automated driving. 
+Currently, this book contains three chapters: **Lane Detection**, **Control** and **Camera Calibration**. You will implement software that 
+* detects lane boundaries from a camera image using deep learning
 * controls steering wheel and throttle to keep the vehicle within the detected lane at the desired speed
+* determines how the camera is positioned and oriented with respect to the vehicle (a prerequisite to properly join the lane detection and the control module)
 
-The software you will write is in python, and you will apply it in the [open-source driving simulator Carla](https://carla.org/). Ideally, your computer is powerful enough to run Carla, but if it is not, you can still work through the exercises using a simplistic simulator I created for this course. I recommend to work through the chapters in order, but each chapter is self-contained and can be studied on its own.
+The software you will write is in python, and you will apply it in the [open-source driving simulator CARLA](https://carla.org/). Ideally, your computer is powerful enough to run CARLA, but if it is not, you can still work through the exercises. For the exercise on control there is a simplistic simulator that comes with this course. We recommend to work through the chapters in order, but if you want to, you can read the **Control** chapter, before the **Lane Detection** chapter.
 
 To work through this book, you
 * should understand the following math and physics concepts: derivative, integral, trigonometry, sine/cosine of an angle, matrix, vector, coordinate system, velocity, acceleration, angular velocity, cross product, rotation matrix
@@ -23,4 +25,4 @@ Please follow this [link](https://thomasfermi.github.io/Algorithms-for-Automated
 As of 2021, we have a discord server 🥳. Please follow this [link](https://discord.gg/57YEzkCFHN) to join the community!
 
 ## Help wanted!
-Are you interested in contributing to the book by adding a new chapter? Or do you have other ideas for improvements? Please let me know by joining the discussion [on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions/4)!
+Are you interested in contributing to the book by adding a new chapter? Or do you have other ideas for improvements? Please let us know by joining the discussion [on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions/4)!
