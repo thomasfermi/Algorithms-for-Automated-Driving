@@ -15,9 +15,19 @@ In this approach, visual odometery is performed to find the motion of the camera
 
 ## Further reading
 
- - A great paper to get started with more advanced methods is [Online Extrinsic Camera Calibration for Temporally Consistent IPM Using Lane Boundary Observations with a Lane Width Prior](https://arxiv.org/abs/2008.03722). This paper also discusses estimation of roll and height.
+ - A great paper to get started with more advanced methods is Ref. {cite}`lee2020online`: [Online Extrinsic Camera Calibration for Temporally Consistent IPM Using Lane Boundary Observations with a Lane Width Prior](https://arxiv.org/abs/2008.03722). This paper also discusses estimation of roll and height.
  - Visual Odometery: [PySlam](https://github.com/luigifreda/pyslam) and the resources mentioned in the repo. 
  - VO [Blog post](http://avisingh599.github.io/vision/monocular-vo/) by Avi Singh.
  - [Minimal python](https://github.com/yoshimasa1700/mono_vo_python/) implementation of VO.
  - [VO Lectures with exercises](https://web.archive.org/web/20200709104300/http://rpg.ifi.uzh.ch/teaching.html) by David Scaramuzza
+
+
+## References
+The formalism of how to compute the camera orientation from the vanishing point was adapted from Ref. {cite}`ShiCourseraCalibration`. The idea to use lane boundaries to determine the vanishing point can be found in the paper by Lee et al. {cite}`lee2020online` and within the references of that paper.
+
+```{bibliography}
+:filter: docname in docnames
+```
+
+
 <!-- #endregion -->
