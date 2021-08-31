@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,15 +44,15 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -86,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -148,6 +148,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -252,6 +269,31 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thomasfermi/Algorithms-for-Automated-Driving/master?urlpath=tree/book/LaneDetection/Segmentation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thomasfermi/Algorithms-for-Automated-Driving/blob/master/book/LaneDetection/Segmentation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -260,7 +302,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prerequisites">
@@ -305,17 +347,14 @@
 <li><p>You know what a neural network is and have trained one yourself before</p></li>
 <li><p>You know the concept of <em>semantic segmentation</em></p></li>
 </ol>
-<p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend the following free resource</p>
+<p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend to check out one of the following free resources</p>
 <dl class="glossary simple">
-<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">¶</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but you can read the slides when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the 2020 version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
+<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/2017/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">¶</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but the ones that do exist, are really good! Note that you can see the slides for all lectures when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the <a class="reference external" href="http://cs231n.stanford.edu/2020/">2020</a> version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
+</dd>
+<dt id="term-Practical-Deep-Learning-for-Coders-using-fastai"><a class="reference external" href="https://course.fast.ai/">Practical Deep Learning for Coders using fastai</a><a class="headerlink" href="#term-Practical-Deep-Learning-for-Coders-using-fastai" title="Permalink to this term">¶</a></dt><dd><p>If your background is more in coding and less in math/science, then I recommend this course. You find video lectures <a class="reference external" href="https://course.fast.ai/videos/?lesson=1">here</a>, and a book written in jupyter notebooks <a class="reference external" href="https://course.fast.ai/start_colab#Opening-a-chapter-of-the-book">here</a> (there is also a printed version if you like it). I would recommend to do the exercises using Google Colab. The fastai course is taught using the <a class="reference external" href="https://docs.fast.ai/">fastai library</a> which helps you to train pytorch models with very few lines of code. Even if you choose not to look into the fastai course, I would recommend to check out the [fastai library]((<a class="reference external" href="https://docs.fast.ai/">https://docs.fast.ai/</a>), since it makes training models really easy. Maybe start by just reading the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html">computer vision tutorial</a> first).</p>
 </dd>
 </dl>
-<p>Even if you fulfill <strong>prerequisite 2</strong>, please read this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n). Be sure that you understand the section about dice loss.</p>
-<p>We will use dice loss for two reasons</p>
-<ul class="simple">
-<li><p>Dice loss gives good results even if there is <em>class imbalance</em>: The classes in our problem are “none”, “left boundary”, and “right boundary”. Since lane boundaries are pretty thin, most of the pixels in our data set will be labeled “none”. This means our data set does inhibit <em>class imbalance</em>. A loss function like cross-entropy will not work that well, because the model can get a very low loss just by guessing that each pixel is “none”. This is not possible when using dice loss.</p></li>
-<li><p>The dice loss is not only a good loss function, but we can also use it as a <em>metric</em> since its value is very intuitive.</p></li>
-</ul>
+<p>Regarding <strong>prerequisite 2</strong>, I recommend this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n).</p>
 <p>Finally, you need to have access to a GPU in order to do the exercise. But <em>owning</em> a GPU is not a prerequisite. You can use <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, which allows you to run your python code on google servers. To get access to a GPU on Colab, you should click on “Runtime”, then  “change Runtime type”, and finally select “GPU” as “Hardware accelerator”. For more details on how to work with Colab, see <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a>.</p>
 </div>
 <div class="section" id="exercise-train-a-neural-net-for-lane-boundary-segmentation">
@@ -348,13 +387,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5aadd1ee-c7c1-474d-bce5-babff77de7f0" name="dc91386d-235f-4626-adb3-03853a401289" type="radio">
-</input><label class="tabbed-label" for="5aadd1ee-c7c1-474d-bce5-babff77de7f0">
+<input checked="checked" id="e6246c47-f637-4438-8ebd-1cb42c261568" name="a0594040-68c1-4e4d-ad4d-622da0c270f5" type="radio">
+</input><label class="tabbed-label" for="e6246c47-f637-4438-8ebd-1cb42c261568">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="ff031026-db6a-4bb9-a099-7b94a263c5b6" name="dc91386d-235f-4626-adb3-03853a401289" type="radio">
-</input><label class="tabbed-label" for="ff031026-db6a-4bb9-a099-7b94a263c5b6">
+<input id="8c9b890c-76c9-4861-a27f-dba558140880" name="a0594040-68c1-4e4d-ad4d-622da0c270f5" type="radio">
+</input><label class="tabbed-label" for="8c9b890c-76c9-4861-a27f-dba558140880">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -376,64 +415,36 @@ python -m code.solutions.lane_detection.collect_data
 </div>
 <div class="section" id="building-a-model">
 <h3>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this headline">¶</a></h3>
-<p>To create and train a model, you can choose any deep learning framework you like. Regarding model performance:</p>
-<div class="warning admonition">
-<p class="admonition-title">Expected performance</p>
-<p>You should achieve a dice loss of <span class="math notranslate nohighlight">\(0.2\)</span> or less on the validation data set!</p>
-</div>
-<p>If you want some <strong>guidance</strong>, I recommend using <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a> (smp). You can modify the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">example on the smp github repo</a> to work for lane segmentation. You should start with the code in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code> (and leave it in its directory to make sure the utility imports keep working). Then copy what you need from the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> cell by cell. For each cell, read what it does and think whether it needs modifications.</p>
-<p>This exercise is probably the hardest in this book. If you want, you can get some hints.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>All hints are with respect to the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> version from March 9 2020. You can click on “history” in Github to make sure that you have the right version.</p>
-</div>
+<p>To create and train a model, you can choose any deep learning framework you like.</p>
+<p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for lane segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c348427e-0850-46f3-af92-2ab2f5917fde" name="96b19280-2383-4563-8b1a-a4736c7bf3cd" type="radio">
-</input><label class="tabbed-label" for="c348427e-0850-46f3-af92-2ab2f5917fde">
+<input checked="checked" id="4a92940f-cf19-4449-91ab-13bbafe0ba61" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
+</input><label class="tabbed-label" for="4a92940f-cf19-4449-91ab-13bbafe0ba61">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="118e347f-db86-466e-aa18-748917d1d88e" name="96b19280-2383-4563-8b1a-a4736c7bf3cd" type="radio">
-</input><label class="tabbed-label" for="118e347f-db86-466e-aa18-748917d1d88e">
-Limited hints</label><div class="tabbed-content docutils">
+<input id="a5694c5c-2338-4a0d-9ee9-b3166429da3d" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
+</input><label class="tabbed-label" for="a5694c5c-2338-4a0d-9ee9-b3166429da3d">
+Basic Hints</label><div class="tabbed-content docutils">
+<p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
 <ul class="simple">
-<li><p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary.</p></li>
-<li><p>I would disable the “horizontal flip” image augmentation, because it exchanges left and right; something we want to distinguish!</p></li>
-<li><p>I recommend you to use dice loss for training. You cannot use the library function <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> directly, since it is for binary segmentation. However, you can view our multiclass segmentation problem as two binary segmentation problems. You can compute the dice loss for each using <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> and then take the average. Write your own <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> python class based on this idea. Note that you should use <code class="docutils literal notranslate"><span class="pre">smp.utils.base.Loss</span></code> as a base class.</p></li>
-<li><p>For this data set you can get very good results in around 5 epochs. So you do not need 40 like in the example.</p></li>
-<li><p>I recommend the “FPN” architecure with the “efficientnet-b0” encoder.”</p></li>
+<li><p>You need to modify the <code class="docutils literal notranslate"><span class="pre">codes</span></code>. You can just define <code class="docutils literal notranslate"><span class="pre">codes</span> <span class="pre">=</span> <span class="pre">np.array(['back',</span> <span class="pre">'left','right'],</span> <span class="pre">dtype=str)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_items</span> <span class="pre">=</span> <span class="pre">get_image_files</span></code>: This will not work for our dataset since the <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> function loads images from all subfolders (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>). We do not want to load images from the label folders! You can create a new function based on <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> by specifying the “folders” argument (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label_func</span></code> needs to be defined so that it works for the given dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">splitter</span></code>. Here you should use <a class="reference external" href="https://docs.fast.ai/data.transforms.html#FuncSplitter"><code class="docutils literal notranslate"><span class="pre">FuncSplitter()</span></code></a> to only select those files as validation files which have the string <code class="docutils literal notranslate"><span class="pre">valid</span></code> inside their name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_tfms</span></code>: For the beginning just set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>. The example from the documentation will not work since it contains image flips which will exchange left and right. This is problematic, since we do want to distinguish left and right. If you want, you can study the documentation to find how to do image augmentations withour vertical flips. You can also read <a class="reference external" href="https://docs.fast.ai/tutorial.albumentations.html">this</a> part of the documentation, where you can learn how to integrate the <a class="reference external" href="https://github.com/albumentations-team/albumentations">albumentations</a> library with fastai.</p></li>
+<li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
 </ul>
 </div>
-<input id="1b0ac385-4943-41a4-920c-05c68996f87a" name="96b19280-2383-4563-8b1a-a4736c7bf3cd" type="radio">
-</input><label class="tabbed-label" for="1b0ac385-4943-41a4-920c-05c68996f87a">
-Detailed hints</label><div class="tabbed-content docutils">
-<p>The <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>  is for binary segmentation, but we have 3 classes (background, left_boundary, right_boundary). Hence, some modifications will be necessary. Here are detailed instructions for modifications specific to each section in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a></p>
-<ul class="simple">
-<li><p><strong>DataLoader</strong>: Ine the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class, you need to change</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">CLASSES</span></code>: We only have the three classes “background”, “left_boundary”, and “right_boundary”.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> function: In the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a> the input images and label images have the same name. In our case, if the input image is called <code class="docutils literal notranslate"><span class="pre">something.png</span></code>, the label is called <code class="docutils literal notranslate"><span class="pre">something_label.png</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>: You can completely skip the two lines after “extract certain classes from mask (e.g. cars)”. This will be useful for the dice loss implementation later on.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">visualize</span></code>: You can just pass <code class="docutils literal notranslate"><span class="pre">mask</span></code> instead of <code class="docutils literal notranslate"><span class="pre">mask.squeeze(-1)</span></code> to the <code class="docutils literal notranslate"><span class="pre">visualize</span></code> function.</p></li>
-</ul>
-</li>
-<li><p><strong>Augmentations</strong>: Disable the “horizontal flip” image augmentation, because it exchanges left and right; something we want to distinguish! The function <code class="docutils literal notranslate"><span class="pre">get_validation_augmentation()</span></code> can return <code class="docutils literal notranslate"><span class="pre">None</span></code>, since our image shape is already divisible by 32.</p></li>
-<li><p><strong>Create model and train</strong>:  I would recommend to change</p>
-<ul>
-<li><p><strong>ENCODER</strong>: ‘efficientnet-b0’ performs well and is quite fast. But of course you can try others (see <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/README.md">smp README</a>)</p></li>
-<li><p><strong>CLASSES</strong>: Just use <code class="docutils literal notranslate"><span class="pre">Dataset.CLASSES</span></code></p></li>
-<li><p><strong>ACTIVATION</strong>: Choose ‘softmax2d’, since we are doing multiclass segmentation.</p></li>
-<li><p><strong>loss</strong>: I recommend you to use dice loss for training. You cannot use the library function <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss()</span></code> directly, since it is for binary segmentation. It expects a prediction tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> and a ground-truth tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> (ground-truth tensor is another term for label tensor). However, our multiclass prediction has shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">3,</span> <span class="pre">W,</span> <span class="pre">H)</span></code> (where 3=number of classes), and our ground-truth tensor from the DataLoader is of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">W,</span> <span class="pre">H)</span></code>. Write your own <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> python class which uses <code class="docutils literal notranslate"><span class="pre">smp.utils.base.Loss</span></code> as a base class. The <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code> should have two members: <code class="docutils literal notranslate"><span class="pre">BinaryDiceLossLeft</span></code> and <code class="docutils literal notranslate"><span class="pre">BinaryDiceLossRight</span></code>, which are of type <code class="docutils literal notranslate"><span class="pre">smp.utils.losses.DiceLoss</span></code>. Implement a function <code class="docutils literal notranslate"><span class="pre">forward(self,</span> <span class="pre">y_pr,</span> <span class="pre">y_gt)</span></code> for <code class="docutils literal notranslate"><span class="pre">MultiClassDiceLoss</span></code>, which computes a <code class="docutils literal notranslate"><span class="pre">loss_left</span></code> and a <code class="docutils literal notranslate"><span class="pre">loss_right</span></code> and returns <code class="docutils literal notranslate"><span class="pre">0.5*(loss_left+loss_right)</span></code>. You compute <code class="docutils literal notranslate"><span class="pre">loss_left</span></code> by passing the correct data into <code class="docutils literal notranslate"><span class="pre">self.BinaryDiceLossLeft.forward()</span></code>.</p></li>
-<li><p><strong>metrics</strong>: You can set <code class="docutils literal notranslate"><span class="pre">metrics=[]</span></code>, since our loss function already is a good metric here.</p></li>
-<li><p><strong>epochs</strong>: For this data set you can get very good results in around 5 epochs. So you do not need 40 like in the example.</p></li>
-</ul>
-</li>
-</ul>
+<input id="acb6ae2f-6fb4-4981-a34a-e5f3b95ae4c6" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
+</input><label class="tabbed-label" for="acb6ae2f-6fb4-4981-a34a-e5f3b95ae4c6">
+Advanced Hints</label><div class="tabbed-content docutils">
+<p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
 </div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Store your model</p>
-<p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code> as shown in the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/examples/cars%20segmentation%20(camvid).ipynb">smp example notebook</a>.</p>
+<p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code>. For fastai you can do <code class="docutils literal notranslate"><span class="pre">torch.save(learn.model,</span> <span class="pre">'./fastai_model.pth')</span></code></p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Optional: Working on kaggle</p>
@@ -466,12 +477,32 @@ Detailed hints</label><div class="tabbed-content docutils">
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="CameraBasics.html" title="previous page">Basics of Image Formation</a>
-    <a class='right-next' id="next-link" href="InversePerspectiveMapping.html" title="next page">From Pixels to Meters</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="CameraBasics.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Basics of Image Formation</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="InversePerspectiveMapping.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">From Pixels to Meters</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -479,7 +510,7 @@ Detailed hints</label><div class="tabbed-content docutils">
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

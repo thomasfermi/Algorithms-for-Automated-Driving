@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,7 +44,7 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -83,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -145,6 +145,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -267,7 +284,6 @@
 <p>I would like to add the following chapters to this book in the future</p>
 <ul class="simple">
 <li><p><strong>Model Predictive Control</strong> The pure pursuit controller does not work well when driving curves at high speeds. In this case the assumption of zero slip for the kinematic bicycle model does not apply. In this chapter we will design a model predictive controller based on the dynamic bicycle model, which accounts for nonzero side slip angles.</p></li>
-<li><p><strong>Camera Calibration</strong> How do we estimate the camera height above the road, as well as the camera roll, pitch, and yaw angle? In the chapter on Lane Detection, we got these parameters directly from the simulation. Of course, we cannot do this in the real world. In this chapter we will implement a camera calibration module to estimate the camera extrinsics.</p></li>
 <li><p><strong>HD Map Localization</strong> Carla has a very nice API to access a high definition (HD) map of the road. How can we use our detected lane boundaries, a GPS sensor, a yaw rate sensor, and a speedometer to estimate our position on the HD map? This is relevant for navigation, and can also be used for improved vehicle control.</p></li>
 </ul>
 <p>If you have some additional wishes for future chapters, please raise an issue on the <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a>. If you want to motivate me to continue working on this book, please star the <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> 😉.</p>
@@ -300,11 +316,23 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="CarlaInstallation.html" title="previous page">Carla Installation</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="CarlaInstallation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Carla Installation</p>
+            </div>
+        </a>
+    </div>
+
+</div>
         
         </div>
     </div>
@@ -312,7 +340,7 @@
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

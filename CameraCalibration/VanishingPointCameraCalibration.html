@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrinsic Camera Calibration &#8212; Algorithms for Automated Driving</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/car_sketch.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Discussion" href="Discussion.html" />
+    <link rel="prev" title="Discussion" href="../Control/Discussion.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Lane Detection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/LaneDetectionOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/CameraBasics.html">
+   Basics of Image Formation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/Segmentation.html">
+   Lane Boundary Segmentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html">
+   From Pixels to Meters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LaneDetection/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/ControlOverview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PID.html">
+   PID Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/BicycleModel.html">
+   Kinematic Bicycle Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/PurePursuit.html">
+   Pure Pursuit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
+   Exercise Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
+   Carla Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/NextChapters.html">
+   Future Chapters
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/CameraCalibration/VanishingPointCameraCalibration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FCameraCalibration/VanishingPointCameraCalibration.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/CameraCalibration/VanishingPointCameraCalibration.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thomasfermi/Algorithms-for-Automated-Driving/master?urlpath=tree/book/CameraCalibration/VanishingPointCameraCalibration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thomasfermi/Algorithms-for-Automated-Driving/blob/master/book/CameraCalibration/VanishingPointCameraCalibration.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-point-method">
+   Vanishing Point Method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deriving-yaw-and-pitch-from-the-vanishing-point">
+   Deriving yaw and pitch from the vanishing point
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-point-from-lane-lines">
+   Vanishing point from lane lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="extrinsic-camera-calibration">
+<h1>Extrinsic Camera Calibration<a class="headerlink" href="#extrinsic-camera-calibration" title="Permalink to this headline">¶</a></h1>
+<p>Sensor calibration is one of the most important aspects of building a robot. Different sensors have different calibration procedures. Typically one can distinguish between intrinsic and extrinsic calibration. Intrinsic camera calibration tries to estimate the camera matrix <span class="math notranslate nohighlight">\(K\)</span> (and potentially other camera-specific parameters like distortion coefficients). You can learn more about it in this <a class="reference external" href="https://www.youtube.com/watch?v=Ou9Uj75DJX0">lecture by Cyril Stachniss</a>, and this <a class="reference external" href="https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html">OpenCV python tutorial</a>. For this chapter, we will be focusing on extrinsic camera calibration.</p>
+<p>Refer back to the <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html"><span class="doc std std-doc">From Pixels to meters chapter</span></a>. If you did the exercises of that chapter, you may recall that to convert the lane line pixels detected by the neural network to meters, you needed the camera height <span class="math notranslate nohighlight">\(h\)</span> and the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is oriented with respect to the road reference frame.</p>
+<div class="tip admonition">
+<p class="admonition-title">Reminder: Road reference frame</p>
+<p>The “road reference frame” was defined in <a class="reference internal" href="../LaneDetection/CameraBasics.html"><span class="doc std std-doc">the chapter on camera basics</span></a>, and it is attached to the vehicle.  So for example the <span class="math notranslate nohighlight">\(Z\)</span> direction in the road reference frame is always identical to the vehicle’s forwards axis, and the <span class="math notranslate nohighlight">\(Y\)</span> axis, to the vehicle’s “downwards axis”. The name “road reference frame” could be a bit misleading. The only reason we used the word “road” for this reference frame, is because the <span class="math notranslate nohighlight">\(Z-X\)</span>-plane in this reference frame is identical to the road plane, which we approximate as flat.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span> was very easy to obtain through the CARLA simulator. But this is not that easy in real life. When you mount the camera to your vehicle, you can try to make it perfectly straight, which would correspond to <span class="math notranslate nohighlight">\(\mathbf{R_{cr}} = \mathbf{1}\)</span>, but you will always make a small mistake, which makes calibration necessary. The orientation with respect to the road could also change dynamically, which makes calibration challenging:
+The road is not always flat. It can be banked, elevated or just uneven and therefore, the orientation of the car and the camera keeps changing with respect to the flat road frame. The orientation of the car and the camera may also change with respect to the road if the car breaks are hit hard or due to the car suspension.</p>
+<p>Proper extrinsic calibration is essential for good vehicle control. The following plot shows two simulations in which the camera was mounted with a yaw of 4 degrees and a pitch of -4 degrees. In the first simulation, these yaw and pitch values were passed correctly to the <code class="docutils literal notranslate"><span class="pre">CameraGeometry</span></code> object, which was implemented in the chapter on Lane Detection. Hence, in this first simulation the calibraton was <em>perfect</em>. In the second simulation, default values of zero degrees were incorrectly assumed for both pitch and yaw. Hence, there was no calibration at all.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_3_0.svg" src="../_images/VanishingPointCameraCalibration_3_0.svg" /></div>
+</div>
+<p>As you can see in the plot, having no calibration at all makes the vehicle leave the center of the lane until it has a constant offset of around 40 cm from the middle of the lane. Why does this happen? The wrong yaw and pitch values lead to the computation of a wrong reference path, which is then passed to the controller.  In case of <em>perfect calibration</em> the results looks different. Here, the vehicle stays in the middle of the lane within an error of around 5 cm (except for one small disturbance at around 4 seconds which is due to a bad detection of the neural network).</p>
+<p>But as already mentioned, in the real world we do not know the exact mounting of the camera. So what we will need to do is to estimate the mounting. In this chapter you will learn how to estimate the pitch and yaw angle. The method you will learn leads to simulation results denoted as “VP calib.” in the plot below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_5_0.svg" src="../_images/VanishingPointCameraCalibration_5_0.svg" /></div>
+</div>
+<p>First, the vehicle leaves the middle of the lane, but then it has gathered enough data to estimate yaw and pitch angles. Consequently, it can recover and stay close to the middle of the lane. Let’s learn how this “VP calib.” method works!</p>
+<div class="section" id="vanishing-point-method">
+<h2>Vanishing Point Method<a class="headerlink" href="#vanishing-point-method" title="Permalink to this headline">¶</a></h2>
+<p>Our aim is to find the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is rotated</p>
+<p>We know that the rail tracks or the lane lines are mostly parallel, however, if we take an image of the track or road from a camera, we would observe that the track lines or the lanes are not parallel in the image. The point where these lines intersect in an image is known as the vanishing point.</p>
+<div class="figure align-default" id="vanishing-point-carla">
+<a class="reference internal image-reference" href="../_images/vanishing_point.png"><img alt="../_images/vanishing_point.png" src="../_images/vanishing_point.png" style="width: 50%;" /></a>
+</div>
+<div class="figure align-default" id="vanishing-point">
+<a class="reference internal image-reference" href="../_images/Vanishing_point.svg"><img alt="../_images/Vanishing_point.svg" src="../_images/Vanishing_point.svg" width="50%" /></a>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Image Source <a class="reference external" href="https://en.wikipedia.org/wiki/Vanishing_point">wikipedia</a></span><a class="headerlink" href="#vanishing-point" title="Permalink to this image">¶</a></p>
+</div>
+<p>We know that in the world coordinate system, these parallel lines won’t ever intersect. So we say that the vanishing point is at infinity. Assuming that the car’s forwards direction is aligned with the lane lines, we can say that the lane lines intersect at <span class="math notranslate nohighlight">\(Z=\infty\)</span>, where <span class="math notranslate nohighlight">\((X,Y,Z)\)</span> are coordinates of a point in the road reference frame (reminder: the road reference frame is attached to the vehicle, and <span class="math notranslate nohighlight">\(Z\)</span> is the vehicle’s forwards axis).</p>
+<div class="warning admonition">
+<p class="admonition-title">Important assumption!</p>
+<p>The assumption we just made is very important: The vehicle is aligned with the lane, and the lane is straight. Then, the intersection of the lane lines in the image (vanishing point), will give us information about the camera mounting, i.e., the orientation of the camera with respect to vehicle. Otherwise it would only tell us something about the orientation of the vehicle with respect to the lane lines.</p>
+</div>
+<p>Now recall the camera projection equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \lambda \begin{pmatrix} u \\ v\\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R_{cr}} | \mathbf{t} \end{pmatrix}  \begin{pmatrix} X \\ Y \\ Z \\ 1 \end{pmatrix}
+\end{split}\]</div>
+<p>Since this is an equation in homogeneous coordinates, we can multiply both sides by <span class="math notranslate nohighlight">\(1/Z\)</span> and absorb this number in <span class="math notranslate nohighlight">\(\lambda\)</span> on the left hand side:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \lambda \begin{pmatrix} u \\ v\\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R_{cr}} | \mathbf{t} \end{pmatrix}  \begin{pmatrix} X/Z \\ Y/Z \\ 1 \\ 1/Z \end{pmatrix}
+\end{split}\]</div>
+<p>If we let <span class="math notranslate nohighlight">\(Z\)</span> go to infinity, we obtain the coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> of the vanishing point in image space:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \lambda \begin{pmatrix} u \\ v\\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R_{cr}} | \mathbf{t} \end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}
+\end{split}\]</div>
+<p>We define <span class="math notranslate nohighlight">\(\mathbf{p_{\infty}} = (u,v,1)^T\)</span> for the vanishing point and we write down the transformation matrix components to obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \lambda \mathbf{p_{\infty}} = \mathbf{K} \begin{pmatrix} R_{xx}  R_{xy}  R_{xz}  t_x \\ R_{yx}  R_{yy}  R_{yz}  t_y \\ R_{zx}  R_{zy}  R_{zz}  t_z \end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}
+\end{split}\]</div>
+<p>Now, multiplying the transformation matrix with <span class="math notranslate nohighlight">\((0,0,1,0)^T\)</span> will eliminate the 1st, 2nd and 4th columnn, leaving us with only the 3rd column whose values are <span class="math notranslate nohighlight">\(R_{xz}\)</span>, <span class="math notranslate nohighlight">\(R_{yz}\)</span>  and <span class="math notranslate nohighlight">\(R_{zz}\)</span>. Let us denote this column by <span class="math notranslate nohighlight">\(\mathbf{r_{3}}\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+    \lambda \mathbf{p_{\infty}} = \mathbf{K} \mathbf{r_{3}}
+\]</div>
+<p>Columns of a rotation matrix are always vectors with length 1 (unit vectors), so <span class="math notranslate nohighlight">\(\|\mathbf{r_{3}}\|=1\)</span>. Thus, <span class="math notranslate nohighlight">\(\lambda\)</span> equals <span class="math notranslate nohighlight">\(\frac{1} {\| \mathbf{K}^{-1} \mathbf{p_{\infty}}\| }\)</span> and we obtain</p>
+<div class="math notranslate nohighlight" id="equation-label-r3-equals-invkpinf">
+<span class="eqno">(12)<a class="headerlink" href="#equation-label-r3-equals-invkpinf" title="Permalink to this equation">¶</a></span>\[
+    \mathbf{r_{3}} = \frac{\mathbf{K}^{-1} \mathbf{p_{\infty}}} {\| \mathbf{K}^{-1} \mathbf{p_{\infty}}\| }
+\]</div>
+<p>The idea of the vanishing point method for extrinsic calibration is the following: We determine the vanishing point <span class="math notranslate nohighlight">\((u,v)\)</span> in the image as the point were the lanes lines intersect. This yields <span class="math notranslate nohighlight">\(\mathbf{p_{\infty}} = (u,v,1)^T\)</span>. Since we know the intrinsic matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, we can compute <span class="math notranslate nohighlight">\(\mathbf{r_3}\)</span> using the formula above (Eq. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>). Of course <span class="math notranslate nohighlight">\(\mathbf{r_3}\)</span> is only one of the three columns of the rotation matrix, but as we will show later, <span class="math notranslate nohighlight">\(\mathbf{r_3}\)</span> contains enough information to determine the yaw and pitch angle of the rotation. If we then assume that the roll angle is zero (of course an approximation), we can compute the whole rotation matrix.</p>
+<p>With this vanishing point method, we are able to only recover <strong>yaw</strong> and <strong>pitch</strong> of the camera. It makes intuitive sense that the vanishing point method is not able to recover <strong>roll</strong> and <strong>translation</strong> because the vanishing point is not affected by these two! Imagine looking at a star. The star’s position is only going to change if you change the yaw and pitch of your head and is not affected by roll and translation.</p>
+<div class="figure align-default" id="coordinate-system">
+<a class="reference internal image-reference" href="../_images/car_rpy.svg"><img alt="../_images/car_rpy.svg" src="../_images/car_rpy.svg" width="60%" /></a>
+</div>
+<p>Let’s understand this by an example from CARLA. First, let us inspect of changing the roll angle:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="4c2dfdd8-847e-4cd9-9857-c8c88753e0b8" name="ebbddc36-844f-4c42-9149-114e6a778235" type="radio">
+</input><label class="tabbed-label" for="4c2dfdd8-847e-4cd9-9857-c8c88753e0b8">
+roll = -20°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="roll-minus-20">
+<a class="reference internal image-reference" href="../_images/p-0-y-0-r-20.png"><img alt="../_images/p-0-y-0-r-20.png" src="../_images/p-0-y-0-r-20.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="5b0b5959-bb26-4caf-b4e9-3352b752c818" name="ebbddc36-844f-4c42-9149-114e6a778235" type="radio">
+</input><label class="tabbed-label" for="5b0b5959-bb26-4caf-b4e9-3352b752c818">
+roll = 0°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="roll-0">
+<a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="275abfcc-3ee1-412c-a407-63ed0a109cbd" name="ebbddc36-844f-4c42-9149-114e6a778235" type="radio">
+</input><label class="tabbed-label" for="275abfcc-3ee1-412c-a407-63ed0a109cbd">
+roll = 20°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="roll-20">
+<a class="reference internal image-reference" href="../_images/p-0-y-0-r--20.png"><img alt="../_images/p-0-y-0-r--20.png" src="../_images/p-0-y-0-r--20.png" style="width: 90%;" /></a>
+</div>
+</div>
+</div>
+<p>You can see that the vanishing point didn’t change. Similarly, let’s see if this also holds true for translation:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="97f3bcb5-dbc1-4272-ac46-294234e3503d" name="6e240e40-e3f7-41d3-81db-6f3989c7aa01" type="radio">
+</input><label class="tabbed-label" for="97f3bcb5-dbc1-4272-ac46-294234e3503d">
+translation = -2 m</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="translation-minus-2">
+<a class="reference internal image-reference" href="../_images/trans--2.png"><img alt="../_images/trans--2.png" src="../_images/trans--2.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="9afba36a-dc55-4c6e-8b77-8527f73c8afb" name="6e240e40-e3f7-41d3-81db-6f3989c7aa01" type="radio">
+</input><label class="tabbed-label" for="9afba36a-dc55-4c6e-8b77-8527f73c8afb">
+translation = 0 m</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="translation-0">
+<a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="b56aa9eb-c29f-4478-8160-b9c40dc387c6" name="6e240e40-e3f7-41d3-81db-6f3989c7aa01" type="radio">
+</input><label class="tabbed-label" for="b56aa9eb-c29f-4478-8160-b9c40dc387c6">
+translation = 2 m</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="translation-2">
+<a class="reference internal image-reference" href="../_images/trans-2.png"><img alt="../_images/trans-2.png" src="../_images/trans-2.png" style="width: 90%;" /></a>
+</div>
+</div>
+</div>
+<p>You can see that the vanishing point lies at the same position for all the above images. This shows that roll and translation won’t affect the vanishing point.</p>
+<p>Now let’s see the effect of changing pitch</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="059b7688-dcc2-49f0-8c9a-3f21680d2c69" name="5bca8020-283e-4375-b123-66fadf5a8e6c" type="radio">
+</input><label class="tabbed-label" for="059b7688-dcc2-49f0-8c9a-3f21680d2c69">
+pitch = -5°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="pitch-minus-5">
+<a class="reference internal image-reference" href="../_images/p--5-y-0.png"><img alt="../_images/p--5-y-0.png" src="../_images/p--5-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="b0309d48-db08-4484-b979-be4d8f9ca18b" name="5bca8020-283e-4375-b123-66fadf5a8e6c" type="radio">
+</input><label class="tabbed-label" for="b0309d48-db08-4484-b979-be4d8f9ca18b">
+pitch = 0°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="pitch-0">
+<a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="385a492e-e41f-49a8-ac1a-6dc2cc26e2c5" name="5bca8020-283e-4375-b123-66fadf5a8e6c" type="radio">
+</input><label class="tabbed-label" for="385a492e-e41f-49a8-ac1a-6dc2cc26e2c5">
+pitch = 5°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="pitch-5">
+<a class="reference internal image-reference" href="../_images/p-5-y-0.png"><img alt="../_images/p-5-y-0.png" src="../_images/p-5-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+</div>
+<p>and yaw:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="35281ea4-e16c-4328-8535-d11c483cd02f" name="23760c61-ebff-40cc-a778-44a81849ab59" type="radio">
+</input><label class="tabbed-label" for="35281ea4-e16c-4328-8535-d11c483cd02f">
+yaw = -5°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="yaw-minus-5">
+<a class="reference internal image-reference" href="../_images/p-0-y--10.png"><img alt="../_images/p-0-y--10.png" src="../_images/p-0-y--10.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="aa10c589-4486-4794-a92d-fc76c7e8231a" name="23760c61-ebff-40cc-a778-44a81849ab59" type="radio">
+</input><label class="tabbed-label" for="aa10c589-4486-4794-a92d-fc76c7e8231a">
+yaw = 0°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="yaw-0">
+<a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
+</div>
+</div>
+<input id="f18628ff-ff79-41a6-a989-33846c112449" name="23760c61-ebff-40cc-a778-44a81849ab59" type="radio">
+</input><label class="tabbed-label" for="f18628ff-ff79-41a6-a989-33846c112449">
+yaw = 5°</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="yaw-5">
+<a class="reference internal image-reference" href="../_images/p-0-y-10.png"><img alt="../_images/p-0-y-10.png" src="../_images/p-0-y-10.png" style="width: 90%;" /></a>
+</div>
+</div>
+</div>
+<p>As you can see, the vanishing point shifted in this case. Next let us explore how we can determine yaw and pitch from <span class="math notranslate nohighlight">\(\mathbf{r_3}\)</span></p>
+</div>
+<div class="section" id="deriving-yaw-and-pitch-from-the-vanishing-point">
+<h2>Deriving yaw and pitch from the vanishing point<a class="headerlink" href="#deriving-yaw-and-pitch-from-the-vanishing-point" title="Permalink to this headline">¶</a></h2>
+<p>We discussed the rotation matrix in detail in the section <a class="reference internal" href="../LaneDetection/CameraBasics.html"><span class="doc std std-doc">Basis of Image Formation</span></a> within the Lane Detection chapter. The rotation matrix parametrized by yaw, pitch and roll is given by</p>
+<div class="math notranslate nohighlight">
+\[
+    {R} = R_{yaw}R_{pitch}R_{roll}
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   {R} = \begin{pmatrix} \cos(\gamma)\cos(\beta) + \sin(\alpha)\sin(\gamma)\sin(\beta)  &amp; \cos(\gamma)\sin(\alpha)\sin(\beta) -\cos(\beta)\sin(\gamma) &amp; -\cos(\alpha)\sin(\beta)  \\
+                          \cos(\alpha)\sin(\gamma) &amp; \cos(\alpha)\cos(\gamma) &amp; \sin(\alpha)  \\
+                          \cos(\gamma)\sin(\beta) -\cos(\beta)\sin(\alpha)\sin(\gamma)  &amp; -\cos(\gamma)\cos(\beta)\sin(\alpha) -\sin(\gamma)\sin(\beta)  &amp; \cos(\alpha)\cos(\beta) \\
+                            \end{pmatrix} 
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span> are the pitch, yaw, and roll angles respectively.</p>
+<p>The third column of this rotation matrix is</p>
+<div class="math notranslate nohighlight" id="equation-label-r3-rrr">
+<span class="eqno">(13)<a class="headerlink" href="#equation-label-r3-rrr" title="Permalink to this equation">¶</a></span>\[\begin{split}
+    \begin{pmatrix}  -\cos(\alpha)\sin(\beta) \\
+                            \sin(\alpha) \\
+                            \cos(\alpha)\cos(\beta) \\
+                            \end{pmatrix}  = \mathbf{r_{3}} = \begin{pmatrix} R_{xz} \\ R_{yz} \\ R_{zz} \end{pmatrix}
+\end{split}\]</div>
+<p>If we determine the vanishing point <span class="math notranslate nohighlight">\((u,v)\)</span> in the image, we know <span class="math notranslate nohighlight">\(\mathbf{p_\infty} = (u,v,1)^T\)</span> and hence we can compute the value of <span class="math notranslate nohighlight">\(\mathbf{r_3}= (R_{xz}, R_{yz}, R_{zz})^T\)</span> from Eq. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>:  <span class="math notranslate nohighlight">\(\mathbf{r_{3}} = \mathbf{K}^{-1} \mathbf{p_{\infty}} / \| \mathbf{K}^{-1} \mathbf{p_{\infty}}\| \)</span>.</p>
+<p>Solving Eq. <a class="reference internal" href="#equation-label-r3-rrr">(13)</a> for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> we get:</p>
+<div class="math notranslate nohighlight" id="equation-label-eq-alpha">
+<span class="eqno">(14)<a class="headerlink" href="#equation-label-eq-alpha" title="Permalink to this equation">¶</a></span>\[
+    \alpha = \sin^{-1}{R_{yz}}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-label-eq-beta">
+<span class="eqno">(15)<a class="headerlink" href="#equation-label-eq-beta" title="Permalink to this equation">¶</a></span>\[
+    \beta = -\tan^{-1}\frac{R_{xz}}{{R_{zz}}}
+\]</div>
+<p>We have thus derived pitch and yaw from the vanishing point! Next, let us see how we can determine the vanishing point from an image using our lane detector.</p>
+</div>
+<div class="section" id="vanishing-point-from-lane-lines">
+<h2>Vanishing point from lane lines<a class="headerlink" href="#vanishing-point-from-lane-lines" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;images/test.png&#39;</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_25_0.svg" src="../_images/VanishingPointCameraCalibration_25_0.svg" /></div>
+</div>
+<p>This image was collected from CARLA having a pitch of -5 degrees and yaw of -2 degrees. We aim to obtain these values of pitch and yaw just from the image. For that we will be using our lane detector network trained previously to find the left and right lane boundaries. The intersection of them will lead to the vanishing point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">copy</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../code&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">solutions.lane_detection.lane_detector</span> <span class="kn">import</span> <span class="n">LaneDetector</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;../../code/solutions/lane_detection/fastai_model.pth&quot;</span>
+<span class="n">ld</span> <span class="o">=</span> <span class="n">LaneDetector</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First let us run our neural network to compute for each pixel the probability whether it is background, left boundary or right boundary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">background_prob</span><span class="p">,</span> <span class="n">left_prob</span><span class="p">,</span> <span class="n">right_prob</span> <span class="o">=</span> <span class="n">ld</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All pixels where <code class="docutils literal notranslate"><span class="pre">left_prob</span></code> is large (let’s say larger than <code class="docutils literal notranslate"><span class="pre">0.5</span></code>), can be considered as pixels of the left boundary. Let us make all those pixels blue to get a nice visualization. Similarly we make the right boundary pixels red:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_with_detection</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">img_with_detection</span><span class="p">[</span><span class="n">left_prob</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span> <span class="c1"># blue</span>
+<span class="n">img_with_detection</span><span class="p">[</span><span class="n">right_prob</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_with_detection</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$u$&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$v$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_31_0.svg" src="../_images/VanishingPointCameraCalibration_31_0.svg" /></div>
+</div>
+<p>To determine the intersection of the blue and red line, we describe each of them by an equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are the pixel coordinates (see the axes labels in the image above). Then, it is a high school math problem to find the intersection point.</p>
+<p>Getting the line equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span> for the left lane line from our <code class="docutils literal notranslate"><span class="pre">prob_left</span></code> matrix is actually just two lines of python code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a list of all u and v values for which left_prob[v,u] &gt; 0.5</span>
+<span class="n">v_list</span><span class="p">,</span> <span class="n">u_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">left_prob</span> <span class="o">&gt;</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Fit a polynomial of degree 1 (which is a line) to the list of pixels</span>
+<span class="n">poly_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">u_list</span><span class="p">,</span> <span class="n">v_list</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s add two more lines of code for the right boundary</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_list</span><span class="p">,</span> <span class="n">u_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">right_prob</span> <span class="o">&gt;</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">poly_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">u_list</span><span class="p">,</span> <span class="n">v_list</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And finally some code to visualize our lines</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_img_and_lines</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="n">v_left</span> <span class="o">=</span> <span class="n">poly_left</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">v_right</span> <span class="o">=</span> <span class="n">poly_right</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v_left</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v_right</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$u$&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$v$&#39;</span><span class="p">);</span>
+<span class="n">show_img_and_lines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_37_0.svg" src="../_images/VanishingPointCameraCalibration_37_0.svg" /></div>
+</div>
+<p>In the exercises you will write code that determines the coordinates of the intersection points of two lines. We can import it here to determine the vanishing point:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solutions.camera_calibration.calibrated_lane_detector</span> <span class="kn">import</span> <span class="n">get_intersection</span>
+<span class="n">u_i</span><span class="p">,</span> <span class="n">v_i</span> <span class="o">=</span> <span class="n">get_intersection</span><span class="p">(</span><span class="n">poly_left</span><span class="p">,</span> <span class="n">poly_right</span><span class="p">)</span>
+<span class="n">show_img_and_lines</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">u_i</span><span class="p">],</span> <span class="p">[</span><span class="n">v_i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/VanishingPointCameraCalibration_39_0.svg" src="../_images/VanishingPointCameraCalibration_39_0.svg" /></div>
+</div>
+<p>Finally, we can find pitch and yaw of the camera form the vanishing point using Eqs. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>, <a class="reference internal" href="#equation-label-eq-alpha">(14)</a>, <a class="reference internal" href="#equation-label-eq-beta">(15)</a>. Again you will write some code for this in the exercises.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solutions.camera_calibration.calibrated_lane_detector</span> <span class="kn">import</span> <span class="n">get_py_from_vp</span>
+<span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="n">get_py_from_vp</span><span class="p">(</span><span class="n">u_i</span><span class="p">,</span> <span class="n">v_i</span><span class="p">,</span> <span class="n">ld</span><span class="o">.</span><span class="n">cg</span><span class="o">.</span><span class="n">intrinsic_matrix</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yaw degrees:   %.2f&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">yaw</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;pitch degrees: %.2f&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">pitch</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yaw degrees:   -1.98
+pitch degrees: -5.00
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is very close to the correct values of -2 and -5! You can expect small errors in yaw and pitch because small errors in lane detection can lead to large errors for the vanishing point. Also the car will not always be perfectly aligned with the lane lines as it was in our example image. Therefore, the readings are mostly taken for a period of time from a video stream and then averaged.</p>
+<p>This is why several automated driving systems like Tesla’s autopilot or comma ai’s openpilot require you to drive straight for a while to calibrate the cameras before you can engage the software to drive the car.</p>
+<p>For the exercise, you will write a <code class="docutils literal notranslate"><span class="pre">CalibratedLaneDetector</span></code> class which inherits from the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class. In each cycle it determines the vanishing points and uses that to estimate yaw and pitch. It stores this information to perform an averaging over time. Additionally, the <code class="docutils literal notranslate"><span class="pre">CalibratedLaneDetector</span></code> makes sure not to use images for averaging when the lane lines are curved, since the vanishing point should only be computed from straight lines.</p>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>We provide you with a video. Your task is to use the lane detection network to calibrate the camera and output the yaw and pitch values. The video can be found in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder and is named <code class="docutils literal notranslate"><span class="pre">calibration_video.mp4</span></code>.</p>
+<p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/camera_calibration/calibrated_lane_detector.ipynb</span></code> and follow the instructions in that notebook.</p>
+<p>If you completed the tasks from that notebook, you can optionally check your code with a CARLA simulation. Go to the parent folder of the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m code.tests.camera_calibration.carla_sim --help
+</pre></div>
+</div>
+<p>to see instructions on how to run the simulation.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./CameraCalibration"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Control/Discussion.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Discussion</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Discussion.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Discussion</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
+        
+          <div class="extra_footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </body>
+</html>

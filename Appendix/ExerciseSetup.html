@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,7 +44,7 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -56,7 +56,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Carla Installation" href="CarlaInstallation.html" />
-    <link rel="prev" title="Discussion" href="../Control/Discussion.html" />
+    <link rel="prev" title="Discussion" href="../CameraCalibration/Discussion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -84,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -146,6 +146,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -258,7 +275,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downloading-the-exercises">
@@ -302,13 +319,13 @@
 </div>
 <p>Otherwise visit this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> and click on the green button that says “Code”. In the pop-up menu, please select “Download zip”. Extract the zip to a directory of your choice.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="56cdf089-0c67-4041-ba63-43b591a56bab" name="89f1618d-b58f-4c89-bedb-aa40aa7aab02" type="radio">
-</input><label class="tabbed-label" for="56cdf089-0c67-4041-ba63-43b591a56bab">
+<input checked="checked" id="2ea11942-1cf5-4dcb-9826-992f00b25add" name="de63d7e9-275c-4626-8bb9-5299fd0ba36a" type="radio">
+</input><label class="tabbed-label" for="2ea11942-1cf5-4dcb-9826-992f00b25add">
 Local installation</label><div class="tabbed-content docutils">
 <p>Nothing more to do.</p>
 </div>
-<input id="bee66164-1680-441b-a5d0-0e07c1cde96f" name="89f1618d-b58f-4c89-bedb-aa40aa7aab02" type="radio">
-</input><label class="tabbed-label" for="bee66164-1680-441b-a5d0-0e07c1cde96f">
+<input id="459b44f1-1ff8-4587-b2d7-8fa37e672c25" name="de63d7e9-275c-4626-8bb9-5299fd0ba36a" type="radio">
+</input><label class="tabbed-label" for="459b44f1-1ff8-4587-b2d7-8fa37e672c25">
 Google Colab</label><div class="tabbed-content docutils">
 <p>Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a>. In the top left navigation you can see “My Drive”. Right click “My Drive” and select “New folder”. Name this folder “aad”. You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder “Algorithms-for-Automated-Driving” that you have downloaded from github. Select all folders except the “book” folder and drag and drop them into the empty “aad” folder in your Google Drive.</p>
 </div>
@@ -317,8 +334,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <div class="section" id="python-environment">
 <h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="21944808-d06c-4a9c-bd58-9cbdf5fa9ecc" name="de02eccb-8326-4978-b47c-fd543a225a3c" type="radio">
-</input><label class="tabbed-label" for="21944808-d06c-4a9c-bd58-9cbdf5fa9ecc">
+<input checked="checked" id="7a6361f1-1886-4afa-ae01-ec7418d7f661" name="8864ac3e-9b0d-48cd-a6e7-4f9b8da47162" type="radio">
+</input><label class="tabbed-label" for="7a6361f1-1886-4afa-ae01-ec7418d7f661">
 Local installation</label><div class="tabbed-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
 Please create a conda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> (Algorithms for Automated Driving) for this course using the environment.yml file within “Algorithms-for-Automated-Driving/code”</p>
@@ -326,14 +343,25 @@ Please create a conda environment called <code class="docutils literal notransla
 conda env create -f environment.yml
 </pre></div>
 </div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Tip: Use mamba!</p>
+<p>You may find that creating a conda environment takes a lot of time. I recommend to install mamba:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install mamba -n base -c conda-forge
+</pre></div>
+</div>
+<p>Installing mamba takes some time, but afterwards setting up environments like the one for this book is way faster. Just write <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba env create -f environment.yml
+</pre></div>
+</div>
+</div>
 <p>Be sure to activate that environment to work with it</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
 </pre></div>
 </div>
 <p>If you are working on Windows, consider <a class="reference external" href="https://www.scivision.dev/conda-powershell-python/">adding anaconda to your PowerShell</a>.</p>
 </div>
-<input id="3d95c855-adb6-44f9-b1ca-450cc9fa2908" name="de02eccb-8326-4978-b47c-fd543a225a3c" type="radio">
-</input><label class="tabbed-label" for="3d95c855-adb6-44f9-b1ca-450cc9fa2908">
+<input id="50b3abb2-662c-4c09-b73e-35d764a3dffe" name="8864ac3e-9b0d-48cd-a6e7-4f9b8da47162" type="radio">
+</input><label class="tabbed-label" for="50b3abb2-662c-4c09-b73e-35d764a3dffe">
 Google Colab</label><div class="tabbed-content docutils">
 <p>When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it.</p>
 </div>
@@ -343,8 +371,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6dab8844-146e-4a2c-b4c0-6f47697dee10" name="b5df6b41-0954-4c50-a119-78885e10face" type="radio">
-</input><label class="tabbed-label" for="6dab8844-146e-4a2c-b4c0-6f47697dee10">
+<input checked="checked" id="55666d52-ac51-4857-a784-2c69a24bd36d" name="b1333807-793d-44e7-9cfb-f71ea1a63c70" type="radio">
+</input><label class="tabbed-label" for="55666d52-ac51-4857-a784-2c69a24bd36d">
 Local installation</label><div class="tabbed-content docutils">
 <p>To edit the source code, I recommend to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, since it has nice integration for jupyter notebooks. You can open the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder with Visual Studio code and then easily navigate between the <code class="docutils literal notranslate"><span class="pre">tests</span></code> and the <code class="docutils literal notranslate"><span class="pre">exercises</span></code>. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
@@ -353,11 +381,11 @@ jupyter lab
 </pre></div>
 </div>
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
-When you open the .ipynb file be sure to select the “aad” conda environment as your python kernel.
+When you open the .ipynb file with VS code be sure to select the “aad” conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won’t do anything on your machine. You can also delete these Colab-specific cells if you want.</p>
 </div>
-<input id="ac35bee7-9d59-435c-8225-5c7f5ae9ac60" name="b5df6b41-0954-4c50-a119-78885e10face" type="radio">
-</input><label class="tabbed-label" for="ac35bee7-9d59-435c-8225-5c7f5ae9ac60">
+<input id="f8821a2a-0598-4c47-9678-6829753feab5" name="b1333807-793d-44e7-9cfb-f71ea1a63c70" type="radio">
+</input><label class="tabbed-label" for="f8821a2a-0598-4c47-9678-6829753feab5">
 Google Colab</label><div class="tabbed-content docutils">
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
 Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a> and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select “Open with Google Colaboratory”. If you do not see this option, click “Connect more apps” and search for “colab”. Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on “drive”, “My Drive”, “aad”, “code”, “exercises”, “lane_detection”, “camera_geometry.py”. This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.</p>
@@ -366,7 +394,7 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
 </div>
 <div class="section" id="getting-help">
 <h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
-<p>If you have a question, feel free to ask it by <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues">raising an issue on github</a>. Please add the “question” label, when creating the issue.</p>
+<p>If you have a question about the exercises, feel free to ask it on  <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions">github discussions</a> or on the <a class="reference external" href="https://discord.gg/57YEzkCFHN">discord server</a>.</p>
 </div>
 </div>
 
@@ -393,12 +421,32 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../Control/Discussion.html" title="previous page">Discussion</a>
-    <a class='right-next' id="next-link" href="CarlaInstallation.html" title="next page">Carla Installation</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../CameraCalibration/Discussion.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Discussion</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="CarlaInstallation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Carla Installation</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -406,7 +454,7 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

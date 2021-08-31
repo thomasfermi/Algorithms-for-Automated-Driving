@@ -23,24 +23,37 @@ Open [Google Drive](https://drive.google.com/drive/my-drive). In the top left na
 ## Python environment
 
 
-````{tabbed} Local installation
+`````{tabbed} Local installation
 If you do not have anaconda, please [download and install it](https://www.anaconda.com/products/individual).
 Please create a conda environment called `aad` (Algorithms for Automated Driving) for this course using the environment.yml file within "Algorithms-for-Automated-Driving/code"
-```bash
+````bash
 cd Algorithms-for-Automated-Driving/code
 conda env create -f environment.yml
+````
+
+````{admonition} Tip: Use mamba!
+:class: tip, dropdown
+You may find that creating a conda environment takes a lot of time. I recommend to install mamba:
+```bash
+conda install mamba -n base -c conda-forge
 ```
+Installing mamba takes some time, but afterwards setting up environments like the one for this book is way faster. Just write `mamba` instead of `conda`:
+```bash
+mamba env create -f environment.yml
+``` 
+````
+
 Be sure to activate that environment to work with it
 ```bash
 conda activate aad
 ```
 If you are working on Windows, consider [adding anaconda to your PowerShell](https://www.scivision.dev/conda-powershell-python/).
-````
+`````
 
 
-````{tabbed} Google Colab
+`````{tabbed} Google Colab
 When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it. 
-````
+`````
 
 
 ## Navigating the exercises
@@ -56,7 +69,7 @@ cd Algorithms-for-Automated-Driving
 jupyter lab
 ```
 In the book's exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
-When you open the .ipynb file be sure to select the "aad" conda environment as your python kernel.
+When you open the .ipynb file with VS code be sure to select the "aad" conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won't do anything on your machine. You can also delete these Colab-specific cells if you want.
 ````
 
@@ -66,4 +79,4 @@ Open [Google Drive](https://drive.google.com/drive/my-drive) and navigate to the
 ````
 
 ## Getting help
-If you have a question, feel free to ask it by [raising an issue on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues). Please add the "question" label, when creating the issue.
+If you have a question about the exercises, feel free to ask it on  [github discussions](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions) or on the [discord server](https://discord.gg/57YEzkCFHN). 

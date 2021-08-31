@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overview &#8212; Algorithms for Automated Driving</title>
+    <title>Discussion &#8212; Algorithms for Automated Driving</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,6 +44,8 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -55,8 +57,8 @@
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PID Control" href="PID.html" />
-    <link rel="prev" title="Discussion" href="../LaneDetection/Discussion.html" />
+    <link rel="next" title="Exercise Setup" href="../Appendix/ExerciseSetup.html" />
+    <link rel="prev" title="Extrinsic Camera Calibration" href="VanishingPointCameraCalibration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -123,29 +125,29 @@
   Control
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Control/ControlOverview.html">
    Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="PID.html">
+  <a class="reference internal" href="../Control/PID.html">
    PID Control
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="BicycleModel.html">
+  <a class="reference internal" href="../Control/BicycleModel.html">
    Kinematic Bicycle Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="PurePursuit.html">
+  <a class="reference internal" href="../Control/PurePursuit.html">
    Pure Pursuit
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Discussion.html">
+  <a class="reference internal" href="../Control/Discussion.html">
    Discussion
   </a>
  </li>
@@ -155,14 +157,14 @@
   Camera Calibration
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+  <a class="reference internal" href="VanishingPointCameraCalibration.html">
    Extrinsic Camera Calibration
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/Discussion.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Discussion
   </a>
  </li>
@@ -229,7 +231,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Control/ControlOverview.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/CameraCalibration/Discussion.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -249,10 +251,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FControl/ControlOverview.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FCameraCalibration/Discussion.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/Control/ControlOverview.md"><button
+        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/CameraCalibration/Discussion.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -272,6 +274,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations">
+   Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-vo-based-camera-calibration">
+   Alternative: VO-based camera calibration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further reading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -280,24 +310,41 @@
         
               <div>
                 
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="figure align-default" id="controlcarla">
-<a class="reference internal image-reference" href="../_images/control_carla.gif"><img alt="../_images/control_carla.gif" src="../_images/control_carla.gif" style="width: 400.0px; height: 250.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Vehicle being controlled by pure pursuit and PID.</span><a class="headerlink" href="#controlcarla" title="Permalink to this image">¶</a></p>
+  <!-- #region -->
+<div class="section" id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>The method we presented just assumed that the roll is zero. Also we did not estimate the height <span class="math notranslate nohighlight">\(h\)</span> of the camera. In the real world you could estimate the height using a tape measure and will probably only make an error of around 5 percent. Assuming a roll of zero does not seem to lead to practical problems, since this is done in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/d74def61f88937302f7423eea67895d5f4c596b5/selfdrive/locationd/calibrationd.py#L5">source code</a> of openpilot, which is known to perfrom really well. As a bonus exercise you can run experiments with <code class="docutils literal notranslate"><span class="pre">code/tests/camera_calibration/carla_sim.py</span></code> where you change the roll of the camera or you slightly modify the height. Investigate how this affects the control of the vehicle. Regarding estimation of height and roll we also recommend to have a look at <a class="reference external" href="https://arxiv.org/abs/2008.03722">this paper</a>.</p>
+<p>Another limitation: The method we discussed in this chapter only works if your autonomous vehicle software stack uses lane detection in image space and if it is used in areas with good lane markings. But what if your software doesn’t predict lanes in image space?  Maybe it predicts lanes in world space as <a class="reference external" href="https://github.com/commaai/openpilot">openpilot</a>, or maybe it doesn’t predict lanes at all and makes predictions <a class="reference external" href="https://developer.nvidia.com/blog/deep-learning-self-driving-cars/">end-to-end</a>. In either approaches, this method of camera calibration isn’t going to work. As an alternative, we can use visual odometery (VO) based camera calibration.</p>
 </div>
-<p>In this module, we are going to control a vehicle in the Carla simulator.
-Our algorithm’s input will be the current vehicle speed, as well as the desired speed and desired trajectory.
-The algorithm’s output will be the actuator signals: gas pedal, and steering wheel.</p>
-<p>Our approach will be a PID controller for the gas pedal (longitudinal control) and a method called pure pursuit for steering (lateral control).</p>
-<p>We will begin by learning about <a class="reference internal" href="PID.html"><span class="doc std std-doc">PID control</span></a>. Subsequently, we introduce a mathematical model that describes how the vehicle will move as a function of the steering wheel angle, the so-called <a class="reference internal" href="BicycleModel.html"><span class="doc std std-doc">Kinematic Bicycle Model</span></a>. Using that model we introduce the <a class="reference internal" href="PurePursuit.html"><span class="doc std std-doc">Pure Pursuit</span></a> method for lateral control. In the final exercise, you will implement what you learned to control a vehicle in Carla. If your computer cannot run Carla, don’t worry: you can still use the simplistic simulator I created for this course.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can work through this chapter, even if you did not work through the chapter on Lane Detection at all. However, you miss out on the fun of piping together your lane-detection module with your control module.</p>
+<div class="section" id="alternative-vo-based-camera-calibration">
+<h2>Alternative: VO-based camera calibration<a class="headerlink" href="#alternative-vo-based-camera-calibration" title="Permalink to this headline">¶</a></h2>
+<p>In this approach, visual odometery is performed to find the motion of the camera. This approach also needs to be performed when the car is aligned with the lane line, i.e. when it is going straight and fast. Since the output of VO would be motion of the camera, this information can be used to find out the orientation of the camera with respect to the car. See how openpilot performs this in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/master/selfdrive/locationd/calibrationd.py#L148">calibrationd</a> module. The vehicle forwards axis is more or less identical to the direction of the translation vector, since the vehicle is driving straight. But having the vehicle forwards axis with respect to the camera reference frame means that you can estimate how the optical axis (the z-axis) of the camera is tilted with respect to the vehicle forwards direction. Hence you get the extrinsic rotation matrix! However, you also  need to assume the roll is zero in this approach. To get started with visual odometery, the fastest way is to get started is <a class="reference external" href="https://github.com/luigifreda/pyslam">PySlam</a>. It has lots of methods for visual odometery including novel approaches based on deep learning.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>What is covered in this chapter is somewhat close to the content of weeks 4-7 in the <a class="reference external" href="https://www.coursera.org/learn/intro-self-driving-cars">Coursera course “Introduction to Self-Driving Cars”</a>. If you like, you can audit that course for free on Coursera and watch the videos.</p>
+<div class="section" id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A great paper to get started with more advanced methods is Ref. <span id="id1">[<a class="reference internal" href="#id12">LBCY20</a>]</span>: <a class="reference external" href="https://arxiv.org/abs/2008.03722">Online Extrinsic Camera Calibration for Temporally Consistent IPM Using Lane Boundary Observations with a Lane Width Prior</a>. This paper also discusses estimation of roll and height.</p></li>
+<li><p>Visual Odometery: <a class="reference external" href="https://github.com/luigifreda/pyslam">PySlam</a> and the resources mentioned in the repo.</p></li>
+<li><p>VO <a class="reference external" href="http://avisingh599.github.io/vision/monocular-vo/">Blog post</a> by Avi Singh.</p></li>
+<li><p><a class="reference external" href="https://github.com/yoshimasa1700/mono_vo_python/">Minimal python</a> implementation of VO.</p></li>
+<li><p><a class="reference external" href="https://web.archive.org/web/20200709104300/http://rpg.ifi.uzh.ch/teaching.html">VO Lectures with exercises</a> by David Scaramuzza</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The formalism of how to compute the camera orientation from the vanishing point was adapted from Ref. <span id="id2">[<a class="reference internal" href="#id11">SD21</a>]</span>. The idea to use lane boundaries to determine the vanishing point can be found in the paper by Lee et al. <span id="id3">[<a class="reference internal" href="#id12">LBCY20</a>]</span> and within the references of that paper.</p>
+<p id="id4"><dl class="citation">
+<dt class="label" id="id12"><span class="brackets">LBCY20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Jeong-Kyun Lee, Young-Ki Baik, Hankyu Cho, and Seungwoo Yoo. Online extrinsic camera calibration for temporally consistent ipm using lane boundary observations with a lane width prior. 2020. <a class="reference external" href="https://arxiv.org/abs/2008.03722">arXiv:2008.03722</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">SD21</a></span></dt>
+<dd><p>Jianbo Shi and Kostas Daniilidis. Vanishing points; how to compute camera orientation. Accessed on June 2021. URL: <a class="reference external" href="https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4">https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4</a>.</p>
+</dd>
+</dl>
+</p>
+<!-- #endregion -->
 </div>
 </div>
 
@@ -314,7 +361,7 @@ The algorithm’s output will be the actuator signals: gas pedal, and steering w
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Control"
+            path: "./CameraCalibration"
         },
         predefinedOutput: true
     }
@@ -331,19 +378,19 @@ The algorithm’s output will be the actuator signals: gas pedal, and steering w
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../LaneDetection/Discussion.html" title="previous page">
+        <a class="left-prev" href="VanishingPointCameraCalibration.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Discussion</p>
+                <p class="prevnext-title">Extrinsic Camera Calibration</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="PID.html" title="next page">
+        <a class="right-next" href="../Appendix/ExerciseSetup.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">PID Control</p>
+                <p class="prevnext-title">Exercise Setup</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

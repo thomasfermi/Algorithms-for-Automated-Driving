@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,7 +44,7 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -83,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -145,6 +145,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -267,26 +284,30 @@
 <div class="figure align-default" id="directive-fig">
 <a class="reference internal image-reference" href="../_images/carla_vehicle_lanes.jpg"><img alt="../_images/carla_vehicle_lanes.jpg" src="../_images/carla_vehicle_lanes.jpg" style="width: 66%;" /></a>
 </div>
-<p>Each chapter of this (mini-)book guides you in programming one important software component for automated driving. Currently, this book contains two chapters: <strong>Lane Detection</strong>, and <strong>Control</strong>. You will implement software that</p>
+<p>Each chapter of this (mini-)book guides you in programming one important software component for automated driving.
+Currently, this book contains three chapters: <strong>Lane Detection</strong>, <strong>Control</strong> and <strong>Camera Calibration</strong>. You will implement software that</p>
 <ul class="simple">
-<li><p>detects lane boundaries from an image using deep learning</p></li>
+<li><p>detects lane boundaries from a camera image using deep learning</p></li>
 <li><p>controls steering wheel and throttle to keep the vehicle within the detected lane at the desired speed</p></li>
+<li><p>determines how the camera is positioned and oriented with respect to the vehicle (a prerequisite to properly join the lane detection and the control module)</p></li>
 </ul>
-<p>The software you will write is in python, and you will apply it in the <a class="reference external" href="https://carla.org/">open-source driving simulator Carla</a>. Ideally, your computer is powerful enough to run Carla, but if it is not, you can still work through the exercises using a simplistic simulator I created for this course. I recommend to work through the chapters in order, but each chapter is self-contained and can be studied on its own.</p>
+<p>The software you will write is in python, and you will apply it in the <a class="reference external" href="https://carla.org/">open-source driving simulator CARLA</a>. Ideally, your computer is powerful enough to run CARLA, but if it is not, you can still work through the exercises. For the exercise on control there is a simplistic simulator that comes with this course. We recommend to work through the chapters in order, but if you want to, you can read the <strong>Control</strong> chapter, before the <strong>Lane Detection</strong> chapter.</p>
 <p>To work through this book, you</p>
 <ul class="simple">
 <li><p>should understand the following math and physics concepts: derivative, integral, trigonometry, sine/cosine of an angle, matrix, vector, coordinate system, velocity, acceleration, angular velocity, cross product, rotation matrix</p></li>
 <li><p>should be familiar with programming in python. In particular, you should be comfortable with multidimensional arrays in numpy. You do <strong>not</strong> need a powerful computer (see <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">Exercise Setup</span></a>)</p></li>
 <li><p>need to know what supervised learning is, and how to train a neural network with a deep learning framework like pytorch, fastai, tensorflow, keras, or something similar. This prerequisite is only necessary for the chapter on lane detection. If you do not fulfill it, you can skip this chapter, or study one of the <a class="reference internal" href="../LaneDetection/Segmentation.html"><span class="doc std std-doc">courses I recommend</span></a> and then come back here.</p></li>
 </ul>
-<p>If you find a bug in the exercise code or some confusing explanations in the book, please <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">raise an issue on github</a>. If you have questions about the material or want to connect with me or other students, please use <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions">github discussions</a>. Once you finish the book or decide to stop working through it, please consider giving me some feedback by filling out <a class="reference external" href="https://forms.gle/TioqZiUsB5e5wSVG7">this questionnaire</a> (If you open the link in your browser’s incognito mode, the questionnaire should be anonymous).</p>
+<p>If you find a bug in the exercise code or some confusing explanations in the book, please <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">raise an issue on github</a>. If you have questions about the material or want to connect with me or other students, please use <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions">github discussions</a>. Once you finish the book or decide to stop working through it, please consider giving some feedback by filling out <a class="reference external" href="https://forms.gle/TioqZiUsB5e5wSVG7">this questionnaire</a> (If you open the link in your browser’s incognito mode, the questionnaire should be anonymous).</p>
 <div class="seealso admonition">
 <p class="admonition-title">New: Join us on discord!</p>
 <p>As of 2021, we have a discord server 🥳. Please follow this <a class="reference external" href="https://discord.gg/57YEzkCFHN">link</a> to join the community!</p>
 </div>
 <div class="admonition-help-wanted admonition">
 <p class="admonition-title">Help wanted!</p>
-<p>Are you interested in contributing to the book by adding a new chapter? Or do you have other ideas for improvements? Please let me know by joining the discussion <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions/4">on github</a>!</p>
+<p>Are you interested in contributing to the book by adding a new chapter? Or do you have other ideas for improvements? Please let us know by joining the discussion <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions/4">on github</a>!</p>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -319,11 +340,23 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="../LaneDetection/LaneDetectionOverview.html" title="next page">Overview</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+     <div id="next">
+        <a class="right-next" href="../LaneDetection/LaneDetectionOverview.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Overview</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -331,7 +364,7 @@
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

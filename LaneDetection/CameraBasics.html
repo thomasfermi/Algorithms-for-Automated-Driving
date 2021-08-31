@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,15 +44,15 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -86,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -148,6 +148,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -260,7 +277,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digital-images">
@@ -275,6 +292,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reference-frames">
    Reference frames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#yaw-pitch-and-roll-rotations">
+   Yaw, pitch, and roll rotations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -453,10 +475,10 @@ To continue our discussion, we need to introduce the concept of homogeneous coor
 <p>These frames are defined in the following figure</p>
 <div class="figure align-center" id="coordinate-systems">
 <a class="reference internal image-reference" href="../_images/coordinate_systems.svg"><img alt="../_images/coordinate_systems.svg" src="../_images/coordinate_systems.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Different coordinate systems. Due to the side view, only two of the three coordinate axes are drawn for most of the coordinate systems. The direction of the third coordinate axis can be inferred using the fact that all these coordinate systems are right-handed.
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Different coordinate systems. Due to the side view, only two of the three coordinate axes are drawn for most of the coordinate systems. The direction of the third coordinate axis can be inferred using the fact that all these coordinate systems are right-handed. Apart from the world frame, all frames are attached to the vehicle, which means that their origin moves with the vehicle, and their axes are defined based on the vehicle’s forwards, left, and up directions.
 Note that in general the <span class="math notranslate nohighlight">\(X_w\)</span>-<span class="math notranslate nohighlight">\(Y_w\)</span> plane is not parallel to the road. However, in the Carla simulator this is often the case.</span><a class="headerlink" href="#coordinate-systems" title="Permalink to this image">¶</a></p>
 </div>
-<p>The axes of the default camera frame correspond to the “right”, “down”, and “forwards” directions of the vehicle. Even if we wanted to mount our camera in a way that the <em>camera frame</em> equals the <em>default camera frame</em>, we might make some small errors. In the exercises the <em>camera frame</em> is slightly rotated with respect to the <em>default camera frame</em>, but only along the <span class="math notranslate nohighlight">\(X_d\)</span>-axis: The camera has a <a class="reference external" href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">pitch angle</a> of 15°.</p>
+<p>The axes of the default camera frame correspond to the “right”, “down”, and “forwards” directions of the vehicle. Even if we wanted to mount our camera in a way that the <em>camera frame</em> equals the <em>default camera frame</em>, we might make some small errors. In the exercises the <em>camera frame</em> is slightly rotated with respect to the <em>default camera frame</em>, but only along the <span class="math notranslate nohighlight">\(X_d\)</span>-axis: The camera has a <a class="reference external" href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">pitch angle</a> of 5°.</p>
 <p>In the following we will describe how to transform between world and camera coordinates, but the same mathematics hold for a transformation between any two of the the above reference frames.
 A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> in the world coordinate system is mapped to a point in the camera coordinate system via a rotation matrix <span class="math notranslate nohighlight">\(\bf{R} \in \mathbb{R}^{3 \times 3}\)</span> (to be more precise <a class="reference external" href="https://en.wikipedia.org/wiki/3D_rotation_group"><span class="math notranslate nohighlight">\(\mathbf{R} \in SO(3)\)</span></a>) and a translation vector <span class="math notranslate nohighlight">\(\bf{t}\)</span></p>
 <div class="math notranslate nohighlight">
@@ -478,12 +500,36 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
     \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R} | \mathbf{t} \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix}
 \end{split}\]</div>
 </div>
+<div class="section" id="yaw-pitch-and-roll-rotations">
+<h2>Yaw, pitch, and roll rotations<a class="headerlink" href="#yaw-pitch-and-roll-rotations" title="Permalink to this headline">¶</a></h2>
+<p>Before you start the exercises, you should briefly be introduced to the yaw, pitch, and roll parametrization of rotations: A general rotation between the camera frame and the default camera frame can be described by first rotating for some angle (called roll angle) around the <span class="math notranslate nohighlight">\(Z_d\)</span>-axis, then for some other angle (called pitch angle) around the <span class="math notranslate nohighlight">\(X_d\)</span>-axis, and finally for even another angle (called yaw angle) around the <span class="math notranslate nohighlight">\(Y_d\)</span>-axis.</p>
+<p>If we define the cosine and sine of the roll angle as <span class="math notranslate nohighlight">\(c_p\)</span> and <span class="math notranslate nohighlight">\(c_r\)</span> respectively, the roll rotation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{roll} = \begin{pmatrix}c_{r} &amp; - s_{r} &amp; 0\\s_{r} &amp; c_{r} &amp; 0\\0 &amp; 0 &amp; 1\end{pmatrix}\end{split}\]</div>
+<p>Defining cosine and sine of the pitch angle as <span class="math notranslate nohighlight">\(c_p\)</span> and <span class="math notranslate nohighlight">\(s_p\)</span> and the cosine and sine of the yaw angle as <span class="math notranslate nohighlight">\(c_y\)</span> and <span class="math notranslate nohighlight">\(s_y\)</span>, the pitch and yaw rotation matrices are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{pitch} = \begin{pmatrix}1 &amp; 0 &amp; 0\\0 &amp; c_{p} &amp; s_{p}\\0 &amp; - s_{p} &amp; c_{p}\end{pmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{yaw} = \begin{pmatrix}c_{y} &amp; 0 &amp; - s_{y}\\0 &amp; 1 &amp; 0\\s_{y} &amp; 0 &amp; c_{y}\end{pmatrix}\end{split}\]</div>
+<p>Note that the form of these matrices depends on the coordinate system. We chose the <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span> frame here. In the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame the matrices would look a bit different, since for example the “forwards” direction in the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame is <span class="math notranslate nohighlight">\((1,0,0)^T\)</span>, whereas it is <span class="math notranslate nohighlight">\((0,0,1)^T\)</span> in the default camera frame <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span>. So if you find a differently looking roll matrix in some book, this probably has to do with the naming of the axes. What all books tend to agree on: In the case of vehicles (like cars or planes), the roll axis points forwards, the yaw axis upwards (or downwards), and the pitch axis to the right (or left).</p>
+<div class="figure align-center" id="ypr-aircraft">
+<a class="reference internal image-reference" href="../_images/ypr_aircraft.svg"><img alt="../_images/ypr_aircraft.svg" src="../_images/ypr_aircraft.svg" width="67%" /></a>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Yaw, pitch, and roll rotations. The orange arrow on the pitch axis indicates that “lifting up its nose” will increase the pitch angle of the airplane. So it indicates the sign convention for the angle. Not all text books agree on common sign conventions here. <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Yaw_Axis_Corrected.svg">wikipedia</a></span><a class="headerlink" href="#ypr-aircraft" title="Permalink to this image">¶</a></p>
+</div>
+<p>A general rotation can be written by multiplying the roll, pitch, and yaw matrices</p>
+<div class="math notranslate nohighlight" id="equation-eq-ypr">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-ypr" title="Permalink to this equation">¶</a></span>\[\begin{split} 
+R = R_{yaw} R_{pitch} R_{roll} = \begin{pmatrix}c_{r} c_{y} + s_{p} s_{r} s_{y} &amp; c_{r} s_{p} s_{y} - c_{y} s_{r} &amp; - c_{p} s_{y}\\c_{p} s_{r} &amp; c_{p} c_{r} &amp; s_{p}\\c_{r} s_{y} - c_{y} s_{p} s_{r} &amp; - c_{r} c_{y} s_{p} - s_{r} s_{y} &amp; c_{p} c_{y}\end{pmatrix}
+\end{split}\]</div>
+<p>In the exercise code, we will parametrize the rotation matrix that rotates vectors from the road frame into the camera frame using the formula above. Note that the axis directions of the road frame and the default camera frame are identical.</p>
+<p>For the purpose of this chapter, we will be happy with parametrizing a rotation matrix via yaw, pitch, and roll. However there are some problems with this representation. Three dimensional rotations are more complicated than you might think. If you want to learn more I recommend this <a class="reference external" href="https://www.youtube.com/watch?v=YXGUGSAv09A">YouTube video by Cyrill Stachniss</a>.</p>
+</div>
 <div class="section" id="exercise-projecting-lane-boundaries-into-an-image">
 <h2>Exercise: Projecting lane boundaries into an image<a class="headerlink" href="#exercise-projecting-lane-boundaries-into-an-image" title="Permalink to this headline">¶</a></h2>
 <p>Now you should start to work on your first exercise. For this exercise, I have prepared some data for you. I captured an image in the Carla simulator using a camera sensor attached to a vehicle:</p>
 <div class="figure align-center" id="carla-lane-image">
 <a class="reference internal image-reference" href="../_images/carla_lane_image.svg"><img alt="../_images/carla_lane_image.svg" src="../_images/carla_lane_image.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Image captured by a camera sensor in a Carla simulation.</span><a class="headerlink" href="#carla-lane-image" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Image captured by a camera sensor in a Carla simulation.</span><a class="headerlink" href="#carla-lane-image" title="Permalink to this image">¶</a></p>
 </div>
 <p>Additionally I created txt files containing</p>
 <ul class="simple">
@@ -493,7 +539,7 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 <p>Your job is to write code based on equation <a class="reference internal" href="#equation-eq-world-coords-to-uv">(6)</a> that creates a label image like this:</p>
 <div class="figure align-center" id="carla-lane-label">
 <a class="reference internal image-reference" href="../_images/carla_lane_label.svg"><img alt="../_images/carla_lane_label.svg" src="../_images/carla_lane_label.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Label image.</span><a class="headerlink" href="#carla-lane-label" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Label image.</span><a class="headerlink" href="#carla-lane-label" title="Permalink to this image">¶</a></p>
 </div>
 <p>First you will need to set up your python environment, install the necessary libraries, and download the code for the exercises. Please visit <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a> to learn how.</p>
 <p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_boundary_projection.ipynb</span></code> and follow the instructions in that notebook.</p>
@@ -532,12 +578,32 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="LaneDetectionOverview.html" title="previous page">Overview</a>
-    <a class='right-next' id="next-link" href="Segmentation.html" title="next page">Lane Boundary Segmentation</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="LaneDetectionOverview.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Overview</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Segmentation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lane Boundary Segmentation</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -545,7 +611,7 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,15 +44,15 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -86,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -148,6 +148,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Control/Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -252,6 +269,31 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/thomasfermi/Algorithms-for-Automated-Driving/master?urlpath=tree/book/LaneDetection/InversePerspectiveMapping.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/thomasfermi/Algorithms-for-Automated-Driving/blob/master/book/LaneDetection/InversePerspectiveMapping.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -260,7 +302,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#inverse-perspective-mapping">
@@ -305,7 +347,7 @@
 <p>Having detected which pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> are part of a lane boundary, we now want to know which 3 dimensional points <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span> correspond to these pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span>. First let us have a look at this sketch of the image formation process again:</p>
 <div class="figure align-center" id="camera-projection-again">
 <a class="reference internal image-reference" href="../_images/CameraProjection.svg"><img alt="../_images/CameraProjection.svg" src="../_images/CameraProjection.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Camera projection. Sketch adapted from <a class="reference external" href="https://tex.stackexchange.com/a/323778/56455">stackexchange</a>.</span><a class="headerlink" href="#camera-projection-again" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Camera projection. Sketch adapted from <a class="reference external" href="https://tex.stackexchange.com/a/323778/56455">stackexchange</a>.</span><a class="headerlink" href="#camera-projection-again" title="Permalink to this image">¶</a></p>
 </div>
 <p>Remember: Given a 3 dimensional point in the camera reference frame <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span>, we can obtain the pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> via</p>
 <div class="math notranslate nohighlight">
@@ -329,12 +371,12 @@
 \]</div>
 <div class="figure align-center" id="surface-fig">
 <a class="reference internal image-reference" href="../_images/surface.png"><img alt="../_images/surface.png" src="../_images/surface.png" style="width: 67%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Equation for a planar surface</span><a class="headerlink" href="#surface-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Equation for a planar surface</span><a class="headerlink" href="#surface-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the road reference frame the normal vector is just <span class="math notranslate nohighlight">\(\mathbf{n} = (0,1,0)^T\)</span>. Since the optical axis of the camera is not parallel to the road, the normal vector in the camera reference frame is <span class="math notranslate nohighlight">\(\mathbf{n_c} = \mathbf{R_{cr}} (0,1,0)^T\)</span>, where the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span> describes how the camera is oriented with respect to the road: It rotates vectors from the road frame into the camera frame. The remaining missing piece is some point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> on the plane. In the camera reference frame, the camera is at position <span class="math notranslate nohighlight">\((0,0,0)^T\)</span>. If we denote the height of the camera above the road by <span class="math notranslate nohighlight">\(h\)</span>, then we can construct a point on the road by moving from <span class="math notranslate nohighlight">\((0,0,0)^T\)</span> in the direction of the road normal vector <span class="math notranslate nohighlight">\(\mathbf{n_c}\)</span> by a distance of <span class="math notranslate nohighlight">\(h\)</span>: Hence, we pick <span class="math notranslate nohighlight">\(\mathbf{r}_0 = h \mathbf{n_c}\)</span>, and our equation for the plane becomes <span class="math notranslate nohighlight">\(0= \mathbf{n_c}^T (\mathbf{r} - \mathbf{r}_0) = \mathbf{n_c} ^T \mathbf{r} - h\)</span> or <span class="math notranslate nohighlight">\(h=\mathbf{n_c}^T\mathbf{r}\)</span>.</p>
 <div class="figure align-center" id="ipm-fig">
 <a class="reference internal image-reference" href="../_images/ipm.png"><img alt="../_images/ipm.png" src="../_images/ipm.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Finding the correct <span class="math notranslate nohighlight">\(\lambda\)</span></span><a class="headerlink" href="#ipm-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Finding the correct <span class="math notranslate nohighlight">\(\lambda\)</span></span><a class="headerlink" href="#ipm-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now we can compute the point where the line <span class="math notranslate nohighlight">\(\mathbf{r}(\lambda) = \lambda \mathbf{K}^{-1} (u,v,1)^T\)</span> hits the road, by plugging <span class="math notranslate nohighlight">\(\mathbf{r}(\lambda)\)</span> into the equation of the plane <span class="math notranslate nohighlight">\(h=\mathbf{n_c}^T\mathbf{r}\)</span></p>
 <div class="math notranslate nohighlight">
@@ -343,14 +385,14 @@
 \]</div>
 <p>We can now plug this value of <span class="math notranslate nohighlight">\(\lambda\)</span> into <span class="math notranslate nohighlight">\(\mathbf{r}(\lambda)\)</span> to obtain the desired mapping from pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> to 3 dimensional coordinates in the camera reference frame</p>
 <div class="math notranslate nohighlight" id="equation-eq-inverse-perspective-mapping">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eq-inverse-perspective-mapping" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-inverse-perspective-mapping" title="Permalink to this equation">¶</a></span>\[\begin{split}
     \begin{pmatrix} X_c \\ Y_c \\Z_c \end{pmatrix} = \frac{h}{ \mathbf{n_c}^T \mathbf{K}^{-1} (u,v,1)^T} \mathbf{K}^{-1} \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} 
 \end{split}\]</div>
 <p>This equation is only true if the image shows the road at pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span>. It may look a bit ugly, but it is actually pretty easy to implement with python.</p>
 </div>
 <div class="section" id="exercise-inverse-perspective-mapping">
 <h2>Exercise: Inverse perspective mapping<a class="headerlink" href="#exercise-inverse-perspective-mapping" title="Permalink to this headline">¶</a></h2>
-<p>In this exercise you will implement Eq. <a class="reference internal" href="#equation-eq-inverse-perspective-mapping">(7)</a> as well as the coordinate transformation between the camera reference frame and the road reference frame. For the latter part, you might look back into <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a>. Note that you should have successfully completed the exercise in <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a> before doing this exercise.</p>
+<p>In this exercise you will implement Eq. <a class="reference internal" href="#equation-eq-inverse-perspective-mapping">(8)</a> as well as the coordinate transformation between the camera reference frame and the road reference frame. For the latter part, you might look back into <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a>. Note that you should have successfully completed the exercise in <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a> before doing this exercise.</p>
 <p>To start working on the exercise, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/inverse_perspective_mapping.ipynb</span></code> and follow the instructions in that notebook.</p>
 </div>
 <div class="section" id="fitting-the-polynomial">
@@ -358,7 +400,7 @@
 <p>Our aim is to obtain polynomials <span class="math notranslate nohighlight">\(y_l(x)\)</span> and <span class="math notranslate nohighlight">\(y_r(x)\)</span> describing the left and right lane boundaries in the road reference frame (based on ISO 8855).</p>
 <div class="figure align-center" id="model-iso8850-again">
 <a class="reference internal image-reference" href="../_images/iso8850_crop.png"><img alt="../_images/iso8850_crop.png" src="../_images/iso8850_crop.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Our aim is to find <span class="math notranslate nohighlight">\(y_l(x)\)</span> and <span class="math notranslate nohighlight">\(y_r(x)\)</span></span><a class="headerlink" href="#model-iso8850-again" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Our aim is to find <span class="math notranslate nohighlight">\(y_l(x)\)</span> and <span class="math notranslate nohighlight">\(y_r(x)\)</span></span><a class="headerlink" href="#model-iso8850-again" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -381,7 +423,7 @@
 <div class="cell_output docutils container">
 <img alt="../_images/InversePerspectiveMapping_28_0.svg" src="../_images/InversePerspectiveMapping_28_0.svg" /></div>
 </div>
-<p>The image above shows <code class="docutils literal notranslate"><span class="pre">prob_left[v,u]</span></code> for each <code class="docutils literal notranslate"><span class="pre">(u,v)</span></code>. Now imagine that instead of triples <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> we would have triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left(x,y))</span></code>, where <span class="math notranslate nohighlight">\((x,y)\)</span> are coordinates on the road like in <a class="reference internal" href="#model-iso8850-again"><span class="std std-numref">Fig. 18</span></a>. If we had these triples we could filter them for all <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> where <code class="docutils literal notranslate"><span class="pre">prob_left[x,y]</span></code> is large. We would obtain a list of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> which are part of the left lane boundary and we could use these points to fit our polynomial <span class="math notranslate nohighlight">\(y_l(x)\)</span>!
+<p>The image above shows <code class="docutils literal notranslate"><span class="pre">prob_left[v,u]</span></code> for each <code class="docutils literal notranslate"><span class="pre">(u,v)</span></code>. Now imagine that instead of triples <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> we would have triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left(x,y))</span></code>, where <span class="math notranslate nohighlight">\((x,y)\)</span> are coordinates on the road like in <a class="reference internal" href="#model-iso8850-again"><span class="std std-numref">Fig. 19</span></a>. If we had these triples we could filter them for all <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> where <code class="docutils literal notranslate"><span class="pre">prob_left[x,y]</span></code> is large. We would obtain a list of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> which are part of the left lane boundary and we could use these points to fit our polynomial <span class="math notranslate nohighlight">\(y_l(x)\)</span>!
 But going from <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> to <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> is actually not that hard, since you implemented the function <code class="docutils literal notranslate"><span class="pre">uv_to_roadXYZ_roadframe_iso8855</span></code> in the last exercise. This function converts <span class="math notranslate nohighlight">\((u,v)\)</span> into <span class="math notranslate nohighlight">\((x,y,z)\)</span> (note that <span class="math notranslate nohighlight">\(z=0\)</span> for road pixels).</p>
 <p>That means we can start and write some code to collect the triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code></p>
 <div class="cell docutils container">
@@ -453,13 +495,13 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/InversePerspectiveMapping_41_0.svg" src="../_images/InversePerspectiveMapping_41_0.svg" /></div>
+<img alt="../_images/InversePerspectiveMapping_40_0.svg" src="../_images/InversePerspectiveMapping_40_0.svg" /></div>
 </div>
 <p>Now we import the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class and create an instance of it. For that we specfiy the path to a model that we have stored with pytorch’s <code class="docutils literal notranslate"><span class="pre">save</span></code> function.</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solutions.lane_detection.lane_detector</span> <span class="kn">import</span> <span class="n">LaneDetector</span>
-<span class="n">model_path</span> <span class="o">=</span><span class="s2">&quot;../../code/solutions/lane_detection/best_model_multi_dice_loss.pth&quot;</span>
+<span class="n">model_path</span> <span class="o">=</span><span class="s2">&quot;../../code/solutions/lane_detection/fastai_model.pth&quot;</span>
 <span class="n">ld</span> <span class="o">=</span> <span class="n">LaneDetector</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -488,13 +530,36 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/InversePerspectiveMapping_48_0.svg" src="../_images/InversePerspectiveMapping_48_0.svg" /></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.9846011560873649, 4.1129574361025885)
+</pre></div>
+</div>
+<img alt="../_images/InversePerspectiveMapping_47_1.svg" src="../_images/InversePerspectiveMapping_47_1.svg" /></div>
 </div>
 <p>This looks quite reasonable. In the next exercise, you will create a similar plot and compare it to ground truth data from the simulator.</p>
 </div>
 <div class="section" id="exercise-putting-everything-together">
 <h2>Exercise: Putting everything together<a class="headerlink" href="#exercise-putting-everything-together" title="Permalink to this headline">¶</a></h2>
 <p>For the final exercise, you will implement polynomial fitting, and then encapsulate the whole pipeline into the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class. To start, go to <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_detector.ipynb</span></code> and follow the instructions.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Tip for fastai users</p>
+<p>If you trained your model with fastai, you could use <code class="docutils literal notranslate"><span class="pre">Learner.predict()</span></code> to get the model output for one image. But sadly this is super slow. You can use this python function for faster computation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">img_array</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">image_tensor</span> <span class="o">=</span> <span class="n">img_array</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">255</span>
+        <span class="n">x_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">image_tensor</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">model_output</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> 
+        <span class="c1"># maybe for your model you need to replace model.forward with model.predict in the line above</span>
+    <span class="k">return</span> <span class="n">model_output</span>
+<span class="c1"># usage example:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;fastai_model.pth&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;some_image.png&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<span class="n">get_prediction</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to know why this works, you can read this <a class="reference external" href="https://tcapelle.github.io/pytorch/fastai/2021/02/26/image_resizing.html">blog post</a>, where the section “A simple example” explains what happens inside <code class="docutils literal notranslate"><span class="pre">Learner.predict()</span></code> under the hood.</p>
+</div>
 </div>
 </div>
 
@@ -521,12 +586,32 @@ First, we load an image</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Segmentation.html" title="previous page">Lane Boundary Segmentation</a>
-    <a class='right-next' id="next-link" href="Discussion.html" title="next page">Discussion</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Segmentation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lane Boundary Segmentation</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Discussion.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Discussion</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -534,7 +619,7 @@ First, we load an image</p>
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

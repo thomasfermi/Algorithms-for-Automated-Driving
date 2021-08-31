@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -44,15 +44,15 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -86,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -148,6 +148,23 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Discussion.html">
+   Discussion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Camera Calibration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+   Extrinsic Camera Calibration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CameraCalibration/Discussion.html">
    Discussion
   </a>
  </li>
@@ -260,7 +277,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#instantaneous-center-of-rotation-icr">
@@ -298,7 +315,7 @@ We pick a world coordinate system, for which the <span class="math notranslate n
 Now, we pick one point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> within the rigid body as the reference point. We are free to pick <em>any</em> point we want. For our vehicle, we could e.g. use the center of the rear axle.
 If we pick another point <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> within the rigid body (for our vehicle maybe the left front tire), then we can express the velocity of that point via</p>
 <div class="math notranslate nohighlight" id="equation-eq-rb-velocity">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eq-rb-velocity" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-rb-velocity" title="Permalink to this equation">¶</a></span>\[
     \dot{\mathbf{r}} = \dot{\mathbf{r}}_0 + \mathbf{\Omega} \times (\mathbf{r}-\mathbf{r}_0)
 \]</div>
 <p>Note that a dot means time derivative: <span class="math notranslate nohighlight">\(\frac{d}{dt}\mathbf{r}(t)=\dot{\mathbf{r}}(t)\)</span> and that the angular velocity vector <span class="math notranslate nohighlight">\(\Omega\)</span> does <em>not</em> depend on the choice of <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> (for a proof see <a class="reference external" href="https://en.wikipedia.org/wiki/Angular_velocity#Consistency">Wikipedia</a>).</p>
@@ -327,22 +344,22 @@ If we pick another point <span class="math notranslate nohighlight">\(\mathbf{r}
 <p>Now let us visualize the ICR and see how it can be used in technical sketches.</p>
 <div class="figure align-default" id="icr">
 <a class="reference internal image-reference" href="../_images/ICR.svg"><img alt="../_images/ICR.svg" src="../_images/ICR.svg" width="50%" /></a>
-<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Constructing velocity vectors from a given ICR.</span><a class="headerlink" href="#icr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Constructing velocity vectors from a given ICR.</span><a class="headerlink" href="#icr" title="Permalink to this image">¶</a></p>
 </div>
-<p>If we are given a rigid body (gray rectangle) and its ICR (red dot) as in <a class="reference internal" href="#icr"><span class="std std-numref">Fig. 20</span></a>, this suffices to draw the orientation of the velocity vector for all points in the rigid body. Due to the properties of the cross product, the velocity vector <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> (red arrow) is perpendicular to <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span>, i.e., the line connecting the ICR and the point (black line).
+<p>If we are given a rigid body (gray rectangle) and its ICR (red dot) as in <a class="reference internal" href="#icr"><span class="std std-numref">Fig. 21</span></a>, this suffices to draw the orientation of the velocity vector for all points in the rigid body. Due to the properties of the cross product, the velocity vector <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> (red arrow) is perpendicular to <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span>, i.e., the line connecting the ICR and the point (black line).
 Note that the velocity vectors could be pointing into the opposite direction and would still be perpendicular. We can only do the correct sketch in this regard if we know the sign of the z-component of <span class="math notranslate nohighlight">\(\mathbf{\Omega}\)</span>. The length of the velocity vector is determined by the length of the black line  <span class="math notranslate nohighlight">\(|(\mathbf{r}-\mathbf{r}_{ICR})|\)</span> and the magnitude of <span class="math notranslate nohighlight">\(\mathbf{\Omega}\)</span>.</p>
-<p><a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 21</span></a> shows that we can turn this argument around: If we know the velocity vector direction (red arrow) of a point (blue dot) in the rigid body, we can draw a dashed line through the point (blue dot), which is perpendicular to the velocity vector. The ICR needs to lie on this dashed line, otherwise <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> and <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span> would not be perpendicular. If we know the velocity vector direction of at least two points, we can find the ICR as the intersection of the dashed lines.</p>
+<p><a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a> shows that we can turn this argument around: If we know the velocity vector direction (red arrow) of a point (blue dot) in the rigid body, we can draw a dashed line through the point (blue dot), which is perpendicular to the velocity vector. The ICR needs to lie on this dashed line, otherwise <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> and <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span> would not be perpendicular. If we know the velocity vector direction of at least two points, we can find the ICR as the intersection of the dashed lines.</p>
 <div class="figure align-default" id="icr-construction">
 <a class="reference internal image-reference" href="../_images/ICR_construction.svg"><img alt="../_images/ICR_construction.svg" src="../_images/ICR_construction.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Constructing the ICR from given velocity vectors.</span><a class="headerlink" href="#icr-construction" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Constructing the ICR from given velocity vectors.</span><a class="headerlink" href="#icr-construction" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="ackermann-steering-geometry">
 <h2>Ackermann steering geometry<a class="headerlink" href="#ackermann-steering-geometry" title="Permalink to this headline">¶</a></h2>
-<p>Now that we learned about rigid bodies in general, let us study the rigid body of a four-wheeled car, which is steered by the front axle. <a class="reference internal" href="#wheelangle"><span class="std std-numref">Fig. 22</span></a> depicts such a vehicle and introduces the <strong>wheel steer angle</strong> <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+<p>Now that we learned about rigid bodies in general, let us study the rigid body of a four-wheeled car, which is steered by the front axle. <a class="reference internal" href="#wheelangle"><span class="std std-numref">Fig. 23</span></a> depicts such a vehicle and introduces the <strong>wheel steer angle</strong> <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <div class="figure align-default" id="wheelangle">
 <a class="reference internal image-reference" href="../_images/WheelAngle.svg"><img alt="../_images/WheelAngle.svg" src="../_images/WheelAngle.svg" width="60%" /></a>
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Definition of wheel steer angle for the left (<span class="math notranslate nohighlight">\(\delta_l\)</span>) and right front wheel (<span class="math notranslate nohighlight">\(\delta_r\)</span>). Steering via the rear wheels is uncommon and will not be considered here.</span><a class="headerlink" href="#wheelangle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Definition of wheel steer angle for the left (<span class="math notranslate nohighlight">\(\delta_l\)</span>) and right front wheel (<span class="math notranslate nohighlight">\(\delta_r\)</span>). Steering via the rear wheels is uncommon and will not be considered here.</span><a class="headerlink" href="#wheelangle" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note that the <em>steering wheel angle</em>  is different from the <em>wheel steer angle</em>. The <em>wheel steer angle</em> is the angle of the wheels, while the <em>steering wheel angle</em> is the angle of the steering wheel (the object the driver holds in her hands). Typically</p>
 <div class="margin sidebar">
@@ -353,14 +370,14 @@ Note that the velocity vectors could be pointing into the opposite direction and
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are car-specific constants, and <code class="docutils literal notranslate"><span class="pre">b</span></code> is the steering wheel offset, something that should ideally be zero.</p>
-<p>Preferably, we want our wheels to just roll, but for dynamic maneuvers or on an slippery surface, they will also slip. <a class="reference internal" href="#icr-slip"><span class="std std-numref">Fig. 23</span></a> introduces the important concept of the (side) slip angle.</p>
+<p>Preferably, we want our wheels to just roll, but for dynamic maneuvers or on an slippery surface, they will also slip. <a class="reference internal" href="#icr-slip"><span class="std std-numref">Fig. 24</span></a> introduces the important concept of the (side) slip angle.</p>
 <div class="figure align-default" id="icr-slip">
 <a class="reference internal image-reference" href="../_images/ICR_Slip.svg"><img alt="../_images/ICR_Slip.svg" src="../_images/ICR_Slip.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">If the velocity direction of a wheel center (red arrow), does not coincide with the orientation of the wheel (gray dashed arrow), the tire is slipping to the side. The angle between the velocity (red) and the wheel orientation (gray dashed) is known as the side slip angle, or just slip angle. In general, it is different for each individual wheel.</span><a class="headerlink" href="#icr-slip" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">If the velocity direction of a wheel center (red arrow), does not coincide with the orientation of the wheel (gray dashed arrow), the tire is slipping to the side. The angle between the velocity (red) and the wheel orientation (gray dashed) is known as the side slip angle, or just slip angle. In general, it is different for each individual wheel.</span><a class="headerlink" href="#icr-slip" title="Permalink to this image">¶</a></p>
 </div>
-<p>For the <strong>kinematic four-wheel model</strong> the slip angles of all four tires are assumed to be zero. Let us think about what this means for the ICR. Since the slip angles are zero, the wheel orientations are equal to the wheel velocities. For each wheel we can mentally draw a dashed line perpendicular to the wheel orientation and hence wheel velocity like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 21</span></a>. Since the motion is planar, there needs to be an ICR, and hence all these dashed lines need to intersect in that ICR.</p>
+<p>For the <strong>kinematic four-wheel model</strong> the slip angles of all four tires are assumed to be zero. Let us think about what this means for the ICR. Since the slip angles are zero, the wheel orientations are equal to the wheel velocities. For each wheel we can mentally draw a dashed line perpendicular to the wheel orientation and hence wheel velocity like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>. Since the motion is planar, there needs to be an ICR, and hence all these dashed lines need to intersect in that ICR.</p>
 <p>We consider the rear wheels first. Both have the same orientation. So we only know that the ICR is on the line moving through both rear wheels.</p>
-<p>Next, consider the front wheels. If we choose some wheel steer angles <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span>, we have picked the wheel orientations. If we now draw dashed lines perpendicular to the wheel orientations like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 21</span></a>, we obtain the ICR. We can then check if this ICR lies on the line moving through both rear tires as it needs to (by our considerations about the rear wheels). If it does, our choice of <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span> was good and we have constructed a so-called <strong>Ackermann steering geometry</strong>. Note that in general <span class="math notranslate nohighlight">\(\delta_l \neq \delta_r\)</span>, which has important implications for practical steering systems.</p>
+<p>Next, consider the front wheels. If we choose some wheel steer angles <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span>, we have picked the wheel orientations. If we now draw dashed lines perpendicular to the wheel orientations like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>, we obtain the ICR. We can then check if this ICR lies on the line moving through both rear tires as it needs to (by our considerations about the rear wheels). If it does, our choice of <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span> was good and we have constructed a so-called <strong>Ackermann steering geometry</strong>. Note that in general <span class="math notranslate nohighlight">\(\delta_l \neq \delta_r\)</span>, which has important implications for practical steering systems.</p>
 </div>
 <div class="section" id="id1">
 <h2>Kinematic Bicycle model<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -368,17 +385,17 @@ Note that the velocity vectors could be pointing into the opposite direction and
 <div class="figure align-default" id="bicyclemodel">
 <a class="reference internal image-reference" href="../_images/BicycleModel.svg"><img alt="../_images/BicycleModel.svg" src="../_images/BicycleModel.svg" width="60%" /></a>
 </div>
-<p>The <strong>kinematic bicycle model</strong> is the <strong>bicycle model</strong> together with the assumption that all slip angles are zero. Using this assumption together with our knowledge about the ICR, we can derive practical formulas for the kinematic bicycle model using <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 24</span></a>.</p>
+<p>The <strong>kinematic bicycle model</strong> is the <strong>bicycle model</strong> together with the assumption that all slip angles are zero. Using this assumption together with our knowledge about the ICR, we can derive practical formulas for the kinematic bicycle model using <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a>.</p>
 <div class="figure align-default" id="bicyclemodelgeometry">
 <a class="reference internal image-reference" href="../_images/BicycleModelGeometry.svg"><img alt="../_images/BicycleModelGeometry.svg" src="../_images/BicycleModelGeometry.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Geometry of the bicycle model. The distance <span class="math notranslate nohighlight">\(L\)</span> between the wheels is called <em>wheel base</em>.</span><a class="headerlink" href="#bicyclemodelgeometry" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Geometry of the bicycle model. The distance <span class="math notranslate nohighlight">\(L\)</span> between the wheels is called <em>wheel base</em>.</span><a class="headerlink" href="#bicyclemodelgeometry" title="Permalink to this image">¶</a></p>
 </div>
-<p>As we have learned in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 21</span></a>, we construct the ICR by drawing dashed lines perpendicular to the wheel velocities (which are equal to the wheel orientations due to our assumption of no slip). By the property of the ICR, we know that the rear wheel will move along the black circular arc in <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 24</span></a>. Finally, you should convince yourself that the angle in the bottom left of <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 24</span></a> is equal to the wheel steer angle <span class="math notranslate nohighlight">\(\delta\)</span></p>
+<p>As we have learned in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>, we construct the ICR by drawing dashed lines perpendicular to the wheel velocities (which are equal to the wheel orientations due to our assumption of no slip). By the property of the ICR, we know that the rear wheel will move along the black circular arc in <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a>. Finally, you should convince yourself that the angle in the bottom left of <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a> is equal to the wheel steer angle <span class="math notranslate nohighlight">\(\delta\)</span></p>
 <div class="dropdown admonition">
 <p class="admonition-title">Not convinced?</p>
 <p><img alt="" src="../_images/pure_pursuit_simple_geometry.png" /></p>
 </div>
-<p>From the triangle in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 21</span></a> we find</p>
+<p>From the triangle in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a> we find</p>
 <div class="math notranslate nohighlight">
 \[ \tan(\delta) = \frac{L}{R}\]</div>
 <p>Using <span class="math notranslate nohighlight">\(v = \Omega_z R\)</span>, where <span class="math notranslate nohighlight">\(v\)</span> denotes the velocity magnitude, we can solve this for the steer angle</p>
@@ -395,7 +412,7 @@ Note that the velocity vectors could be pointing into the opposite direction and
 <p>Here, <span class="math notranslate nohighlight">\(a\)</span> is the forwards acceleration, and the expressions <span class="math notranslate nohighlight">\(\frac{dx}{dt} = v \cos(\theta)\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt} = v \sin(\theta)\)</span> are motivated geometrically by the following sketch</p>
 <div class="figure align-default" id="bicyclemodel-x-y-theta">
 <a class="reference internal image-reference" href="../_images/BicycleModel_x_y_theta.svg"><img alt="../_images/BicycleModel_x_y_theta.svg" src="../_images/BicycleModel_x_y_theta.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">The orientation of the vehicle is <span class="math notranslate nohighlight">\((\cos(\theta), \sin(\theta))^T\)</span>. Hence its velocity is  <span class="math notranslate nohighlight">\(v(\cos(\theta), \sin(\theta))^T\)</span>.</span><a class="headerlink" href="#bicyclemodel-x-y-theta" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">The orientation of the vehicle is <span class="math notranslate nohighlight">\((\cos(\theta), \sin(\theta))^T\)</span>. Hence its velocity is  <span class="math notranslate nohighlight">\(v(\cos(\theta), \sin(\theta))^T\)</span>.</span><a class="headerlink" href="#bicyclemodel-x-y-theta" title="Permalink to this image">¶</a></p>
 </div>
 <p>We could have picked any other point between the front and rear wheel as the reference point <span class="math notranslate nohighlight">\((x,y)\)</span>. In this case the formulas would have been slightly more complicated.</p>
 <div class="admonition tip">
@@ -428,12 +445,32 @@ Note that the velocity vectors could be pointing into the opposite direction and
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="PID.html" title="previous page">PID Control</a>
-    <a class='right-next' id="next-link" href="PurePursuit.html" title="next page">Pure Pursuit</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="PID.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">PID Control</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="PurePursuit.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Pure Pursuit</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
@@ -441,7 +478,7 @@ Note that the velocity vectors could be pointing into the opposite direction and
     <div class="container">
       <p>
         
-          By Mario Theers<br/>
+          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
         
           <div class="extra_footer">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
