@@ -351,7 +351,7 @@
 <dl class="glossary simple">
 <dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/2017/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">¶</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but the ones that do exist, are really good! Note that you can see the slides for all lectures when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the <a class="reference external" href="http://cs231n.stanford.edu/2020/">2020</a> version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
 </dd>
-<dt id="term-Practical-Deep-Learning-for-Coders-using-fastai"><a class="reference external" href="https://course.fast.ai/">Practical Deep Learning for Coders using fastai</a><a class="headerlink" href="#term-Practical-Deep-Learning-for-Coders-using-fastai" title="Permalink to this term">¶</a></dt><dd><p>If your background is more in coding and less in math/science, then I recommend this course. You find video lectures <a class="reference external" href="https://course.fast.ai/videos/?lesson=1">here</a>, and a book written in jupyter notebooks <a class="reference external" href="https://course.fast.ai/start_colab#Opening-a-chapter-of-the-book">here</a> (there is also a printed version if you like it). I would recommend to do the exercises using Google Colab. The fastai course is taught using the <a class="reference external" href="https://docs.fast.ai/">fastai library</a> which helps you to train pytorch models with very few lines of code. Even if you choose not to look into the fastai course, I would recommend to check out the [fastai library]((<a class="reference external" href="https://docs.fast.ai/">https://docs.fast.ai/</a>), since it makes training models really easy. Maybe start by just reading the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html">computer vision tutorial</a> first).</p>
+<dt id="term-Practical-Deep-Learning-for-Coders-using-fastai"><a class="reference external" href="https://course.fast.ai/">Practical Deep Learning for Coders using fastai</a><a class="headerlink" href="#term-Practical-Deep-Learning-for-Coders-using-fastai" title="Permalink to this term">¶</a></dt><dd><p>If your background is more in coding and less in math/science, then I recommend this course. You find video lectures <a class="reference external" href="https://course.fast.ai/videos/?lesson=1">here</a>, and a book written in jupyter notebooks <a class="reference external" href="https://course.fast.ai/start_colab#Opening-a-chapter-of-the-book">here</a> (there is also a printed version if you like it). I would recommend to do the exercises using Google Colab. The fastai course is taught using the <a class="reference external" href="https://docs.fast.ai/">fastai library</a> which helps you to train pytorch models with very few lines of code. Even if you choose not to look into the fastai course, I would recommend to check out the <a class="reference external" href="https://docs.fast.ai/">fastai library</a>, since it makes training models really easy. Maybe start by just reading the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html">computer vision tutorial</a> first).</p>
 </dd>
 </dl>
 <p>Regarding <strong>prerequisite 2</strong>, I recommend this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n).</p>
@@ -387,13 +387,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e6246c47-f637-4438-8ebd-1cb42c261568" name="a0594040-68c1-4e4d-ad4d-622da0c270f5" type="radio">
-</input><label class="tabbed-label" for="e6246c47-f637-4438-8ebd-1cb42c261568">
+<input checked="checked" id="f3730177-3049-4bf6-be6c-b395fccdb403" name="053d5691-dbfd-4e80-8340-ab028ba8c03a" type="radio">
+</input><label class="tabbed-label" for="f3730177-3049-4bf6-be6c-b395fccdb403">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="8c9b890c-76c9-4861-a27f-dba558140880" name="a0594040-68c1-4e4d-ad4d-622da0c270f5" type="radio">
-</input><label class="tabbed-label" for="8c9b890c-76c9-4861-a27f-dba558140880">
+<input id="87ce7178-bc67-41bb-bacf-e940e4a4f1ac" name="053d5691-dbfd-4e80-8340-ab028ba8c03a" type="radio">
+</input><label class="tabbed-label" for="87ce7178-bc67-41bb-bacf-e940e4a4f1ac">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -418,13 +418,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>To create and train a model, you can choose any deep learning framework you like.</p>
 <p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for lane segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4a92940f-cf19-4449-91ab-13bbafe0ba61" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
-</input><label class="tabbed-label" for="4a92940f-cf19-4449-91ab-13bbafe0ba61">
+<input checked="checked" id="ff562f7c-1359-4ec3-a251-ff69ac73bb9c" name="2fe9298e-1eaa-4983-af41-8a5600d34bea" type="radio">
+</input><label class="tabbed-label" for="ff562f7c-1359-4ec3-a251-ff69ac73bb9c">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="a5694c5c-2338-4a0d-9ee9-b3166429da3d" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
-</input><label class="tabbed-label" for="a5694c5c-2338-4a0d-9ee9-b3166429da3d">
+<input id="d3fe0d9c-2a1c-4b73-a2a4-83260509604d" name="2fe9298e-1eaa-4983-af41-8a5600d34bea" type="radio">
+</input><label class="tabbed-label" for="d3fe0d9c-2a1c-4b73-a2a4-83260509604d">
 Basic Hints</label><div class="tabbed-content docutils">
 <p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
 <ul class="simple">
@@ -436,8 +436,8 @@ Basic Hints</label><div class="tabbed-content docutils">
 <li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
 </ul>
 </div>
-<input id="acb6ae2f-6fb4-4981-a34a-e5f3b95ae4c6" name="f631837f-ae9e-4672-af29-4649885da5de" type="radio">
-</input><label class="tabbed-label" for="acb6ae2f-6fb4-4981-a34a-e5f3b95ae4c6">
+<input id="11e5355e-2d3a-4696-b383-e1a28d549c73" name="2fe9298e-1eaa-4983-af41-8a5600d34bea" type="radio">
+</input><label class="tabbed-label" for="11e5355e-2d3a-4696-b383-e1a28d549c73">
 Advanced Hints</label><div class="tabbed-content docutils">
 <p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
 </div>
