@@ -341,7 +341,7 @@
 <p>Refer back to the <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html"><span class="doc std std-doc">From Pixels to meters chapter</span></a>. If you did the exercises of that chapter, you may recall that to convert the lane line pixels detected by the neural network to meters, you needed the camera height <span class="math notranslate nohighlight">\(h\)</span> and the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is oriented with respect to the road reference frame.</p>
 <div class="tip admonition">
 <p class="admonition-title">Reminder: Road reference frame</p>
-<p>The “road reference frame” was defined in <a class="reference internal" href="../LaneDetection/CameraBasics.html"><span class="doc std std-doc">the chapter on camera basics</span></a>, and it is attached to the vehicle.  So for example the <span class="math notranslate nohighlight">\(Z\)</span> direction in the road reference frame is always identical to the vehicle’s forwards axis, and the <span class="math notranslate nohighlight">\(Y\)</span> axis, to the vehicle’s “downwards axis”. The name “road reference frame” could be a bit misleading. The only reason we used the word “road” for this reference frame, is because the <span class="math notranslate nohighlight">\(Z-X\)</span>-plane in this reference frame is identical to the road plane, which we approximate as flat.</p>
+<p>The “road reference frame” was defined in <a class="reference internal" href="../LaneDetection/CameraBasics.html"><span class="doc std std-doc">the chapter on camera basics</span></a>, and it is attached to the vehicle.  The <span class="math notranslate nohighlight">\(Z\)</span> direction in the road reference frame is always identical to the vehicle’s forwards axis and the <span class="math notranslate nohighlight">\(Y\)</span> axis is identical to the vehicle’s “downwards axis”. The name “road reference frame” could be a bit misleading. The only reason we used the word “road” for this reference frame, is because the <span class="math notranslate nohighlight">\(Z-X\)</span>-plane in this reference frame is identical to the road plane, which we approximate as flat.</p>
 </div>
 <p><span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span> was very easy to obtain through the CARLA simulator. But this is not that easy in real life. When you mount the camera to your vehicle, you can try to make it perfectly straight, which would correspond to <span class="math notranslate nohighlight">\(\mathbf{R_{cr}} = \mathbf{1}\)</span>, but you will always make a small mistake, which makes calibration necessary. The orientation with respect to the road could also change dynamically, which makes calibration challenging:
 The road is not always flat. It can be banked, elevated or just uneven and therefore, the orientation of the car and the camera keeps changing with respect to the flat road frame. The orientation of the car and the camera may also change with respect to the road if the car breaks are hit hard or due to the car suspension.</p>
@@ -410,22 +410,22 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 <p>Let’s understand this by an example from CARLA. First, let us inspect of changing the roll angle:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="81f0e161-3ac2-435a-8a8a-b788f73771f6" name="7b461af2-5d30-42f0-911b-ae7f739683ee" type="radio">
-</input><label class="tabbed-label" for="81f0e161-3ac2-435a-8a8a-b788f73771f6">
+<input checked="checked" id="7b770880-d432-4263-8c66-d66f3e02cddd" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
+</input><label class="tabbed-label" for="7b770880-d432-4263-8c66-d66f3e02cddd">
 roll = -20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-minus-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r-20.png"><img alt="../_images/p-0-y-0-r-20.png" src="../_images/p-0-y-0-r-20.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="58219a1b-0caa-43b2-9429-4d64fdd12f93" name="7b461af2-5d30-42f0-911b-ae7f739683ee" type="radio">
-</input><label class="tabbed-label" for="58219a1b-0caa-43b2-9429-4d64fdd12f93">
+<input id="f6ae1ffc-8de9-4131-a37e-172e42ce2b1a" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
+</input><label class="tabbed-label" for="f6ae1ffc-8de9-4131-a37e-172e42ce2b1a">
 roll = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="74156605-62e1-4270-87d3-471018a5dc05" name="7b461af2-5d30-42f0-911b-ae7f739683ee" type="radio">
-</input><label class="tabbed-label" for="74156605-62e1-4270-87d3-471018a5dc05">
+<input id="9d471bbc-7e75-436a-9383-6b5350981b64" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
+</input><label class="tabbed-label" for="9d471bbc-7e75-436a-9383-6b5350981b64">
 roll = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r--20.png"><img alt="../_images/p-0-y-0-r--20.png" src="../_images/p-0-y-0-r--20.png" style="width: 90%;" /></a>
@@ -434,22 +434,22 @@ roll = 20°</label><div class="tabbed-content docutils">
 </div>
 <p>You can see that the vanishing point didn’t change. Similarly, let’s see if this also holds true for translation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="59d02818-1f92-4ea7-8afc-34735b66484c" name="b3c09893-046f-40bf-8adb-09204a707ebb" type="radio">
-</input><label class="tabbed-label" for="59d02818-1f92-4ea7-8afc-34735b66484c">
+<input checked="checked" id="e58a36d6-ea3d-41af-bc6d-028643062017" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
+</input><label class="tabbed-label" for="e58a36d6-ea3d-41af-bc6d-028643062017">
 translation = -2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-minus-2">
 <a class="reference internal image-reference" href="../_images/trans--2.png"><img alt="../_images/trans--2.png" src="../_images/trans--2.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="6659fbe3-740b-48a9-b304-2332339ca519" name="b3c09893-046f-40bf-8adb-09204a707ebb" type="radio">
-</input><label class="tabbed-label" for="6659fbe3-740b-48a9-b304-2332339ca519">
+<input id="ab73f24b-b3c9-4784-ad5d-0b7ec3994622" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
+</input><label class="tabbed-label" for="ab73f24b-b3c9-4784-ad5d-0b7ec3994622">
 translation = 0 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="1322bd04-d4b1-41f1-876f-e0a2b92e84c5" name="b3c09893-046f-40bf-8adb-09204a707ebb" type="radio">
-</input><label class="tabbed-label" for="1322bd04-d4b1-41f1-876f-e0a2b92e84c5">
+<input id="e5802c5a-80ad-4268-b6b3-2c1187602132" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
+</input><label class="tabbed-label" for="e5802c5a-80ad-4268-b6b3-2c1187602132">
 translation = 2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-2">
 <a class="reference internal image-reference" href="../_images/trans-2.png"><img alt="../_images/trans-2.png" src="../_images/trans-2.png" style="width: 90%;" /></a>
@@ -459,22 +459,22 @@ translation = 2 m</label><div class="tabbed-content docutils">
 <p>You can see that the vanishing point lies at the same position for all the above images. This shows that roll and translation won’t affect the vanishing point.</p>
 <p>Now let’s see the effect of changing pitch</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e2870058-3590-45ca-b777-1d21349d73e7" name="85c22f94-8da0-496e-89f2-6f9513e6b19f" type="radio">
-</input><label class="tabbed-label" for="e2870058-3590-45ca-b777-1d21349d73e7">
+<input checked="checked" id="4a0ad4a2-4ac4-4fea-b763-be6a5948e6e2" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
+</input><label class="tabbed-label" for="4a0ad4a2-4ac4-4fea-b763-be6a5948e6e2">
 pitch = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-minus-5">
 <a class="reference internal image-reference" href="../_images/p--5-y-0.png"><img alt="../_images/p--5-y-0.png" src="../_images/p--5-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="bb8a4984-e660-475a-9692-00360912e07b" name="85c22f94-8da0-496e-89f2-6f9513e6b19f" type="radio">
-</input><label class="tabbed-label" for="bb8a4984-e660-475a-9692-00360912e07b">
+<input id="7982fc24-7b8f-4f0b-8fdd-adef3c194bce" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
+</input><label class="tabbed-label" for="7982fc24-7b8f-4f0b-8fdd-adef3c194bce">
 pitch = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="2ffb3707-ce9b-4847-8565-e85cd2a2e384" name="85c22f94-8da0-496e-89f2-6f9513e6b19f" type="radio">
-</input><label class="tabbed-label" for="2ffb3707-ce9b-4847-8565-e85cd2a2e384">
+<input id="2f06664a-d51c-4dcc-b7bb-fd6841a6a0f6" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
+</input><label class="tabbed-label" for="2f06664a-d51c-4dcc-b7bb-fd6841a6a0f6">
 pitch = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-5">
 <a class="reference internal image-reference" href="../_images/p-5-y-0.png"><img alt="../_images/p-5-y-0.png" src="../_images/p-5-y-0.png" style="width: 90%;" /></a>
@@ -483,22 +483,22 @@ pitch = 5°</label><div class="tabbed-content docutils">
 </div>
 <p>and yaw:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e19ecdca-651e-4a70-928b-2bc854c56928" name="df35aaa0-b005-4891-a4d5-b4247dc57e76" type="radio">
-</input><label class="tabbed-label" for="e19ecdca-651e-4a70-928b-2bc854c56928">
+<input checked="checked" id="a1ee972e-f372-42f1-98d2-eff0054a407e" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
+</input><label class="tabbed-label" for="a1ee972e-f372-42f1-98d2-eff0054a407e">
 yaw = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-minus-5">
 <a class="reference internal image-reference" href="../_images/p-0-y--10.png"><img alt="../_images/p-0-y--10.png" src="../_images/p-0-y--10.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="fa0946cc-acac-467d-a946-124d501ac45c" name="df35aaa0-b005-4891-a4d5-b4247dc57e76" type="radio">
-</input><label class="tabbed-label" for="fa0946cc-acac-467d-a946-124d501ac45c">
+<input id="c9b2b785-3846-463c-b896-3d31fb0f4f5c" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
+</input><label class="tabbed-label" for="c9b2b785-3846-463c-b896-3d31fb0f4f5c">
 yaw = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="bf528915-b5d8-4bbe-867a-510e8cb0b044" name="df35aaa0-b005-4891-a4d5-b4247dc57e76" type="radio">
-</input><label class="tabbed-label" for="bf528915-b5d8-4bbe-867a-510e8cb0b044">
+<input id="608e4dd8-23a6-405d-97af-003c98c6eee3" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
+</input><label class="tabbed-label" for="608e4dd8-23a6-405d-97af-003c98c6eee3">
 yaw = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-5">
 <a class="reference internal image-reference" href="../_images/p-0-y-10.png"><img alt="../_images/p-0-y-10.png" src="../_images/p-0-y-10.png" style="width: 90%;" /></a>
