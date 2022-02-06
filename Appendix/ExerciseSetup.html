@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise Setup &#8212; Algorithms for Automated Driving</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,21 +31,21 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -58,8 +58,21 @@
     <link rel="next" title="Carla Installation" href="CarlaInstallation.html" />
     <link rel="prev" title="Discussion" href="../CameraCalibration/Discussion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -75,6 +88,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
       
       
@@ -86,7 +103,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lane Detection
  </span>
@@ -118,7 +135,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Control
  </span>
@@ -150,7 +167,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Camera Calibration
  </span>
@@ -167,7 +184,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Appendix
  </span>
@@ -234,7 +251,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -270,7 +287,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -305,10 +322,48 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Exercise Setup</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downloading-the-exercises">
+   Downloading the exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-environment">
+   Python environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-the-exercises">
+   Navigating the exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-help">
+   Getting help
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="exercise-setup">
+  <div class="tex2jax_ignore mathjax_ignore section" id="exercise-setup">
 <h1>Exercise Setup<a class="headerlink" href="#exercise-setup" title="Permalink to this headline">¶</a></h1>
 <p>You can work on the exercises on your local machine, or in the cloud using Google Colab. Dependent on your choice, please select the corresponding tab in the following tutorial. If you know how to work with <a class="reference external" href="https://www.anaconda.com/products/individual">anaconda</a> and are ok with an anaconda environment taking more than 1GB of disk space on your machine, I would recommend you to use your local machine. However, there is one deep learning exercise where you temporarily might want to switch to Colab, if you do not own a GPU.</p>
 <div class="section" id="downloading-the-exercises">
@@ -319,13 +374,13 @@
 </div>
 <p>Otherwise visit this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a> and click on the green button that says “Code”. In the pop-up menu, please select “Download zip”. Extract the zip to a directory of your choice.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2dc79552-f98c-4540-987b-6f45529008b6" name="6e674a1b-a962-47c4-8ac7-37e15476825f" type="radio">
-</input><label class="tabbed-label" for="2dc79552-f98c-4540-987b-6f45529008b6">
+<input checked="checked" id="8a6383af-1ef3-49a5-bdaa-45db211ffef2" name="cf0253de-12b3-4ad4-9ecf-d8793b1dbcb9" type="radio">
+</input><label class="tabbed-label" for="8a6383af-1ef3-49a5-bdaa-45db211ffef2">
 Local installation</label><div class="tabbed-content docutils">
 <p>Nothing more to do.</p>
 </div>
-<input id="c52068a6-3554-4b7c-87b9-ba4787b8db1e" name="6e674a1b-a962-47c4-8ac7-37e15476825f" type="radio">
-</input><label class="tabbed-label" for="c52068a6-3554-4b7c-87b9-ba4787b8db1e">
+<input id="eada111e-f6c5-4e7b-8430-12605f4d70d7" name="cf0253de-12b3-4ad4-9ecf-d8793b1dbcb9" type="radio">
+</input><label class="tabbed-label" for="eada111e-f6c5-4e7b-8430-12605f4d70d7">
 Google Colab</label><div class="tabbed-content docutils">
 <p>Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a>. In the top left navigation you can see “My Drive”. Right click “My Drive” and select “New folder”. Name this folder “aad”. You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder “Algorithms-for-Automated-Driving” that you have downloaded from github. Select all folders except the “book” folder and drag and drop them into the empty “aad” folder in your Google Drive.</p>
 </div>
@@ -334,8 +389,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <div class="section" id="python-environment">
 <h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d4f3bced-be47-4c01-a822-464986907708" name="b845c4e6-8d39-4c0e-96d3-324b1cc9615f" type="radio">
-</input><label class="tabbed-label" for="d4f3bced-be47-4c01-a822-464986907708">
+<input checked="checked" id="af20c1cb-e233-401c-b8e9-1f6d0fef49c8" name="fb68fed6-4830-4b4d-b8b1-edd1248b0d75" type="radio">
+</input><label class="tabbed-label" for="af20c1cb-e233-401c-b8e9-1f6d0fef49c8">
 Local installation</label><div class="tabbed-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
 Please create a conda environment called <code class="docutils literal notranslate"><span class="pre">aad</span></code> (Algorithms for Automated Driving) for this course using the environment.yml file within “Algorithms-for-Automated-Driving/code”</p>
@@ -360,8 +415,8 @@ conda env create -f environment.yml
 </div>
 <p>If you are working on Windows, consider <a class="reference external" href="https://www.scivision.dev/conda-powershell-python/">adding anaconda to your PowerShell</a>.</p>
 </div>
-<input id="7760822c-1ce6-4438-b677-ff4aa50a162a" name="b845c4e6-8d39-4c0e-96d3-324b1cc9615f" type="radio">
-</input><label class="tabbed-label" for="7760822c-1ce6-4438-b677-ff4aa50a162a">
+<input id="2b417560-d71f-410d-a480-4a1631a810e0" name="fb68fed6-4830-4b4d-b8b1-edd1248b0d75" type="radio">
+</input><label class="tabbed-label" for="2b417560-d71f-410d-a480-4a1631a810e0">
 Google Colab</label><div class="tabbed-content docutils">
 <p>When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it.</p>
 </div>
@@ -371,8 +426,8 @@ Google Colab</label><div class="tabbed-content docutils">
 <h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ceced59a-310b-46f3-813e-417a22152b9a" name="daf22f2c-b592-46d0-aeb0-bfadafefd505" type="radio">
-</input><label class="tabbed-label" for="ceced59a-310b-46f3-813e-417a22152b9a">
+<input checked="checked" id="e29260d1-e30a-4a18-bcce-440d6b280a0e" name="f067d381-a7f6-4b67-8153-2913f4454034" type="radio">
+</input><label class="tabbed-label" for="e29260d1-e30a-4a18-bcce-440d6b280a0e">
 Local installation</label><div class="tabbed-content docutils">
 <p>To edit the source code, I recommend to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>, since it has nice integration for jupyter notebooks. You can open the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder with Visual Studio code and then easily navigate between the <code class="docutils literal notranslate"><span class="pre">tests</span></code> and the <code class="docutils literal notranslate"><span class="pre">exercises</span></code>. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate aad
@@ -384,8 +439,8 @@ jupyter lab
 When you open the .ipynb file with VS code be sure to select the “aad” conda environment as your python kernel.
 Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won’t do anything on your machine. You can also delete these Colab-specific cells if you want.</p>
 </div>
-<input id="c7a1f828-95be-449d-9df1-fdca0580c96b" name="daf22f2c-b592-46d0-aeb0-bfadafefd505" type="radio">
-</input><label class="tabbed-label" for="c7a1f828-95be-449d-9df1-fdca0580c96b">
+<input id="64adf370-9209-4f0d-9505-6bb67e3a3786" name="f067d381-a7f6-4b67-8153-2913f4454034" type="radio">
+</input><label class="tabbed-label" for="64adf370-9209-4f0d-9505-6bb67e3a3786">
 Google Colab</label><div class="tabbed-content docutils">
 <p>In the book’s exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
 Open <a class="reference external" href="https://drive.google.com/drive/my-drive">Google Drive</a> and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select “Open with Google Colaboratory”. If you do not see this option, click “Connect more apps” and search for “colab”. Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on “drive”, “My Drive”, “aad”, “code”, “exercises”, “lane_detection”, “camera_geometry.py”. This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.</p>
@@ -420,66 +475,44 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../CameraCalibration/Discussion.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Discussion</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../CameraCalibration/Discussion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Discussion</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="CarlaInstallation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Carla Installation</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="CarlaInstallation.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Carla Installation</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-        
-          <div class="extra_footer">
-            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-          </div>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
+    
+      <div class="extra_footer">
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

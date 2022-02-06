@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extrinsic Camera Calibration &#8212; Algorithms for Automated Driving</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,23 +31,23 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -60,8 +60,21 @@
     <link rel="next" title="Discussion" href="Discussion.html" />
     <link rel="prev" title="Discussion" href="../Control/Discussion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-183782120-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -77,6 +90,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
       
       
@@ -88,7 +105,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lane Detection
  </span>
@@ -120,7 +137,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Control
  </span>
@@ -152,7 +169,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Camera Calibration
  </span>
@@ -169,7 +186,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Appendix
  </span>
@@ -236,7 +253,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -297,7 +314,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -332,10 +349,48 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Extrinsic Camera Calibration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-point-method">
+   Vanishing Point Method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deriving-yaw-and-pitch-from-the-vanishing-point">
+   Deriving yaw and pitch from the vanishing point
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-point-from-lane-lines">
+   Vanishing point from lane lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="extrinsic-camera-calibration">
+  <div class="tex2jax_ignore mathjax_ignore section" id="extrinsic-camera-calibration">
 <h1>Extrinsic Camera Calibration<a class="headerlink" href="#extrinsic-camera-calibration" title="Permalink to this headline">¶</a></h1>
 <p>Sensor calibration is one of the most important aspects of building a robot. Different sensors have different calibration procedures. Typically one can distinguish between intrinsic and extrinsic calibration. Intrinsic camera calibration tries to estimate the camera matrix <span class="math notranslate nohighlight">\(K\)</span> (and potentially other camera-specific parameters like distortion coefficients). You can learn more about it in this <a class="reference external" href="https://www.youtube.com/watch?v=Ou9Uj75DJX0">lecture by Cyril Stachniss</a>, and this <a class="reference external" href="https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html">OpenCV python tutorial</a>. For this chapter, we will be focusing on extrinsic camera calibration.</p>
 <p>Refer back to the <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html"><span class="doc std std-doc">From Pixels to meters chapter</span></a>. If you did the exercises of that chapter, you may recall that to convert the lane line pixels detected by the neural network to meters, you needed the camera height <span class="math notranslate nohighlight">\(h\)</span> and the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is oriented with respect to the road reference frame.</p>
@@ -410,22 +465,22 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 <p>Let’s understand this by an example from CARLA. First, let us inspect of changing the roll angle:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7b770880-d432-4263-8c66-d66f3e02cddd" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
-</input><label class="tabbed-label" for="7b770880-d432-4263-8c66-d66f3e02cddd">
+<input checked="checked" id="b64fd4f0-ea76-4f3e-9798-c754e59a91e7" name="9fccdf11-0f6c-4437-b374-dc09b0eb588f" type="radio">
+</input><label class="tabbed-label" for="b64fd4f0-ea76-4f3e-9798-c754e59a91e7">
 roll = -20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-minus-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r-20.png"><img alt="../_images/p-0-y-0-r-20.png" src="../_images/p-0-y-0-r-20.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="f6ae1ffc-8de9-4131-a37e-172e42ce2b1a" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
-</input><label class="tabbed-label" for="f6ae1ffc-8de9-4131-a37e-172e42ce2b1a">
+<input id="7f7e5aea-d18b-40e5-a154-d63a80da6ddb" name="9fccdf11-0f6c-4437-b374-dc09b0eb588f" type="radio">
+</input><label class="tabbed-label" for="7f7e5aea-d18b-40e5-a154-d63a80da6ddb">
 roll = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="9d471bbc-7e75-436a-9383-6b5350981b64" name="b30bf5b9-82f8-4664-802a-68cc90299223" type="radio">
-</input><label class="tabbed-label" for="9d471bbc-7e75-436a-9383-6b5350981b64">
+<input id="a5865631-00e2-416e-92e9-7c7adbc93bb7" name="9fccdf11-0f6c-4437-b374-dc09b0eb588f" type="radio">
+</input><label class="tabbed-label" for="a5865631-00e2-416e-92e9-7c7adbc93bb7">
 roll = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r--20.png"><img alt="../_images/p-0-y-0-r--20.png" src="../_images/p-0-y-0-r--20.png" style="width: 90%;" /></a>
@@ -434,22 +489,22 @@ roll = 20°</label><div class="tabbed-content docutils">
 </div>
 <p>You can see that the vanishing point didn’t change. Similarly, let’s see if this also holds true for translation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e58a36d6-ea3d-41af-bc6d-028643062017" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
-</input><label class="tabbed-label" for="e58a36d6-ea3d-41af-bc6d-028643062017">
+<input checked="checked" id="bcbc1acf-580d-4965-9c89-3623460a46a5" name="5de9b837-35b5-466b-82b2-eaf99c6cb06c" type="radio">
+</input><label class="tabbed-label" for="bcbc1acf-580d-4965-9c89-3623460a46a5">
 translation = -2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-minus-2">
 <a class="reference internal image-reference" href="../_images/trans--2.png"><img alt="../_images/trans--2.png" src="../_images/trans--2.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="ab73f24b-b3c9-4784-ad5d-0b7ec3994622" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
-</input><label class="tabbed-label" for="ab73f24b-b3c9-4784-ad5d-0b7ec3994622">
+<input id="ee216b02-fbce-4e13-a6bb-73d402523bae" name="5de9b837-35b5-466b-82b2-eaf99c6cb06c" type="radio">
+</input><label class="tabbed-label" for="ee216b02-fbce-4e13-a6bb-73d402523bae">
 translation = 0 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="e5802c5a-80ad-4268-b6b3-2c1187602132" name="0a58895b-4584-455b-898b-40b3bd971e14" type="radio">
-</input><label class="tabbed-label" for="e5802c5a-80ad-4268-b6b3-2c1187602132">
+<input id="02cc3943-52e0-461b-9376-2c451d8f7088" name="5de9b837-35b5-466b-82b2-eaf99c6cb06c" type="radio">
+</input><label class="tabbed-label" for="02cc3943-52e0-461b-9376-2c451d8f7088">
 translation = 2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-2">
 <a class="reference internal image-reference" href="../_images/trans-2.png"><img alt="../_images/trans-2.png" src="../_images/trans-2.png" style="width: 90%;" /></a>
@@ -459,22 +514,22 @@ translation = 2 m</label><div class="tabbed-content docutils">
 <p>You can see that the vanishing point lies at the same position for all the above images. This shows that roll and translation won’t affect the vanishing point.</p>
 <p>Now let’s see the effect of changing pitch</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4a0ad4a2-4ac4-4fea-b763-be6a5948e6e2" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
-</input><label class="tabbed-label" for="4a0ad4a2-4ac4-4fea-b763-be6a5948e6e2">
+<input checked="checked" id="918033af-0742-402d-a9bd-00a4a4d5efc2" name="53de9185-c137-4301-b709-ef16577ccd98" type="radio">
+</input><label class="tabbed-label" for="918033af-0742-402d-a9bd-00a4a4d5efc2">
 pitch = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-minus-5">
 <a class="reference internal image-reference" href="../_images/p--5-y-0.png"><img alt="../_images/p--5-y-0.png" src="../_images/p--5-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="7982fc24-7b8f-4f0b-8fdd-adef3c194bce" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
-</input><label class="tabbed-label" for="7982fc24-7b8f-4f0b-8fdd-adef3c194bce">
+<input id="8615fce3-26f3-4959-b783-9b8402998d03" name="53de9185-c137-4301-b709-ef16577ccd98" type="radio">
+</input><label class="tabbed-label" for="8615fce3-26f3-4959-b783-9b8402998d03">
 pitch = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="2f06664a-d51c-4dcc-b7bb-fd6841a6a0f6" name="b7582d8e-0cc3-43ca-a8d2-9089b879cb5f" type="radio">
-</input><label class="tabbed-label" for="2f06664a-d51c-4dcc-b7bb-fd6841a6a0f6">
+<input id="dde0b0fa-73a1-4160-985e-04138fa366e9" name="53de9185-c137-4301-b709-ef16577ccd98" type="radio">
+</input><label class="tabbed-label" for="dde0b0fa-73a1-4160-985e-04138fa366e9">
 pitch = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-5">
 <a class="reference internal image-reference" href="../_images/p-5-y-0.png"><img alt="../_images/p-5-y-0.png" src="../_images/p-5-y-0.png" style="width: 90%;" /></a>
@@ -483,22 +538,22 @@ pitch = 5°</label><div class="tabbed-content docutils">
 </div>
 <p>and yaw:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a1ee972e-f372-42f1-98d2-eff0054a407e" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
-</input><label class="tabbed-label" for="a1ee972e-f372-42f1-98d2-eff0054a407e">
+<input checked="checked" id="74d19df1-57eb-473a-a9e6-0fd0baf94bed" name="31ec1316-d976-44e5-a3a0-869532d5038a" type="radio">
+</input><label class="tabbed-label" for="74d19df1-57eb-473a-a9e6-0fd0baf94bed">
 yaw = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-minus-5">
 <a class="reference internal image-reference" href="../_images/p-0-y--10.png"><img alt="../_images/p-0-y--10.png" src="../_images/p-0-y--10.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="c9b2b785-3846-463c-b896-3d31fb0f4f5c" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
-</input><label class="tabbed-label" for="c9b2b785-3846-463c-b896-3d31fb0f4f5c">
+<input id="c44421f7-20ed-4e19-ad3c-8923c3432d0d" name="31ec1316-d976-44e5-a3a0-869532d5038a" type="radio">
+</input><label class="tabbed-label" for="c44421f7-20ed-4e19-ad3c-8923c3432d0d">
 yaw = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="608e4dd8-23a6-405d-97af-003c98c6eee3" name="425269b6-9842-4373-89cd-c2ef372a37f3" type="radio">
-</input><label class="tabbed-label" for="608e4dd8-23a6-405d-97af-003c98c6eee3">
+<input id="80633bbc-163b-45ac-b5ff-ab9e9e346fa1" name="31ec1316-d976-44e5-a3a0-869532d5038a" type="radio">
+</input><label class="tabbed-label" for="80633bbc-163b-45ac-b5ff-ab9e9e346fa1">
 yaw = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-5">
 <a class="reference internal image-reference" href="../_images/p-0-y-10.png"><img alt="../_images/p-0-y-10.png" src="../_images/p-0-y-10.png" style="width: 90%;" /></a>
@@ -577,6 +632,85 @@ yaw = 5°</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_4820</span><span class="o">/</span><span class="mf">2319919948.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">copy</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../code&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">solutions.lane_detection.lane_detector</span> <span class="kn">import</span> <span class="n">LaneDetector</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;../../code/solutions/lane_detection/fastai_model.pth&quot;</span>
+
+<span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">Algorithms</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">Automated</span><span class="o">-</span><span class="n">Driving</span><span class="o">/</span><span class="n">Algorithms</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">Automated</span><span class="o">-</span><span class="n">Driving</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">solutions</span><span class="o">/</span><span class="n">lane_detection</span><span class="o">/</span><span class="n">lane_detector</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">cv2</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">fastseg</span> <span class="kn">import</span> <span class="n">MobileV3Small</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fastseg</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.model.lraspp</span> <span class="kn">import</span> <span class="n">MobileV3Large</span><span class="p">,</span> <span class="n">MobileV3Small</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fastseg</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">lraspp</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">get_trunk</span><span class="p">,</span> <span class="n">ConvBnRelu</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseSegmentation</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">class</span> <span class="nc">LRASPP</span><span class="p">(</span><span class="n">BaseSegmentation</span><span class="p">):</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fastseg</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">MODEL_WEIGHTS_URL</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.extension</span> <span class="kn">import</span> <span class="n">_HAS_OPS</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">ops</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">.densenet</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">.googlenet</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">.mobilenet</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">.mnasnet</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">.shufflenetv2</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">mobilenet</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.mobilenetv2</span> <span class="kn">import</span> <span class="n">MobileNetV2</span><span class="p">,</span> <span class="n">mobilenet_v2</span><span class="p">,</span> <span class="n">__all__</span> <span class="k">as</span> <span class="n">mv2_all</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.mobilenetv3</span> <span class="kn">import</span> <span class="n">MobileNetV3</span><span class="p">,</span> <span class="n">mobilenet_v3_large</span><span class="p">,</span> <span class="n">mobilenet_v3_small</span><span class="p">,</span> <span class="n">__all__</span> <span class="k">as</span> <span class="n">mv3_all</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">__all__</span> <span class="o">=</span> <span class="n">mv2_all</span> <span class="o">+</span> <span class="n">mv3_all</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">mobilenetv2</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">.._internally_replaced_utils</span> <span class="kn">import</span> <span class="n">load_state_dict_from_url</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">..ops.misc</span> <span class="kn">import</span> <span class="n">ConvNormActivation</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">._utils</span> <span class="kn">import</span> <span class="n">_make_divisible</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">ops</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">.feature_pyramid_network</span> <span class="kn">import</span> <span class="n">FeaturePyramidNetwork</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">.focal_loss</span> <span class="kn">import</span> <span class="n">sigmoid_focal_loss</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">from</span> <span class="nn">.stochastic_depth</span> <span class="kn">import</span> <span class="n">stochastic_depth</span><span class="p">,</span> <span class="n">StochasticDepth</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span> <span class="nn">._register_onnx_ops</span> <span class="kn">import</span> <span class="n">_register_custom_op</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">aad</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">ops</span><span class="o">/</span><span class="n">stochastic_depth</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">torch.fx</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span><span class="p">,</span> <span class="n">Tensor</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch.fx&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>First let us run our neural network to compute for each pixel the probability whether it is background, left boundary or right boundary:</p>
 <div class="cell docutils container">
@@ -597,8 +731,6 @@ yaw = 5°</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/VanishingPointCameraCalibration_31_0.svg" src="../_images/VanishingPointCameraCalibration_31_0.svg" /></div>
 </div>
 <p>To determine the intersection of the blue and red line, we describe each of them by an equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are the pixel coordinates (see the axes labels in the image above). Then, it is a high school math problem to find the intersection point.</p>
 <p>Getting the line equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span> for the left lane line from our <code class="docutils literal notranslate"><span class="pre">prob_left</span></code> matrix is actually just two lines of python code:</p>
@@ -637,8 +769,6 @@ yaw = 5°</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/VanishingPointCameraCalibration_37_0.svg" src="../_images/VanishingPointCameraCalibration_37_0.svg" /></div>
 </div>
 <p>In the exercises you will write code that determines the coordinates of the intersection points of two lines. We can import it here to determine the vanishing point:</p>
 <div class="cell docutils container">
@@ -650,8 +780,6 @@ yaw = 5°</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/VanishingPointCameraCalibration_39_0.svg" src="../_images/VanishingPointCameraCalibration_39_0.svg" /></div>
 </div>
 <p>Finally, we can find pitch and yaw of the camera form the vanishing point using Eqs. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>, <a class="reference internal" href="#equation-label-eq-alpha">(14)</a>, <a class="reference internal" href="#equation-label-eq-beta">(15)</a>. Again you will write some code for this in the exercises.</p>
 <div class="cell docutils container">
@@ -661,12 +789,6 @@ yaw = 5°</label><div class="tabbed-content docutils">
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yaw degrees:   %.2f&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">yaw</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;pitch degrees: %.2f&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">pitch</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yaw degrees:   -1.98
-pitch degrees: -5.00
 </pre></div>
 </div>
 </div>
@@ -709,66 +831,44 @@ pitch degrees: -5.00
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../Control/Discussion.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Discussion</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Control/Discussion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Discussion</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Discussion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Discussion</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="Discussion.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Discussion</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-        
-          <div class="extra_footer">
-            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-          </div>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
+    
+      <div class="extra_footer">
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
