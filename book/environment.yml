@@ -1,7 +1,7 @@
 name: aad-book
 channels:
   - conda-forge
-  - pytorch-lts
+  - pytorch
   - nvidia
   - fastai
 dependencies:
@@ -12,8 +12,8 @@ dependencies:
   - opencv
   - jupyterlab
   - ipywidgets
-  - torch=1.8.2
-  - torchvision=0.9.2
+  - pytorch=1.9.0
+  - torchvision=0.10.0
   - fastai=2.5.0
   - albumentations
   - tqdm
