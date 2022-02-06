@@ -444,13 +444,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="000e87ae-06a6-4b6f-8529-c4675291e254" name="05594c6b-a126-45ba-9399-499a7d4a04eb" type="radio">
-</input><label class="tabbed-label" for="000e87ae-06a6-4b6f-8529-c4675291e254">
+<input checked="checked" id="f43e381b-e481-488f-b0fb-ebf2202df44b" name="1029ca98-8dde-420b-9be8-6341ef8a21a2" type="radio">
+</input><label class="tabbed-label" for="f43e381b-e481-488f-b0fb-ebf2202df44b">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="432e3062-1089-4542-a55b-9d2d6d79cb51" name="05594c6b-a126-45ba-9399-499a7d4a04eb" type="radio">
-</input><label class="tabbed-label" for="432e3062-1089-4542-a55b-9d2d6d79cb51">
+<input id="6e6a9efd-79ae-4ef0-9f18-108d26033667" name="1029ca98-8dde-420b-9be8-6341ef8a21a2" type="radio">
+</input><label class="tabbed-label" for="6e6a9efd-79ae-4ef0-9f18-108d26033667">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -475,13 +475,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>To create and train a model, you can choose any deep learning framework you like.</p>
 <p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for semantic segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="63f90a98-504c-459f-91da-fc9684bfe87e" name="8ea61ba2-3b30-4267-9eb5-4f8c89cd0bc9" type="radio">
-</input><label class="tabbed-label" for="63f90a98-504c-459f-91da-fc9684bfe87e">
+<input checked="checked" id="26a2a7f7-f66c-42d0-9948-f1bc382bfb00" name="d7523fb5-324c-4a5f-81f6-d7a9dd872606" type="radio">
+</input><label class="tabbed-label" for="26a2a7f7-f66c-42d0-9948-f1bc382bfb00">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="1b768bd7-fca9-4d7c-83e0-789227d0ed55" name="8ea61ba2-3b30-4267-9eb5-4f8c89cd0bc9" type="radio">
-</input><label class="tabbed-label" for="1b768bd7-fca9-4d7c-83e0-789227d0ed55">
+<input id="68aa46ac-f04e-4c1a-8516-25a811818c41" name="d7523fb5-324c-4a5f-81f6-d7a9dd872606" type="radio">
+</input><label class="tabbed-label" for="68aa46ac-f04e-4c1a-8516-25a811818c41">
 Basic Hints</label><div class="tabbed-content docutils">
 <p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
 <ul class="simple">
@@ -493,8 +493,8 @@ Basic Hints</label><div class="tabbed-content docutils">
 <li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
 </ul>
 </div>
-<input id="5d3d9e23-d0b9-48dd-9d93-106cde76b776" name="8ea61ba2-3b30-4267-9eb5-4f8c89cd0bc9" type="radio">
-</input><label class="tabbed-label" for="5d3d9e23-d0b9-48dd-9d93-106cde76b776">
+<input id="31d7c55e-46a0-49bb-9246-436c4d58aa2b" name="d7523fb5-324c-4a5f-81f6-d7a9dd872606" type="radio">
+</input><label class="tabbed-label" for="31d7c55e-46a0-49bb-9246-436c4d58aa2b">
 Advanced Hints</label><div class="tabbed-content docutils">
 <p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
 </div>
