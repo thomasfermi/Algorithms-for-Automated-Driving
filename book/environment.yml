@@ -12,6 +12,7 @@ dependencies:
   - opencv
   - jupyterlab
   - ipywidgets
+  - torchvision=0.10.0
   - fastai=2.5.0
   - albumentations
   - tqdm
