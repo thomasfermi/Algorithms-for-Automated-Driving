@@ -26,8 +26,8 @@ ld = LaneDetector(model_path=model_path)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_4820/2319919948.py[0m in [0;36m<module>[0;34m[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/tmp/ipykernel_4645/2319919948.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0;32mimport[0m [0msys[0m[0;34m,[0m [0mcopy[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      2[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0;34m'../../code'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 3[0;31m [0;32mfrom[0m [0msolutions[0m[0;34m.[0m[0mlane_detection[0m[0;34m.[0m[0mlane_detector[0m [0;32mimport[0m [0mLaneDetector[0m[0;34m[0m[0;34m[0m[0m
@@ -66,39 +66,26 @@ ld = LaneDetector(model_path=model_path)
 [1;32m      8[0m [0;32mfrom[0m [0mtorchvision[0m [0;32mimport[0m [0mops[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/models/__init__.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      6[0m [0;32mfrom[0m [0;34m.[0m[0mdensenet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0;34m.[0m[0mvgg[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0;34m.[0m[0msqueezenet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0;32mfrom[0m [0;34m.[0m[0minception[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0;32mfrom[0m [0;34m.[0m[0mdensenet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      7[0m [0;32mfrom[0m [0;34m.[0m[0mgooglenet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 8[0;31m [0;32mfrom[0m [0;34m.[0m[0mmobilenet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      9[0m [0;32mfrom[0m [0;34m.[0m[0mmnasnet[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     10[0m [0;32mfrom[0m [0;34m.[0m[0mshufflenetv2[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/models/mobilenet.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0;34m.[0m[0mmobilenetv2[0m [0;32mimport[0m [0mMobileNetV2[0m[0;34m,[0m [0mmobilenet_v2[0m[0;34m,[0m [0m__all__[0m [0;32mas[0m [0mmv2_all[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mfrom[0m [0;34m.[0m[0mmobilenetv3[0m [0;32mimport[0m [0mMobileNetV3[0m[0;34m,[0m [0mmobilenet_v3_large[0m[0;34m,[0m [0mmobilenet_v3_small[0m[0;34m,[0m [0m__all__[0m [0;32mas[0m [0mmv3_all[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0m__all__[0m [0;34m=[0m [0mmv2_all[0m [0;34m+[0m [0mmv3_all[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/models/inception.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     61[0m [0;34m[0m[0m
+[1;32m     62[0m [0;34m[0m[0m
+[0;32m---> 63[0;31m [0;32mclass[0m [0mInception3[0m[0;34m([0m[0mnn[0m[0;34m.[0m[0mModule[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     64[0m [0;34m[0m[0m
+[1;32m     65[0m     def __init__(
 
-[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/models/mobilenetv2.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      6[0m [0;32mfrom[0m [0mtorch[0m [0;32mimport[0m [0mTensor[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      7[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0m_internally_replaced_utils[0m [0;32mimport[0m [0mload_state_dict_from_url[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 8[0;31m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0mops[0m[0;34m.[0m[0mmisc[0m [0;32mimport[0m [0mConvNormActivation[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      9[0m [0;32mfrom[0m [0;34m.[0m[0m_utils[0m [0;32mimport[0m [0m_make_divisible[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     10[0m [0;32mfrom[0m [0mtyping[0m [0;32mimport[0m [0mCallable[0m[0;34m,[0m [0mAny[0m[0;34m,[0m [0mOptional[0m[0;34m,[0m [0mList[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/models/inception.py[0m in [0;36mInception3[0;34m()[0m
+[1;32m    193[0m         [0;32mreturn[0m [0mx[0m[0;34m,[0m [0maux[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    194[0m [0;34m[0m[0m
+[0;32m--> 195[0;31m     [0;34m@[0m[0mtorch[0m[0;34m.[0m[0mjit[0m[0;34m.[0m[0munused[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    196[0m     [0;32mdef[0m [0meager_outputs[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mx[0m[0;34m:[0m [0mTensor[0m[0;34m,[0m [0maux[0m[0;34m:[0m [0mOptional[0m[0;34m[[0m[0mTensor[0m[0;34m][0m[0;34m)[0m [0;34m->[0m [0mInceptionOutputs[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    197[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mtraining[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0maux_logits[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/ops/__init__.py[0m in [0;36m<module>[0;34m[0m
-[1;32m     10[0m [0;32mfrom[0m [0;34m.[0m[0mfeature_pyramid_network[0m [0;32mimport[0m [0mFeaturePyramidNetwork[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     11[0m [0;32mfrom[0m [0;34m.[0m[0mfocal_loss[0m [0;32mimport[0m [0msigmoid_focal_loss[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 12[0;31m [0;32mfrom[0m [0;34m.[0m[0mstochastic_depth[0m [0;32mimport[0m [0mstochastic_depth[0m[0;34m,[0m [0mStochasticDepth[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     13[0m [0;34m[0m[0m
-[1;32m     14[0m [0;32mfrom[0m [0;34m.[0m[0m_register_onnx_ops[0m [0;32mimport[0m [0m_register_custom_op[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/share/miniconda/envs/aad-book/lib/python3.7/site-packages/torchvision/ops/stochastic_depth.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;32mimport[0m [0mtorch[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0;32mimport[0m [0mtorch[0m[0;34m.[0m[0mfx[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;32mfrom[0m [0mtorch[0m [0;32mimport[0m [0mnn[0m[0;34m,[0m [0mTensor[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[1;32m      5[0m [0;34m[0m[0m
-
-[0;31mModuleNotFoundError[0m: No module named 'torch.fx'
-ModuleNotFoundError: No module named 'torch.fx'
+[0;31mAttributeError[0m: module 'torch.jit' has no attribute 'unused'
+AttributeError: module 'torch.jit' has no attribute 'unused'
 
