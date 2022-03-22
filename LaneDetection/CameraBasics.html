@@ -37,22 +37,24 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -518,7 +520,7 @@ The sketch allows us to determine the mapping of a three-dimensional point <span
 To continue our discussion, we need to introduce the concept of homogeneous coordinates</p>
 <div class="admonition-homogeneous-coordinates admonition">
 <p class="admonition-title">Homogeneous Coordinates</p>
-<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<span id="id1">[<a class="reference internal" href="#id6">HZ03</a>]</span>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
+<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<span id="id1">[<a class="reference internal" href="#id6" title="Richard Hartley and Andrew Zisserman. Multiple view geometry in computer vision. Cambridge university press, 2003.">HZ03</a>]</span>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
 </div>
 <p>So if we interpret the above equation as an equation for a homogeneous vector, we can absorb the scalar factor <span class="math notranslate nohighlight">\(1/Z_c\)</span> and rewrite the equation as</p>
 <div class="math notranslate nohighlight" id="equation-eq-intrinsic-matrix-multiplication">

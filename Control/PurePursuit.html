@@ -37,22 +37,24 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -359,29 +361,29 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 </div>
 <p>Since the above drawing is generated programmatically (using <a class="reference external" href="https://en.wikipedia.org/wiki/PGF/TikZ">tikz</a>), we can change the value of <span class="math notranslate nohighlight">\(\delta\)</span> until the vehicle trajectory goes through the target point:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d87a2185-0ab3-43e2-89de-c666b4856655" name="17058ae3-4bf7-4781-8aff-ffeef36448ff" type="radio">
-</input><label class="tabbed-label" for="d87a2185-0ab3-43e2-89de-c666b4856655">
+<input checked="checked" id="8823bab2-6119-4299-a340-64887e9dc0ce" name="3fcaa5b1-f741-47b9-aa08-235f7b2a7cea" type="radio">
+</input><label class="tabbed-label" for="8823bab2-6119-4299-a340-64887e9dc0ce">
 δ = 25°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-25">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_25.svg"><img alt="../_images/PurePursuit_delta_25.svg" src="../_images/PurePursuit_delta_25.svg" width="90%" /></a>
 </div>
 </div>
-<input id="a2cd8ede-8aae-4ca2-937b-a2f1844fe8e0" name="17058ae3-4bf7-4781-8aff-ffeef36448ff" type="radio">
-</input><label class="tabbed-label" for="a2cd8ede-8aae-4ca2-937b-a2f1844fe8e0">
+<input id="b765d0e7-9eaf-4af3-ae67-7f609293ecc9" name="3fcaa5b1-f741-47b9-aa08-235f7b2a7cea" type="radio">
+</input><label class="tabbed-label" for="b765d0e7-9eaf-4af3-ae67-7f609293ecc9">
 δ = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-20">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_20.svg"><img alt="../_images/PurePursuit_delta_20.svg" src="../_images/PurePursuit_delta_20.svg" width="90%" /></a>
 </div>
 </div>
-<input id="e195dbf4-fb20-4a9e-9c8d-e456cd773b85" name="17058ae3-4bf7-4781-8aff-ffeef36448ff" type="radio">
-</input><label class="tabbed-label" for="e195dbf4-fb20-4a9e-9c8d-e456cd773b85">
+<input id="ef7fdd01-0505-434f-903a-2b0cc8f8ad8b" name="3fcaa5b1-f741-47b9-aa08-235f7b2a7cea" type="radio">
+</input><label class="tabbed-label" for="ef7fdd01-0505-434f-903a-2b0cc8f8ad8b">
 δ = 15°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-15">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_15.svg"><img alt="../_images/PurePursuit_delta_15.svg" src="../_images/PurePursuit_delta_15.svg" width="90%" /></a>
 </div>
 </div>
-<input id="e5079b83-abe0-4f1a-a8bb-7d33a0b86f06" name="17058ae3-4bf7-4781-8aff-ffeef36448ff" type="radio">
-</input><label class="tabbed-label" for="e5079b83-abe0-4f1a-a8bb-7d33a0b86f06">
+<input id="db9c3689-9986-46ee-afa7-6c1afd20e49d" name="3fcaa5b1-f741-47b9-aa08-235f7b2a7cea" type="radio">
+</input><label class="tabbed-label" for="db9c3689-9986-46ee-afa7-6c1afd20e49d">
 δ = 11.3°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="purepursuit-delta-11p3">
 <a class="reference internal image-reference" href="../_images/PurePursuit_delta_11p3.svg"><img alt="../_images/PurePursuit_delta_11p3.svg" src="../_images/PurePursuit_delta_11p3.svg" width="90%" /></a>
@@ -393,7 +395,7 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 <a class="reference internal image-reference" href="../_images/PurePursuitLawOfSines.svg"><img alt="../_images/PurePursuitLawOfSines.svg" src="../_images/PurePursuitLawOfSines.svg" width="90%" /></a>
 <p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">The magenta triangle helps us to establish a formula for <span class="math notranslate nohighlight">\(\delta\)</span>.</span><a class="headerlink" href="#purepursuitlawofsines" title="Permalink to this image">¶</a></p>
 </div>
-<p>First, we note that the distance from ICR to TP is equal to <span class="math notranslate nohighlight">\(R\)</span>, since TP lies on the orange circle of radius <span class="math notranslate nohighlight">\(R\)</span> around ICR. Hence, the magenta triangle is <a class="reference external" href="https://en.wikipedia.org/wiki/Isosceles_triangle">isosceles</a> and <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3\)</span>. From the figure we can see that <span class="math notranslate nohighlight">\(\gamma_3+\alpha=90°\)</span>. Hence <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3=90°-\alpha\)</span>. Since the sum of all angles in a triangle equals <span class="math notranslate nohighlight">\(180°\)</span>, we have</p>
+<p>First, we note that the distance from the instantaneous center of rotation (ICR) to the target point (TP) is equal to <span class="math notranslate nohighlight">\(R\)</span>, since TP lies on the orange circle of radius <span class="math notranslate nohighlight">\(R\)</span> around ICR. Hence, the magenta triangle is <a class="reference external" href="https://en.wikipedia.org/wiki/Isosceles_triangle">isosceles</a> and <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3\)</span>. From the figure we can see that <span class="math notranslate nohighlight">\(\gamma_3+\alpha=90°\)</span>. Hence <span class="math notranslate nohighlight">\(\gamma_2=\gamma_3=90°-\alpha\)</span>. Since the sum of all angles in a triangle equals <span class="math notranslate nohighlight">\(180°\)</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[180°=\gamma_1+\gamma_2+\gamma_3 = \gamma_1 + (90°-\alpha) + (90°-\alpha)\]</div>
 <p>which yields <span class="math notranslate nohighlight">\(\gamma_1=2\alpha\)</span>. According to the <a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_sines">law of sines</a></p>
@@ -413,7 +415,7 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 <p class="admonition-title">Pure pursuit algorithm</p>
 <p>For each instant in time:</p>
 <ul class="simple">
-<li><p>Compute the look ahead distance <span class="math notranslate nohighlight">\(l_d\)</span> as <code class="docutils literal notranslate"><span class="pre">l_d</span> <span class="pre">=</span> <span class="pre">np.clip(K_dd</span> <span class="pre">*</span> <span class="pre">speed,</span> <span class="pre">min_ld,</span> <span class="pre">max_ld)</span></code></p></li>
+<li><p>Compute the look ahead distance <span class="math notranslate nohighlight">\(l_d\)</span> as <code class="docutils literal notranslate"><span class="pre">l_d</span> <span class="pre">=</span> <span class="pre">np.clip(K_dd</span> <span class="pre">*</span> <span class="pre">speed,</span> <span class="pre">min_ld,</span> <span class="pre">max_ld)</span></code>. The function <code class="docutils literal notranslate"><span class="pre">np.clip</span></code> is documented <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.clip.html">here</a>. <code class="docutils literal notranslate"><span class="pre">K_dd</span></code>, <code class="docutils literal notranslate"><span class="pre">min_ld</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_ld</span></code> are parameters that you can tune.</p></li>
 <li><p>Find the target point TP as the intersection of the desired path with a circle of radius <span class="math notranslate nohighlight">\(l_d\)</span> around the rear wheel.</p></li>
 <li><p>Using the target point coordinates <code class="docutils literal notranslate"><span class="pre">(x_tp,y_tp)</span></code>, determine <span class="math notranslate nohighlight">\(\alpha\)</span> as <code class="docutils literal notranslate"><span class="pre">alpha=arctan2(y_tp,x_tp)</span></code></p></li>
 <li><p>Use equation <a class="reference internal" href="#equation-eq-pp">(11)</a> to compute the pure pursuit front wheel angle <span class="math notranslate nohighlight">\(\delta\)</span></p></li>

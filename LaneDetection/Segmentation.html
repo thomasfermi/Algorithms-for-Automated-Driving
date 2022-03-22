@@ -37,22 +37,24 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -444,13 +446,13 @@ We train the model with input images and corresponding labels of shape (512,1024
 <p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
 <p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a08b3c8b-b71c-404f-a1f5-a62e9b48f683" name="729cbb35-8c22-4ff2-be25-4bd9cd444a39" type="radio">
-</input><label class="tabbed-label" for="a08b3c8b-b71c-404f-a1f5-a62e9b48f683">
+<input checked="checked" id="318ac7ea-730f-4489-bc71-aac281b2d441" name="9a687e65-5bd1-4a22-9d7d-9c4ddf69626e" type="radio">
+</input><label class="tabbed-label" for="318ac7ea-730f-4489-bc71-aac281b2d441">
 Recommended: Downloading the data</label><div class="tabbed-content docutils">
 <p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
 </div>
-<input id="72641dcf-85ff-4f02-807f-2f3c1d4ad472" name="729cbb35-8c22-4ff2-be25-4bd9cd444a39" type="radio">
-</input><label class="tabbed-label" for="72641dcf-85ff-4f02-807f-2f3c1d4ad472">
+<input id="9788e856-b482-44f5-8751-fdd4b6faae58" name="9a687e65-5bd1-4a22-9d7d-9c4ddf69626e" type="radio">
+</input><label class="tabbed-label" for="9788e856-b482-44f5-8751-fdd4b6faae58">
 Alternative: Generating data yourself</label><div class="tabbed-content docutils">
 <p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
@@ -475,13 +477,13 @@ python -m code.solutions.lane_detection.collect_data
 <p>To create and train a model, you can choose any deep learning framework you like.</p>
 <p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for semantic segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c1846604-4db9-4499-bd33-82eeec79c1df" name="f68831cc-83cf-4fc2-955b-8e4b78ef8e45" type="radio">
-</input><label class="tabbed-label" for="c1846604-4db9-4499-bd33-82eeec79c1df">
+<input checked="checked" id="b4c265ea-4e12-43c3-a31e-a34aeed690b4" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
+</input><label class="tabbed-label" for="b4c265ea-4e12-43c3-a31e-a34aeed690b4">
 No hints</label><div class="tabbed-content docutils">
 <p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
 </div>
-<input id="a3ecd1a3-94cf-4045-a643-74aca14d7a83" name="f68831cc-83cf-4fc2-955b-8e4b78ef8e45" type="radio">
-</input><label class="tabbed-label" for="a3ecd1a3-94cf-4045-a643-74aca14d7a83">
+<input id="0b223a26-5ce8-46fc-ad19-79d69c218871" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
+</input><label class="tabbed-label" for="0b223a26-5ce8-46fc-ad19-79d69c218871">
 Basic Hints</label><div class="tabbed-content docutils">
 <p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
 <ul class="simple">
@@ -493,8 +495,8 @@ Basic Hints</label><div class="tabbed-content docutils">
 <li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
 </ul>
 </div>
-<input id="06361bef-0748-4bbb-9be3-a4eddbf4293e" name="f68831cc-83cf-4fc2-955b-8e4b78ef8e45" type="radio">
-</input><label class="tabbed-label" for="06361bef-0748-4bbb-9be3-a4eddbf4293e">
+<input id="8e8c861c-4348-4023-8ad5-068a517aa8d2" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
+</input><label class="tabbed-label" for="8e8c861c-4348-4023-8ad5-068a517aa8d2">
 Advanced Hints</label><div class="tabbed-content docutils">
 <p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
 </div>

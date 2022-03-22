@@ -37,20 +37,22 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -361,7 +363,7 @@
 In the Carla simulations you might have observed that the vehicle is sliding/drifting when driving curves at high speed.
 In this case, we are outside of the validity regime of the kinematic bicycle model, which is the basis our pure pursuit controller. Hence, it is no wonder that our lateral control is performing suboptimal here.</p>
 <p>Control algorithms based on the <strong>dynamic</strong> bicycle model are more promising in this situation. You can learn about the dynamic bicycle model in the <a class="reference external" href="https://www.youtube.com/playlist?list=PLW3FM5Kyc2_4PGkumkAHNXzWtgHhaYe1d">lectures on Vehicle Dynamics and Control by Prof. Georg Schildbach on youtube</a>. A very sophisticated control method that can work with the dynamic bicycle model is Model Predictive Control (MPC), for which I recommend <a class="reference external" href="https://www.youtube.com/playlist?list=PLn8PRpmsu08ozoeoXgxPSBKLyd4YEHww8">this youtube playlist by MathWorks</a> as an introduction. I plan to write a <a class="reference internal" href="../Appendix/NextChapters.html"><span class="doc std std-doc">chapter on MPC in the future</span></a>.</p>
-<p>Finally, I recommend Ref. <span id="id1">[<a class="reference internal" href="#id8">S+09</a>]</span>. It discusses several controls methods for automated driving, and has a nice empirical performance comparison table at the end of section 5.</p>
+<p>Finally, I recommend Ref. <span id="id1">[<a class="reference internal" href="#id8" title="Jarrod M Snider and others. Automatic steering methods for autonomous automobile path tracking. Robotics Institute, Pittsburgh, PA, Tech. Rep. CMU-RITR-09-08, 2009.">S+09</a>]</span>. It discusses several controls methods for automated driving, and has a nice empirical performance comparison table at the end of section 5.</p>
 </div>
 <div class="section" id="control-in-a-real-adas-system-openpilot">
 <h2>Control in a real ADAS system: openpilot<a class="headerlink" href="#control-in-a-real-adas-system-openpilot" title="Permalink to this headline">¶</a></h2>

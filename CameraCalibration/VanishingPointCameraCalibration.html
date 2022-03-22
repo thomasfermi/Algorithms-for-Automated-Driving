@@ -37,22 +37,24 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -465,22 +467,22 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 <p>Let’s understand this by an example from CARLA. First, let us inspect of changing the roll angle:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f34d8dd4-6916-4e6e-bd34-54334d1c41ac" name="1e52ddd2-4d72-4cb2-8cc9-620af989df5b" type="radio">
-</input><label class="tabbed-label" for="f34d8dd4-6916-4e6e-bd34-54334d1c41ac">
+<input checked="checked" id="d4590d98-e394-4ce6-ba4b-c7271067e05a" name="ae1073a3-b86b-4074-bdf5-6b969e8d32b1" type="radio">
+</input><label class="tabbed-label" for="d4590d98-e394-4ce6-ba4b-c7271067e05a">
 roll = -20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-minus-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r-20.png"><img alt="../_images/p-0-y-0-r-20.png" src="../_images/p-0-y-0-r-20.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="adc6181f-dee7-43b7-bd91-5d437c011014" name="1e52ddd2-4d72-4cb2-8cc9-620af989df5b" type="radio">
-</input><label class="tabbed-label" for="adc6181f-dee7-43b7-bd91-5d437c011014">
+<input id="fe53bf89-f80b-4b04-8aac-1e43e7d0ede4" name="ae1073a3-b86b-4074-bdf5-6b969e8d32b1" type="radio">
+</input><label class="tabbed-label" for="fe53bf89-f80b-4b04-8aac-1e43e7d0ede4">
 roll = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="691f312a-9d2e-4bae-8169-90b0fbe117aa" name="1e52ddd2-4d72-4cb2-8cc9-620af989df5b" type="radio">
-</input><label class="tabbed-label" for="691f312a-9d2e-4bae-8169-90b0fbe117aa">
+<input id="faa129bf-7dd4-4600-8880-f548bb61940e" name="ae1073a3-b86b-4074-bdf5-6b969e8d32b1" type="radio">
+</input><label class="tabbed-label" for="faa129bf-7dd4-4600-8880-f548bb61940e">
 roll = 20°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="roll-20">
 <a class="reference internal image-reference" href="../_images/p-0-y-0-r--20.png"><img alt="../_images/p-0-y-0-r--20.png" src="../_images/p-0-y-0-r--20.png" style="width: 90%;" /></a>
@@ -489,22 +491,22 @@ roll = 20°</label><div class="tabbed-content docutils">
 </div>
 <p>You can see that the vanishing point didn’t change. Similarly, let’s see if this also holds true for translation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4c75f9f1-d6b1-4a29-a3a0-9e1214d0f023" name="147d4a3c-bf32-423f-9db6-3349f1fb9eb2" type="radio">
-</input><label class="tabbed-label" for="4c75f9f1-d6b1-4a29-a3a0-9e1214d0f023">
+<input checked="checked" id="ca297617-c35b-438b-8b7f-7b673d2c1122" name="97c4b516-5cf0-4f7f-ae65-deb0c53c9971" type="radio">
+</input><label class="tabbed-label" for="ca297617-c35b-438b-8b7f-7b673d2c1122">
 translation = -2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-minus-2">
 <a class="reference internal image-reference" href="../_images/trans--2.png"><img alt="../_images/trans--2.png" src="../_images/trans--2.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="3bfb80fa-f113-4dcd-b1f4-d0230c74969a" name="147d4a3c-bf32-423f-9db6-3349f1fb9eb2" type="radio">
-</input><label class="tabbed-label" for="3bfb80fa-f113-4dcd-b1f4-d0230c74969a">
+<input id="5791030b-828f-4ef5-8fb4-f37d8c4f9b1c" name="97c4b516-5cf0-4f7f-ae65-deb0c53c9971" type="radio">
+</input><label class="tabbed-label" for="5791030b-828f-4ef5-8fb4-f37d8c4f9b1c">
 translation = 0 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="abb602f8-a472-4511-8827-6692042c9583" name="147d4a3c-bf32-423f-9db6-3349f1fb9eb2" type="radio">
-</input><label class="tabbed-label" for="abb602f8-a472-4511-8827-6692042c9583">
+<input id="9e6906c5-9619-4d19-a602-5dc703d8da10" name="97c4b516-5cf0-4f7f-ae65-deb0c53c9971" type="radio">
+</input><label class="tabbed-label" for="9e6906c5-9619-4d19-a602-5dc703d8da10">
 translation = 2 m</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="translation-2">
 <a class="reference internal image-reference" href="../_images/trans-2.png"><img alt="../_images/trans-2.png" src="../_images/trans-2.png" style="width: 90%;" /></a>
@@ -514,22 +516,22 @@ translation = 2 m</label><div class="tabbed-content docutils">
 <p>You can see that the vanishing point lies at the same position for all the above images. This shows that roll and translation won’t affect the vanishing point.</p>
 <p>Now let’s see the effect of changing pitch</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7e8b4650-6541-4211-bf98-a93c5a622f26" name="82ee043b-3bf0-4a84-8750-0348cd22bb3e" type="radio">
-</input><label class="tabbed-label" for="7e8b4650-6541-4211-bf98-a93c5a622f26">
+<input checked="checked" id="c99ab972-b698-4f5c-86e6-cc92c64e3c6c" name="2f95d01f-aa3d-4c30-b731-9de8c39c6a05" type="radio">
+</input><label class="tabbed-label" for="c99ab972-b698-4f5c-86e6-cc92c64e3c6c">
 pitch = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-minus-5">
 <a class="reference internal image-reference" href="../_images/p--5-y-0.png"><img alt="../_images/p--5-y-0.png" src="../_images/p--5-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="d5ad5898-bbc9-4231-8899-731193762eab" name="82ee043b-3bf0-4a84-8750-0348cd22bb3e" type="radio">
-</input><label class="tabbed-label" for="d5ad5898-bbc9-4231-8899-731193762eab">
+<input id="eaf65aea-9f20-486c-be0c-d158815ac480" name="2f95d01f-aa3d-4c30-b731-9de8c39c6a05" type="radio">
+</input><label class="tabbed-label" for="eaf65aea-9f20-486c-be0c-d158815ac480">
 pitch = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="770175ea-7d79-4445-85f9-05c81ea93bf9" name="82ee043b-3bf0-4a84-8750-0348cd22bb3e" type="radio">
-</input><label class="tabbed-label" for="770175ea-7d79-4445-85f9-05c81ea93bf9">
+<input id="28282199-1c43-42ed-acb8-01866b502ba5" name="2f95d01f-aa3d-4c30-b731-9de8c39c6a05" type="radio">
+</input><label class="tabbed-label" for="28282199-1c43-42ed-acb8-01866b502ba5">
 pitch = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="pitch-5">
 <a class="reference internal image-reference" href="../_images/p-5-y-0.png"><img alt="../_images/p-5-y-0.png" src="../_images/p-5-y-0.png" style="width: 90%;" /></a>
@@ -538,22 +540,22 @@ pitch = 5°</label><div class="tabbed-content docutils">
 </div>
 <p>and yaw:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c35ddc9f-72c2-4d37-9889-38f1aa36eb22" name="d4d81ba2-7aa3-4848-a4fa-7fbf7737c090" type="radio">
-</input><label class="tabbed-label" for="c35ddc9f-72c2-4d37-9889-38f1aa36eb22">
+<input checked="checked" id="b52b8f2d-6968-40df-b433-4ca229154ce7" name="17c2edd3-a496-4ee1-9100-1c78da5e53db" type="radio">
+</input><label class="tabbed-label" for="b52b8f2d-6968-40df-b433-4ca229154ce7">
 yaw = -5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-minus-5">
 <a class="reference internal image-reference" href="../_images/p-0-y--10.png"><img alt="../_images/p-0-y--10.png" src="../_images/p-0-y--10.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="8bda07bd-ccff-4474-9818-c033c32f7d68" name="d4d81ba2-7aa3-4848-a4fa-7fbf7737c090" type="radio">
-</input><label class="tabbed-label" for="8bda07bd-ccff-4474-9818-c033c32f7d68">
+<input id="7d31cf6b-b483-4013-9690-9340988db170" name="17c2edd3-a496-4ee1-9100-1c78da5e53db" type="radio">
+</input><label class="tabbed-label" for="7d31cf6b-b483-4013-9690-9340988db170">
 yaw = 0°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-0">
 <a class="reference internal image-reference" href="../_images/p-0-y-0.png"><img alt="../_images/p-0-y-0.png" src="../_images/p-0-y-0.png" style="width: 90%;" /></a>
 </div>
 </div>
-<input id="3906a735-6e2f-4b9d-9f43-4d06eeb31ef5" name="d4d81ba2-7aa3-4848-a4fa-7fbf7737c090" type="radio">
-</input><label class="tabbed-label" for="3906a735-6e2f-4b9d-9f43-4d06eeb31ef5">
+<input id="c9ddc5e7-b393-43d8-a854-442398d65ce8" name="17c2edd3-a496-4ee1-9100-1c78da5e53db" type="radio">
+</input><label class="tabbed-label" for="c9ddc5e7-b393-43d8-a854-442398d65ce8">
 yaw = 5°</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="yaw-5">
 <a class="reference internal image-reference" href="../_images/p-0-y-10.png"><img alt="../_images/p-0-y-10.png" src="../_images/p-0-y-10.png" style="width: 90%;" /></a>

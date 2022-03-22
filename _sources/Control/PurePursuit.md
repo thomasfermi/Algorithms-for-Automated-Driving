@@ -65,7 +65,7 @@ name: PurePursuitLawOfSines
 The magenta triangle helps us to establish a formula for $\delta$.
 ```
 
-First, we note that the distance from ICR to TP is equal to $R$, since TP lies on the orange circle of radius $R$ around ICR. Hence, the magenta triangle is [isosceles](https://en.wikipedia.org/wiki/Isosceles_triangle) and $\gamma_2=\gamma_3$. From the figure we can see that $\gamma_3+\alpha=90°$. Hence $\gamma_2=\gamma_3=90°-\alpha$. Since the sum of all angles in a triangle equals $180°$, we have 
+First, we note that the distance from the instantaneous center of rotation (ICR) to the target point (TP) is equal to $R$, since TP lies on the orange circle of radius $R$ around ICR. Hence, the magenta triangle is [isosceles](https://en.wikipedia.org/wiki/Isosceles_triangle) and $\gamma_2=\gamma_3$. From the figure we can see that $\gamma_3+\alpha=90°$. Hence $\gamma_2=\gamma_3=90°-\alpha$. Since the sum of all angles in a triangle equals $180°$, we have 
 
 $$180°=\gamma_1+\gamma_2+\gamma_3 = \gamma_1 + (90°-\alpha) + (90°-\alpha)$$
 
@@ -89,7 +89,7 @@ This is the angle $\delta$ we need to pick to reach the target point! We can wri
 
 ```{admonition} Pure pursuit algorithm
 For each instant in time:
-* Compute the look ahead distance $l_d$ as `l_d = np.clip(K_dd * speed, min_ld, max_ld)`
+* Compute the look ahead distance $l_d$ as `l_d = np.clip(K_dd * speed, min_ld, max_ld)`. The function `np.clip` is documented [here](https://numpy.org/doc/stable/reference/generated/numpy.clip.html). `K_dd`, `min_ld`, and `max_ld` are parameters that you can tune.
 * Find the target point TP as the intersection of the desired path with a circle of radius $l_d$ around the rear wheel. 
 * Using the target point coordinates `(x_tp,y_tp)`, determine $\alpha$ as `alpha=arctan2(y_tp,x_tp)`
 * Use equation {eq}`eq-pp` to compute the pure pursuit front wheel angle $\delta$
