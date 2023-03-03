@@ -31,6 +31,7 @@ It is interesting to see how a real world lane-detection system works. Luckily, 
 
 ## Further Reading
 If you want to read some more about lane detection, I recommend the following ressources:
+
 ```{glossary}
 [Papers with code](https://paperswithcode.com/task/lane-detection/)
   Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.

@@ -1,302 +1,701 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Basics of Image Formation &#8212; Algorithms for Automated Driving</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-183782120-1');
+            </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LaneDetection/CameraBasics';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lane Boundary Segmentation" href="Segmentation.html" />
     <link rel="prev" title="Overview" href="LaneDetectionOverview.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
-      
-      
-      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lane Detection
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LaneDetectionOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Basics of Image Formation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Segmentation.html">
-   Lane Boundary Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="InversePerspectiveMapping.html">
-   From Pixels to Meters
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Control
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/ControlOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PID.html">
-   PID Control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/BicycleModel.html">
-   Kinematic Bicycle Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PurePursuit.html">
-   Pure Pursuit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Camera Calibration
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
-   Extrinsic Camera Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
-   Exercise Setup
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
-   Carla Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/NextChapters.html">
-   Future Chapters
-  </a>
- </li>
-</ul>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-    </div>
-</nav> <!-- To handle the deprecated key -->
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
 
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-          
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/LaneDetection/CameraBasics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Source interaction buttons -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/CameraBasics.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/CameraBasics.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
 
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lane Detection</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LaneDetectionOverview.html">Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basics of Image Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Segmentation.html">Lane Boundary Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InversePerspectiveMapping.html">From Pixels to Meters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Control/ControlOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PID.html">PID Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/BicycleModel.html">Kinematic Bicycle Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PurePursuit.html">Pure Pursuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Camera Calibration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">Extrinsic Camera Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/CameraBasics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/CameraBasics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/LaneDetection/CameraBasics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basics of Image Formation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digital-images">
@@ -334,20 +733,329 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Basics of Image Formation</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="basics-of-image-formation">
+<h1>Basics of Image Formation<a class="headerlink" href="#basics-of-image-formation" title="Permalink to this heading">#</a></h1>
+<section id="digital-images">
+<h2>Digital images<a class="headerlink" href="#digital-images" title="Permalink to this heading">#</a></h2>
+<p>A raster image consists of a grid of pixels as shown in <a class="reference internal" href="#pixel-example"><span class="std std-numref">Fig. 3</span></a>.</p>
+<figure class="align-center" id="pixel-example">
+<img alt="../_images/Pixel-example.png" src="../_images/Pixel-example.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">An image is made from pixels. Image source <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=807503">wikipedia</a></span><a class="headerlink" href="#pixel-example" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To represent an image, we use a three dimensional array with shape (H,W,3). We say that the array has H rows, W columns and 3 color channels (red, green, and blue). Let’s load an image with python and have a look!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_fn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;images/carla_scene.png&quot;</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_fn</span><span class="p">)</span>
+<span class="c1"># opencv (cv2) stores colors in the order blue, green, red, but we want red, green, blue</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$u$&quot;</span><span class="p">)</span> <span class="c1"># horizontal pixel coordinate</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$v$&quot;</span><span class="p">)</span> <span class="c1"># vertical pixel coordinate</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(H,W,3)=&quot;</span><span class="p">,</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(H,W,3)= (512, 1024, 3)
+</pre></div>
+</div>
+<img alt="../_images/7e5abc67b8c3747a38e7e770d4c924e844365e00a570cb2ba7a8c7cf920053ba.svg" src="../_images/7e5abc67b8c3747a38e7e770d4c924e844365e00a570cb2ba7a8c7cf920053ba.svg" /></div>
+</div>
+<p>Let’s inspect the pixel in the 100th row and the 750th column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">100</span>
+<span class="n">img</span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([28, 59, 28], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that the pixel at <code class="docutils literal notranslate"><span class="pre">u,v</span> <span class="pre">=</span> <span class="pre">750,</span> <span class="pre">100</span></code> has a red-intensity 28, green-intensity 59, and blue-intensity 28. Hence, it is greenish. If we have a look at the image, this makes sense, since there is a tree at <code class="docutils literal notranslate"><span class="pre">u,v</span> <span class="pre">=</span> <span class="pre">750,</span> <span class="pre">100</span></code>.
+Additionally, the above output “<code class="docutils literal notranslate"><span class="pre">dtype=uint8</span></code>” tells us that the red, green, and blue intensities are stored as 8 bit unsigned integers, i.e., <code class="docutils literal notranslate"><span class="pre">uint8</span></code>. Hence, they are integers between 0 and 255.</p>
+<p>The following sketch summarizes what we have learned about storing digital raster images so far:</p>
+<figure class="align-center" id="uv-grid">
+<a class="reference internal image-reference" href="../_images/uv_grid.svg"><img alt="../_images/uv_grid.svg" src="../_images/uv_grid.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Image as an array of pixels.</span><a class="headerlink" href="#uv-grid" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If your digital image was taken by a camera, then there is a direct correspondence between the pixels in the digital image and “sensor pixels” in the image sensor of the camera.</p>
+<figure class="align-center" id="photo-sensor">
+<img alt="../_images/photo_sensor.jpeg" src="../_images/photo_sensor.jpeg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Corner of the photosensor array of a webcam digital camera. Image source: <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=24805309">wikipedia</a></span><a class="headerlink" href="#photo-sensor" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>An image sensor consists of a two dimensional array of photosensors. Each photosensor converts incoming light to electricity via the <a class="reference external" href="https://en.wikipedia.org/wiki/Photoelectric_effect">photoelectric effect</a>, which is converted into a digital signal by means of an analog-to-digital converter. To obtain color information, one “sensor pixel” is divided into a 2 by 2 grid of photosensors, and different color filters are placed in front of these 4 photosensors. One photosensor only receives light through a blue filter, one only through a red filter, and two receive light through a green filter. Combining these 4 measurements gives one color triple: <code class="docutils literal notranslate"><span class="pre">(red_intensity,</span> <span class="pre">green_intensity,</span> <span class="pre">blue_intensity)</span></code>. This is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Bayer_filter">Bayer Filter</a>.</p>
+<figure class="align-center" id="bayerpattern">
+<a class="reference internal image-reference" href="../_images/Bayer_pattern_on_sensor.svg"><img alt="../_images/Bayer_pattern_on_sensor.svg" src="../_images/Bayer_pattern_on_sensor.svg" width="50%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The Bayer arrangement of color filters on the pixel array of an image sensor. Image source: <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=1496858">wikipedia</a></span><a class="headerlink" href="#bayerpattern" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For more details about image sensors, I recommend this <a class="reference external" href="https://youtu.be/MytCfECfqWc">youtube video</a>.</p>
+</div>
+</section>
+<section id="pinhole-camera-model">
+<h2>Pinhole Camera Model<a class="headerlink" href="#pinhole-camera-model" title="Permalink to this heading">#</a></h2>
+<p>Imagine putting an image sensor in front of an object.</p>
+<figure class="align-center" id="no-pinhole">
+<a class="reference internal image-reference" href="../_images/no_pinhole.svg"><img alt="../_images/no_pinhole.svg" src="../_images/no_pinhole.svg" width="50%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Bad idea: Image sensor placed in front of a tree. Sketched in side view.</span><a class="headerlink" href="#no-pinhole" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You would not be able to capture a sharp image like this, since a point on the image sensor will get hit by light rays from the whole environment. Now imagine putting the image sensor inside a box with a very tiny pinhole (also known as aperture).</p>
+<figure class="align-center" id="pinhole-box">
+<a class="reference internal image-reference" href="../_images/pinhole_box.svg"><img alt="../_images/pinhole_box.svg" src="../_images/pinhole_box.svg" width="50%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Pinhole camera.</span><a class="headerlink" href="#pinhole-box" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Most of the rays are blocked now and we get a proper image on the image sensor. The image is flipped upside down, but that should not bother us. In case of an <em>ideal pinhole</em>, each point on the image sensor is only hit by one ray of light from the outside.</p>
+<div class="admonition-ideal-pinhole-a-good-approximation admonition">
+<p class="admonition-title">Ideal pinhole: A good approximation</p>
+<p>In the real world the size of the hole cannot be too small because not enough light would enter the box. Additionally we would suffer from <a class="reference external" href="https://en.wikipedia.org/wiki/Diffraction">diffraction</a>. The hole can’t be too large either, since light rays from different angles will hit the same spot on the image sensor and the image will get blurry. To act against blur, a lens is installed in real cameras. The pinhole camera model we will discuss in this section does not include the effects of a lens. However, it turns out that it is a very good approximation to cameras with lenses, and <strong>the</strong> de facto model for cameras. Hence, in the following we can continue to think of our pinhole as an <em>ideal pinhole</em>.</p>
+</div>
+<p>The following sketch introduces the <em>image plane</em>:</p>
+<figure class="align-center" id="virtual-pinhole-box">
+<a class="reference internal image-reference" href="../_images/virtual_pinhole_box.svg"><img alt="../_images/virtual_pinhole_box.svg" src="../_images/virtual_pinhole_box.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Image formation.</span><a class="headerlink" href="#virtual-pinhole-box" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>While the image sensor is a distance <span class="math notranslate nohighlight">\(f\)</span> behind the pinhole, the so called <em>image plane</em>, which is an imaginary construction, is a distance <span class="math notranslate nohighlight">\(f\)</span> in front of the pinhole. We can relate the size <span class="math notranslate nohighlight">\(h\)</span> of an object to its size on the image sensor <span class="math notranslate nohighlight">\(h'\)</span> via similar triangles</p>
+<div class="math notranslate nohighlight" id="equation-eq-hprime-over-h">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-hprime-over-h" title="Permalink to this equation">#</a></span>\[ 
+    \frac{h'}{h} = \frac{f}{d}
+\]</div>
+<p>This means that the object size <span class="math notranslate nohighlight">\(h'\)</span> in the image gets smaller as the distance to the camera <span class="math notranslate nohighlight">\(d\)</span> increases: Far away objects appear small in an image. We can generalize Eq. <a class="reference internal" href="#equation-eq-hprime-over-h">(1)</a>, if we define coordinates <span class="math notranslate nohighlight">\(x,y\)</span> in the image plane as shown in the sketch below.</p>
+<figure class="align-center" id="camera-projection">
+<a class="reference internal image-reference" href="../_images/CameraProjection.svg"><img alt="../_images/CameraProjection.svg" src="../_images/CameraProjection.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Camera projection. Sketch adapted from <a class="reference external" href="https://tex.stackexchange.com/a/323778/56455">stackexchange</a>.</span><a class="headerlink" href="#camera-projection" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The origin of the camera coordinate system <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)\)</span> is at the location of the pinhole. The gray shaded region is the part of the image plane that gets captured on the image sensor. The coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> are the pixel coordinates that were already introduced in <a class="reference internal" href="#uv-grid"><span class="std std-numref">Fig. 4</span></a>.
+The sketch allows us to determine the mapping of a three-dimensional point <span class="math notranslate nohighlight">\(P=(X_c, Y_c, Z_c)\)</span> in the camera reference frame to a two-dimensional point <span class="math notranslate nohighlight">\(p=(x,y)\)</span> in the image plane. We have a look at the above figure in the <span class="math notranslate nohighlight">\(Z_c\)</span>-<span class="math notranslate nohighlight">\(X_c\)</span> plane:</p>
+<figure class="align-center" id="camera-projection-side-view">
+<a class="reference internal image-reference" href="../_images/camera_projection_side_view.svg"><img alt="../_images/camera_projection_side_view.svg" src="../_images/camera_projection_side_view.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Mapping of the three-dimensional point <span class="math notranslate nohighlight">\(P\)</span> to the image point <span class="math notranslate nohighlight">\(p\)</span>.</span><a class="headerlink" href="#camera-projection-side-view" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Similar triangles in the above figure reveal</p>
+<div class="math notranslate nohighlight">
+\[\frac{x}{f} = \frac{X_c}{Z_c} ~ \Rightarrow ~ x = f \frac{X_c}{Z_c} \]</div>
+<p>And similarly we find</p>
+<div class="math notranslate nohighlight">
+\[ y = f \frac{Y_c}{Z_c} \]</div>
+<p>Now, we want to establish what pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> correspond to these values of <span class="math notranslate nohighlight">\((x,y)\)</span> (cf. <a class="reference internal" href="#camera-projection"><span class="std std-numref">Fig. 10</span></a>). First, we note that the so called <em>principal point</em> <span class="math notranslate nohighlight">\((x=0,y=0)\)</span> has the pixel coordinates <span class="math notranslate nohighlight">\((u_0, v_0)=(W/2,H/2)\)</span>. Since <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are measured in meters, we need to know the width and height of one “sensor pixel” in the image plane measured in meters. If the pixel width in meters is <span class="math notranslate nohighlight">\(k_u\)</span> and the pixel height is <span class="math notranslate nohighlight">\(k_v\)</span>, then</p>
+<div class="math notranslate nohighlight" id="equation-eq-uv-from-xyz-no-matrix">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-uv-from-xyz-no-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}
+    \begin{gather} u &amp;=  u_0 + \frac{1}{k_u}x &amp;=u_0 + \frac{f}{k_u}\frac{X_c}{Z_c} \\  v &amp;= v_0 + \frac{1}{k_v}y &amp;=v_0 + \frac{f}{k_v}\frac{Y_c}{Z_c}\end{gather}
+\end{split}\]</div>
+<p>If we define <span class="math notranslate nohighlight">\(\alpha_u = f/k_u\)</span> and <span class="math notranslate nohighlight">\(\alpha_v = f/k_v\)</span> we can formulate the above equations in matrix form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \frac{1}{Z_c} \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} \end{split}\]</div>
+<p>Typically <span class="math notranslate nohighlight">\(\alpha_u = \alpha_v = \alpha\)</span>.
+To continue our discussion, we need to introduce the concept of homogeneous coordinates</p>
+<div class="admonition-homogeneous-coordinates admonition">
+<p class="admonition-title">Homogeneous Coordinates</p>
+<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<span id="id1">[<a class="reference internal" href="#id6" title="Richard Hartley and Andrew Zisserman. Multiple view geometry in computer vision. Cambridge university press, 2003.">HZ03</a>]</span>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
+</div>
+<p>So if we interpret the above equation as an equation for a homogeneous vector, we can absorb the scalar factor <span class="math notranslate nohighlight">\(1/Z_c\)</span> and rewrite the equation as</p>
+<div class="math notranslate nohighlight" id="equation-eq-intrinsic-matrix-multiplication">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-intrinsic-matrix-multiplication" title="Permalink to this equation">#</a></span>\[\begin{split} 
+    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} 
+\end{split}\]</div>
+<p>If we multiply this equation by a scalar factor <span class="math notranslate nohighlight">\(s \neq 0\)</span>, we can absorb it into <span class="math notranslate nohighlight">\(\lambda\)</span> on the left hand side and multiply it into the vector <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span> on the right hand side. What we find is that any point with coordinates <span class="math notranslate nohighlight">\(s (X_c,Y_c,Z_c)^T\)</span> will be mapped to the same <span class="math notranslate nohighlight">\((u,v)\)</span> coordinates. Note that all these points define a line <span class="math notranslate nohighlight">\(\mathbf{l}(s) = s (X_c,Y_c,Z_c)^T\)</span> which goes through the pinhole at position <span class="math notranslate nohighlight">\((0,0,0)\)</span>. You can also verify this fact with the previous form of our equations: Eq. <a class="reference internal" href="#equation-eq-uv-from-xyz-no-matrix">(2)</a>. But even more importantly, this fact is intuitive if we look at <a class="reference internal" href="#camera-projection"><span class="std std-numref">Fig. 10</span></a>: Each point on the red ray from the camera origin to the point <span class="math notranslate nohighlight">\(P\)</span> will be mapped into the same image coordinate <span class="math notranslate nohighlight">\((u,v)\)</span>.</p>
+</section>
+<section id="reference-frames">
+<h2>Reference frames<a class="headerlink" href="#reference-frames" title="Permalink to this heading">#</a></h2>
+<p>In our applications, we will deal with with different coordinate systems, so we will not always have our point <span class="math notranslate nohighlight">\(P\)</span> given in coordinates of the camera reference frame <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span>. For our lane-detection system the following reference frames are relevant</p>
+<ul class="simple">
+<li><p>World frame <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span></p></li>
+<li><p>Camera frame <span class="math notranslate nohighlight">\((X_c, Y_c, Z_c)^T\)</span>,</p></li>
+<li><p>Default camera frame <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span></p></li>
+<li><p>Road frame <span class="math notranslate nohighlight">\((X_r, Y_r, Z_r)^T\)</span></p></li>
+<li><p>Road frame according to <a class="reference external" href="https://www.sis.se/api/document/preview/914200/">ISO8855 norm</a> <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span></p></li>
+</ul>
+<p>These frames are defined in the following figure</p>
+<figure class="align-center" id="coordinate-systems">
+<a class="reference internal image-reference" href="../_images/coordinate_systems.svg"><img alt="../_images/coordinate_systems.svg" src="../_images/coordinate_systems.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Different coordinate systems. Due to the side view, only two of the three coordinate axes are drawn for most of the coordinate systems. The direction of the third coordinate axis can be inferred using the fact that all these coordinate systems are right-handed. Apart from the world frame, all frames are attached to the vehicle, which means that their origin moves with the vehicle, and their axes are defined based on the vehicle’s forwards, left, and up directions.
+Note that in general the <span class="math notranslate nohighlight">\(X_w\)</span>-<span class="math notranslate nohighlight">\(Y_w\)</span> plane is not parallel to the road. However, in the Carla simulator this is often the case.</span><a class="headerlink" href="#coordinate-systems" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The axes of the default camera frame correspond to the “right”, “down”, and “forwards” directions of the vehicle. Even if we wanted to mount our camera in a way that the <em>camera frame</em> equals the <em>default camera frame</em>, we might make some small errors. In the exercises the <em>camera frame</em> is slightly rotated with respect to the <em>default camera frame</em>, but only along the <span class="math notranslate nohighlight">\(X_d\)</span>-axis: The camera has a <a class="reference external" href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">pitch angle</a> of 5°.</p>
+<p>In the following we will describe how to transform between world and camera coordinates, but the same mathematics hold for a transformation between any two of the the above reference frames.
+A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> in the world coordinate system is mapped to a point in the camera coordinate system via a rotation matrix <span class="math notranslate nohighlight">\(\bf{R} \in \mathbb{R}^{3 \times 3}\)</span> (to be more precise <a class="reference external" href="https://en.wikipedia.org/wiki/3D_rotation_group"><span class="math notranslate nohighlight">\(\mathbf{R} \in SO(3)\)</span></a>) and a translation vector <span class="math notranslate nohighlight">\(\bf{t}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} = \bf{R} \begin{pmatrix} X_w \\ Y_w \\ Z_w \end{pmatrix} + \bf{t} \end{split}\]</div>
+<p>We can write this transformation law just using matrix multiplication</p>
+<div class="math notranslate nohighlight" id="equation-eq-change-coordinate-systems">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-change-coordinate-systems" title="Permalink to this equation">#</a></span>\[\begin{split} 
+    \begin{pmatrix} X_c \\ Y_c \\ Z_c \\ 1 \end{pmatrix} =\begin{pmatrix} R_{xx} &amp; R_{xy} &amp; R_{xz} &amp; t_x \\ R_{yx} &amp; R_{yy} &amp; R_{yz} &amp; t_y \\ R_{zx} &amp; R_{zy} &amp; R_{zz} &amp; t_z \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix} = \mathbf{T}_{cw} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix} 
+\end{split}\]</div>
+<p>where we defined the <em>transformation matrix</em> <span class="math notranslate nohighlight">\(\bf{T}_{cw}\)</span> in the last equality. It is great that we can relate the coordinates of different reference frames just by using a matrix. This makes it easy to compose several transformations, for example to go from world to camera coordinates and then from camera to road coordinates. It also enables us to get the inverse transformation using the matrix inverse: The transformation from camera to world coordinates is given by the matrix <span class="math notranslate nohighlight">\(\bf{T}_{wc} = \bf{T}_{cw}^{-1}\)</span>.</p>
+<p>To conclude this section, we combine Eq. <a class="reference internal" href="#equation-eq-intrinsic-matrix-multiplication">(3)</a> and <a class="reference internal" href="#equation-eq-change-coordinate-systems">(4)</a> into one single equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-intrinsic-and-extrinsic-matrix-multiplication">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-intrinsic-and-extrinsic-matrix-multiplication" title="Permalink to this equation">#</a></span>\[\begin{split} 
+    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} R_{xx} &amp; R_{xy} &amp; R_{xz} &amp; t_x \\ R_{yx} &amp; R_{yy} &amp; R_{yz} &amp; t_y \\ R_{zx} &amp; R_{zy} &amp; R_{zz} &amp; t_z \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix} 
+\end{split}\]</div>
+<p>Or by defining the <strong>intrinsic camera matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> and the <strong>extrinsic camera matrix</strong> <span class="math notranslate nohighlight">\(\begin{pmatrix} \mathbf{R} | \mathbf{t} \end{pmatrix}\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-world-coords-to-uv">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-world-coords-to-uv" title="Permalink to this equation">#</a></span>\[\begin{split}
+    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R} | \mathbf{t} \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix}
+\end{split}\]</div>
+</section>
+<section id="yaw-pitch-and-roll-rotations">
+<h2>Yaw, pitch, and roll rotations<a class="headerlink" href="#yaw-pitch-and-roll-rotations" title="Permalink to this heading">#</a></h2>
+<p>Before you start the exercises, you should briefly be introduced to the yaw, pitch, and roll parametrization of rotations: A general rotation between the camera frame and the default camera frame can be described by first rotating for some angle (called roll angle) around the <span class="math notranslate nohighlight">\(Z_d\)</span>-axis, then for some other angle (called pitch angle) around the <span class="math notranslate nohighlight">\(X_d\)</span>-axis, and finally for even another angle (called yaw angle) around the <span class="math notranslate nohighlight">\(Y_d\)</span>-axis.</p>
+<p>If we define the cosine and sine of the roll angle as <span class="math notranslate nohighlight">\(c_r\)</span> and <span class="math notranslate nohighlight">\(s_r\)</span> respectively, the roll rotation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{roll} = \begin{pmatrix}c_{r} &amp; - s_{r} &amp; 0\\s_{r} &amp; c_{r} &amp; 0\\0 &amp; 0 &amp; 1\end{pmatrix}\end{split}\]</div>
+<p>Defining cosine and sine of the pitch angle as <span class="math notranslate nohighlight">\(c_p\)</span> and <span class="math notranslate nohighlight">\(s_p\)</span> and the cosine and sine of the yaw angle as <span class="math notranslate nohighlight">\(c_y\)</span> and <span class="math notranslate nohighlight">\(s_y\)</span>, the pitch and yaw rotation matrices are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{pitch} = \begin{pmatrix}1 &amp; 0 &amp; 0\\0 &amp; c_{p} &amp; s_{p}\\0 &amp; - s_{p} &amp; c_{p}\end{pmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{yaw} = \begin{pmatrix}c_{y} &amp; 0 &amp; - s_{y}\\0 &amp; 1 &amp; 0\\s_{y} &amp; 0 &amp; c_{y}\end{pmatrix}\end{split}\]</div>
+<p>Note that the form of these matrices depends on the coordinate system. We chose the <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span> frame here. In the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame the matrices would look a bit different, since for example the “forwards” direction in the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame is <span class="math notranslate nohighlight">\((1,0,0)^T\)</span>, whereas it is <span class="math notranslate nohighlight">\((0,0,1)^T\)</span> in the default camera frame <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span>. So if you find a differently looking roll matrix in some book, this probably has to do with the naming of the axes. What all books tend to agree on: In the case of vehicles (like cars or planes), the roll axis points forwards, the yaw axis upwards (or downwards), and the pitch axis to the right (or left).</p>
+<figure class="align-center" id="ypr-aircraft">
+<a class="reference internal image-reference" href="../_images/ypr_aircraft.svg"><img alt="../_images/ypr_aircraft.svg" src="../_images/ypr_aircraft.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Yaw, pitch, and roll rotations. The orange arrow on the pitch axis indicates that “lifting up its nose” will increase the pitch angle of the airplane. So it indicates the sign convention for the angle. Not all text books agree on common sign conventions here. <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Yaw_Axis_Corrected.svg">wikipedia</a></span><a class="headerlink" href="#ypr-aircraft" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A general rotation can be written by multiplying the roll, pitch, and yaw matrices</p>
+<div class="math notranslate nohighlight" id="equation-eq-ypr">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-ypr" title="Permalink to this equation">#</a></span>\[\begin{split} 
+R = R_{yaw} R_{pitch} R_{roll} = \begin{pmatrix}c_{r} c_{y} + s_{p} s_{r} s_{y} &amp; c_{r} s_{p} s_{y} - c_{y} s_{r} &amp; - c_{p} s_{y}\\c_{p} s_{r} &amp; c_{p} c_{r} &amp; s_{p}\\c_{r} s_{y} - c_{y} s_{p} s_{r} &amp; - c_{r} c_{y} s_{p} - s_{r} s_{y} &amp; c_{p} c_{y}\end{pmatrix}
+\end{split}\]</div>
+<p>In the exercise code, we will parametrize the rotation matrix that rotates vectors from the road frame into the camera frame using the formula above. Note that the axis directions of the road frame and the default camera frame are identical.</p>
+<p>For the purpose of this chapter, we will be happy with parametrizing a rotation matrix via yaw, pitch, and roll. However there are some problems with this representation. Three dimensional rotations are more complicated than you might think. If you want to learn more I recommend this <a class="reference external" href="https://www.youtube.com/watch?v=YXGUGSAv09A">YouTube video by Cyrill Stachniss</a>.</p>
+</section>
+<section id="exercise-projecting-lane-boundaries-into-an-image">
+<h2>Exercise: Projecting lane boundaries into an image<a class="headerlink" href="#exercise-projecting-lane-boundaries-into-an-image" title="Permalink to this heading">#</a></h2>
+<p>Now you should start to work on your first exercise. For this exercise, I have prepared some data for you. I captured an image in the Carla simulator using a camera sensor attached to a vehicle:</p>
+<figure class="align-center" id="carla-lane-image">
+<a class="reference internal image-reference" href="../_images/carla_lane_image.svg"><img alt="../_images/carla_lane_image.svg" src="../_images/carla_lane_image.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Image captured by a camera sensor in a Carla simulation.</span><a class="headerlink" href="#carla-lane-image" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Additionally I created txt files containing</p>
+<ul class="simple">
+<li><p>world coordinates of the lane boundaries <span class="math notranslate nohighlight">\((X_w,Y_w,Z_w)^T\)</span></p></li>
+<li><p>a transformation matrix <span class="math notranslate nohighlight">\(T_{cw}\)</span> that maps world coordinates to coordinates in the camera reference frame</p></li>
+</ul>
+<p>Your job is to write code based on equation <a class="reference internal" href="#equation-eq-world-coords-to-uv">(6)</a> that creates a label image like this:</p>
+<figure class="align-center" id="carla-lane-label">
+<a class="reference internal image-reference" href="../_images/carla_lane_label.svg"><img alt="../_images/carla_lane_label.svg" src="../_images/carla_lane_label.svg" width="67%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Label image.</span><a class="headerlink" href="#carla-lane-label" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>First you will need to set up your python environment, install the necessary libraries, and download the code for the exercises. Please visit <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a> to learn how.</p>
+<p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_boundary_projection.ipynb</span></code> and follow the instructions in that notebook.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id2">
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HZ03</a><span class="fn-bracket">]</span></span>
+<p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LaneDetection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="LaneDetectionOverview.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Overview</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="Segmentation.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Lane Boundary Segmentation</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digital-images">
    Digital images
@@ -380,308 +1088,57 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-                        </nav>
-                    </div>
-                </div>
+</nav>
+</div>
+
             </div>
-            
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="basics-of-image-formation">
-<h1>Basics of Image Formation<a class="headerlink" href="#basics-of-image-formation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="digital-images">
-<h2>Digital images<a class="headerlink" href="#digital-images" title="Permalink to this headline">¶</a></h2>
-<p>A raster image consists of a grid of pixels as shown in <a class="reference internal" href="#pixel-example"><span class="std std-numref">Fig. 3</span></a>.</p>
-<div class="figure align-center" id="pixel-example">
-<img alt="../_images/Pixel-example.png" src="../_images/Pixel-example.png" />
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">An image is made from pixels. Image source <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=807503">wikipedia</a></span><a class="headerlink" href="#pixel-example" title="Permalink to this image">¶</a></p>
-</div>
-<p>To represent an image, we use a three dimensional array with shape (H,W,3). We say that the array has H rows, W columns and 3 color channels (red, green, and blue). Let’s load an image with python and have a look!</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_fn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;images/carla_scene.png&quot;</span><span class="p">))</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_fn</span><span class="p">)</span>
-<span class="c1"># opencv (cv2) stores colors in the order blue, green, red, but we want red, green, blue</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$u$&quot;</span><span class="p">)</span> <span class="c1"># horizontal pixel coordinate</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$v$&quot;</span><span class="p">)</span> <span class="c1"># vertical pixel coordinate</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(H,W,3)=&quot;</span><span class="p">,</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(H,W,3)= (512, 1024, 3)
-</pre></div>
-</div>
-<img alt="../_images/CameraBasics_7_1.svg" src="../_images/CameraBasics_7_1.svg" /></div>
-</div>
-<p>Let’s inspect the pixel in the 100th row and the 750th column:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">100</span>
-<span class="n">img</span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([28, 59, 28], dtype=uint8)
-</pre></div>
-</div>
-</div>
-</div>
-<p>This means that the pixel at <code class="docutils literal notranslate"><span class="pre">u,v</span> <span class="pre">=</span> <span class="pre">750,</span> <span class="pre">100</span></code> has a red-intensity 28, green-intensity 59, and blue-intensity 28. Hence, it is greenish. If we have a look at the image, this makes sense, since there is a tree at <code class="docutils literal notranslate"><span class="pre">u,v</span> <span class="pre">=</span> <span class="pre">750,</span> <span class="pre">100</span></code>.
-Additionally, the above output “<code class="docutils literal notranslate"><span class="pre">dtype=uint8</span></code>” tells us that the red, green, and blue intensities are stored as 8 bit unsigned integers, i.e., <code class="docutils literal notranslate"><span class="pre">uint8</span></code>. Hence, they are integers between 0 and 255.</p>
-<p>The following sketch summarizes what we have learned about storing digital raster images so far:</p>
-<div class="figure align-center" id="uv-grid">
-<a class="reference internal image-reference" href="../_images/uv_grid.svg"><img alt="../_images/uv_grid.svg" src="../_images/uv_grid.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Image as an array of pixels.</span><a class="headerlink" href="#uv-grid" title="Permalink to this image">¶</a></p>
-</div>
-<p>If your digital image was taken by a camera, then there is a direct correspondence between the pixels in the digital image and “sensor pixels” in the image sensor of the camera.</p>
-<div class="figure align-center" id="photo-sensor">
-<img alt="../_images/photo_sensor.jpeg" src="../_images/photo_sensor.jpeg" />
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Corner of the photosensor array of a webcam digital camera. Image source: <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=24805309">wikipedia</a></span><a class="headerlink" href="#photo-sensor" title="Permalink to this image">¶</a></p>
-</div>
-<p>An image sensor consists of a two dimensional array of photosensors. Each photosensor converts incoming light to electricity via the <a class="reference external" href="https://en.wikipedia.org/wiki/Photoelectric_effect">photoelectric effect</a>, which is converted into a digital signal by means of an analog-to-digital converter. To obtain color information, one “sensor pixel” is divided into a 2 by 2 grid of photosensors, and different color filters are placed in front of these 4 photosensors. One photosensor only receives light through a blue filter, one only through a red filter, and two receive light through a green filter. Combining these 4 measurements gives one color triple: <code class="docutils literal notranslate"><span class="pre">(red_intensity,</span> <span class="pre">green_intensity,</span> <span class="pre">blue_intensity)</span></code>. This is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Bayer_filter">Bayer Filter</a>.</p>
-<div class="figure align-center" id="bayerpattern">
-<a class="reference internal image-reference" href="../_images/Bayer_pattern_on_sensor.svg"><img alt="../_images/Bayer_pattern_on_sensor.svg" src="../_images/Bayer_pattern_on_sensor.svg" width="50%" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The Bayer arrangement of color filters on the pixel array of an image sensor. Image source: <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=1496858">wikipedia</a></span><a class="headerlink" href="#bayerpattern" title="Permalink to this image">¶</a></p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For more details about image sensors, I recommend this <a class="reference external" href="https://youtu.be/MytCfECfqWc">youtube video</a>.</p>
-</div>
-</div>
-<div class="section" id="pinhole-camera-model">
-<h2>Pinhole Camera Model<a class="headerlink" href="#pinhole-camera-model" title="Permalink to this headline">¶</a></h2>
-<p>Imagine putting an image sensor in front of an object.</p>
-<div class="figure align-center" id="no-pinhole">
-<a class="reference internal image-reference" href="../_images/no_pinhole.svg"><img alt="../_images/no_pinhole.svg" src="../_images/no_pinhole.svg" width="50%" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Bad idea: Image sensor placed in front of a tree. Sketched in side view.</span><a class="headerlink" href="#no-pinhole" title="Permalink to this image">¶</a></p>
-</div>
-<p>You would not be able to capture a sharp image like this, since a point on the image sensor will get hit by light rays from the whole environment. Now imagine putting the image sensor inside a box with a very tiny pinhole (also known as aperture).</p>
-<div class="figure align-center" id="pinhole-box">
-<a class="reference internal image-reference" href="../_images/pinhole_box.svg"><img alt="../_images/pinhole_box.svg" src="../_images/pinhole_box.svg" width="50%" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Pinhole camera.</span><a class="headerlink" href="#pinhole-box" title="Permalink to this image">¶</a></p>
-</div>
-<p>Most of the rays are blocked now and we get a proper image on the image sensor. The image is flipped upside down, but that should not bother us. In case of an <em>ideal pinhole</em>, each point on the image sensor is only hit by one ray of light from the outside.</p>
-<div class="admonition-ideal-pinhole-a-good-approximation admonition">
-<p class="admonition-title">Ideal pinhole: A good approximation</p>
-<p>In the real world the size of the hole cannot be too small because not enough light would enter the box. Additionally we would suffer from <a class="reference external" href="https://en.wikipedia.org/wiki/Diffraction">diffraction</a>. The hole can’t be too large either, since light rays from different angles will hit the same spot on the image sensor and the image will get blurry. To act against blur, a lens is installed in real cameras. The pinhole camera model we will discuss in this section does not include the effects of a lens. However, it turns out that it is a very good approximation to cameras with lenses, and <strong>the</strong> de facto model for cameras. Hence, in the following we can continue to think of our pinhole as an <em>ideal pinhole</em>.</p>
-</div>
-<p>The following sketch introduces the <em>image plane</em>:</p>
-<div class="figure align-center" id="virtual-pinhole-box">
-<a class="reference internal image-reference" href="../_images/virtual_pinhole_box.svg"><img alt="../_images/virtual_pinhole_box.svg" src="../_images/virtual_pinhole_box.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Image formation.</span><a class="headerlink" href="#virtual-pinhole-box" title="Permalink to this image">¶</a></p>
-</div>
-<p>While the image sensor is a distance <span class="math notranslate nohighlight">\(f\)</span> behind the pinhole, the so called <em>image plane</em>, which is an imaginary construction, is a distance <span class="math notranslate nohighlight">\(f\)</span> in front of the pinhole. We can relate the size <span class="math notranslate nohighlight">\(h\)</span> of an object to its size on the image sensor <span class="math notranslate nohighlight">\(h'\)</span> via similar triangles</p>
-<div class="math notranslate nohighlight" id="equation-eq-hprime-over-h">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eq-hprime-over-h" title="Permalink to this equation">¶</a></span>\[ 
-    \frac{h'}{h} = \frac{f}{d}
-\]</div>
-<p>This means that the object size <span class="math notranslate nohighlight">\(h'\)</span> in the image gets smaller as the distance to the camera <span class="math notranslate nohighlight">\(d\)</span> increases: Far away objects appear small in an image. We can generalize Eq. <a class="reference internal" href="#equation-eq-hprime-over-h">(1)</a>, if we define coordinates <span class="math notranslate nohighlight">\(x,y\)</span> in the image plane as shown in the sketch below.</p>
-<div class="figure align-center" id="camera-projection">
-<a class="reference internal image-reference" href="../_images/CameraProjection.svg"><img alt="../_images/CameraProjection.svg" src="../_images/CameraProjection.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Camera projection. Sketch adapted from <a class="reference external" href="https://tex.stackexchange.com/a/323778/56455">stackexchange</a>.</span><a class="headerlink" href="#camera-projection" title="Permalink to this image">¶</a></p>
-</div>
-<p>The origin of the camera coordinate system <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)\)</span> is at the location of the pinhole. The gray shaded region is the part of the image plane that gets captured on the image sensor. The coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> are the pixel coordinates that were already introduced in <a class="reference internal" href="#uv-grid"><span class="std std-numref">Fig. 4</span></a>.
-The sketch allows us to determine the mapping of a three-dimensional point <span class="math notranslate nohighlight">\(P=(X_c, Y_c, Z_c)\)</span> in the camera reference frame to a two-dimensional point <span class="math notranslate nohighlight">\(p=(x,y)\)</span> in the image plane. We have a look at the above figure in the <span class="math notranslate nohighlight">\(Z_c\)</span>-<span class="math notranslate nohighlight">\(X_c\)</span> plane:</p>
-<div class="figure align-center" id="camera-projection-side-view">
-<a class="reference internal image-reference" href="../_images/camera_projection_side_view.svg"><img alt="../_images/camera_projection_side_view.svg" src="../_images/camera_projection_side_view.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Mapping of the three-dimensional point <span class="math notranslate nohighlight">\(P\)</span> to the image point <span class="math notranslate nohighlight">\(p\)</span>.</span><a class="headerlink" href="#camera-projection-side-view" title="Permalink to this image">¶</a></p>
-</div>
-<p>Similar triangles in the above figure reveal</p>
-<div class="math notranslate nohighlight">
-\[\frac{x}{f} = \frac{X_c}{Z_c} ~ \Rightarrow ~ x = f \frac{X_c}{Z_c} \]</div>
-<p>And similarly we find</p>
-<div class="math notranslate nohighlight">
-\[ y = f \frac{Y_c}{Z_c} \]</div>
-<p>Now, we want to establish what pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> correspond to these values of <span class="math notranslate nohighlight">\((x,y)\)</span> (cf. <a class="reference internal" href="#camera-projection"><span class="std std-numref">Fig. 10</span></a>). First, we note that the so called <em>principal point</em> <span class="math notranslate nohighlight">\((x=0,y=0)\)</span> has the pixel coordinates <span class="math notranslate nohighlight">\((u_0, v_0)=(W/2,H/2)\)</span>. Since <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are measured in meters, we need to know the width and height of one “sensor pixel” in the image plane measured in meters. If the pixel width in meters is <span class="math notranslate nohighlight">\(k_u\)</span> and the pixel height is <span class="math notranslate nohighlight">\(k_v\)</span>, then</p>
-<div class="math notranslate nohighlight" id="equation-eq-uv-from-xyz-no-matrix">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eq-uv-from-xyz-no-matrix" title="Permalink to this equation">¶</a></span>\[\begin{split}
-    \begin{gather} u &amp;=  u_0 + \frac{1}{k_u}x &amp;=u_0 + \frac{f}{k_u}\frac{X_c}{Z_c} \\  v &amp;= v_0 + \frac{1}{k_v}y &amp;=v_0 + \frac{f}{k_v}\frac{Y_c}{Z_c}\end{gather}
-\end{split}\]</div>
-<p>If we define <span class="math notranslate nohighlight">\(\alpha_u = f/k_u\)</span> and <span class="math notranslate nohighlight">\(\alpha_v = f/k_v\)</span> we can formulate the above equations in matrix form</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \frac{1}{Z_c} \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} \end{split}\]</div>
-<p>Typically <span class="math notranslate nohighlight">\(\alpha_u = \alpha_v = \alpha\)</span>.
-To continue our discussion, we need to introduce the concept of homogeneous coordinates</p>
-<div class="admonition-homogeneous-coordinates admonition">
-<p class="admonition-title">Homogeneous Coordinates</p>
-<p>We give a short informal introduction to homogeneous coordinates here. For a more detailed discussion see the book by Hartley and Zisserman (<span id="id1">[<a class="reference internal" href="#id6" title="Richard Hartley and Andrew Zisserman. Multiple view geometry in computer vision. Cambridge university press, 2003.">HZ03</a>]</span>), or the <a class="reference external" href="https://youtu.be/PvEl63t-opM">short</a> and <a class="reference external" href="https://youtu.be/MQdm0Z_gNcw">long</a> videos by Stachniss. We can convert a <strong>Euclidean vector</strong> <span class="math notranslate nohighlight">\((u,v)^T\)</span> into a <strong>homogeneous vector</strong> by appending a <span class="math notranslate nohighlight">\(1\)</span> to obtain <span class="math notranslate nohighlight">\((u,v,1)^T\)</span>. If we multiply a homogeneous vector by a nonzero real number <span class="math notranslate nohighlight">\(\lambda\)</span>, it is considered to still represent the same mathematical object. In other words <span class="math notranslate nohighlight">\((u,v,1)^T\)</span> and <span class="math notranslate nohighlight">\(\lambda (u,v,1)^T\)</span> are the “same” homogeneous vector, they are <em>equivalent</em>. Similarly <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> and <span class="math notranslate nohighlight">\((4,6,14)\)</span> are equivalent. To express that two homogeneous vectors <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> are equivalent we write <span class="math notranslate nohighlight">\(\lambda \mathbf{v} = \mathbf{w}\)</span>, often without exactly specifying what value <span class="math notranslate nohighlight">\(\lambda\)</span> has. Typically, we want to represent a homogeneous vector in its canonical form, for which the last entry is <span class="math notranslate nohighlight">\(1\)</span>. The canonical form of <span class="math notranslate nohighlight">\((2,3,7)^T\)</span> is <span class="math notranslate nohighlight">\((2/7, 3/7, 1)^T\)</span>. To go from a homogeneous vector back to a Euclidean vector, we first bringt it to canonical form, and then take all but the last vector components. In our example this would be <span class="math notranslate nohighlight">\((2/7,3/7)^T\)</span>. Note that we can do the same procedure to construct a homogeneous vector with four components by appending a <span class="math notranslate nohighlight">\(1\)</span> to a three dimensional Euclidean vector. You might think that this procedure is quite strange, but soon you will see the usefulness of homogeneous coordinates.</p>
-</div>
-<p>So if we interpret the above equation as an equation for a homogeneous vector, we can absorb the scalar factor <span class="math notranslate nohighlight">\(1/Z_c\)</span> and rewrite the equation as</p>
-<div class="math notranslate nohighlight" id="equation-eq-intrinsic-matrix-multiplication">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eq-intrinsic-matrix-multiplication" title="Permalink to this equation">¶</a></span>\[\begin{split} 
-    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} 
-\end{split}\]</div>
-<p>If we multiply this equation by a scalar factor <span class="math notranslate nohighlight">\(s \neq 0\)</span>, we can absorb it into <span class="math notranslate nohighlight">\(\lambda\)</span> on the left hand side and multiply it into the vector <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span> on the right hand side. What we find is that any point with coordinates <span class="math notranslate nohighlight">\(s (X_c,Y_c,Z_c)^T\)</span> will be mapped to the same <span class="math notranslate nohighlight">\((u,v)\)</span> coordinates. Note that all these points define a line <span class="math notranslate nohighlight">\(\mathbf{l}(s) = s (X_c,Y_c,Z_c)^T\)</span> which goes through the pinhole at position <span class="math notranslate nohighlight">\((0,0,0)\)</span>. You can also verify this fact with the previous form of our equations: Eq. <a class="reference internal" href="#equation-eq-uv-from-xyz-no-matrix">(2)</a>. But even more importantly, this fact is intuitive if we look at <a class="reference internal" href="#camera-projection"><span class="std std-numref">Fig. 10</span></a>: Each point on the red ray from the camera origin to the point <span class="math notranslate nohighlight">\(P\)</span> will be mapped into the same image coordinate <span class="math notranslate nohighlight">\((u,v)\)</span>.</p>
-</div>
-<div class="section" id="reference-frames">
-<h2>Reference frames<a class="headerlink" href="#reference-frames" title="Permalink to this headline">¶</a></h2>
-<p>In our applications, we will deal with with different coordinate systems, so we will not always have our point <span class="math notranslate nohighlight">\(P\)</span> given in coordinates of the camera reference frame <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span>. For our lane-detection system the following reference frames are relevant</p>
-<ul class="simple">
-<li><p>World frame <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span></p></li>
-<li><p>Camera frame <span class="math notranslate nohighlight">\((X_c, Y_c, Z_c)^T\)</span>,</p></li>
-<li><p>Default camera frame <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span></p></li>
-<li><p>Road frame <span class="math notranslate nohighlight">\((X_r, Y_r, Z_r)^T\)</span></p></li>
-<li><p>Road frame according to <a class="reference external" href="https://www.sis.se/api/document/preview/914200/">ISO8855 norm</a> <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span></p></li>
-</ul>
-<p>These frames are defined in the following figure</p>
-<div class="figure align-center" id="coordinate-systems">
-<a class="reference internal image-reference" href="../_images/coordinate_systems.svg"><img alt="../_images/coordinate_systems.svg" src="../_images/coordinate_systems.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Different coordinate systems. Due to the side view, only two of the three coordinate axes are drawn for most of the coordinate systems. The direction of the third coordinate axis can be inferred using the fact that all these coordinate systems are right-handed. Apart from the world frame, all frames are attached to the vehicle, which means that their origin moves with the vehicle, and their axes are defined based on the vehicle’s forwards, left, and up directions.
-Note that in general the <span class="math notranslate nohighlight">\(X_w\)</span>-<span class="math notranslate nohighlight">\(Y_w\)</span> plane is not parallel to the road. However, in the Carla simulator this is often the case.</span><a class="headerlink" href="#coordinate-systems" title="Permalink to this image">¶</a></p>
-</div>
-<p>The axes of the default camera frame correspond to the “right”, “down”, and “forwards” directions of the vehicle. Even if we wanted to mount our camera in a way that the <em>camera frame</em> equals the <em>default camera frame</em>, we might make some small errors. In the exercises the <em>camera frame</em> is slightly rotated with respect to the <em>default camera frame</em>, but only along the <span class="math notranslate nohighlight">\(X_d\)</span>-axis: The camera has a <a class="reference external" href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">pitch angle</a> of 5°.</p>
-<p>In the following we will describe how to transform between world and camera coordinates, but the same mathematics hold for a transformation between any two of the the above reference frames.
-A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> in the world coordinate system is mapped to a point in the camera coordinate system via a rotation matrix <span class="math notranslate nohighlight">\(\bf{R} \in \mathbb{R}^{3 \times 3}\)</span> (to be more precise <a class="reference external" href="https://en.wikipedia.org/wiki/3D_rotation_group"><span class="math notranslate nohighlight">\(\mathbf{R} \in SO(3)\)</span></a>) and a translation vector <span class="math notranslate nohighlight">\(\bf{t}\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{pmatrix} X_c \\ Y_c \\ Z_c \end{pmatrix} = \bf{R} \begin{pmatrix} X_w \\ Y_w \\ Z_w \end{pmatrix} + \bf{t} \end{split}\]</div>
-<p>We can write this transformation law just using matrix multiplication</p>
-<div class="math notranslate nohighlight" id="equation-eq-change-coordinate-systems">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eq-change-coordinate-systems" title="Permalink to this equation">¶</a></span>\[\begin{split} 
-    \begin{pmatrix} X_c \\ Y_c \\ Z_c \\ 1 \end{pmatrix} =\begin{pmatrix} R_{xx} &amp; R_{xy} &amp; R_{xz} &amp; t_x \\ R_{yx} &amp; R_{yy} &amp; R_{yz} &amp; t_y \\ R_{zx} &amp; R_{zy} &amp; R_{zz} &amp; t_z \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix}= \mathbf{T}_{cw} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix} 
-\end{split}\]</div>
-<p>where we defined the <em>transformation matrix</em> <span class="math notranslate nohighlight">\(\bf{T}_{cw}\)</span> in the last equality. It is great that we can relate the coordinates of different reference frames just by using a matrix. This makes it easy to compose several transformations, for example to go from world to camera coordinates and then from camera to road coordinates. It also enables us to get the inverse transformation using the matrix inverse: The transformation from camera to world coordinates is given by the matrix <span class="math notranslate nohighlight">\(\bf{T}_{wc} = \bf{T}_{cw}^{-1}\)</span>.</p>
-<p>To conclude this section, we combine Eq. <a class="reference internal" href="#equation-eq-intrinsic-matrix-multiplication">(3)</a> and <a class="reference internal" href="#equation-eq-change-coordinate-systems">(4)</a> into one single equation:</p>
-<div class="math notranslate nohighlight" id="equation-eq-intrinsic-and-extrinsic-matrix-multiplication">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eq-intrinsic-and-extrinsic-matrix-multiplication" title="Permalink to this equation">¶</a></span>\[\begin{split} 
-    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha_u &amp; 0 &amp; u_0 \\ 0 &amp; \alpha_v &amp; v_0 \\ 0 &amp; 0 &amp; 1\end{pmatrix} \begin{pmatrix} R_{xx} &amp; R_{xy} &amp; R_{xz} &amp; t_x \\ R_{yx} &amp; R_{yy} &amp; R_{yz} &amp; t_y \\ R_{zx} &amp; R_{zy} &amp; R_{zz} &amp; t_z \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix} 
-\end{split}\]</div>
-<p>Or by defining the <strong>intrinsic camera matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> and the <strong>extrinsic camera matrix</strong> <span class="math notranslate nohighlight">\(\begin{pmatrix} \mathbf{R} | \mathbf{t} \end{pmatrix}\)</span></p>
-<div class="math notranslate nohighlight" id="equation-eq-world-coords-to-uv">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eq-world-coords-to-uv" title="Permalink to this equation">¶</a></span>\[\begin{split}
-    \lambda \begin{pmatrix} u \\ v \\ 1 \end{pmatrix} = \mathbf{K} \begin{pmatrix} \mathbf{R} | \mathbf{t} \end{pmatrix} \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix}
-\end{split}\]</div>
-</div>
-<div class="section" id="yaw-pitch-and-roll-rotations">
-<h2>Yaw, pitch, and roll rotations<a class="headerlink" href="#yaw-pitch-and-roll-rotations" title="Permalink to this headline">¶</a></h2>
-<p>Before you start the exercises, you should briefly be introduced to the yaw, pitch, and roll parametrization of rotations: A general rotation between the camera frame and the default camera frame can be described by first rotating for some angle (called roll angle) around the <span class="math notranslate nohighlight">\(Z_d\)</span>-axis, then for some other angle (called pitch angle) around the <span class="math notranslate nohighlight">\(X_d\)</span>-axis, and finally for even another angle (called yaw angle) around the <span class="math notranslate nohighlight">\(Y_d\)</span>-axis.</p>
-<p>If we define the cosine and sine of the roll angle as <span class="math notranslate nohighlight">\(c_r\)</span> and <span class="math notranslate nohighlight">\(s_r\)</span> respectively, the roll rotation matrix is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}R_{roll} = \begin{pmatrix}c_{r} &amp; - s_{r} &amp; 0\\s_{r} &amp; c_{r} &amp; 0\\0 &amp; 0 &amp; 1\end{pmatrix}\end{split}\]</div>
-<p>Defining cosine and sine of the pitch angle as <span class="math notranslate nohighlight">\(c_p\)</span> and <span class="math notranslate nohighlight">\(s_p\)</span> and the cosine and sine of the yaw angle as <span class="math notranslate nohighlight">\(c_y\)</span> and <span class="math notranslate nohighlight">\(s_y\)</span>, the pitch and yaw rotation matrices are</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}R_{pitch} = \begin{pmatrix}1 &amp; 0 &amp; 0\\0 &amp; c_{p} &amp; s_{p}\\0 &amp; - s_{p} &amp; c_{p}\end{pmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}R_{yaw} = \begin{pmatrix}c_{y} &amp; 0 &amp; - s_{y}\\0 &amp; 1 &amp; 0\\s_{y} &amp; 0 &amp; c_{y}\end{pmatrix}\end{split}\]</div>
-<p>Note that the form of these matrices depends on the coordinate system. We chose the <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span> frame here. In the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame the matrices would look a bit different, since for example the “forwards” direction in the <span class="math notranslate nohighlight">\((X_i, Y_i, Z_i)^T\)</span> frame is <span class="math notranslate nohighlight">\((1,0,0)^T\)</span>, whereas it is <span class="math notranslate nohighlight">\((0,0,1)^T\)</span> in the default camera frame <span class="math notranslate nohighlight">\((X_d, Y_d, Z_d)^T\)</span>. So if you find a differently looking roll matrix in some book, this probably has to do with the naming of the axes. What all books tend to agree on: In the case of vehicles (like cars or planes), the roll axis points forwards, the yaw axis upwards (or downwards), and the pitch axis to the right (or left).</p>
-<div class="figure align-center" id="ypr-aircraft">
-<a class="reference internal image-reference" href="../_images/ypr_aircraft.svg"><img alt="../_images/ypr_aircraft.svg" src="../_images/ypr_aircraft.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Yaw, pitch, and roll rotations. The orange arrow on the pitch axis indicates that “lifting up its nose” will increase the pitch angle of the airplane. So it indicates the sign convention for the angle. Not all text books agree on common sign conventions here. <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Yaw_Axis_Corrected.svg">wikipedia</a></span><a class="headerlink" href="#ypr-aircraft" title="Permalink to this image">¶</a></p>
-</div>
-<p>A general rotation can be written by multiplying the roll, pitch, and yaw matrices</p>
-<div class="math notranslate nohighlight" id="equation-eq-ypr">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eq-ypr" title="Permalink to this equation">¶</a></span>\[\begin{split} 
-R = R_{yaw} R_{pitch} R_{roll} = \begin{pmatrix}c_{r} c_{y} + s_{p} s_{r} s_{y} &amp; c_{r} s_{p} s_{y} - c_{y} s_{r} &amp; - c_{p} s_{y}\\c_{p} s_{r} &amp; c_{p} c_{r} &amp; s_{p}\\c_{r} s_{y} - c_{y} s_{p} s_{r} &amp; - c_{r} c_{y} s_{p} - s_{r} s_{y} &amp; c_{p} c_{y}\end{pmatrix}
-\end{split}\]</div>
-<p>In the exercise code, we will parametrize the rotation matrix that rotates vectors from the road frame into the camera frame using the formula above. Note that the axis directions of the road frame and the default camera frame are identical.</p>
-<p>For the purpose of this chapter, we will be happy with parametrizing a rotation matrix via yaw, pitch, and roll. However there are some problems with this representation. Three dimensional rotations are more complicated than you might think. If you want to learn more I recommend this <a class="reference external" href="https://www.youtube.com/watch?v=YXGUGSAv09A">YouTube video by Cyrill Stachniss</a>.</p>
-</div>
-<div class="section" id="exercise-projecting-lane-boundaries-into-an-image">
-<h2>Exercise: Projecting lane boundaries into an image<a class="headerlink" href="#exercise-projecting-lane-boundaries-into-an-image" title="Permalink to this headline">¶</a></h2>
-<p>Now you should start to work on your first exercise. For this exercise, I have prepared some data for you. I captured an image in the Carla simulator using a camera sensor attached to a vehicle:</p>
-<div class="figure align-center" id="carla-lane-image">
-<a class="reference internal image-reference" href="../_images/carla_lane_image.svg"><img alt="../_images/carla_lane_image.svg" src="../_images/carla_lane_image.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Image captured by a camera sensor in a Carla simulation.</span><a class="headerlink" href="#carla-lane-image" title="Permalink to this image">¶</a></p>
-</div>
-<p>Additionally I created txt files containing</p>
-<ul class="simple">
-<li><p>world coordinates of the lane boundaries <span class="math notranslate nohighlight">\((X_w,Y_w,Z_w)^T\)</span></p></li>
-<li><p>a transformation matrix <span class="math notranslate nohighlight">\(T_{cw}\)</span> that maps world coordinates to coordinates in the camera reference frame</p></li>
-</ul>
-<p>Your job is to write code based on equation <a class="reference internal" href="#equation-eq-world-coords-to-uv">(6)</a> that creates a label image like this:</p>
-<div class="figure align-center" id="carla-lane-label">
-<a class="reference internal image-reference" href="../_images/carla_lane_label.svg"><img alt="../_images/carla_lane_label.svg" src="../_images/carla_lane_label.svg" width="67%" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Label image.</span><a class="headerlink" href="#carla-lane-label" title="Permalink to this image">¶</a></p>
-</div>
-<p>First you will need to set up your python environment, install the necessary libraries, and download the code for the exercises. Please visit <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a> to learn how.</p>
-<p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_boundary_projection.ipynb</span></code> and follow the instructions in that notebook.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="id2"><dl class="citation">
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">HZ03</a></span></dt>
-<dd><p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
-</dd>
-</dl>
-</p>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "thomasfermi/Algorithms-for-Automated-Driving",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./LaneDetection"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="LaneDetectionOverview.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Overview</p>
+          
+          
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="Segmentation.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lane Boundary Segmentation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-    
-      <div class="extra_footer">
-        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-      </div>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

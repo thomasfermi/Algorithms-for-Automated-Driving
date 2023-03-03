@@ -24,9 +24,9 @@ To work through this book, you
 
 If you find a bug in the exercise code or some confusing explanations in the book, please [raise an issue on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving). If you have questions about the material or want to connect with me or other students, please use [github discussions](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions). Once you finish the book or decide to stop working through it, please consider giving some feedback by filling out [this questionnaire](https://forms.gle/TioqZiUsB5e5wSVG7) (If you open the link in your browser's incognito mode, the questionnaire should be anonymous).
 
-```{admonition} New: Join us on discord!
+```{admonition} Join us on discord!
 :class: seealso
-As of 2021, we have a discord server 🥳. Please follow this [link](https://discord.gg/57YEzkCFHN) to join the community!
+To join the discord server for this book, please follow this [link](https://discord.gg/57YEzkCFHN)!
 ```
 
 ```{admonition} Help wanted!

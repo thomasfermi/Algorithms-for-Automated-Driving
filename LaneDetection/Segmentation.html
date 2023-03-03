@@ -1,327 +1,759 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lane Boundary Segmentation &#8212; Algorithms for Automated Driving</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-183782120-1');
+            </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LaneDetection/Segmentation';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="From Pixels to Meters" href="InversePerspectiveMapping.html" />
     <link rel="prev" title="Basics of Image Formation" href="CameraBasics.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lane Detection
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LaneDetectionOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CameraBasics.html">
-   Basics of Image Formation
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lane Boundary Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="InversePerspectiveMapping.html">
-   From Pixels to Meters
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Control
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/ControlOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PID.html">
-   PID Control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/BicycleModel.html">
-   Kinematic Bicycle Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PurePursuit.html">
-   Pure Pursuit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Camera Calibration
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
-   Extrinsic Camera Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
-   Exercise Setup
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
-   Carla Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/NextChapters.html">
-   Future Chapters
-  </a>
- </li>
-</ul>
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
     </div>
-</nav> <!-- To handle the deprecated key -->
+  </div>
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+    
+  
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/LaneDetection/Segmentation.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-            <!-- Source interaction buttons -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/Segmentation.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/Segmentation.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-            <!-- Launch buttons -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/thomasfermi/Algorithms-for-Automated-Driving/master?urlpath=tree/book/LaneDetection/Segmentation.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/thomasfermi/Algorithms-for-Automated-Driving/blob/master/book/LaneDetection/Segmentation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
 
-        </div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lane Detection</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LaneDetectionOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CameraBasics.html">Basics of Image Formation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lane Boundary Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InversePerspectiveMapping.html">From Pixels to Meters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Control/ControlOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PID.html">PID Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/BicycleModel.html">Kinematic Bicycle Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PurePursuit.html">Pure Pursuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Camera Calibration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">Extrinsic Camera Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/thomasfermi/Algorithms-for-Automated-Driving/master?urlpath=tree/book/LaneDetection/Segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</a>
+      
+      <li><a href="https://colab.research.google.com/github/thomasfermi/Algorithms-for-Automated-Driving/blob/master/book/LaneDetection/Segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/Segmentation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/Segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/LaneDetection/Segmentation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lane Boundary Segmentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prerequisites">
@@ -351,20 +783,174 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lane Boundary Segmentation</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="lane-boundary-segmentation">
+<h1>Lane Boundary Segmentation<a class="headerlink" href="#lane-boundary-segmentation" title="Permalink to this heading">#</a></h1>
+<p>For our lane-detection pipeline, we want to train a neural network, which takes an image and estimates for each pixel the probability that it belongs to the left lane boundary, the probability that it belongs to the right lane boundary, and the probability that it belongs to neither. This problem is called semantic segmentation.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
+<p>For this section, I assume the following</p>
+<ol class="arabic simple">
+<li><p>You know what a neural network is and have trained one yourself before</p></li>
+<li><p>You know the concept of <em>semantic segmentation</em></p></li>
+</ol>
+<p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend to check out one of the following free resources</p>
+<dl class="simple glossary">
+<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/2017/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">#</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but the ones that do exist, are really good! Note that you can see the slides for all lectures when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the <a class="reference external" href="http://cs231n.stanford.edu/2020/">2020</a> version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
+</dd>
+<dt id="term-Practical-Deep-Learning-for-Coders-using-fastai"><a class="reference external" href="https://course.fast.ai/">Practical Deep Learning for Coders using fastai</a><a class="headerlink" href="#term-Practical-Deep-Learning-for-Coders-using-fastai" title="Permalink to this term">#</a></dt><dd><p>If your background is more in coding and less in math/science, then I recommend this course. You find video lectures <a class="reference external" href="https://course.fast.ai/videos/?lesson=1">here</a>, and a book written in jupyter notebooks <a class="reference external" href="https://course.fast.ai/start_colab#Opening-a-chapter-of-the-book">here</a> (there is also a printed version if you like it). I would recommend to do the exercises using Google Colab. The fastai course is taught using the <a class="reference external" href="https://docs.fast.ai/">fastai library</a> which helps you to train pytorch models with very few lines of code. Even if you choose not to look into the fastai course, I would recommend to check out the <a class="reference external" href="https://docs.fast.ai/">fastai library</a>, since it makes training models really easy. Maybe start by just reading the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html">computer vision tutorial</a> first).</p>
+</dd>
+</dl>
+<p>Regarding <strong>prerequisite 2</strong>, I recommend this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n).</p>
+<p>Finally, you need to have access to a GPU in order to do the exercise. But <em>owning</em> a GPU is not a prerequisite. You can use <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, which allows you to run your python code on google servers. To get access to a GPU on Colab, you should click on “Runtime”, then  “change Runtime type”, and finally select “GPU” as “Hardware accelerator”. For more details on how to work with Colab, see <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a>.</p>
+</section>
+<section id="exercise-train-a-neural-net-for-lane-boundary-segmentation">
+<h2>Exercise: Train a neural net for lane boundary segmentation<a class="headerlink" href="#exercise-train-a-neural-net-for-lane-boundary-segmentation" title="Permalink to this heading">#</a></h2>
+<p>The lane segmentation model should take an image of shape (512,1024,3) as an input. Here, 512 is the image height, 1024 is the image width and 3 is for the three color channels red, green, and blue.
+We train the model with input images and corresponding labels of shape (512,1024), where <code class="docutils literal notranslate"><span class="pre">label[v,u]</span></code> can have the value 0,1, or 2, meaning pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is “no boundary”, “left boundary”, or “right boundary”.</p>
+<p>The output of the model shall be a tensor <code class="docutils literal notranslate"><span class="pre">output</span></code> of shape (512,1024,3).</p>
+<ul class="simple">
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,0]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is <strong>not</strong> part of any lane boundary.</p></li>
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,1]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the left lane boundary.</p></li>
+<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,2]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the right lane boundary.</p></li>
+</ul>
+<section id="gathering-training-data">
+<h3>Gathering training data<a class="headerlink" href="#gathering-training-data" title="Permalink to this heading">#</a></h3>
+<p>We can collect training data using the Carla simulator. I wrote a script <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> that</p>
+<ul class="simple">
+<li><p>creates a <em>vehicle</em> on the Carla map</p></li>
+<li><p>attaches an rgb camera <em>sensor</em> to the vehicle</p></li>
+<li><p>moves the vehicle to different positions and</p>
+<ol class="arabic simple">
+<li><p>stores an image from the camera sensor</p></li>
+<li><p>stores world coordinates of the lane boundaries obtained from Carla’s high definition map</p></li>
+<li><p>stores a transformation matrix <span class="math notranslate nohighlight">\(T_{cw}\)</span> that maps world coordinates to coordinates in the camera reference frame</p></li>
+<li><p>stores a label image, that is created from the lane boundary coordinates and the transformation matrix as shown in the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
+</ol>
+</li>
+</ul>
+<p>Note that from the four data items (image, lane boundaries, trafo matrix, label image), only the image and the label image are necessary for training our deep learning model.</p>
+<p>All data is collected on the “Town04” Carla map since this is the only map with usable highways (“Town06” has highways which are either perfectly straight or have a 90-degree turn). For simplicity’s sake, we are building a system just for the highway. Hence, only parts of the map with low road curvature are used, which excludes urban roads.</p>
+<p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
+<p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Recommended: Downloading the data</label><div class="tab-content docutils">
+<p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Alternative: Generating data yourself</label><div class="tab-content docutils">
+<p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>Algorithms-for-Automated-Driving
+conda<span class="w"> </span>activate<span class="w"> </span>aad<span class="w"> </span>
+python<span class="w"> </span>-m<span class="w"> </span>code.solutions.lane_detection.collect_data
+</pre></div>
+</div>
+<p>Now you need to wait some seconds because the script tells the Carla simulator to load the “Town04” map. A window will open that shows different scenes as well as augmented-reality lane boundaries. Each scene that you see will be saved to your hard drive. Wait a while until you have collected enough data, then click the close button. Finally, open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code> and follow the instructions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I do not advise you to read the actual code inside <code class="docutils literal notranslate"><span class="pre">collect_data</span></code>, since I mainly wrote it for functionality, and not for education. If you are really curious, you can of course read it, but first you should</p>
+<ul class="simple">
+<li><p>have finished the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
+<li><p>learned about Carla by studying the <a class="reference external" href="https://carla.readthedocs.io/en/latest/">documentation</a> and running some official python example clients</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="building-a-model">
+<h3>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this heading">#</a></h3>
+<p>To create and train a model, you can choose any deep learning framework you like.</p>
+<p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for semantic segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">No hints</label><div class="tab-content docutils">
+<p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Basic Hints</label><div class="tab-content docutils">
+<p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
+<ul class="simple">
+<li><p>You need to modify the <code class="docutils literal notranslate"><span class="pre">codes</span></code>. You can just define <code class="docutils literal notranslate"><span class="pre">codes</span> <span class="pre">=</span> <span class="pre">np.array(['back',</span> <span class="pre">'left','right'],</span> <span class="pre">dtype=str)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_items</span> <span class="pre">=</span> <span class="pre">get_image_files</span></code>: This will not work for our dataset since the <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> function loads images from all subfolders (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>). We do not want to load images from the label folders! You can create a new function based on <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> by specifying the “folders” argument (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label_func</span></code> needs to be defined so that it works for the given dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">splitter</span></code>. Here you should use <a class="reference external" href="https://docs.fast.ai/data.transforms.html#FuncSplitter"><code class="docutils literal notranslate"><span class="pre">FuncSplitter()</span></code></a> to only select those files as validation files which have the string <code class="docutils literal notranslate"><span class="pre">valid</span></code> inside their name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_tfms</span></code>: For the beginning just set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>. The example from the documentation will not work since it contains image flips which will exchange left and right. This is problematic, since we do want to distinguish left and right. If you want, you can study the documentation to find how to do image augmentations withour vertical flips. You can also read <a class="reference external" href="https://docs.fast.ai/tutorial.albumentations.html">this</a> part of the documentation, where you can learn how to integrate the <a class="reference external" href="https://github.com/albumentations-team/albumentations">albumentations</a> library with fastai.</p></li>
+<li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--3" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--3">Advanced Hints</label><div class="tab-content docutils">
+<p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Store your model</p>
+<p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code>. For fastai you can do <code class="docutils literal notranslate"><span class="pre">torch.save(learn.model,</span> <span class="pre">'./fastai_model.pth')</span></code></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Optional: Working on kaggle</p>
+<p>The traing data I prepared for you can also be found on <a class="reference external" href="https://www.kaggle.com/thomasfermi/lane-detection-for-carla-driving-simulator">kaggle</a>. If you like, you can create your model online with a kaggle notebook. They also offer free GPU access. Consider publishing your notebook on kaggle once you are happy with your solution. I would love to see it 😃.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LaneDetection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="CameraBasics.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Basics of Image Formation</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="InversePerspectiveMapping.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">From Pixels to Meters</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prerequisites">
    Prerequisites
@@ -389,190 +975,57 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-                        </nav>
-                    </div>
-                </div>
+</nav>
+</div>
+
             </div>
-            
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="lane-boundary-segmentation">
-<h1>Lane Boundary Segmentation<a class="headerlink" href="#lane-boundary-segmentation" title="Permalink to this headline">¶</a></h1>
-<p>For our lane-detection pipeline, we want to train a neural network, which takes an image and estimates for each pixel the probability that it belongs to the left lane boundary, the probability that it belongs to the right lane boundary, and the probability that it belongs to neither. This problem is called semantic segmentation.</p>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>For this section, I assume the following</p>
-<ol class="simple">
-<li><p>You know what a neural network is and have trained one yourself before</p></li>
-<li><p>You know the concept of <em>semantic segmentation</em></p></li>
-</ol>
-<p>If you do not fulfill <strong>prerequisite 1</strong>, I recommend to check out one of the following free resources</p>
-<dl class="glossary simple">
-<dt id="term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition"><a class="reference external" href="http://cs231n.stanford.edu/2017/">CS231n: Convolutional Neural Networks for Visual Recognition</a><a class="headerlink" href="#term-CS231n-Convolutional-Neural-Networks-for-Visual-Recognition" title="Permalink to this term">¶</a></dt><dd><p>For this excellent Stanford course, you can find all the learning material online. The <em>course notes</em> are not finished, but the ones that do exist, are really good! Note that you can see the slides for all lectures when you click on <em>detailed syllabus</em>. You probably want to use the version from <a class="reference external" href="http://cs231n.stanford.edu/2017/">2017</a> because that one includes lecture videos. However, for the exercises, you should use the <a class="reference external" href="http://cs231n.stanford.edu/2020/">2020</a> version (very similar to 2017), since you can do your programming in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>. Google Colab lets you use GPUs (expensive hardware necessary for deep learning) for free on Google servers. And even if you do not want to use Colab, the 2020 course has better instructions on working locally (including anaconda). For the exercises in which you can choose between tensorflow and pytorch I recommend you to use pytorch. If you are really eager to return to this course as quickly as you can, you can stop CS231n once you have learned about semantic segmentation.</p>
-</dd>
-<dt id="term-Practical-Deep-Learning-for-Coders-using-fastai"><a class="reference external" href="https://course.fast.ai/">Practical Deep Learning for Coders using fastai</a><a class="headerlink" href="#term-Practical-Deep-Learning-for-Coders-using-fastai" title="Permalink to this term">¶</a></dt><dd><p>If your background is more in coding and less in math/science, then I recommend this course. You find video lectures <a class="reference external" href="https://course.fast.ai/videos/?lesson=1">here</a>, and a book written in jupyter notebooks <a class="reference external" href="https://course.fast.ai/start_colab#Opening-a-chapter-of-the-book">here</a> (there is also a printed version if you like it). I would recommend to do the exercises using Google Colab. The fastai course is taught using the <a class="reference external" href="https://docs.fast.ai/">fastai library</a> which helps you to train pytorch models with very few lines of code. Even if you choose not to look into the fastai course, I would recommend to check out the <a class="reference external" href="https://docs.fast.ai/">fastai library</a>, since it makes training models really easy. Maybe start by just reading the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html">computer vision tutorial</a> first).</p>
-</dd>
-</dl>
-<p>Regarding <strong>prerequisite 2</strong>, I recommend this very nice <a class="reference external" href="https://www.jeremyjordan.me/semantic-segmentation/">blog post about semantic segmentation by Jeremy Jordan</a> (which is heavily based on CS231n).</p>
-<p>Finally, you need to have access to a GPU in order to do the exercise. But <em>owning</em> a GPU is not a prerequisite. You can use <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, which allows you to run your python code on google servers. To get access to a GPU on Colab, you should click on “Runtime”, then  “change Runtime type”, and finally select “GPU” as “Hardware accelerator”. For more details on how to work with Colab, see <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a>.</p>
-</div>
-<div class="section" id="exercise-train-a-neural-net-for-lane-boundary-segmentation">
-<h2>Exercise: Train a neural net for lane boundary segmentation<a class="headerlink" href="#exercise-train-a-neural-net-for-lane-boundary-segmentation" title="Permalink to this headline">¶</a></h2>
-<p>The lane segmentation model should take an image of shape (512,1024,3) as an input. Here, 512 is the image height, 1024 is the image width and 3 is for the three color channels red, green, and blue.
-We train the model with input images and corresponding labels of shape (512,1024), where <code class="docutils literal notranslate"><span class="pre">label[v,u]</span></code> can have the value 0,1, or 2, meaning pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is “no boundary”, “left boundary”, or “right boundary”.</p>
-<p>The output of the model shall be a tensor <code class="docutils literal notranslate"><span class="pre">output</span></code> of shape (512,1024,3).</p>
-<ul class="simple">
-<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,0]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is <strong>not</strong> part of any lane boundary.</p></li>
-<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,1]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the left lane boundary.</p></li>
-<li><p>The number <code class="docutils literal notranslate"><span class="pre">output[v,u,2]</span></code> gives the probability that the pixel <span class="math notranslate nohighlight">\((u,v)\)</span> is part of the right lane boundary.</p></li>
-</ul>
-<div class="section" id="gathering-training-data">
-<h3>Gathering training data<a class="headerlink" href="#gathering-training-data" title="Permalink to this headline">¶</a></h3>
-<p>We can collect training data using the Carla simulator. I wrote a script <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> that</p>
-<ul class="simple">
-<li><p>creates a <em>vehicle</em> on the Carla map</p></li>
-<li><p>attaches an rgb camera <em>sensor</em> to the vehicle</p></li>
-<li><p>moves the vehicle to different positions and</p>
-<ol class="simple">
-<li><p>stores an image from the camera sensor</p></li>
-<li><p>stores world coordinates of the lane boundaries obtained from Carla’s high definition map</p></li>
-<li><p>stores a transformation matrix <span class="math notranslate nohighlight">\(T_{cw}\)</span> that maps world coordinates to coordinates in the camera reference frame</p></li>
-<li><p>stores a label image, that is created from the lane boundary coordinates and the transformation matrix as shown in the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
-</ol>
-</li>
-</ul>
-<p>Note that from the four data items (image, lane boundaries, trafo matrix, label image), only the image and the label image are necessary for training our deep learning model.</p>
-<p>All data is collected on the “Town04” Carla map since this is the only map with usable highways (“Town06” has highways which are either perfectly straight or have a 90-degree turn). For simplicity’s sake, we are building a system just for the highway. Hence, only parts of the map with low road curvature are used, which excludes urban roads.</p>
-<p>One part of the map was arbitrarily chosen as the “validation zone”. All data that is created in this zone has the string “validation_set” added to its filename.</p>
-<p>Now you will want to get some training data onto <em>your</em> machine! I recommend you to just download some training data that I created for you using the <code class="docutils literal notranslate"><span class="pre">collect_data.py</span></code> script. But if you really want to, you can also collect data yourself.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="318ac7ea-730f-4489-bc71-aac281b2d441" name="9a687e65-5bd1-4a22-9d7d-9c4ddf69626e" type="radio">
-</input><label class="tabbed-label" for="318ac7ea-730f-4489-bc71-aac281b2d441">
-Recommended: Downloading the data</label><div class="tabbed-content docutils">
-<p>Just go ahead and open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code>. This will have a python utility function that downloads the data for you.</p>
-</div>
-<input id="9788e856-b482-44f5-8751-fdd4b6faae58" name="9a687e65-5bd1-4a22-9d7d-9c4ddf69626e" type="radio">
-</input><label class="tabbed-label" for="9788e856-b482-44f5-8751-fdd4b6faae58">
-Alternative: Generating data yourself</label><div class="tabbed-content docutils">
-<p>First, you need to run the Carla simulator. Regarding the installation of Carla, see <a class="reference internal" href="../Appendix/CarlaInstallation.html"><span class="doc std std-doc">the appendix</span></a>. Then run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Algorithms-for-Automated-Driving
-conda activate aad 
-python -m code.solutions.lane_detection.collect_data
-</pre></div>
-</div>
-<p>Now you need to wait some seconds because the script tells the Carla simulator to load the “Town04” map. A window will open that shows different scenes as well as augmented-reality lane boundaries. Each scene that you see will be saved to your hard drive. Wait a while until you have collected enough data, then click the close button. Finally, open the <strong>starter code</strong> in <code class="docutils literal notranslate"><span class="pre">code/exercises/lane_detection/lane_segmentation.ipynb</span></code> and follow the instructions.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>I do not advise you to read the actual code inside <code class="docutils literal notranslate"><span class="pre">collect_data</span></code>, since I mainly wrote it for functionality, and not for education. If you are really curious, you can of course read it, but first you should</p>
-<ul class="simple">
-<li><p>have finished the exercise of the <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">previous section</span></a></p></li>
-<li><p>learned about Carla by studying the <a class="reference external" href="https://carla.readthedocs.io/en/latest/">documentation</a> and running some official python example clients</p></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="building-a-model">
-<h3>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this headline">¶</a></h3>
-<p>To create and train a model, you can choose any deep learning framework you like.</p>
-<p>If you want some <strong>guidance</strong>, I recommend using fastai. You can use the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">example for semantic segmentation from the fastai documentation</a>, slightly modify it for the dataset at hand, and it should just work! If you want, you can get some hints:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="b4c265ea-4e12-43c3-a31e-a34aeed690b4" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
-</input><label class="tabbed-label" for="b4c265ea-4e12-43c3-a31e-a34aeed690b4">
-No hints</label><div class="tabbed-content docutils">
-<p>Ok, no hints for you. If you get stuck, try looking at the “Limited hints”, or the “Detailed hints”.</p>
-</div>
-<input id="0b223a26-5ce8-46fc-ad19-79d69c218871" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
-</input><label class="tabbed-label" for="0b223a26-5ce8-46fc-ad19-79d69c218871">
-Basic Hints</label><div class="tabbed-content docutils">
-<p>I would recommend to read the whole <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation">tutorial section on semantic segmentation</a> in the fastai docs. I would then copy the code from the <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Segmentation---With-the-data-block-API">tutorial that uses the datablock API</a>. You will need to modify this code a little bit:</p>
-<ul class="simple">
-<li><p>You need to modify the <code class="docutils literal notranslate"><span class="pre">codes</span></code>. You can just define <code class="docutils literal notranslate"><span class="pre">codes</span> <span class="pre">=</span> <span class="pre">np.array(['back',</span> <span class="pre">'left','right'],</span> <span class="pre">dtype=str)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_items</span> <span class="pre">=</span> <span class="pre">get_image_files</span></code>: This will not work for our dataset since the <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> function loads images from all subfolders (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>). We do not want to load images from the label folders! You can create a new function based on <code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> by specifying the “folders” argument (see <a class="reference external" href="https://docs.fast.ai/data.transforms.html#get_image_files">documentation</a>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">label_func</span></code> needs to be defined so that it works for the given dataset</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">splitter</span></code>. Here you should use <a class="reference external" href="https://docs.fast.ai/data.transforms.html#FuncSplitter"><code class="docutils literal notranslate"><span class="pre">FuncSplitter()</span></code></a> to only select those files as validation files which have the string <code class="docutils literal notranslate"><span class="pre">valid</span></code> inside their name.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">batch_tfms</span></code>: For the beginning just set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>. The example from the documentation will not work since it contains image flips which will exchange left and right. This is problematic, since we do want to distinguish left and right. If you want, you can study the documentation to find how to do image augmentations withour vertical flips. You can also read <a class="reference external" href="https://docs.fast.ai/tutorial.albumentations.html">this</a> part of the documentation, where you can learn how to integrate the <a class="reference external" href="https://github.com/albumentations-team/albumentations">albumentations</a> library with fastai.</p></li>
-<li><p>When you create the <code class="docutils literal notranslate"><span class="pre">unet_learner</span></code>, you should ask it to compute some metrics for you: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">unet_learner(dls,</span> <span class="pre">resnet34,</span> <span class="pre">metrics=[DiceMulti()])</span></code>. The dice metric is pretty useful for this example, and your model should achieve a dice metric of at least <code class="docutils literal notranslate"><span class="pre">0.9</span></code>.</p></li>
-</ul>
-</div>
-<input id="8e8c861c-4348-4023-8ad5-068a517aa8d2" name="b9b37e2f-56bd-4eaf-a577-c1fa5ee36ca3" type="radio">
-</input><label class="tabbed-label" for="8e8c861c-4348-4023-8ad5-068a517aa8d2">
-Advanced Hints</label><div class="tabbed-content docutils">
-<p>Instead of creating a unet_learner you can import <code class="docutils literal notranslate"><span class="pre">MobileV3Small</span></code> from the <a class="reference external" href="https://github.com/ekzhang/fastseg">fastseg library</a>. This model is much faster. Once you defined your model, you just create a regular Learner: <code class="docutils literal notranslate"><span class="pre">learn</span> <span class="pre">=</span> <span class="pre">Learner(dls,</span> <span class="pre">model,</span> <span class="pre">metrics=[DiceMulti()])</span></code></p>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Store your model</p>
-<p>You will need your trained model for an upcoming exercise. Hence, please save your trained model to disk. In pytorch you do this via <code class="docutils literal notranslate"><span class="pre">torch.save</span></code>. For fastai you can do <code class="docutils literal notranslate"><span class="pre">torch.save(learn.model,</span> <span class="pre">'./fastai_model.pth')</span></code></p>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Optional: Working on kaggle</p>
-<p>The traing data I prepared for you can also be found on <a class="reference external" href="https://www.kaggle.com/thomasfermi/lane-detection-for-carla-driving-simulator">kaggle</a>. If you like, you can create your model online with a kaggle notebook. They also offer free GPU access. Consider publishing your notebook on kaggle once you are happy with your solution. I would love to see it 😃.</p>
-</div>
-</div>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "thomasfermi/Algorithms-for-Automated-Driving",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./LaneDetection"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="CameraBasics.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Basics of Image Formation</p>
+          
+          
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="InversePerspectiveMapping.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">From Pixels to Meters</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-    
-      <div class="extra_footer">
-        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-      </div>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

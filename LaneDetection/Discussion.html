@@ -1,300 +1,699 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-183782120-1');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LaneDetection/Discussion';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Overview" href="../Control/ControlOverview.html" />
     <link rel="prev" title="From Pixels to Meters" href="InversePerspectiveMapping.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
-      
-      
-      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lane Detection
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LaneDetectionOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CameraBasics.html">
-   Basics of Image Formation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Segmentation.html">
-   Lane Boundary Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="InversePerspectiveMapping.html">
-   From Pixels to Meters
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Control
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/ControlOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PID.html">
-   PID Control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/BicycleModel.html">
-   Kinematic Bicycle Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/PurePursuit.html">
-   Pure Pursuit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Control/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Camera Calibration
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
-   Extrinsic Camera Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
-   Exercise Setup
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
-   Carla Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/NextChapters.html">
-   Future Chapters
-  </a>
- </li>
-</ul>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-    </div>
-</nav> <!-- To handle the deprecated key -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
 
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-          
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/LaneDetection/Discussion.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Source interaction buttons -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/Discussion.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/Discussion.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
 
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/BicycleModel.html">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Control/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lane Detection</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LaneDetectionOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CameraBasics.html">Basics of Image Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Segmentation.html">Lane Boundary Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InversePerspectiveMapping.html">From Pixels to Meters</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Control/ControlOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PID.html">PID Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/BicycleModel.html">Kinematic Bicycle Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/PurePursuit.html">Pure Pursuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Control/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Camera Calibration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">Extrinsic Camera Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FLaneDetection/Discussion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/LaneDetection/Discussion.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/LaneDetection/Discussion.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Discussion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-the-presented-approach">
@@ -327,20 +726,139 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Discussion</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
+<section id="limitations-of-the-presented-approach">
+<h2>Limitations of the presented approach<a class="headerlink" href="#limitations-of-the-presented-approach" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The second stage of the pipeline is implemented on CPU. For better performance everything should run on GPU or even dedicated hardware.</p></li>
+<li><p>We only detect the ego lane boundaries. But it is obvious how to extend our approach to include the left and right lanes.</p></li>
+<li><p>The semantic segmentation approach will have problems when there are lane changes. A cleaner solution would be <em>instance segmentation</em>.</p></li>
+<li><p>We created the lane boundary labels automatically using Carla’s high definition map. Creating labels for a camera installed in a real car is way more challenging. The options I know of are</p>
+<ol class="arabic simple">
+<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <span id="id1">[<a class="reference internal" href="#id8" title="Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. arXiv:2010.08776.">BCD+20</a>]</span>).</p></li>
+<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <span id="id2">[<a class="reference internal" href="#id11" title="Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In Proceedings of the IEEE International Conference on Computer Vision. 2019.">BS19</a>]</span>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
+<li><p>If you have some system that detects lane markings on a short distance reliably, you can combine that with visual-inertial odometry to create good labels. Examples of such short-distance lane-detection systems would be a <a class="reference external" href="https://en.wikipedia.org/wiki/Lidar">lidar</a>, or a camera-based lane-detection system that works well for the first say 5 meters, but is not so good further away. Once you logged some seconds or minutes of driving, you can use <a class="reference external" href="https://en.wikipedia.org/wiki/Visual_odometry#Visual_inertial_odometry">visual-inertial odometry</a> to obtain the vehicle trajectory and then stitch together a local map of lane boundaries. Subsequently, you can project those mapped lane boundaries into each image you have logged.</p></li>
+</ol>
+</li>
+<li><p>The inverse perspective mapping step relies on very good calibration parameters, i.e., on knowing the position and orientation of the camera with respect to the road. Since we are running simulations here, we exactly know those parameters. In the real world you need to calibrate your camera. Getting the camera intrinsics is typically no problem <a class="reference external" href="https://docs.opencv.org/master/dc/dbb/tutorial_py_calibration.html">if you have a chess boad</a>. Obtaining the camera extrinsics (orientation and height) is more challenging and might become <a class="reference internal" href="../Appendix/NextChapters.html"><span class="doc std std-doc">another chapter of this book</span></a> at some point.</p></li>
+<li><p>We are assuming that the road is flat, which is obviously not true everywhere. We are also neglecting that the car dips or “nose-dives” a bit when breaking. In this case, the vehicle’s forwards axis is not parallel to the road, which is something we assumed in our derivations.</p></li>
+</ul>
+</section>
+<section id="comparison-to-literature">
+<h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this heading">#</a></h2>
+<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <span id="id3">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span>, we want to list the differences</p>
+<ul class="simple">
+<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <span id="id4">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
+<li><p>For the image segmentation we are using an off-the-shelf neural network from the great pytorch library <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a>.</p></li>
+<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <span id="id5">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
+</ul>
+</section>
+<section id="comparison-to-a-real-adas-system-openpilot">
+<h2>Comparison to a real ADAS system: openpilot<a class="headerlink" href="#comparison-to-a-real-adas-system-openpilot" title="Permalink to this heading">#</a></h2>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
+</aside>
+<p>It is interesting to see how a real world lane-detection system works. Luckily, there is one ADAS company that open sources their software: <a class="reference external" href="http://comma.ai">comma.ai</a>. As you can read in the <a class="reference external" href="https://github.com/commaai/openpilot">source code of their product openpilot</a> their lane-detection system is designed roughly as follows</p>
+<ul class="simple">
+<li><p>Perform online <a class="reference external" href="https://github.com/commaai/openpilot/blob/0b849d5a4e417d73e4b821b909839f379d70e75d/selfdrive/locationd/calibrationd.py">calibration</a> to estimate camera extrinsics</p></li>
+<li><p>Apply homography (warpPerspective) to the camera image in order to compute the image that you would get from a camera with <em>default</em> extrinsics. In the openpilot documentation this is referred to as <a class="reference external" href="https://github.com/commaai/openpilot/tree/master/common/transformations">calibrated frame</a>.</p></li>
+<li><p>Train a neural net with the default-perspective images. The output of the neural network is the path the vehicle should take (somewhat close to the center between the lane boundaries). I am not totally sure, but based on their <a class="reference external" href="https://medium.com/&#64;comma_ai/towards-a-superhuman-driving-agent-1f7391e2e8ec">medium article</a> I think they create labels like this: Take recorded videos and estimate vehicle trajectory using visual odometry. Then for each image frame, transform this trajectory into the vehicle reference frame at that point in time and use this as a label.</p></li>
+</ul>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<p>If you want to read some more about lane detection, I recommend the following ressources:</p>
+<dl class="simple glossary">
+<dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a><a class="headerlink" href="#term-Papers-with-code" title="Permalink to this term">#</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
+</dd>
+<dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a><a class="headerlink" href="#term-awesome-lane-detection" title="Permalink to this term">#</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
+</dd>
+</dl>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id6">
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">BS19</a><span class="fn-bracket">]</span></span>
+<p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">BCD+20</a><span class="fn-bracket">]</span></span>
+<p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GBN+19<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>,<a role="doc-backlink" href="#id5">3</a>)</span>
+<p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "thomasfermi/Algorithms-for-Automated-Driving",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./LaneDetection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="InversePerspectiveMapping.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">From Pixels to Meters</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../Control/ControlOverview.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Overview</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-the-presented-approach">
    Limitations of the presented approach
@@ -368,141 +886,57 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-                        </nav>
-                    </div>
-                </div>
+</nav>
+</div>
+
             </div>
-            
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="discussion">
-<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="limitations-of-the-presented-approach">
-<h2>Limitations of the presented approach<a class="headerlink" href="#limitations-of-the-presented-approach" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>The second stage of the pipeline is implemented on CPU. For better performance everything should run on GPU or even dedicated hardware.</p></li>
-<li><p>We only detect the ego lane boundaries. But it is obvious how to extend our approach to include the left and right lanes.</p></li>
-<li><p>The semantic segmentation approach will have problems when there are lane changes. A cleaner solution would be <em>instance segmentation</em>.</p></li>
-<li><p>We created the lane boundary labels automatically using Carla’s high definition map. Creating labels for a camera installed in a real car is way more challenging. The options I know of are</p>
-<ol class="simple">
-<li><p>You can have humans manually label each image separately. This approach is done for example for NVIDIA’s PilotNet (Ref. <span id="id1">[<a class="reference internal" href="#id8" title="Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. arXiv:2010.08776.">BCD+20</a>]</span>).</p></li>
-<li><p>Similar to our virtual approach, you can create labels using a high definition map of a real highway (Ref. <span id="id2">[<a class="reference internal" href="#id11" title="Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In Proceedings of the IEEE International Conference on Computer Vision. 2019.">BS19</a>]</span>). The challenge is to perfectly localize the vehicle within the map in order to get good labels. Furthermore, to train a lane detection system that works on different highways across the world, you will need high definition maps of lots of different highways.</p></li>
-<li><p>If you have some system that detects lane markings on a short distance reliably, you can combine that with visual-inertial odometry to create good labels. Examples of such short-distance lane-detection systems would be a <a class="reference external" href="https://en.wikipedia.org/wiki/Lidar">lidar</a>, or a camera-based lane-detection system that works well for the first say 5 meters, but is not so good further away. Once you logged some seconds or minutes of driving, you can use <a class="reference external" href="https://en.wikipedia.org/wiki/Visual_odometry#Visual_inertial_odometry">visual-inertial odometry</a> to obtain the vehicle trajectory and then stitch together a local map of lane boundaries. Subsequently, you can project those mapped lane boundaries into each image you have logged.</p></li>
-</ol>
-</li>
-<li><p>The inverse perspective mapping step relies on very good calibration parameters, i.e., on knowing the position and orientation of the camera with respect to the road. Since we are running simulations here, we exactly know those parameters. In the real world you need to calibrate your camera. Getting the camera intrinsics is typically no problem <a class="reference external" href="https://docs.opencv.org/master/dc/dbb/tutorial_py_calibration.html">if you have a chess boad</a>. Obtaining the camera extrinsics (orientation and height) is more challenging and might become <a class="reference internal" href="../Appendix/NextChapters.html"><span class="doc std std-doc">another chapter of this book</span></a> at some point.</p></li>
-<li><p>We are assuming that the road is flat, which is obviously not true everywhere. We are also neglecting that the car dips or “nose-dives” a bit when breaking. In this case, the vehicle’s forwards axis is not parallel to the road, which is something we assumed in our derivations.</p></li>
-</ul>
-</div>
-<div class="section" id="comparison-to-literature">
-<h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this headline">¶</a></h2>
-<p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <span id="id3">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span>, we want to list the differences</p>
-<ul class="simple">
-<li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <span id="id4">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
-<li><p>For the image segmentation we are using an off-the-shelf neural network from the great pytorch library <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">segmentation models pytorch</a>.</p></li>
-<li><p>Our pipeline is similar to the <strong>baseline model</strong> in Ref. <span id="id5">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span>, not their actual model. Their actual model is an end-to-end neural network which fuses the two-step pipeline of the baseline model into one single neural network. This is advantageous, since it increases the accuracy, and speed of execution. Of course, creating an end-to-end network is also possible for our slightly modified approach, but we keep this as an exercise for the reader 😉.</p></li>
-</ul>
-</div>
-<div class="section" id="comparison-to-a-real-adas-system-openpilot">
-<h2>Comparison to a real ADAS system: openpilot<a class="headerlink" href="#comparison-to-a-real-adas-system-openpilot" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
-</div>
-<p>It is interesting to see how a real world lane-detection system works. Luckily, there is one ADAS company that open sources their software: <a class="reference external" href="http://comma.ai">comma.ai</a>. As you can read in the <a class="reference external" href="https://github.com/commaai/openpilot">source code of their product openpilot</a> their lane-detection system is designed roughly as follows</p>
-<ul class="simple">
-<li><p>Perform online <a class="reference external" href="https://github.com/commaai/openpilot/blob/0b849d5a4e417d73e4b821b909839f379d70e75d/selfdrive/locationd/calibrationd.py">calibration</a> to estimate camera extrinsics</p></li>
-<li><p>Apply homography (warpPerspective) to the camera image in order to compute the image that you would get from a camera with <em>default</em> extrinsics. In the openpilot documentation this is referred to as <a class="reference external" href="https://github.com/commaai/openpilot/tree/master/common/transformations">calibrated frame</a>.</p></li>
-<li><p>Train a neural net with the default-perspective images. The output of the neural network is the path the vehicle should take (somewhat close to the center between the lane boundaries). I am not totally sure, but based on their <a class="reference external" href="https://medium.com/&#64;comma_ai/towards-a-superhuman-driving-agent-1f7391e2e8ec">medium article</a> I think they create labels like this: Take recorded videos and estimate vehicle trajectory using visual odometry. Then for each image frame, transform this trajectory into the vehicle reference frame at that point in time and use this as a label.</p></li>
-</ul>
-</div>
-<div class="section" id="further-reading">
-<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
-<p>If you want to read some more about lane detection, I recommend the following ressources:</p>
-<dl class="glossary simple">
-<dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a><a class="headerlink" href="#term-Papers-with-code" title="Permalink to this term">¶</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
-</dd>
-<dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a><a class="headerlink" href="#term-awesome-lane-detection" title="Permalink to this term">¶</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p id="id6"><dl class="citation">
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">BS19</a></span></dt>
-<dd><p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
-</dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id1">BCD+20</a></span></dt>
-<dd><p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
-</dd>
-<dt class="label" id="id7"><span class="brackets">GBN+19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>)</span></dt>
-<dd><p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
-</dd>
-</dl>
-</p>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "thomasfermi/Algorithms-for-Automated-Driving",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./LaneDetection"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="InversePerspectiveMapping.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">From Pixels to Meters</p>
+          
+          
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../Control/ControlOverview.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Overview</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-    
-      <div class="extra_footer">
-        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-      </div>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

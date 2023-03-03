@@ -1,302 +1,701 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Kinematic Bicycle Model &#8212; Algorithms for Automated Driving</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-183782120-1');
+            </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Control/BicycleModel';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Pure Pursuit" href="PurePursuit.html" />
     <link rel="prev" title="PID Control" href="PID.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-183782120-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
-      
-      
-      <img src="../_static/car_sketch_wide.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Algorithms for Automated Driving</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lane Detection
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../LaneDetection/LaneDetectionOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../LaneDetection/CameraBasics.html">
-   Basics of Image Formation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../LaneDetection/Segmentation.html">
-   Lane Boundary Segmentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html">
-   From Pixels to Meters
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../LaneDetection/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Control
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="ControlOverview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="PID.html">
-   PID Control
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Kinematic Bicycle Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="PurePursuit.html">
-   Pure Pursuit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Camera Calibration
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
-   Extrinsic Camera Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../CameraCalibration/Discussion.html">
-   Discussion
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/ExerciseSetup.html">
-   Exercise Setup
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/CarlaInstallation.html">
-   Carla Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Appendix/NextChapters.html">
-   Future Chapters
-  </a>
- </li>
-</ul>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-    </div>
-</nav> <!-- To handle the deprecated key -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
 
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
 
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
 
-          
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Control/BicycleModel.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Source interaction buttons -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FControl/BicycleModel.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/Control/BicycleModel.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
 
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/LaneDetectionOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/CameraBasics.html">
+                        Basics of Image Formation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/Segmentation.html">
+                        Lane Boundary Segmentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/InversePerspectiveMapping.html">
+                        From Pixels to Meters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../LaneDetection/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ControlOverview.html">
+                        Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="PID.html">
+                        PID Control
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Kinematic Bicycle Model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="PurePursuit.html">
+                        Pure Pursuit
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">
+                        Extrinsic Camera Calibration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../CameraCalibration/Discussion.html">
+                        Discussion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/ExerciseSetup.html">
+                        Exercise Setup
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/CarlaInstallation.html">
+                        Carla Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
+                        Future Chapters
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lane Detection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LaneDetection/LaneDetectionOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LaneDetection/CameraBasics.html">Basics of Image Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LaneDetection/Segmentation.html">Lane Boundary Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html">From Pixels to Meters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LaneDetection/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ControlOverview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PID.html">PID Control</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Kinematic Bicycle Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PurePursuit.html">Pure Pursuit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Camera Calibration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/VanishingPointCameraCalibration.html">Extrinsic Camera Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CameraCalibration/Discussion.html">Discussion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/issues/new?title=Issue%20on%20page%20%2FControl/BicycleModel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/edit/master/book/Control/BicycleModel.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/Control/BicycleModel.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Kinematic Bicycle Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#instantaneous-center-of-rotation-icr">
@@ -319,63 +718,28 @@ const thebe_selector_output = ".output, .cell_output"
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Kinematic Bicycle Model</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#instantaneous-center-of-rotation-icr">
-   Instantaneous center of rotation (ICR)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ackermann-steering-geometry">
-   Ackermann steering geometry
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Kinematic Bicycle model
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="kinematic-bicycle-model">
-<h1>Kinematic Bicycle Model<a class="headerlink" href="#kinematic-bicycle-model" title="Permalink to this headline">¶</a></h1>
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="kinematic-bicycle-model">
+<h1>Kinematic Bicycle Model<a class="headerlink" href="#kinematic-bicycle-model" title="Permalink to this heading">#</a></h1>
 <p>The pure pursuit method for lateral vehicle control is based on a mathematical model of a vehicle known as the bicycle model. A prerequisite for understanding the bicycle model is the concept of the <em>instantaneous center of rotation</em>.</p>
-<div class="section" id="instantaneous-center-of-rotation-icr">
-<h2>Instantaneous center of rotation (ICR)<a class="headerlink" href="#instantaneous-center-of-rotation-icr" title="Permalink to this headline">¶</a></h2>
+<section id="instantaneous-center-of-rotation-icr">
+<h2>Instantaneous center of rotation (ICR)<a class="headerlink" href="#instantaneous-center-of-rotation-icr" title="Permalink to this heading">#</a></h2>
 <p>Let us consider a rigid body performing a planar motion. An example would be a vehicle driving on a flat road.
 We pick a world coordinate system, for which the <span class="math notranslate nohighlight">\(x-y\)</span> plane coincides with the motion plane of the rigid body.
 Now, we pick one point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> within the rigid body as the reference point. We are free to pick <em>any</em> point we want. For our vehicle, we could e.g. use the center of the rear axle.
 If we pick another point <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> within the rigid body (for our vehicle maybe the left front tire), then we can express the velocity of that point via</p>
 <div class="math notranslate nohighlight" id="equation-eq-rb-velocity">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eq-rb-velocity" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-rb-velocity" title="Permalink to this equation">#</a></span>\[
     \dot{\mathbf{r}} = \dot{\mathbf{r}}_0 + \mathbf{\Omega} \times (\mathbf{r}-\mathbf{r}_0)
 \]</div>
 <p>Note that a dot means time derivative: <span class="math notranslate nohighlight">\(\frac{d}{dt}\mathbf{r}(t)=\dot{\mathbf{r}}(t)\)</span> and that the angular velocity vector <span class="math notranslate nohighlight">\(\Omega\)</span> does <em>not</em> depend on the choice of <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> (for a proof see <a class="reference external" href="https://en.wikipedia.org/wiki/Angular_velocity#Consistency">Wikipedia</a>).</p>
 <p><strong>Claim</strong>: For any given point in time, we can find a point <span class="math notranslate nohighlight">\(\mathbf{r}\)</span>, for which <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}=0\)</span>. We call this point the <em>instantaneous center of rotation</em> <span class="math notranslate nohighlight">\(\mathbf{r}_{ICR}\)</span>. Note that <span class="math notranslate nohighlight">\(\mathbf{r}_{ICR}\)</span> does not need to lie inside the rigid body.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>The proof regarding the instantaneous center of rotation is taken from this <a class="reference external" href="https://physics.stackexchange.com/a/541554/112050">physics.stackexchange answer by Valter Moretti</a>.</p>
-</div>
+</aside>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof of the claim</p>
 <p>We need to find <span class="math notranslate nohighlight">\(\mathbf{r}\)</span>, for which <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}=0\)</span>. This means</p>
@@ -394,54 +758,64 @@ If we pick another point <span class="math notranslate nohighlight">\(\mathbf{r}
 \[\dot{\mathbf{r}} = \mathbf{\Omega} \times (\mathbf{r}-\mathbf{r}_{ICR})\]</div>
 <p>Hence, the motion of any point in the rigid body <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> is just a pure rotation around the instantaneous center of rotation <span class="math notranslate nohighlight">\(\mathbf{r}_{ICR}\)</span>.</p>
 <p>Now let us visualize the ICR and see how it can be used in technical sketches.</p>
-<div class="figure align-default" id="icr">
+<figure class="align-default" id="icr">
 <a class="reference internal image-reference" href="../_images/ICR.svg"><img alt="../_images/ICR.svg" src="../_images/ICR.svg" width="50%" /></a>
-<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Constructing velocity vectors from a given ICR.</span><a class="headerlink" href="#icr" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Constructing velocity vectors from a given ICR.</span><a class="headerlink" href="#icr" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>If we are given a rigid body (gray rectangle) and its ICR (red dot) as in <a class="reference internal" href="#icr"><span class="std std-numref">Fig. 21</span></a>, this suffices to draw the orientation of the velocity vector for all points in the rigid body. Due to the properties of the cross product, the velocity vector <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> (red arrow) is perpendicular to <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span>, i.e., the line connecting the ICR and the point (black line).
 Note that the velocity vectors could be pointing into the opposite direction and would still be perpendicular. We can only do the correct sketch in this regard if we know the sign of the z-component of <span class="math notranslate nohighlight">\(\mathbf{\Omega}\)</span>. The length of the velocity vector is determined by the length of the black line  <span class="math notranslate nohighlight">\(|(\mathbf{r}-\mathbf{r}_{ICR})|\)</span> and the magnitude of <span class="math notranslate nohighlight">\(\mathbf{\Omega}\)</span>.</p>
 <p><a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a> shows that we can turn this argument around: If we know the velocity vector direction (red arrow) of a point (blue dot) in the rigid body, we can draw a dashed line through the point (blue dot), which is perpendicular to the velocity vector. The ICR needs to lie on this dashed line, otherwise <span class="math notranslate nohighlight">\(\dot{\mathbf{r}}\)</span> and <span class="math notranslate nohighlight">\((\mathbf{r}-\mathbf{r}_{ICR})\)</span> would not be perpendicular. If we know the velocity vector direction of at least two points, we can find the ICR as the intersection of the dashed lines.</p>
-<div class="figure align-default" id="icr-construction">
+<figure class="align-default" id="icr-construction">
 <a class="reference internal image-reference" href="../_images/ICR_construction.svg"><img alt="../_images/ICR_construction.svg" src="../_images/ICR_construction.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Constructing the ICR from given velocity vectors.</span><a class="headerlink" href="#icr-construction" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="ackermann-steering-geometry">
-<h2>Ackermann steering geometry<a class="headerlink" href="#ackermann-steering-geometry" title="Permalink to this headline">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Constructing the ICR from given velocity vectors.</span><a class="headerlink" href="#icr-construction" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ackermann-steering-geometry">
+<h2>Ackermann steering geometry<a class="headerlink" href="#ackermann-steering-geometry" title="Permalink to this heading">#</a></h2>
 <p>Now that we learned about rigid bodies in general, let us study the rigid body of a four-wheeled car, which is steered by the front axle. <a class="reference internal" href="#wheelangle"><span class="std std-numref">Fig. 23</span></a> depicts such a vehicle and introduces the <strong>wheel steer angle</strong> <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
-<div class="figure align-default" id="wheelangle">
+<figure class="align-default" id="wheelangle">
 <a class="reference internal image-reference" href="../_images/WheelAngle.svg"><img alt="../_images/WheelAngle.svg" src="../_images/WheelAngle.svg" width="60%" /></a>
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Definition of wheel steer angle for the left (<span class="math notranslate nohighlight">\(\delta_l\)</span>) and right front wheel (<span class="math notranslate nohighlight">\(\delta_r\)</span>). Steering via the rear wheels is uncommon and will not be considered here.</span><a class="headerlink" href="#wheelangle" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Definition of wheel steer angle for the left (<span class="math notranslate nohighlight">\(\delta_l\)</span>) and right front wheel (<span class="math notranslate nohighlight">\(\delta_r\)</span>). Steering via the rear wheels is uncommon and will not be considered here.</span><a class="headerlink" href="#wheelangle" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Note that the <em>steering wheel angle</em>  is different from the <em>wheel steer angle</em>. The <em>wheel steer angle</em> is the angle of the wheels, while the <em>steering wheel angle</em> is the angle of the steering wheel (the object the driver holds in her hands). Typically</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In the Carla simulator, you directly control the <em>wheel steer angle</em> and do not need to worry about the <em>steering wheel angle</em>.</p>
-</div>
+</aside>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wheel_steer_angle</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">steering_wheel_angle</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are car-specific constants, and <code class="docutils literal notranslate"><span class="pre">b</span></code> is the steering wheel offset, something that should ideally be zero.</p>
 <p>Preferably, we want our wheels to just roll, but for dynamic maneuvers or on an slippery surface, they will also slip. <a class="reference internal" href="#icr-slip"><span class="std std-numref">Fig. 24</span></a> introduces the important concept of the (side) slip angle.</p>
-<div class="figure align-default" id="icr-slip">
+<figure class="align-default" id="icr-slip">
 <a class="reference internal image-reference" href="../_images/ICR_Slip.svg"><img alt="../_images/ICR_Slip.svg" src="../_images/ICR_Slip.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">If the velocity direction of a wheel center (red arrow), does not coincide with the orientation of the wheel (gray dashed arrow), the tire is slipping to the side. The angle between the velocity (red) and the wheel orientation (gray dashed) is known as the side slip angle, or just slip angle. In general, it is different for each individual wheel.</span><a class="headerlink" href="#icr-slip" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">If the velocity direction of a wheel center (red arrow), does not coincide with the orientation of the wheel (gray dashed arrow), the tire is slipping to the side. The angle between the velocity (red) and the wheel orientation (gray dashed) is known as the side slip angle, or just slip angle. In general, it is different for each individual wheel.</span><a class="headerlink" href="#icr-slip" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>For the <strong>kinematic four-wheel model</strong> the slip angles of all four tires are assumed to be zero. Let us think about what this means for the ICR. Since the slip angles are zero, the wheel orientations are equal to the wheel velocities. For each wheel we can mentally draw a dashed line perpendicular to the wheel orientation and hence wheel velocity like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>. Since the motion is planar, there needs to be an ICR, and hence all these dashed lines need to intersect in that ICR.</p>
 <p>We consider the rear wheels first. Both have the same orientation. So we only know that the ICR is on the line moving through both rear wheels.</p>
 <p>Next, consider the front wheels. If we choose some wheel steer angles <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span>, we have picked the wheel orientations. If we now draw dashed lines perpendicular to the wheel orientations like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>, we obtain the ICR. We can then check if this ICR lies on the line moving through both rear tires as it needs to (by our considerations about the rear wheels). If it does, our choice of <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span> was good and we have constructed a so-called <strong>Ackermann steering geometry</strong>. Note that in general <span class="math notranslate nohighlight">\(\delta_l \neq \delta_r\)</span>, which has important implications for practical steering systems.</p>
-</div>
-<div class="section" id="id1">
-<h2>Kinematic Bicycle model<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Kinematic Bicycle model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>For the <strong>bicycle model</strong>, the two front wheels as well as the two rear wheels are lumped into one wheel each.</p>
-<div class="figure align-default" id="bicyclemodel">
+<figure class="align-default" id="bicyclemodel">
 <a class="reference internal image-reference" href="../_images/BicycleModel.svg"><img alt="../_images/BicycleModel.svg" src="../_images/BicycleModel.svg" width="60%" /></a>
-</div>
+</figure>
 <p>The <strong>kinematic bicycle model</strong> is the <strong>bicycle model</strong> together with the assumption that all slip angles are zero. Using this assumption together with our knowledge about the ICR, we can derive practical formulas for the kinematic bicycle model using <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a>.</p>
-<div class="figure align-default" id="bicyclemodelgeometry">
+<figure class="align-default" id="bicyclemodelgeometry">
 <a class="reference internal image-reference" href="../_images/BicycleModelGeometry.svg"><img alt="../_images/BicycleModelGeometry.svg" src="../_images/BicycleModelGeometry.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Geometry of the bicycle model. The distance <span class="math notranslate nohighlight">\(L\)</span> between the wheels is called <em>wheel base</em>.</span><a class="headerlink" href="#bicyclemodelgeometry" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Geometry of the bicycle model. The distance <span class="math notranslate nohighlight">\(L\)</span> between the wheels is called <em>wheel base</em>.</span><a class="headerlink" href="#bicyclemodelgeometry" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>As we have learned in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>, we construct the ICR by drawing dashed lines perpendicular to the wheel velocities (which are equal to the wheel orientations due to our assumption of no slip). By the property of the ICR, we know that the rear wheel will move along the black circular arc in <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a>. Finally, you should convince yourself that the angle in the bottom left of <a class="reference internal" href="#bicyclemodelgeometry"><span class="std std-numref">Fig. 25</span></a> is equal to the wheel steer angle <span class="math notranslate nohighlight">\(\delta\)</span></p>
 <div class="dropdown admonition">
 <p class="admonition-title">Not convinced?</p>
@@ -462,17 +836,19 @@ Note that the velocity vectors could be pointing into the opposite direction and
 \[\begin{split}\frac{d}{dt}\begin{pmatrix} x\\ y\\ \theta\\ v \end{pmatrix} 
 =\begin{pmatrix} v\cos(\theta)\\ v\sin(\theta) \\ v\tan(\delta)/L \\ a \end{pmatrix}\end{split}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(a\)</span> is the forwards acceleration, and the expressions <span class="math notranslate nohighlight">\(\frac{dx}{dt} = v \cos(\theta)\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt} = v \sin(\theta)\)</span> are motivated geometrically by the following sketch</p>
-<div class="figure align-default" id="bicyclemodel-x-y-theta">
+<figure class="align-default" id="bicyclemodel-x-y-theta">
 <a class="reference internal image-reference" href="../_images/BicycleModel_x_y_theta.svg"><img alt="../_images/BicycleModel_x_y_theta.svg" src="../_images/BicycleModel_x_y_theta.svg" width="70%" /></a>
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">The orientation of the vehicle is <span class="math notranslate nohighlight">\((\cos(\theta), \sin(\theta))^T\)</span>. Hence its velocity is  <span class="math notranslate nohighlight">\(v(\cos(\theta), \sin(\theta))^T\)</span>.</span><a class="headerlink" href="#bicyclemodel-x-y-theta" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">The orientation of the vehicle is <span class="math notranslate nohighlight">\((\cos(\theta), \sin(\theta))^T\)</span>. Hence its velocity is  <span class="math notranslate nohighlight">\(v(\cos(\theta), \sin(\theta))^T\)</span>.</span><a class="headerlink" href="#bicyclemodel-x-y-theta" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>We could have picked any other point between the front and rear wheel as the reference point <span class="math notranslate nohighlight">\((x,y)\)</span>. In this case the formulas would have been slightly more complicated.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you found this material difficult, or if you are interested in learning more, I recommend the <a class="reference external" href="https://www.youtube.com/playlist?list=PLW3FM5Kyc2_4PGkumkAHNXzWtgHhaYe1d">great lectures on Vehicle Dynamics and Control by Prof. Georg Schildbach on youtube</a>.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -486,7 +862,7 @@ Note that the velocity vectors could be pointing into the opposite direction and
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./Control"
         },
         predefinedOutput: true
@@ -494,46 +870,112 @@ Note that the velocity vectors could be pointing into the opposite direction and
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
+            </article>
             
+
+            
+            
+            <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="PID.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">PID Control</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="PurePursuit.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pure Pursuit</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="PID.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">PID Control</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="PurePursuit.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Pure Pursuit</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
+            </footer>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a><br/>
-    
-      <div class="extra_footer">
-        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-      </div>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instantaneous-center-of-rotation-icr">
+   Instantaneous center of rotation (ICR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ackermann-steering-geometry">
+   Ackermann steering geometry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Kinematic Bicycle model
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
