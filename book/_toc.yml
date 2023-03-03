@@ -24,3 +24,4 @@ parts:
   - file: Appendix/ExerciseSetup.md
   - file: Appendix/CarlaInstallation.md
   - file: Appendix/NextChapters.md
+  - file: Appendix/Feedback.md
