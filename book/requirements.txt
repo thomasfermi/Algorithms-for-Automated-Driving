@@ -1,0 +1,19 @@
+matplotlib
+numpy
+numba
+opencv-python
+jupyterlab
+ipywidgets
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision==0.10.0
+fastai==2.5.0
+albumentations
+tqdm
+fastseg==0.1.2
+pyclothoids
+jupyter-book
+sphinx-inline-tabs
+pygame
+imageio
+imageio-ffmpeg
