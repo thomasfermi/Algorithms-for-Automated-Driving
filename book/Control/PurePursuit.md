@@ -19,7 +19,7 @@ Bicycle model should follow a path. With the current front wheel angle $\delta$,
 
 Since the above drawing is generated programmatically (using [tikz](https://en.wikipedia.org/wiki/PGF/TikZ)), we can change the value of $\delta$ until the vehicle trajectory goes through the target point:
 
-````{tabbed} δ = 25°
+````{tab} δ = 25°
 ```{figure} tikz/PurePursuit/PurePursuit_delta_25.svg
 ---
 width: 90%
@@ -28,7 +28,7 @@ name: PurePursuit_delta_25
 ```
 ````
 
-````{tabbed} δ = 20°
+````{tab} δ = 20°
 ```{figure} tikz/PurePursuit/PurePursuit_delta_20.svg
 ---
 width: 90%
@@ -37,7 +37,7 @@ name: PurePursuit_delta_20
 ```
 ````
 
-````{tabbed} δ = 15°
+````{tab} δ = 15°
 ```{figure} tikz/PurePursuit/PurePursuit_delta_15.svg
 ---
 width: 90%
@@ -46,7 +46,7 @@ name: PurePursuit_delta_15
 ```
 ````
 
-````{tabbed} δ = 11.3°
+````{tab} δ = 11.3°
 ```{figure} tikz/PurePursuit/PurePursuit_delta_11p3.svg
 ---
 width: 90%
