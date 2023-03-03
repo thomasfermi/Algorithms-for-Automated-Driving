@@ -12,7 +12,7 @@ albumentations
 tqdm
 fastseg==0.1.2
 pyclothoids
-jupyter-book
+jupyter-book==0.13.2
 sphinx-inline-tabs
 pygame
 imageio
