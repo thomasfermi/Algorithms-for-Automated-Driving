@@ -6,13 +6,13 @@ jupyterlab
 ipywidgets
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
-torchvision==0.10.0
-fastai==2.5.0
+torchvision
+fastai
 albumentations
 tqdm
-fastseg==0.1.2
+fastseg
 pyclothoids
-jupyter-book==0.12.3
+jupyter-book==0.14.0
 sphinx-inline-tabs
 pygame
 imageio

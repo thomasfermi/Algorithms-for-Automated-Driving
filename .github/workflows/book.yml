@@ -19,14 +19,13 @@ jobs:
     - uses: actions/checkout@v3
 
     # Install dependencies
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v4
+    # Install aad conda environment
+    - uses: conda-incubator/setup-miniconda@v2.2.0
       with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        pip install -r book/requirements.txt
+        activate-environment: aad-book
+        environment-file: book/environment.yml
+        python-version: 3.7.12
+        auto-activate-base: false
 
     # Build the book
     - name: Build the book
