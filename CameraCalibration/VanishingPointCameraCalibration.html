@@ -811,13 +811,13 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 <p>Proper extrinsic calibration is essential for good vehicle control. The following plot shows two simulations in which the camera was mounted with a yaw of 4 degrees and a pitch of -4 degrees. In the first simulation, these yaw and pitch values were passed correctly to the <code class="docutils literal notranslate"><span class="pre">CameraGeometry</span></code> object, which was implemented in the chapter on Lane Detection. Hence, in this first simulation the calibraton was <em>perfect</em>. In the second simulation, default values of zero degrees were incorrectly assumed for both pitch and yaw. Hence, there was no calibration at all.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/8b9005b6627e77e7d7545e6acfc10eb05eb3b27ac9c5ddaace5cfea62fb4ee0e.svg" src="../_images/8b9005b6627e77e7d7545e6acfc10eb05eb3b27ac9c5ddaace5cfea62fb4ee0e.svg" /></div>
+<img alt="../_images/408e51ec7c5125df4857889c16658c1cb4536880225abdcc947fa7d51d3d43d4.svg" src="../_images/408e51ec7c5125df4857889c16658c1cb4536880225abdcc947fa7d51d3d43d4.svg" /></div>
 </div>
 <p>As you can see in the plot, having no calibration at all makes the vehicle leave the center of the lane until it has a constant offset of around 40 cm from the middle of the lane. Why does this happen? The wrong yaw and pitch values lead to the computation of a wrong reference path, which is then passed to the controller.  In case of <em>perfect calibration</em> the results looks different. Here, the vehicle stays in the middle of the lane within an error of around 5 cm (except for one small disturbance at around 4 seconds which is due to a bad detection of the neural network).</p>
 <p>But as already mentioned, in the real world we do not know the exact mounting of the camera. So what we will need to do is to estimate the mounting. In this chapter you will learn how to estimate the pitch and yaw angle. The method you will learn leads to simulation results denoted as “VP calib.” in the plot below:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/716458f667776a046449cb3f496f2c921ecdb808226aa815bd611362025ce669.svg" src="../_images/716458f667776a046449cb3f496f2c921ecdb808226aa815bd611362025ce669.svg" /></div>
+<img alt="../_images/884c97b15108740f0734d2ac83382a2237cd6f994dd7ba463dfc5859c2843571.svg" src="../_images/884c97b15108740f0734d2ac83382a2237cd6f994dd7ba463dfc5859c2843571.svg" /></div>
 </div>
 <p>First, the vehicle leaves the middle of the lane, but then it has gathered enough data to estimate yaw and pitch angles. Consequently, it can recover and stay close to the middle of the lane. Let’s learn how this “VP calib.” method works!</p>
 <section id="vanishing-point-method">
@@ -1004,7 +1004,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3a4b6bd822fc684c6c9ea2a9ab3ac71f61b7705edb6743e661c966ea17109065.svg" src="../_images/3a4b6bd822fc684c6c9ea2a9ab3ac71f61b7705edb6743e661c966ea17109065.svg" /></div>
+<img alt="../_images/fd10a6412967526f75ec502fe982854b733f6db91ca360b5d31899f052d4a830.svg" src="../_images/fd10a6412967526f75ec502fe982854b733f6db91ca360b5d31899f052d4a830.svg" /></div>
 </div>
 <p>This image was collected from CARLA having a pitch of -5 degrees and yaw of -2 degrees. We aim to obtain these values of pitch and yaw just from the image. For that we will be using our lane detector network trained previously to find the left and right lane boundaries. The intersection of them will lead to the vanishing point.</p>
 <div class="cell docutils container">
@@ -1039,7 +1039,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d70ec7342d69324a9491687aa1c466eababb9e2840a53bee6a2ed68b24ca8c0e.svg" src="../_images/d70ec7342d69324a9491687aa1c466eababb9e2840a53bee6a2ed68b24ca8c0e.svg" /></div>
+<img alt="../_images/11088d5d25315ba141a7b29873111bd541baf98b5130256651b4d25e3ecff6e5.svg" src="../_images/11088d5d25315ba141a7b29873111bd541baf98b5130256651b4d25e3ecff6e5.svg" /></div>
 </div>
 <p>To determine the intersection of the blue and red line, we describe each of them by an equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are the pixel coordinates (see the axes labels in the image above). Then, it is a high school math problem to find the intersection point.</p>
 <p>Getting the line equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span> for the left lane line from our <code class="docutils literal notranslate"><span class="pre">prob_left</span></code> matrix is actually just two lines of python code:</p>
@@ -1079,7 +1079,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/32b36ff918e465f48f73942584057a2da40e18786ad5224bbe220479cf7bcab8.svg" src="../_images/32b36ff918e465f48f73942584057a2da40e18786ad5224bbe220479cf7bcab8.svg" /></div>
+<img alt="../_images/bdbe7f8382b314d65ce652766d153085278d426125f881a297e6577242339c71.svg" src="../_images/bdbe7f8382b314d65ce652766d153085278d426125f881a297e6577242339c71.svg" /></div>
 </div>
 <p>In the exercises you will write code that determines the coordinates of the intersection points of two lines. We can import it here to determine the vanishing point:</p>
 <div class="cell docutils container">
@@ -1092,7 +1092,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2ced591698b22939d4248936b4a94f3354b1173f6e7d3754ce09639912af4a61.svg" src="../_images/2ced591698b22939d4248936b4a94f3354b1173f6e7d3754ce09639912af4a61.svg" /></div>
+<img alt="../_images/e31fa481c6a7ee1b08fa2e2a237d7ebb4a6bf1f8dfd6d8d9311f109cad72fd46.svg" src="../_images/e31fa481c6a7ee1b08fa2e2a237d7ebb4a6bf1f8dfd6d8d9311f109cad72fd46.svg" /></div>
 </div>
 <p>Finally, we can find pitch and yaw of the camera form the vanishing point using Eqs. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>, <a class="reference internal" href="#equation-label-eq-alpha">(14)</a>, <a class="reference internal" href="#equation-label-eq-beta">(15)</a>. Again you will write some code for this in the exercises.</p>
 <div class="cell docutils container">

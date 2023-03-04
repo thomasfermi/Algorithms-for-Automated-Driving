@@ -892,7 +892,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/79b99af9a087fdde716955f67a470699dc0f8fe9187c736e4ee8ae89f0ebc059.svg" src="../_images/79b99af9a087fdde716955f67a470699dc0f8fe9187c736e4ee8ae89f0ebc059.svg" /></div>
+<img alt="../_images/c8645d5ae57a93810f32860dbe3160caa70f8605e40889d375a4d05164d2dda9.svg" src="../_images/c8645d5ae57a93810f32860dbe3160caa70f8605e40889d375a4d05164d2dda9.svg" /></div>
 </div>
 <p>The image above shows <code class="docutils literal notranslate"><span class="pre">prob_left[v,u]</span></code> for each <code class="docutils literal notranslate"><span class="pre">(u,v)</span></code>. Now imagine that instead of triples <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> we would have triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left(x,y))</span></code>, where <span class="math notranslate nohighlight">\((x,y)\)</span> are coordinates on the road like in <a class="reference internal" href="#model-iso8850-again"><span class="std std-numref">Fig. 19</span></a>. If we had these triples we could filter them for all <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> where <code class="docutils literal notranslate"><span class="pre">prob_left[x,y]</span></code> is large. We would obtain a list of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> which are part of the left lane boundary and we could use these points to fit our polynomial <span class="math notranslate nohighlight">\(y_l(x)\)</span>!
 But going from <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> to <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> is actually not that hard, since you implemented the function <code class="docutils literal notranslate"><span class="pre">uv_to_roadXYZ_roadframe_iso8855</span></code> in the last exercise. This function converts <span class="math notranslate nohighlight">\((u,v)\)</span> into <span class="math notranslate nohighlight">\((x,y,z)\)</span> (note that <span class="math notranslate nohighlight">\(z=0\)</span> for road pixels).</p>
@@ -941,7 +941,7 @@ But going from <code class="docutils literal notranslate"><span class="pre">(u,v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b96fe705ab6b55d5bdd5aa69c2597f1d2fa63a884d35ec62df35d94cf00d417.svg" src="../_images/8b96fe705ab6b55d5bdd5aa69c2597f1d2fa63a884d35ec62df35d94cf00d417.svg" /></div>
+<img alt="../_images/4d90cce7a2e4f583e4ca1ae1d303ef5fe60d0ed2485368dfdd43e70caf8bcf9f.svg" src="../_images/4d90cce7a2e4f583e4ca1ae1d303ef5fe60d0ed2485368dfdd43e70caf8bcf9f.svg" /></div>
 </div>
 <p>Looks good!</p>
 </section>
@@ -966,7 +966,7 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/58d5186a8d47e70098ca459919353649e3b3c56800a3151939d473c603742387.svg" src="../_images/58d5186a8d47e70098ca459919353649e3b3c56800a3151939d473c603742387.svg" /></div>
+<img alt="../_images/27ed456ea4378f511a418932c4b14fdae094189ab6c08cffeafa8f11c0c37c1e.svg" src="../_images/27ed456ea4378f511a418932c4b14fdae094189ab6c08cffeafa8f11c0c37c1e.svg" /></div>
 </div>
 <p>Now we import the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class and create an instance of it. For that we specfiy the path to a model that we have stored with pytorch’s <code class="docutils literal notranslate"><span class="pre">save</span></code> function.</p>
 <div class="cell tag_remove-output docutils container">
@@ -1004,7 +1004,7 @@ First, we load an image</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.9846011160668742, 4.112956989509415)
 </pre></div>
 </div>
-<img alt="../_images/1ef71efe2a5d63935e60489767008d787d2c02127902b74bc1e44be16e1d5b45.svg" src="../_images/1ef71efe2a5d63935e60489767008d787d2c02127902b74bc1e44be16e1d5b45.svg" /></div>
+<img alt="../_images/cfb29224374d0d05228a34cd160095e973c8e362c88413c7bc570396bb0aa2e7.svg" src="../_images/cfb29224374d0d05228a34cd160095e973c8e362c88413c7bc570396bb0aa2e7.svg" /></div>
 </div>
 <p>This looks quite reasonable. In the next exercise, you will create a similar plot and compare it to ground truth data from the simulator.</p>
 </section>
