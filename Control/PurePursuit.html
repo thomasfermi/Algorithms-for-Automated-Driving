@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Pure Pursuit &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Control/PurePursuit';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Discussion" href="Discussion.html" />
     <link rel="prev" title="Kinematic Bicycle Model" href="BicycleModel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -717,9 +731,9 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="pure-pursuit">
-<h1>Pure Pursuit<a class="headerlink" href="#pure-pursuit" title="Permalink to this heading">#</a></h1>
+<h1>Pure Pursuit<a class="headerlink" href="#pure-pursuit" title="Permalink to this headline">#</a></h1>
 <section id="algorithm">
-<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this heading">#</a></h2>
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">#</a></h2>
 <p>In this section we want to control the front wheel angle <span class="math notranslate nohighlight">\(\delta\)</span>, such that the vehicle follows a given path. This is known as <strong>lateral vehicle control</strong>.
 In the pure pursuit method a target point (TP) on the desired path is identified, which is a <strong>look-ahead distance</strong> <span class="math notranslate nohighlight">\(l_d\)</span> away from the vehicle. The angle <span class="math notranslate nohighlight">\(\delta\)</span> is chosen such that the vehicle will reach the target point according to the kinematic bicycle model.
 The look-ahead distance is a parameter, and is typically chosen to depend on the speed <span class="math notranslate nohighlight">\(v\)</span> via <span class="math notranslate nohighlight">\(l_d = K_{dd} v\)</span>, where the constant <span class="math notranslate nohighlight">\(K_{dd}\)</span> needs to be tuned. We can also enforce a minimal and maximal look-ahead distance, so as to avoid undesirable behavior at very high and very low speeds.</p>
@@ -789,7 +803,7 @@ The look-ahead distance is a parameter, and is typically chosen to depend on the
 </div>
 </section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
 <p>In this exercise you will implement both pure pursuit and PID.</p>
 <p>If you did not do the chapter on lane detection, you probably did not set up your python environment, and you did not download the exercise code. In this case, please visit <a class="reference internal" href="../Appendix/ExerciseSetup.html"><span class="doc std std-doc">the appendix</span></a> to do this now.</p>
 <p>To start working, open <code class="docutils literal notranslate"><span class="pre">code/tests/control/target_point.ipynb</span></code> and follow the instructions. Next, open <code class="docutils literal notranslate"><span class="pre">code/tests/control/control.ipynb</span></code> and follow the instructions. This exercise uses a simplistic vehicle simulator within the Jupyter Notebook to test your code. If you completed these exercises successfully, you <strong>can</strong> also run your controller in a Carla simulation:</p>

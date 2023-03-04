@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Basics of Image Formation &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'LaneDetection/CameraBasics';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Lane Boundary Segmentation" href="Segmentation.html" />
     <link rel="prev" title="Overview" href="LaneDetectionOverview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -737,9 +751,9 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="basics-of-image-formation">
-<h1>Basics of Image Formation<a class="headerlink" href="#basics-of-image-formation" title="Permalink to this heading">#</a></h1>
+<h1>Basics of Image Formation<a class="headerlink" href="#basics-of-image-formation" title="Permalink to this headline">#</a></h1>
 <section id="digital-images">
-<h2>Digital images<a class="headerlink" href="#digital-images" title="Permalink to this heading">#</a></h2>
+<h2>Digital images<a class="headerlink" href="#digital-images" title="Permalink to this headline">#</a></h2>
 <p>A raster image consists of a grid of pixels as shown in <a class="reference internal" href="#pixel-example"><span class="std std-numref">Fig. 3</span></a>.</p>
 <figure class="align-center" id="pixel-example">
 <img alt="../_images/Pixel-example.png" src="../_images/Pixel-example.png" />
@@ -777,7 +791,7 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(H,W,3)= (512, 1024, 3)
 </pre></div>
 </div>
-<img alt="../_images/7e5abc67b8c3747a38e7e770d4c924e844365e00a570cb2ba7a8c7cf920053ba.svg" src="../_images/7e5abc67b8c3747a38e7e770d4c924e844365e00a570cb2ba7a8c7cf920053ba.svg" /></div>
+<img alt="../_images/1476e35ba9aa816c1e363cbfd9dc3cd8386e9eaee584c0d6e7075ef2569791dc.svg" src="../_images/1476e35ba9aa816c1e363cbfd9dc3cd8386e9eaee584c0d6e7075ef2569791dc.svg" /></div>
 </div>
 <p>Let’s inspect the pixel in the 100th row and the 750th column:</p>
 <div class="cell docutils container">
@@ -822,7 +836,7 @@ Additionally, the above output “<code class="docutils literal notranslate"><sp
 </div>
 </section>
 <section id="pinhole-camera-model">
-<h2>Pinhole Camera Model<a class="headerlink" href="#pinhole-camera-model" title="Permalink to this heading">#</a></h2>
+<h2>Pinhole Camera Model<a class="headerlink" href="#pinhole-camera-model" title="Permalink to this headline">#</a></h2>
 <p>Imagine putting an image sensor in front of an object.</p>
 <figure class="align-center" id="no-pinhole">
 <a class="reference internal image-reference" href="../_images/no_pinhole.svg"><img alt="../_images/no_pinhole.svg" src="../_images/no_pinhole.svg" width="50%" /></a>
@@ -897,7 +911,7 @@ To continue our discussion, we need to introduce the concept of homogeneous coor
 <p>If we multiply this equation by a scalar factor <span class="math notranslate nohighlight">\(s \neq 0\)</span>, we can absorb it into <span class="math notranslate nohighlight">\(\lambda\)</span> on the left hand side and multiply it into the vector <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span> on the right hand side. What we find is that any point with coordinates <span class="math notranslate nohighlight">\(s (X_c,Y_c,Z_c)^T\)</span> will be mapped to the same <span class="math notranslate nohighlight">\((u,v)\)</span> coordinates. Note that all these points define a line <span class="math notranslate nohighlight">\(\mathbf{l}(s) = s (X_c,Y_c,Z_c)^T\)</span> which goes through the pinhole at position <span class="math notranslate nohighlight">\((0,0,0)\)</span>. You can also verify this fact with the previous form of our equations: Eq. <a class="reference internal" href="#equation-eq-uv-from-xyz-no-matrix">(2)</a>. But even more importantly, this fact is intuitive if we look at <a class="reference internal" href="#camera-projection"><span class="std std-numref">Fig. 10</span></a>: Each point on the red ray from the camera origin to the point <span class="math notranslate nohighlight">\(P\)</span> will be mapped into the same image coordinate <span class="math notranslate nohighlight">\((u,v)\)</span>.</p>
 </section>
 <section id="reference-frames">
-<h2>Reference frames<a class="headerlink" href="#reference-frames" title="Permalink to this heading">#</a></h2>
+<h2>Reference frames<a class="headerlink" href="#reference-frames" title="Permalink to this headline">#</a></h2>
 <p>In our applications, we will deal with with different coordinate systems, so we will not always have our point <span class="math notranslate nohighlight">\(P\)</span> given in coordinates of the camera reference frame <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span>. For our lane-detection system the following reference frames are relevant</p>
 <ul class="simple">
 <li><p>World frame <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span></p></li>
@@ -937,7 +951,7 @@ A point <span class="math notranslate nohighlight">\((X_w, Y_w, Z_w)^T\)</span> 
 \end{split}\]</div>
 </section>
 <section id="yaw-pitch-and-roll-rotations">
-<h2>Yaw, pitch, and roll rotations<a class="headerlink" href="#yaw-pitch-and-roll-rotations" title="Permalink to this heading">#</a></h2>
+<h2>Yaw, pitch, and roll rotations<a class="headerlink" href="#yaw-pitch-and-roll-rotations" title="Permalink to this headline">#</a></h2>
 <p>Before you start the exercises, you should briefly be introduced to the yaw, pitch, and roll parametrization of rotations: A general rotation between the camera frame and the default camera frame can be described by first rotating for some angle (called roll angle) around the <span class="math notranslate nohighlight">\(Z_d\)</span>-axis, then for some other angle (called pitch angle) around the <span class="math notranslate nohighlight">\(X_d\)</span>-axis, and finally for even another angle (called yaw angle) around the <span class="math notranslate nohighlight">\(Y_d\)</span>-axis.</p>
 <p>If we define the cosine and sine of the roll angle as <span class="math notranslate nohighlight">\(c_r\)</span> and <span class="math notranslate nohighlight">\(s_r\)</span> respectively, the roll rotation matrix is</p>
 <div class="math notranslate nohighlight">
@@ -963,7 +977,7 @@ R = R_{yaw} R_{pitch} R_{roll} = \begin{pmatrix}c_{r} c_{y} + s_{p} s_{r} s_{y} 
 <p>For the purpose of this chapter, we will be happy with parametrizing a rotation matrix via yaw, pitch, and roll. However there are some problems with this representation. Three dimensional rotations are more complicated than you might think. If you want to learn more I recommend this <a class="reference external" href="https://www.youtube.com/watch?v=YXGUGSAv09A">YouTube video by Cyrill Stachniss</a>.</p>
 </section>
 <section id="exercise-projecting-lane-boundaries-into-an-image">
-<h2>Exercise: Projecting lane boundaries into an image<a class="headerlink" href="#exercise-projecting-lane-boundaries-into-an-image" title="Permalink to this heading">#</a></h2>
+<h2>Exercise: Projecting lane boundaries into an image<a class="headerlink" href="#exercise-projecting-lane-boundaries-into-an-image" title="Permalink to this headline">#</a></h2>
 <p>Now you should start to work on your first exercise. For this exercise, I have prepared some data for you. I captured an image in the Carla simulator using a camera sensor attached to a vehicle:</p>
 <figure class="align-center" id="carla-lane-image">
 <a class="reference internal image-reference" href="../_images/carla_lane_image.svg"><img alt="../_images/carla_lane_image.svg" src="../_images/carla_lane_image.svg" width="67%" /></a>
@@ -987,13 +1001,13 @@ R = R_{yaw} R_{pitch} R_{roll} = \begin{pmatrix}c_{r} c_{y} + s_{p} s_{r} s_{y} 
 <p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_boundary_projection.ipynb</span></code> and follow the instructions in that notebook.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id2">
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HZ03</a><span class="fn-bracket">]</span></span>
-<p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">HZ03</a></span></dt>
+<dd><p>Richard Hartley and Andrew Zisserman. <em>Multiple view geometry in computer vision</em>. Cambridge university press, 2003.</p>
+</dd>
+</dl>
 </div>
 </section>
 </section>

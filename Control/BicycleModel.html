@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Kinematic Bicycle Model &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Control/BicycleModel';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Pure Pursuit" href="PurePursuit.html" />
     <link rel="prev" title="PID Control" href="PID.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -722,10 +736,10 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="kinematic-bicycle-model">
-<h1>Kinematic Bicycle Model<a class="headerlink" href="#kinematic-bicycle-model" title="Permalink to this heading">#</a></h1>
+<h1>Kinematic Bicycle Model<a class="headerlink" href="#kinematic-bicycle-model" title="Permalink to this headline">#</a></h1>
 <p>The pure pursuit method for lateral vehicle control is based on a mathematical model of a vehicle known as the bicycle model. A prerequisite for understanding the bicycle model is the concept of the <em>instantaneous center of rotation</em>.</p>
 <section id="instantaneous-center-of-rotation-icr">
-<h2>Instantaneous center of rotation (ICR)<a class="headerlink" href="#instantaneous-center-of-rotation-icr" title="Permalink to this heading">#</a></h2>
+<h2>Instantaneous center of rotation (ICR)<a class="headerlink" href="#instantaneous-center-of-rotation-icr" title="Permalink to this headline">#</a></h2>
 <p>Let us consider a rigid body performing a planar motion. An example would be a vehicle driving on a flat road.
 We pick a world coordinate system, for which the <span class="math notranslate nohighlight">\(x-y\)</span> plane coincides with the motion plane of the rigid body.
 Now, we pick one point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> within the rigid body as the reference point. We are free to pick <em>any</em> point we want. For our vehicle, we could e.g. use the center of the rear axle.
@@ -775,7 +789,7 @@ Note that the velocity vectors could be pointing into the opposite direction and
 </figure>
 </section>
 <section id="ackermann-steering-geometry">
-<h2>Ackermann steering geometry<a class="headerlink" href="#ackermann-steering-geometry" title="Permalink to this heading">#</a></h2>
+<h2>Ackermann steering geometry<a class="headerlink" href="#ackermann-steering-geometry" title="Permalink to this headline">#</a></h2>
 <p>Now that we learned about rigid bodies in general, let us study the rigid body of a four-wheeled car, which is steered by the front axle. <a class="reference internal" href="#wheelangle"><span class="std std-numref">Fig. 23</span></a> depicts such a vehicle and introduces the <strong>wheel steer angle</strong> <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <figure class="align-default" id="wheelangle">
 <a class="reference internal image-reference" href="../_images/WheelAngle.svg"><img alt="../_images/WheelAngle.svg" src="../_images/WheelAngle.svg" width="60%" /></a>
@@ -804,7 +818,7 @@ Note that the velocity vectors could be pointing into the opposite direction and
 <p>Next, consider the front wheels. If we choose some wheel steer angles <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span>, we have picked the wheel orientations. If we now draw dashed lines perpendicular to the wheel orientations like in <a class="reference internal" href="#icr-construction"><span class="std std-numref">Fig. 22</span></a>, we obtain the ICR. We can then check if this ICR lies on the line moving through both rear tires as it needs to (by our considerations about the rear wheels). If it does, our choice of <span class="math notranslate nohighlight">\((\delta_l, \delta_r)\)</span> was good and we have constructed a so-called <strong>Ackermann steering geometry</strong>. Note that in general <span class="math notranslate nohighlight">\(\delta_l \neq \delta_r\)</span>, which has important implications for practical steering systems.</p>
 </section>
 <section id="id1">
-<h2>Kinematic Bicycle model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>Kinematic Bicycle model<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>For the <strong>bicycle model</strong>, the two front wheels as well as the two rear wheels are lumped into one wheel each.</p>
 <figure class="align-default" id="bicyclemodel">
 <a class="reference internal image-reference" href="../_images/BicycleModel.svg"><img alt="../_images/BicycleModel.svg" src="../_images/BicycleModel.svg" width="60%" /></a>

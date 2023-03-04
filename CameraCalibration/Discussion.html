@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CameraCalibration/Discussion';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Exercise Setup" href="../Appendix/ExerciseSetup.html" />
     <link rel="prev" title="Extrinsic Camera Calibration" href="VanishingPointCameraCalibration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -728,18 +742,18 @@ title="Print to PDF"
               
   <!-- #region -->
 <section class="tex2jax_ignore mathjax_ignore" id="discussion">
-<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h1>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">#</a></h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
 <p>The method we presented just assumed that the roll is zero. Also we did not estimate the height <span class="math notranslate nohighlight">\(h\)</span> of the camera. In the real world you could estimate the height using a tape measure and will probably only make an error of around 5 percent. Assuming a roll of zero does not seem to lead to practical problems, since this is done in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/d74def61f88937302f7423eea67895d5f4c596b5/selfdrive/locationd/calibrationd.py#L5">source code</a> of openpilot, which is known to perfrom really well. As a bonus exercise you can run experiments with <code class="docutils literal notranslate"><span class="pre">code/tests/camera_calibration/carla_sim.py</span></code> where you change the roll of the camera or you slightly modify the height. Investigate how this affects the control of the vehicle. Regarding estimation of height and roll we also recommend to have a look at <a class="reference external" href="https://arxiv.org/abs/2008.03722">this paper</a>.</p>
 <p>Another limitation: The method we discussed in this chapter only works if your autonomous vehicle software stack uses lane detection in image space and if it is used in areas with good lane markings. But what if your software doesn’t predict lanes in image space?  Maybe it predicts lanes in world space as <a class="reference external" href="https://github.com/commaai/openpilot">openpilot</a>, or maybe it doesn’t predict lanes at all and makes predictions <a class="reference external" href="https://developer.nvidia.com/blog/deep-learning-self-driving-cars/">end-to-end</a>. In either approaches, this method of camera calibration isn’t going to work. As an alternative, we can use visual odometery (VO) based camera calibration.</p>
 </section>
 <section id="alternative-vo-based-camera-calibration">
-<h2>Alternative: VO-based camera calibration<a class="headerlink" href="#alternative-vo-based-camera-calibration" title="Permalink to this heading">#</a></h2>
+<h2>Alternative: VO-based camera calibration<a class="headerlink" href="#alternative-vo-based-camera-calibration" title="Permalink to this headline">#</a></h2>
 <p>In this approach, visual odometery is performed to find the motion of the camera. This approach also needs to be performed when the car is aligned with the lane line, i.e. when it is going straight and fast. Since the output of VO would be motion of the camera, this information can be used to find out the orientation of the camera with respect to the car. See how openpilot performs this in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/master/selfdrive/locationd/calibrationd.py#L148">calibrationd</a> module. The vehicle forwards axis is more or less identical to the direction of the translation vector, since the vehicle is driving straight. But having the vehicle forwards axis with respect to the camera reference frame means that you can estimate how the optical axis (the z-axis) of the camera is tilted with respect to the vehicle forwards direction. Hence you get the extrinsic rotation matrix! However, you also  need to assume the roll is zero in this approach. To get started with visual odometery, the fastest way is to get started is <a class="reference external" href="https://github.com/luigifreda/pyslam">PySlam</a>. It has lots of methods for visual odometery including novel approaches based on deep learning.</p>
 </section>
 <section id="further-reading">
-<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>A great paper to get started with more advanced methods is Ref. <span id="id1">[<a class="reference internal" href="#id12" title="Jeong-Kyun Lee, Young-Ki Baik, Hankyu Cho, and Seungwoo Yoo. Online extrinsic camera calibration for temporally consistent ipm using lane boundary observations with a lane width prior. 2020. arXiv:2008.03722.">LBCY20</a>]</span>: <a class="reference external" href="https://arxiv.org/abs/2008.03722">Online Extrinsic Camera Calibration for Temporally Consistent IPM Using Lane Boundary Observations with a Lane Width Prior</a>. This paper also discusses estimation of roll and height.</p></li>
 <li><p>Visual Odometery: <a class="reference external" href="https://github.com/luigifreda/pyslam">PySlam</a> and the resources mentioned in the repo.</p></li>
@@ -749,19 +763,17 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>The formalism of how to compute the camera orientation from the vanishing point was adapted from Ref. <span id="id2">[<a class="reference internal" href="#id11" title="Jianbo Shi and Kostas Daniilidis. Vanishing points; how to compute camera orientation. Accessed on June 2021. URL: https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4.">SD21</a>]</span>. The idea to use lane boundaries to determine the vanishing point can be found in the paper by Lee et al. <span id="id3">[<a class="reference internal" href="#id12" title="Jeong-Kyun Lee, Young-Ki Baik, Hankyu Cho, and Seungwoo Yoo. Online extrinsic camera calibration for temporally consistent ipm using lane boundary observations with a lane width prior. 2020. arXiv:2008.03722.">LBCY20</a>]</span> and within the references of that paper.</p>
 <div class="docutils container" id="id4">
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>LBCY20<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
-<p>Jeong-Kyun Lee, Young-Ki Baik, Hankyu Cho, and Seungwoo Yoo. Online extrinsic camera calibration for temporally consistent ipm using lane boundary observations with a lane width prior. 2020. <a class="reference external" href="https://arxiv.org/abs/2008.03722">arXiv:2008.03722</a>.</p>
-</div>
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">SD21</a><span class="fn-bracket">]</span></span>
-<p>Jianbo Shi and Kostas Daniilidis. Vanishing points; how to compute camera orientation. Accessed on June 2021. URL: <a class="reference external" href="https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4">https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4</a>.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id12"><span class="brackets">LBCY20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Jeong-Kyun Lee, Young-Ki Baik, Hankyu Cho, and Seungwoo Yoo. Online extrinsic camera calibration for temporally consistent ipm using lane boundary observations with a lane width prior. 2020. <a class="reference external" href="https://arxiv.org/abs/2008.03722">arXiv:2008.03722</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">SD21</a></span></dt>
+<dd><p>Jianbo Shi and Kostas Daniilidis. Vanishing points; how to compute camera orientation. Accessed on June 2021. URL: <a class="reference external" href="https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4">https://www.coursera.org/lecture/robotics-perception/vanishing-points-how-to-compute-camera-orientation-flqF4</a>.</p>
+</dd>
+</dl>
 </div>
 <!-- #endregion -->
 </section>

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,7 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -75,7 +74,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Extrinsic Camera Calibration" href="../CameraCalibration/VanishingPointCameraCalibration.html" />
     <link rel="prev" title="Pure Pursuit" href="PurePursuit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -253,6 +252,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -438,6 +444,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -527,6 +540,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -720,9 +734,9 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="discussion">
-<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h1>
 <section id="limitations-and-outlook">
-<h2>Limitations and outlook<a class="headerlink" href="#limitations-and-outlook" title="Permalink to this heading">#</a></h2>
+<h2>Limitations and outlook<a class="headerlink" href="#limitations-and-outlook" title="Permalink to this headline">#</a></h2>
 <p>The lateral control we implemented in this chapter is a good starting point, but real highway lane-keeping systems are more sophisticated.
 In the Carla simulations you might have observed that the vehicle is sliding/drifting when driving curves at high speed.
 In this case, we are outside of the validity regime of the kinematic bicycle model, which is the basis our pure pursuit controller. Hence, it is no wonder that our lateral control is performing suboptimal here.</p>
@@ -730,7 +744,7 @@ In this case, we are outside of the validity regime of the kinematic bicycle mod
 <p>Finally, I recommend Ref. <span id="id1">[<a class="reference internal" href="#id8" title="Jarrod M Snider and others. Automatic steering methods for autonomous automobile path tracking. Robotics Institute, Pittsburgh, PA, Tech. Rep. CMU-RITR-09-08, 2009.">S+09</a>]</span>. It discusses several controls methods for automated driving, and has a nice empirical performance comparison table at the end of section 5.</p>
 </section>
 <section id="control-in-a-real-adas-system-openpilot">
-<h2>Control in a real ADAS system: openpilot<a class="headerlink" href="#control-in-a-real-adas-system-openpilot" title="Permalink to this heading">#</a></h2>
+<h2>Control in a real ADAS system: openpilot<a class="headerlink" href="#control-in-a-real-adas-system-openpilot" title="Permalink to this headline">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
@@ -742,13 +756,13 @@ Lateral control is based on this plan, and dependent on the vehicle a different 
 You will find lateral control with PID, <a class="reference external" href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">LQR</a> or <a class="reference external" href="http://www.aerostudents.com/courses/advanced-flight-control/nonlinearDynamicInversion.pdf">INDI</a> in the <a class="reference external" href="https://github.com/commaai/openpilot/blob/ee99b59bade8d3b5057a5b3f22ad8b3edd102c78/selfdrive/controls/controlsd.py">source code</a>. <a class="reference external" href="https://github.com/commaai/openpilot/blob/254814cc793dc4668ea9fd25f092b0712fb5b8a0/selfdrive/controls/lib/longcontrol.py">Longitudinal control</a> is done using a <a class="reference external" href="https://github.com/commaai/openpilot/blob/f575a9ec12990ac2a764a5f416795d1c618f4609/selfdrive/controls/lib/pid.py">PIController</a>.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id2">
-<div class="citation" id="id8" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">S+09</a><span class="fn-bracket">]</span></span>
-<p>Jarrod M Snider and others. Automatic steering methods for autonomous automobile path tracking. <em>Robotics Institute, Pittsburgh, PA, Tech. Rep. CMU-RITR-09-08</em>, 2009.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id1">S+09</a></span></dt>
+<dd><p>Jarrod M Snider and others. Automatic steering methods for autonomous automobile path tracking. <em>Robotics Institute, Pittsburgh, PA, Tech. Rep. CMU-RITR-09-08</em>, 2009.</p>
+</dd>
+</dl>
 </div>
 </section>
 </section>

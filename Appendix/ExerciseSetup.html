@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Exercise Setup &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,7 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -75,7 +74,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Carla Installation" href="CarlaInstallation.html" />
     <link rel="prev" title="Discussion" href="../CameraCalibration/Discussion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -253,6 +252,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -438,6 +444,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -527,6 +540,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -725,10 +739,10 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="exercise-setup">
-<h1>Exercise Setup<a class="headerlink" href="#exercise-setup" title="Permalink to this heading">#</a></h1>
+<h1>Exercise Setup<a class="headerlink" href="#exercise-setup" title="Permalink to this headline">#</a></h1>
 <p>You can work on the exercises on your local machine, or in the cloud using Google Colab. Dependent on your choice, please select the corresponding tab in the following tutorial. If you know how to work with <a class="reference external" href="https://www.anaconda.com/products/individual">anaconda</a> and are ok with an anaconda environment taking more than 1GB of disk space on your machine, I would recommend you to use your local machine. However, there is one deep learning exercise where you temporarily might want to switch to Colab, if you do not own a GPU.</p>
 <section id="downloading-the-exercises">
-<h2>Downloading the exercises<a class="headerlink" href="#downloading-the-exercises" title="Permalink to this heading">#</a></h2>
+<h2>Downloading the exercises<a class="headerlink" href="#downloading-the-exercises" title="Permalink to this headline">#</a></h2>
 <p>If you know how <a class="reference external" href="https://git-scm.com/">git</a> works, please clone this <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving">book’s github repo</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thomasfermi/Algorithms-for-Automated-Driving.git
 </pre></div>
@@ -744,7 +758,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="python-environment">
-<h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this heading">#</a></h2>
+<h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">#</a></h2>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Local installation</label><div class="tab-content docutils">
 <p>If you do not have anaconda, please <a class="reference external" href="https://www.anaconda.com/products/individual">download and install it</a>.
@@ -776,7 +790,7 @@ conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> <
 </div>
 </section>
 <section id="navigating-the-exercises">
-<h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this heading">#</a></h2>
+<h2>Navigating the exercises<a class="headerlink" href="#navigating-the-exercises" title="Permalink to this headline">#</a></h2>
 <p>Within the <code class="docutils literal notranslate"><span class="pre">Algorithms-for-Automated-Driving</span></code> folder you will find a subfolder <code class="docutils literal notranslate"><span class="pre">book</span></code> containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder <code class="docutils literal notranslate"><span class="pre">data</span></code>, and a folder <code class="docutils literal notranslate"><span class="pre">code</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder you have subfolders <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solutions</span></code>, <code class="docutils literal notranslate"><span class="pre">tests</span></code>, and <code class="docutils literal notranslate"><span class="pre">util</span></code>. You will complete exercises by writing code in the <code class="docutils literal notranslate"><span class="pre">exercises</span></code> folder and testing it with code from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. You should <em>not</em> look into the <code class="docutils literal notranslate"><span class="pre">solutions</span></code> directory, unless you are desperate and really can’t solve the exercise on your own.</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Local installation</label><div class="tab-content docutils">
@@ -797,7 +811,7 @@ Open <a class="reference external" href="https://drive.google.com/drive/my-drive
 </div>
 </section>
 <section id="getting-help">
-<h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this heading">#</a></h2>
+<h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">#</a></h2>
 <p>If you have a question about the exercises, feel free to ask it on  <a class="reference external" href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions">github discussions</a> or on the <a class="reference external" href="https://discord.gg/57YEzkCFHN">discord server</a>.</p>
 </section>
 </section>

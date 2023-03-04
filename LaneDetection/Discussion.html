@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Discussion &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,7 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -75,7 +74,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Overview" href="../Control/ControlOverview.html" />
     <link rel="prev" title="From Pixels to Meters" href="InversePerspectiveMapping.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -253,6 +252,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -438,6 +444,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -527,6 +540,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -730,9 +744,9 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="discussion">
-<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h1>
 <section id="limitations-of-the-presented-approach">
-<h2>Limitations of the presented approach<a class="headerlink" href="#limitations-of-the-presented-approach" title="Permalink to this heading">#</a></h2>
+<h2>Limitations of the presented approach<a class="headerlink" href="#limitations-of-the-presented-approach" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>The second stage of the pipeline is implemented on CPU. For better performance everything should run on GPU or even dedicated hardware.</p></li>
 <li><p>We only detect the ego lane boundaries. But it is obvious how to extend our approach to include the left and right lanes.</p></li>
@@ -749,7 +763,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="comparison-to-literature">
-<h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this heading">#</a></h2>
+<h2>Comparison to literature<a class="headerlink" href="#comparison-to-literature" title="Permalink to this headline">#</a></h2>
 <p>As our approach to lane detection in this chapter is heavily inspired by the baseline described in Ref. <span id="id3">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span>, we want to list the differences</p>
 <ul class="simple">
 <li><p>We are using an approach known as <em>inverse perspective mapping</em> to transform from pixel to road coordinates, since this allows us to fit a lane boundary model in meters. Describing the lane boundary in meters rather than pixels is necessary if we want to use the lane boundary model for control algorithms (see next chapter). Ref. <span id="id4">[<a class="reference internal" href="LaneDetectionOverview.html#id3" title="Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. arXiv:1902.00293.">GBN+19</a>]</span> also transforms to a bird’s eye view, but they use a homography for that. The resulting coordinates are not in meters. Note that this is not the aim of the paper, and hence should not be seen as a criticism.</p></li>
@@ -758,7 +772,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="comparison-to-a-real-adas-system-openpilot">
-<h2>Comparison to a real ADAS system: openpilot<a class="headerlink" href="#comparison-to-a-real-adas-system-openpilot" title="Permalink to this heading">#</a></h2>
+<h2>Comparison to a real ADAS system: openpilot<a class="headerlink" href="#comparison-to-a-real-adas-system-openpilot" title="Permalink to this headline">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Take my discussion of openpilot with a grain of salt here. Their documentation is very limited, so my discussion is based on what I could piece together by reading their code.</p>
@@ -771,9 +785,9 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="further-reading">
-<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h2>
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">#</a></h2>
 <p>If you want to read some more about lane detection, I recommend the following ressources:</p>
-<dl class="simple glossary">
+<dl class="glossary simple">
 <dt id="term-Papers-with-code"><a class="reference external" href="https://paperswithcode.com/task/lane-detection/">Papers with code</a><a class="headerlink" href="#term-Papers-with-code" title="Permalink to this term">#</a></dt><dd><p>Here you can see papers grouped by the datasets they tackled, and also ranked by stars on github.</p>
 </dd>
 <dt id="term-awesome-lane-detection"><a class="reference external" href="https://github.com/amusi/awesome-lane-detection">awesome-lane-detection</a><a class="headerlink" href="#term-awesome-lane-detection" title="Permalink to this term">#</a></dt><dd><p>This github repo lists papers, code, blogs/tutorials and datasets connected to lane detection.</p>
@@ -781,22 +795,19 @@ title="Print to PDF"
 </dl>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id6">
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">BS19</a><span class="fn-bracket">]</span></span>
-<p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
-</div>
-<div class="citation" id="id8" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">BCD+20</a><span class="fn-bracket">]</span></span>
-<p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
-</div>
-<div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>GBN+19<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>,<a role="doc-backlink" href="#id5">3</a>)</span>
-<p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">BS19</a></span></dt>
+<dd><p>Karsten Behrendt and Ryan Soussan. Unsupervised labeled lane marker dataset generation using maps. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>. 2019.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id1">BCD+20</a></span></dt>
+<dd><p>Mariusz Bojarski, Chenyi Chen, Joyjit Daw, Alperen Değirmenci, Joya Deri, Bernhard Firner, Beat Flepp, Sachin Gogri, Jesse Hong, Lawrence Jackel, Zhenhua Jia, BJ Lee, Bo Liu, Fei Liu, Urs Muller, Samuel Payne, Nischal Kota Nagendra Prasad, Artem Provodin, John Roach, Timur Rvachov, Neha Tadimeti, Jesper van Engelen, Haiguang Wen, Eric Yang, and Zongyi Yang. The nvidia pilotnet experiments. 2020. <a class="reference external" href="https://arxiv.org/abs/2010.08776">arXiv:2010.08776</a>.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">GBN+19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>)</span></dt>
+<dd><p>Wouter Van Gansbeke, Bert De Brabandere, Davy Neven, Marc Proesmans, and Luc Van Gool. End-to-end lane detection through differentiable least-squares fitting. 2019. <a class="reference external" href="https://arxiv.org/abs/1902.00293">arXiv:1902.00293</a>.</p>
+</dd>
+</dl>
 </div>
 </section>
 </section>

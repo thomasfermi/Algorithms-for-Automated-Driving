@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Extrinsic Camera Calibration &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CameraCalibration/VanishingPointCameraCalibration';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Discussion" href="Discussion.html" />
     <link rel="prev" title="Discussion" href="../Control/Discussion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -785,7 +799,7 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="extrinsic-camera-calibration">
-<h1>Extrinsic Camera Calibration<a class="headerlink" href="#extrinsic-camera-calibration" title="Permalink to this heading">#</a></h1>
+<h1>Extrinsic Camera Calibration<a class="headerlink" href="#extrinsic-camera-calibration" title="Permalink to this headline">#</a></h1>
 <p>Sensor calibration is one of the most important aspects of building a robot. Different sensors have different calibration procedures. Typically one can distinguish between intrinsic and extrinsic calibration. Intrinsic camera calibration tries to estimate the camera matrix <span class="math notranslate nohighlight">\(K\)</span> (and potentially other camera-specific parameters like distortion coefficients). You can learn more about it in this <a class="reference external" href="https://www.youtube.com/watch?v=Ou9Uj75DJX0">lecture by Cyril Stachniss</a>, and this <a class="reference external" href="https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html">OpenCV python tutorial</a>. For this chapter, we will be focusing on extrinsic camera calibration.</p>
 <p>Refer back to the <a class="reference internal" href="../LaneDetection/InversePerspectiveMapping.html"><span class="doc std std-doc">From Pixels to meters chapter</span></a>. If you did the exercises of that chapter, you may recall that to convert the lane line pixels detected by the neural network to meters, you needed the camera height <span class="math notranslate nohighlight">\(h\)</span> and the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is oriented with respect to the road reference frame.</p>
 <div class="tip admonition">
@@ -797,17 +811,17 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 <p>Proper extrinsic calibration is essential for good vehicle control. The following plot shows two simulations in which the camera was mounted with a yaw of 4 degrees and a pitch of -4 degrees. In the first simulation, these yaw and pitch values were passed correctly to the <code class="docutils literal notranslate"><span class="pre">CameraGeometry</span></code> object, which was implemented in the chapter on Lane Detection. Hence, in this first simulation the calibraton was <em>perfect</em>. In the second simulation, default values of zero degrees were incorrectly assumed for both pitch and yaw. Hence, there was no calibration at all.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/593e33b90c5f714c33c3052067542f7184805df02d70154125f6c5ead504a573.svg" src="../_images/593e33b90c5f714c33c3052067542f7184805df02d70154125f6c5ead504a573.svg" /></div>
+<img alt="../_images/8b9005b6627e77e7d7545e6acfc10eb05eb3b27ac9c5ddaace5cfea62fb4ee0e.svg" src="../_images/8b9005b6627e77e7d7545e6acfc10eb05eb3b27ac9c5ddaace5cfea62fb4ee0e.svg" /></div>
 </div>
 <p>As you can see in the plot, having no calibration at all makes the vehicle leave the center of the lane until it has a constant offset of around 40 cm from the middle of the lane. Why does this happen? The wrong yaw and pitch values lead to the computation of a wrong reference path, which is then passed to the controller.  In case of <em>perfect calibration</em> the results looks different. Here, the vehicle stays in the middle of the lane within an error of around 5 cm (except for one small disturbance at around 4 seconds which is due to a bad detection of the neural network).</p>
 <p>But as already mentioned, in the real world we do not know the exact mounting of the camera. So what we will need to do is to estimate the mounting. In this chapter you will learn how to estimate the pitch and yaw angle. The method you will learn leads to simulation results denoted as “VP calib.” in the plot below:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/f0f2c6fbc6057778a1257ab1afd67ebcb32a55ba775e50a6c8d58c958f1d5c99.svg" src="../_images/f0f2c6fbc6057778a1257ab1afd67ebcb32a55ba775e50a6c8d58c958f1d5c99.svg" /></div>
+<img alt="../_images/716458f667776a046449cb3f496f2c921ecdb808226aa815bd611362025ce669.svg" src="../_images/716458f667776a046449cb3f496f2c921ecdb808226aa815bd611362025ce669.svg" /></div>
 </div>
 <p>First, the vehicle leaves the middle of the lane, but then it has gathered enough data to estimate yaw and pitch angles. Consequently, it can recover and stay close to the middle of the lane. Let’s learn how this “VP calib.” method works!</p>
 <section id="vanishing-point-method">
-<h2>Vanishing Point Method<a class="headerlink" href="#vanishing-point-method" title="Permalink to this heading">#</a></h2>
+<h2>Vanishing Point Method<a class="headerlink" href="#vanishing-point-method" title="Permalink to this headline">#</a></h2>
 <p>Our aim is to find the rotation matrix <span class="math notranslate nohighlight">\(\mathbf{R_{cr}}\)</span>, which describes how the camera is rotated</p>
 <p>We know that the rail tracks or the lane lines are mostly parallel, however, if we take an image of the track or road from a camera, we would observe that the track lines or the lanes are not parallel in the image. The point where these lines intersect in an image is known as the vanishing point.</p>
 <figure class="align-default" id="vanishing-point-carla">
@@ -935,7 +949,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 <p>As you can see, the vanishing point shifted in this case. Next let us explore how we can determine yaw and pitch from <span class="math notranslate nohighlight">\(\mathbf{r_3}\)</span></p>
 </section>
 <section id="deriving-yaw-and-pitch-from-the-vanishing-point">
-<h2>Deriving yaw and pitch from the vanishing point<a class="headerlink" href="#deriving-yaw-and-pitch-from-the-vanishing-point" title="Permalink to this heading">#</a></h2>
+<h2>Deriving yaw and pitch from the vanishing point<a class="headerlink" href="#deriving-yaw-and-pitch-from-the-vanishing-point" title="Permalink to this headline">#</a></h2>
 <p>We discussed the rotation matrix in detail in the section <a class="reference internal" href="../LaneDetection/CameraBasics.html"><span class="doc std std-doc">Basis of Image Formation</span></a> within the Lane Detection chapter. The rotation matrix parametrized by yaw, pitch and roll is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -970,7 +984,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 <p>We have thus derived pitch and yaw from the vanishing point! Next, let us see how we can determine the vanishing point from an image using our lane detector.</p>
 </section>
 <section id="vanishing-point-from-lane-lines">
-<h2>Vanishing point from lane lines<a class="headerlink" href="#vanishing-point-from-lane-lines" title="Permalink to this heading">#</a></h2>
+<h2>Vanishing point from lane lines<a class="headerlink" href="#vanishing-point-from-lane-lines" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
@@ -990,7 +1004,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4f8ecd4ad0f6427df7966465f48c319da64d62c7ab8751c242d88de9d1305bfa.svg" src="../_images/4f8ecd4ad0f6427df7966465f48c319da64d62c7ab8751c242d88de9d1305bfa.svg" /></div>
+<img alt="../_images/3a4b6bd822fc684c6c9ea2a9ab3ac71f61b7705edb6743e661c966ea17109065.svg" src="../_images/3a4b6bd822fc684c6c9ea2a9ab3ac71f61b7705edb6743e661c966ea17109065.svg" /></div>
 </div>
 <p>This image was collected from CARLA having a pitch of -5 degrees and yaw of -2 degrees. We aim to obtain these values of pitch and yaw just from the image. For that we will be using our lane detector network trained previously to find the left and right lane boundaries. The intersection of them will lead to the vanishing point.</p>
 <div class="cell docutils container">
@@ -1025,7 +1039,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c1c362a5dbc139b5805bae06fe2b13b7926b43932aa7130c6d42910d4b8e538b.svg" src="../_images/c1c362a5dbc139b5805bae06fe2b13b7926b43932aa7130c6d42910d4b8e538b.svg" /></div>
+<img alt="../_images/d70ec7342d69324a9491687aa1c466eababb9e2840a53bee6a2ed68b24ca8c0e.svg" src="../_images/d70ec7342d69324a9491687aa1c466eababb9e2840a53bee6a2ed68b24ca8c0e.svg" /></div>
 </div>
 <p>To determine the intersection of the blue and red line, we describe each of them by an equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are the pixel coordinates (see the axes labels in the image above). Then, it is a high school math problem to find the intersection point.</p>
 <p>Getting the line equation <span class="math notranslate nohighlight">\(v(u)=m u+c\)</span> for the left lane line from our <code class="docutils literal notranslate"><span class="pre">prob_left</span></code> matrix is actually just two lines of python code:</p>
@@ -1065,7 +1079,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3660dd67e01d492bbbc47ec6c5664a5ecbb9d73079ca466f43055bd6b8c96bc1.svg" src="../_images/3660dd67e01d492bbbc47ec6c5664a5ecbb9d73079ca466f43055bd6b8c96bc1.svg" /></div>
+<img alt="../_images/32b36ff918e465f48f73942584057a2da40e18786ad5224bbe220479cf7bcab8.svg" src="../_images/32b36ff918e465f48f73942584057a2da40e18786ad5224bbe220479cf7bcab8.svg" /></div>
 </div>
 <p>In the exercises you will write code that determines the coordinates of the intersection points of two lines. We can import it here to determine the vanishing point:</p>
 <div class="cell docutils container">
@@ -1078,7 +1092,7 @@ The road is not always flat. It can be banked, elevated or just uneven and there
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9e330953d5d6367e84009a284a55a408474955fa0951510c4c971bfa5adb5789.svg" src="../_images/9e330953d5d6367e84009a284a55a408474955fa0951510c4c971bfa5adb5789.svg" /></div>
+<img alt="../_images/2ced591698b22939d4248936b4a94f3354b1173f6e7d3754ce09639912af4a61.svg" src="../_images/2ced591698b22939d4248936b4a94f3354b1173f6e7d3754ce09639912af4a61.svg" /></div>
 </div>
 <p>Finally, we can find pitch and yaw of the camera form the vanishing point using Eqs. <a class="reference internal" href="#equation-label-r3-equals-invkpinf">(12)</a>, <a class="reference internal" href="#equation-label-eq-alpha">(14)</a>, <a class="reference internal" href="#equation-label-eq-beta">(15)</a>. Again you will write some code for this in the exercises.</p>
 <div class="cell docutils container">
@@ -1103,7 +1117,7 @@ pitch degrees: -5.00
 <p>For the exercise, you will write a <code class="docutils literal notranslate"><span class="pre">CalibratedLaneDetector</span></code> class which inherits from the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class. In each cycle it determines the vanishing points and uses that to estimate yaw and pitch. It stores this information to perform an averaging over time. Additionally, the <code class="docutils literal notranslate"><span class="pre">CalibratedLaneDetector</span></code> makes sure not to use images for averaging when the lane lines are curved, since the vanishing point should only be computed from straight lines.</p>
 </section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
 <p>We provide you with a video. Your task is to use the lane detection network to calibrate the camera and output the yaw and pitch values. The video can be found in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder and is named <code class="docutils literal notranslate"><span class="pre">calibration_video.mp4</span></code>.</p>
 <p>To start working on the exercises, open <code class="docutils literal notranslate"><span class="pre">code/tests/camera_calibration/calibrated_lane_detector.ipynb</span></code> and follow the instructions in that notebook.</p>
 <p>If you completed the tasks from that notebook, you can optionally check your code with a CARLA simulation. Go to the parent folder of the <code class="docutils literal notranslate"><span class="pre">code</span></code> folder and run</p>

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>From Pixels to Meters &#8212; Algorithms for Automated Driving</title>
   
@@ -42,7 +42,6 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,15 +60,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'UA-183782120-1');
             </script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'LaneDetection/InversePerspectiveMapping';</script>
     <link rel="shortcut icon" href="../_static/car_sketch.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -77,7 +76,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Discussion" href="Discussion.html" />
     <link rel="prev" title="Lane Boundary Segmentation" href="Segmentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:language" content="None">
   </head>
   
   
@@ -255,6 +254,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../Appendix/NextChapters.html">
                         Future Chapters
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
                       </a>
                     </li>
                 
@@ -440,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Appendix/Feedback.html">
+                        Feedback
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -529,6 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/ExerciseSetup.html">Exercise Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/CarlaInstallation.html">Carla Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Appendix/NextChapters.html">Future Chapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendix/Feedback.html">Feedback</a></li>
 </ul>
 
     </div>
@@ -790,9 +804,9 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="from-pixels-to-meters">
-<h1>From Pixels to Meters<a class="headerlink" href="#from-pixels-to-meters" title="Permalink to this heading">#</a></h1>
+<h1>From Pixels to Meters<a class="headerlink" href="#from-pixels-to-meters" title="Permalink to this headline">#</a></h1>
 <section id="inverse-perspective-mapping">
-<h2>Inverse perspective mapping<a class="headerlink" href="#inverse-perspective-mapping" title="Permalink to this heading">#</a></h2>
+<h2>Inverse perspective mapping<a class="headerlink" href="#inverse-perspective-mapping" title="Permalink to this headline">#</a></h2>
 <p>Having detected which pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span> are part of a lane boundary, we now want to know which 3 dimensional points <span class="math notranslate nohighlight">\((X_c,Y_c,Z_c)^T\)</span> correspond to these pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span>. First let us have a look at this sketch of the image formation process again:</p>
 <figure class="align-center" id="camera-projection-again">
 <a class="reference internal image-reference" href="../_images/CameraProjection.svg"><img alt="../_images/CameraProjection.svg" src="../_images/CameraProjection.svg" width="67%" /></a>
@@ -846,12 +860,12 @@ title="Print to PDF"
 <p>This equation is only true if the image shows the road at pixel coordinates <span class="math notranslate nohighlight">\((u,v)\)</span>. It may look a bit ugly, but it is actually pretty easy to implement with python.</p>
 </section>
 <section id="exercise-inverse-perspective-mapping">
-<h2>Exercise: Inverse perspective mapping<a class="headerlink" href="#exercise-inverse-perspective-mapping" title="Permalink to this heading">#</a></h2>
+<h2>Exercise: Inverse perspective mapping<a class="headerlink" href="#exercise-inverse-perspective-mapping" title="Permalink to this headline">#</a></h2>
 <p>In this exercise you will implement Eq. <a class="reference internal" href="#equation-eq-inverse-perspective-mapping">(8)</a> as well as the coordinate transformation between the camera reference frame and the road reference frame. For the latter part, you might look back into <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a>. Note that you should have successfully completed the exercise in <a class="reference internal" href="CameraBasics.html"><span class="doc std std-doc">Basics of Image Formation</span></a> before doing this exercise.</p>
 <p>To start working on the exercise, open <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/inverse_perspective_mapping.ipynb</span></code> and follow the instructions in that notebook.</p>
 </section>
 <section id="fitting-the-polynomial">
-<h2>Fitting the polynomial<a class="headerlink" href="#fitting-the-polynomial" title="Permalink to this heading">#</a></h2>
+<h2>Fitting the polynomial<a class="headerlink" href="#fitting-the-polynomial" title="Permalink to this headline">#</a></h2>
 <p>Our aim is to obtain polynomials <span class="math notranslate nohighlight">\(y_l(x)\)</span> and <span class="math notranslate nohighlight">\(y_r(x)\)</span> describing the left and right lane boundaries in the road reference frame (based on ISO 8855).</p>
 <figure class="align-center" id="model-iso8850-again">
 <a class="reference internal image-reference" href="../_images/iso8850_crop.png"><img alt="../_images/iso8850_crop.png" src="../_images/iso8850_crop.png" style="width: 80%;" /></a>
@@ -878,7 +892,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f27f387bb6420eac7f3ec4e24a98f51c752cc188564461a88862c21d23dfb310.svg" src="../_images/f27f387bb6420eac7f3ec4e24a98f51c752cc188564461a88862c21d23dfb310.svg" /></div>
+<img alt="../_images/79b99af9a087fdde716955f67a470699dc0f8fe9187c736e4ee8ae89f0ebc059.svg" src="../_images/79b99af9a087fdde716955f67a470699dc0f8fe9187c736e4ee8ae89f0ebc059.svg" /></div>
 </div>
 <p>The image above shows <code class="docutils literal notranslate"><span class="pre">prob_left[v,u]</span></code> for each <code class="docutils literal notranslate"><span class="pre">(u,v)</span></code>. Now imagine that instead of triples <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> we would have triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left(x,y))</span></code>, where <span class="math notranslate nohighlight">\((x,y)\)</span> are coordinates on the road like in <a class="reference internal" href="#model-iso8850-again"><span class="std std-numref">Fig. 19</span></a>. If we had these triples we could filter them for all <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> where <code class="docutils literal notranslate"><span class="pre">prob_left[x,y]</span></code> is large. We would obtain a list of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> which are part of the left lane boundary and we could use these points to fit our polynomial <span class="math notranslate nohighlight">\(y_l(x)\)</span>!
 But going from <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> to <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> is actually not that hard, since you implemented the function <code class="docutils literal notranslate"><span class="pre">uv_to_roadXYZ_roadframe_iso8855</span></code> in the last exercise. This function converts <span class="math notranslate nohighlight">\((u,v)\)</span> into <span class="math notranslate nohighlight">\((x,y,z)\)</span> (note that <span class="math notranslate nohighlight">\(z=0\)</span> for road pixels).</p>
@@ -927,12 +941,12 @@ But going from <code class="docutils literal notranslate"><span class="pre">(u,v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf74d8c7b1e04edc6e994f3f95a952b7dd7d614f0f0f4a3bb146637095f8e938.svg" src="../_images/cf74d8c7b1e04edc6e994f3f95a952b7dd7d614f0f0f4a3bb146637095f8e938.svg" /></div>
+<img alt="../_images/8b96fe705ab6b55d5bdd5aa69c2597f1d2fa63a884d35ec62df35d94cf00d417.svg" src="../_images/8b96fe705ab6b55d5bdd5aa69c2597f1d2fa63a884d35ec62df35d94cf00d417.svg" /></div>
 </div>
 <p>Looks good!</p>
 </section>
 <section id="encapsulate-the-pipeline-into-a-class">
-<h2>Encapsulate the pipeline into a class<a class="headerlink" href="#encapsulate-the-pipeline-into-a-class" title="Permalink to this heading">#</a></h2>
+<h2>Encapsulate the pipeline into a class<a class="headerlink" href="#encapsulate-the-pipeline-into-a-class" title="Permalink to this headline">#</a></h2>
 <p>You have seen both steps of our lane detection pipeline now: The lane boundary segmentation, and the polynomial fitting. For future usage, it is convenient to encapsulate the whole pipeline into one class. In the following exercise, you will implement such a <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class. For now, let’s have a look at the sample solution for the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> in action.
 First, we load an image</p>
 <div class="cell docutils container">
@@ -952,7 +966,7 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c1dc8e9b701f16541c04c8953787a2a03cacdc86cf18bbdba6bea0abda985779.svg" src="../_images/c1dc8e9b701f16541c04c8953787a2a03cacdc86cf18bbdba6bea0abda985779.svg" /></div>
+<img alt="../_images/58d5186a8d47e70098ca459919353649e3b3c56800a3151939d473c603742387.svg" src="../_images/58d5186a8d47e70098ca459919353649e3b3c56800a3151939d473c603742387.svg" /></div>
 </div>
 <p>Now we import the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class and create an instance of it. For that we specfiy the path to a model that we have stored with pytorch’s <code class="docutils literal notranslate"><span class="pre">save</span></code> function.</p>
 <div class="cell tag_remove-output docutils container">
@@ -987,15 +1001,15 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.9846011163031294, 4.112956989130745)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.9846011160668742, 4.112956989509415)
 </pre></div>
 </div>
-<img alt="../_images/1a8a7f83abae2b55d02703393ca796cfb7dcdf92c2742aa72a55033d8f2217a2.svg" src="../_images/1a8a7f83abae2b55d02703393ca796cfb7dcdf92c2742aa72a55033d8f2217a2.svg" /></div>
+<img alt="../_images/1ef71efe2a5d63935e60489767008d787d2c02127902b74bc1e44be16e1d5b45.svg" src="../_images/1ef71efe2a5d63935e60489767008d787d2c02127902b74bc1e44be16e1d5b45.svg" /></div>
 </div>
 <p>This looks quite reasonable. In the next exercise, you will create a similar plot and compare it to ground truth data from the simulator.</p>
 </section>
 <section id="exercise-putting-everything-together">
-<h2>Exercise: Putting everything together<a class="headerlink" href="#exercise-putting-everything-together" title="Permalink to this heading">#</a></h2>
+<h2>Exercise: Putting everything together<a class="headerlink" href="#exercise-putting-everything-together" title="Permalink to this headline">#</a></h2>
 <p>For the final exercise, you will implement polynomial fitting, and then encapsulate the whole pipeline into the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class. To start, go to <code class="docutils literal notranslate"><span class="pre">code/tests/lane_detection/lane_detector.ipynb</span></code> and follow the instructions.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Tip for fastai users</p>
