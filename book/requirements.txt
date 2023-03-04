@@ -2,18 +2,19 @@ matplotlib
 numpy
 numba
 opencv-python
-jupyterlab
+#jupyterlab
 ipywidgets
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
 torchvision
 fastai
-albumentations
-tqdm
+#albumentations
+#tqdm
 fastseg
 pyclothoids
 jupyter-book==0.14.0
 sphinx-inline-tabs
-pygame
-imageio
-imageio-ffmpeg
+sphinx==4.3.2
+#pygame
+#imageio
+#imageio-ffmpeg
