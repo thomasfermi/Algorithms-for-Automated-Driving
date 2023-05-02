@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/314818745.svg)](https://zenodo.org/badge/latestdoi/314818745)
+
 Algorithms for Automated Driving
 ============================
 
