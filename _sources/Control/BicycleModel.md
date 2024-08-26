@@ -141,7 +141,7 @@ As we have learned in {numref}`ICR_construction`, we construct the ICR by drawin
 ![](./images/pure_pursuit_simple_geometry.png)
 ```
 
-From the triangle in {numref}`ICR_construction` we find
+From the triangle in {numref}`BicycleModelGeometry` we find
 
 $$ \tan(\delta) = \frac{L}{R}$$
 

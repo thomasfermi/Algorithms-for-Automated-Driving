@@ -892,7 +892,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef9677fe7148275fd293c4917fcdc1fa4b75bd82dafc09a294737f3c62890512.svg" src="../_images/ef9677fe7148275fd293c4917fcdc1fa4b75bd82dafc09a294737f3c62890512.svg" /></div>
+<img alt="../_images/0dd6ee400bbcfaf7eed9c05151e9decd9daf9ab6dd5fe5ace1db7fc14d54f9db.svg" src="../_images/0dd6ee400bbcfaf7eed9c05151e9decd9daf9ab6dd5fe5ace1db7fc14d54f9db.svg" /></div>
 </div>
 <p>The image above shows <code class="docutils literal notranslate"><span class="pre">prob_left[v,u]</span></code> for each <code class="docutils literal notranslate"><span class="pre">(u,v)</span></code>. Now imagine that instead of triples <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> we would have triples <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left(x,y))</span></code>, where <span class="math notranslate nohighlight">\((x,y)\)</span> are coordinates on the road like in <a class="reference internal" href="#model-iso8850-again"><span class="std std-numref">Fig. 19</span></a>. If we had these triples we could filter them for all <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> where <code class="docutils literal notranslate"><span class="pre">prob_left[x,y]</span></code> is large. We would obtain a list of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> which are part of the left lane boundary and we could use these points to fit our polynomial <span class="math notranslate nohighlight">\(y_l(x)\)</span>!
 But going from <code class="docutils literal notranslate"><span class="pre">(u,v,prob_left[v,u])</span></code> to <code class="docutils literal notranslate"><span class="pre">(x,y,prob_left[x,y])</span></code> is actually not that hard, since you implemented the function <code class="docutils literal notranslate"><span class="pre">uv_to_roadXYZ_roadframe_iso8855</span></code> in the last exercise. This function converts <span class="math notranslate nohighlight">\((u,v)\)</span> into <span class="math notranslate nohighlight">\((x,y,z)\)</span> (note that <span class="math notranslate nohighlight">\(z=0\)</span> for road pixels).</p>
@@ -941,7 +941,7 @@ But going from <code class="docutils literal notranslate"><span class="pre">(u,v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c9582fc0dc7aeb2150faee978b17d32eacd1c6cbfa3c32a295d3ac7db965fda9.svg" src="../_images/c9582fc0dc7aeb2150faee978b17d32eacd1c6cbfa3c32a295d3ac7db965fda9.svg" /></div>
+<img alt="../_images/e320cbaa8d64c3e767b9abe69399cc0ddb21c751960eef07c5142915e2406c2b.svg" src="../_images/e320cbaa8d64c3e767b9abe69399cc0ddb21c751960eef07c5142915e2406c2b.svg" /></div>
 </div>
 <p>Looks good!</p>
 </section>
@@ -966,7 +966,7 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ccf7f76afe0d32f1b8243c15c7bf2edeeee663df5b0058e73a5b1b322f32366a.svg" src="../_images/ccf7f76afe0d32f1b8243c15c7bf2edeeee663df5b0058e73a5b1b322f32366a.svg" /></div>
+<img alt="../_images/268432aed3dde2991e66eb5c82f8f29f7db5921939e6ea84f59e041388add1b5.svg" src="../_images/268432aed3dde2991e66eb5c82f8f29f7db5921939e6ea84f59e041388add1b5.svg" /></div>
 </div>
 <p>Now we import the <code class="docutils literal notranslate"><span class="pre">LaneDetector</span></code> class and create an instance of it. For that we specfiy the path to a model that we have stored with pytorch’s <code class="docutils literal notranslate"><span class="pre">save</span></code> function.</p>
 <div class="cell tag_remove-output docutils container">
@@ -1001,10 +1001,10 @@ First, we load an image</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.984601121412455, 4.112957019939879)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-3.0, 63.0, -1.9846011061081765, 4.112956968376362)
 </pre></div>
 </div>
-<img alt="../_images/5a137f25294ae11e3e33b0e56af42aaa42a1b5e54e9c42212c1c560301eb03dd.svg" src="../_images/5a137f25294ae11e3e33b0e56af42aaa42a1b5e54e9c42212c1c560301eb03dd.svg" /></div>
+<img alt="../_images/d32e5c698653903b7787f158ef1b4994061ef6573d5532b70f95e141ce809302.svg" src="../_images/d32e5c698653903b7787f158ef1b4994061ef6573d5532b70f95e141ce809302.svg" /></div>
 </div>
 <p>This looks quite reasonable. In the next exercise, you will create a similar plot and compare it to ground truth data from the simulator.</p>
 </section>
