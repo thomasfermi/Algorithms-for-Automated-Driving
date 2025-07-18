@@ -55,7 +55,7 @@ class CameraGeometry(object):
         cy, sy = np.cos(yaw), np.sin(yaw)
         cp, sp = np.cos(pitch), np.sin(pitch)
         cr, sr = np.cos(roll), np.sin(roll)
-        rotation_road_to_cam = np.array([[cr*cy+sp*sr+sy, cr*sp*sy-cy*sr, -cp*sy],
+        rotation_road_to_cam = np.array([[cr*cy+sp*sr*sy, cr*sp*sy-cy*sr, -cp*sy],
                                             [cp*sr, cp*cr, sp],
                                             [cr*sy-cy*sp*sr, -cr*cy*sp -sr*sy, cp*cy]])
         self.rotation_cam_to_road = rotation_road_to_cam.T # for rotation matrices, taking the transpose is the same as inversion
