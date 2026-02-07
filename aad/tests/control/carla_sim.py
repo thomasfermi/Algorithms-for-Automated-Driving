@@ -2,8 +2,8 @@
 # Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
 
 # How to run: 
-# cd into the parent directory of the 'code' directory and run
-# python -m code.tests.control.carla_sim
+# cd into the repo root and run
+# python -m aad.tests.control.carla_sim
 
 
 import carla

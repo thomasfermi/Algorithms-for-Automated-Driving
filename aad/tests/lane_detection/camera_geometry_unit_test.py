@@ -1,5 +1,5 @@
-# To run this, cd into the parent directory of the code folder an then run
-# python -m code.tests.lane_detection.camera_geometry_unit_test 1
+# To run this, cd into the repo root and then run
+# python -m aad.tests.lane_detection.camera_geometry_unit_test 1
 import numpy as np
 from pathlib import Path
 import argparse
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         print("Running tests for step ", step)
         print("-------------------------")
     else:
-        print("Error! Step argument needs to be 1, 2, or 3. For example you can run\npython -m code.tests.lane_detection.camera_geometry_unit_test 1")
+        print("Error! Step argument needs to be 1, 2, or 3. For example you can run\npython -m aad.tests.lane_detection.camera_geometry_unit_test 1")
 
 
     sln_cg = sln_CameraGeometry()

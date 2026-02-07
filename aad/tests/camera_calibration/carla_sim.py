@@ -2,8 +2,8 @@
 # Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
 
 # How to run: 
-# cd into the parent directory of the 'code' directory and run
-# python -m code.tests.control.carla_sim
+# cd into the repo root and run
+# python -m aad.tests.camera_calibration.carla_sim
 
 
 import carla
@@ -264,7 +264,7 @@ def main(yaw_deg=0, pitch_deg = 0, ex=False, save_video=False, half_image=False)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Runs Carla simulation with your control algorithm and the calibrated lane detector.',
-        epilog="Example usage:\n\n   python -m code.tests.camera_calibration.carla_sim 3 -4 --vid\n \n",
+        epilog="Example usage:\n\n   python -m aad.tests.camera_calibration.carla_sim 3 -4 --vid\n \n",
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("yaw_deg", type=float, help="camera mounting yaw angle in degrees")
     parser.add_argument("pitch_deg", type=float, help="camera mounting pitch angle in degrees")
