@@ -1,82 +1,125 @@
 # Exercise Setup
 
-You can work on the exercises on your local machine, or in the cloud using Google Colab. Dependent on your choice, please select the corresponding tab in the following tutorial. If you know how to work with [anaconda](https://www.anaconda.com/products/individual) and are ok with an anaconda environment taking more than 1GB of disk space on your machine, I would recommend you to use your local machine. However, there is one deep learning exercise where you temporarily might want to switch to Colab, if you do not own a GPU. 
+You can work on the exercises on your local machine, or in the cloud using Google Colab. Choose the tab that matches your setup. For local work, we recommend [uv](https://docs.astral.sh/uv/) for fast, reliable dependency management.
 
 ## Downloading the exercises
 
-If you know how [git](https://git-scm.com/) works, please clone this [book's github repo](https://github.com/thomasfermi/Algorithms-for-Automated-Driving).
+Clone the repository or download it as a zip:
+
 ```bash
 git clone https://github.com/thomasfermi/Algorithms-for-Automated-Driving.git
 ```
-Otherwise visit this [book's github repo](https://github.com/thomasfermi/Algorithms-for-Automated-Driving) and click on the green button that says "Code". In the pop-up menu, please select "Download zip". Extract the zip to a directory of your choice.
+
+Or visit [the GitHub repo](https://github.com/thomasfermi/Algorithms-for-Automated-Driving), click "Code", and download the zip.
 
 ````{tab} Local installation
 Nothing more to do.
 ````
 
 ````{tab} Google Colab
-Open [Google Drive](https://drive.google.com/drive/my-drive). In the top left navigation you can see "My Drive". Right click "My Drive" and select "New folder". Name this folder "aad". You will see the folder appear. Double-click it. Now open a file explorer on your computer and navigate to the folder "Algorithms-for-Automated-Driving" that you have downloaded from github. Select all folders except the "book" folder and drag and drop them into the empty "aad" folder in your Google Drive. 
+Open [Google Drive](https://drive.google.com/drive/my-drive). Create a new folder called "aad". Upload the repo contents to this folder (you can skip the `book` folder).
 ````
-
-
 
 ## Python environment
 
-
 `````{tab} Local installation
-If you do not have anaconda, please [download and install it](https://www.anaconda.com/products/individual).
-Please create a conda environment called `aad` (Algorithms for Automated Driving) for this course using the environment.yml file within "Algorithms-for-Automated-Driving/code"
-````bash
-cd Algorithms-for-Automated-Driving/code
-conda env create -f environment.yml
-````
 
-````{admonition} Tip: Use mamba!
-:class: tip, dropdown
-You may find that creating a conda environment takes a lot of time. I recommend to install mamba:
+### Using uv (recommended)
+
+If you don't have uv, install it:
 ```bash
-conda install mamba -n base -c conda-forge
+pip install uv
 ```
-Installing mamba takes some time, but afterwards setting up environments like the one for this book is way faster. Just write `mamba` instead of `conda`:
-```bash
-mamba env create -f environment.yml
-``` 
-````
 
-Be sure to activate that environment to work with it
+Then set up the environment:
 ```bash
+cd Algorithms-for-Automated-Driving
+uv sync
+```
+
+Activate the virtual environment or use `uv run`:
+```bash
+# Option 1: Activate the venv
+source .venv/bin/activate  # Linux/macOS
+.venv\Scripts\activate      # Windows
+
+# Option 2: Run commands directly with uv
+uv run jupyter lab
+```
+
+### Using conda (legacy)
+
+If you prefer conda/mamba:
+```bash
+# With conda
+conda create -n aad python=3.10
 conda activate aad
-```
-If you are working on Windows, consider [adding anaconda to your PowerShell](https://www.scivision.dev/conda-powershell-python/).
-`````
+pip install -e .
 
+# Or with mamba (faster)
+mamba create -n aad python=3.10
+mamba activate aad
+pip install -e .
+```
+
+`````
 
 `````{tab} Google Colab
-When you run code in Google Colab, you will have most of the libraries you need already installed. Just import whatever you need. If it is missing, you will get an error message that explains how to install it. 
-`````
+Most libraries are pre-installed. If you need something, just import it—Colab will suggest installation if needed.
 
+For the aad package, install in your first cell:
+```python
+import subprocess
+import sys
+subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", "/content/drive/MyDrive/path-to-aad"])
+```
+`````
 
 ## Navigating the exercises
 
-Within the `Algorithms-for-Automated-Driving` folder you will find a subfolder `book` containing the source code which created this book (not too interesting for you right now, you can even delete it if you want), a folder `data`, and a folder `code`. Within the `code` folder you have subfolders `exercises`, `solutions`, `tests`, and `util`. You will complete exercises by writing code in the `exercises` folder and testing it with code from the `tests` folder. You should *not* look into the `solutions` directory, unless you are desperate and really can't solve the exercise on your own.
+The repository structure is:
 
+```
+Algorithms-for-Automated-Driving/
+├── aad/
+│   ├── exercises/     (write your code here)
+│   ├── solutions/     (don't peek!)
+│   ├── tests/         (run these to test your work)
+│   └── util/          (shared utilities)
+├── book/              (book source, you can delete)
+└── data/              (datasets)
+```
+
+Work on exercises by editing files in `aad/exercises/`. Test your code using notebooks in `aad/tests/`.
 
 ````{tab} Local installation
-To edit the source code, I recommend to use [Visual Studio Code](https://code.visualstudio.com/), since it has nice integration for jupyter notebooks. You can open the `code` folder with Visual Studio code and then easily navigate between the `tests` and the `exercises`. An alternative to Visual Studio code is jupyter lab, which you can start from a terminal:
+
+### Editing code
+
+We recommend [Visual Studio Code](https://code.visualstudio.com/), which has good Jupyter notebook support.
+
+Open the repo folder:
 ```bash
-conda activate aad
-cd Algorithms-for-Automated-Driving
-jupyter lab
+code Algorithms-for-Automated-Driving
 ```
-In the book's exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
-When you open the .ipynb file with VS code be sure to select the "aad" conda environment as your python kernel.
-Once you opened the notebook, read through it cell by cell. Execute each cell by pressing ctrl+enter. Typically the first section of the notebook is for setting up Google Colab. This won't do anything on your machine. You can also delete these Colab-specific cells if you want.
+
+Start Jupyter Lab to edit notebooks:
+```bash
+uv run jupyter lab
+```
+
+Then navigate to the exercise notebook specified in the book. In VS Code, select the `.venv` Python interpreter when opening notebooks.
+
 ````
 
 ````{tab} Google Colab
-In the book's exercise sections, I typically tell you to start working on the exercise by opening some jupyter notebook (.ipynb file).
-Open [Google Drive](https://drive.google.com/drive/my-drive) and navigate to the .ipynb file specified in the book. Double-click the .ipynb file and then at the very top select "Open with Google Colaboratory". If you do not see this option, click "Connect more apps" and search for "colab". Once you opened the notebook, read through it cell by cell. Execute each cell, either by pressing ctrl+enter or by clicking the run button on the cell. The first few cells will mount your Google Drive in Colab. Once you completed this, you can click on the folder icon in the left navigation, and then for example on "drive", "My Drive", "aad", "code", "exercises", "lane_detection", "camera_geometry.py". This way you can work on python scripts. Be sure to press ctrl+s to save your work. It will be synchronized with your Google Drive.
+
+Open [Google Drive](https://drive.google.com/drive/my-drive), navigate to your `aad` folder, and double-click a `.ipynb` file. At the top, click "Open with Google Colaboratory".
+
+The first cells mount your Google Drive. After that, you can edit Python files via the folder icon in the left sidebar, and save with Ctrl+S.
+
 ````
 
 ## Getting help
-If you have a question about the exercises, feel free to ask it on  [github discussions](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions) or on the [discord server](https://discord.gg/57YEzkCFHN). 
+
+Questions? Ask on [GitHub Discussions](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions) or [Discord](https://discord.gg/57YEzkCFHN).

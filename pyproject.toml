@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aad"
+version = "0.1.0"
+description = "Algorithms for Automated Driving - Educational resource"
+requires-python = "==3.10.*"
+authors = [{name = "Thomas Fermi"}]
+
+dependencies = [
+  "numpy",
+  "matplotlib",
+  "opencv-python",
+  "torch>=2.0",
+  "torchvision>=0.15",
+  "fastai>=2.7",
+  "albumentations>=1.3",
+  "tqdm",
+  "jupyterlab",
+  "ipywidgets",
+  "numba",
+  "pyclothoids",
+  "pygame",
+  "imageio",
+  "imageio-ffmpeg",
+  "fastseg==0.1.2",
+]
+
+[project.optional-dependencies]
+carla = [
+  "carla==0.9.16",
+]
+book = [
+   "jupyter-book==1.0.4.post1",
+   "sphinx>=7.0,<8",
+   "sphinx_inline_tabs>=2022.1",
+ ]
+
+[tool.setuptools]
+packages = ["aad"]
+
+[tool.setuptools.package-data]
+aad = ["**/*.py"]
