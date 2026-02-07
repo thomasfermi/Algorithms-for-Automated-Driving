@@ -1,4 +1,13 @@
-# Refactoring Complete: uv + Package Structure + Jupyter Book 1.x (Feb 7, 2025)
+# Refactoring Complete: uv + Package Structure + Jupyter Book 1.x (Feb 7, 2026)
+
+## TODO for Mario
+
+Before merging `modernize` into `master`:
+
+1. **Test all notebooks** - Run each notebook in `aad/tests/` to verify they execute without errors
+2. **Read the book carefully** - Build with `uv run jupyter-book build book` and review all content, especially updated paths and examples
+3. **Try the Carla simulator** - If Carla is available, test `uv run python -m aad.tests.control.carla_sim` and `uv run python -m aad.tests.camera_calibration.carla_sim`
+4. **Verify exercise notebooks** - Open a few exercise notebooks in Jupyter Lab locally and confirm absolute imports work
 
 ## Overview
 
@@ -52,6 +61,10 @@ Output HTML will be in `book/_build/html/`
 - [x] Converted all relative imports to absolute (`from aad.*)
 - [x] Removed all `sys.path.append()` hacks from notebooks (10 notebooks)
 - [x] All subdirectories have `__init__.py`
+- [x] Updated test notebooks with improved Colab setup (6 notebooks)
+- [x] Modernized all `code.tests` → `aad.tests` references
+- [x] Updated all commands to use `uv run python`
+- [x] Removed stray syntax errors from notebooks
 
 **Dependencies (Phase 1 - uv migration)**
 - [x] Created root `pyproject.toml` with setuptools config
@@ -65,27 +78,40 @@ Output HTML will be in `book/_build/html/`
 - [x] Updated myst-parser: 0.18.1 → 3.0.1
 - [x] Updated myst-nb: 0.17.2 → 1.3.0
 - [x] Removed Google Analytics tracking code
-- [x] Enforced light mode only (`dark_mode_enabled: false`)
+- [x] Enforced light mode only (custom JS + CSS workaround)
 - [x] Updated all `code/` paths to `aad/` in book content
 - [x] Added `aad.egg-info/` to `.gitignore`
+- [x] Updated GitHub workflow to use `uv` and `astral-sh/setup-uv@v3`
 
 **Testing & Documentation**
 - [x] All extras tested independently and together
-- [x] Updated `book/Appendix/ExerciseSetup.md` (uv-focused)
-- [x] Updated `book/Appendix/CarlaInstallation.md` (simplified)
+- [x] Updated `book/Appendix/ExerciseSetup.md` (uv-focused, removed manual aad install)
+- [x] Updated `book/Appendix/CarlaInstallation.md` (simplified with direct GitHub link)
 - [x] Book builds successfully with all notebooks executing
 - [x] Jupyter Book 1.0.4.post1 build verified with no breaking changes
+- [x] Test notebooks automatically detect Colab environment
+- [x] All absolute imports verified in test notebooks
 
-## Known Issues
+## Known Issues & Workarounds
+
+**Theme Persistence Bug (Sphinx Book Theme 1.1.4)**: In Firefox, dark/light mode toggle state did not persist across page navigation. This was caused by the theme JavaScript reading localStorage on every page load, overriding the hardcoded HTML `data-theme` attribute.
+
+**Workaround Implemented**:
+1. Created `book/_static/force-light-mode.js` - Clears localStorage and forces light mode on every page load
+2. Created `book/_static/hide-theme-toggle.css` - Hides the theme switcher button from the UI entirely
+3. Added `recursive_update: true` to Sphinx config - Ensures config options apply correctly
+4. Added documentation to `book/_config.yml` explaining the three-part fix
+
+**Result**: Light mode is now enforced consistently across all pages and browsers. Users cannot enable dark mode (button is hidden and localStorage is cleared).
 
 **HTML Rendering**: Local build differs slightly from live site (styling of inline code). Root cause TBD—likely theme or CSS differences. Content and structure are correct.
 
 ## Git Workflow
 
-All refactoring work completed in February 2025 has been organized into a clean feature branch:
+All refactoring work completed in February 2026 has been organized into a clean feature branch:
 
 - **`master`** - Original state (preserved as-is)
-- **`modernize`** - All 2025 changes squashed into 1 commit (69 files changed)
+- **`modernize`** - All 2026 changes (multiple commits, including Phase 4 improvements)
 - **`backup-2026`** - Safety backup of modernize branch
 
 To merge modernize into master when ready:
@@ -95,14 +121,26 @@ git merge modernize
 git push origin master
 ```
 
-## Files Changed (Phase 1 + 2)
+## Files Changed (Phase 1 + 2 + 3 + 4)
 
-- `pyproject.toml` - Created (new, updated with JB 1.x deps)
+### Phase 1 & 2 (Core Modernization)
+- `pyproject.toml` - Created (new, with uv + JB 1.x deps)
 - `uv.lock` - Generated (new, includes all transitive deps)
 - `/aad/` - Renamed from `/code/`
-- `book/_config.yml` - Updated for JB 1.x, removed analytics, light mode only
+- `book/_config.yml` - Updated for JB 1.x, removed analytics, added theme workaround
 - `book/Appendix/*.md` - Updated for uv/modern setup
 - Book content `.md` and `.ipynb` files - Paths updated from `code/` to `aad/`
 - `.gitignore` - Added `aad.egg-info/`
-- 7 Python files - Imports fixed (Phase 1)
-- 10 Notebooks - `sys.path` removed (Phase 1)
+- 7 Python files - Imports fixed
+- 10 Notebooks - `sys.path` removed
+
+### Phase 3 (Theme & Workflow Fixes)
+- `book/_static/force-light-mode.js` - Custom script to enforce light mode
+- `book/_static/hide-theme-toggle.css` - CSS to hide theme toggle button
+- `.github/workflows/book.yml` - Updated to use `uv` and `astral-sh/setup-uv@v3`
+
+### Phase 4 (Colab & Test Improvements)
+- 6 Test notebooks in `aad/tests/` - Added Colab detection, mount, and aad package install cells
+- Test module paths - Updated from `code.tests` → `aad.tests`
+- Commands updated - All to use `uv run python`
+- Stray syntax errors removed from notebooks
