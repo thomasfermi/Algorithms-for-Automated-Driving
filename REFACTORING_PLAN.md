@@ -37,6 +37,14 @@ uv sync --extra book
 uv sync --all-extras
 ```
 
+## Building the Book
+
+```bash
+uv run jupyter-book build book
+```
+
+Output HTML will be in `book/_build/html/`
+
 ## Completion Checklist
 
 **Package & Imports**
