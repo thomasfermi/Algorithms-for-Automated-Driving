@@ -3,7 +3,7 @@
 
 # How to run: 
 # cd into the repo root and run
-# python -m aad.tests.control.carla_sim
+# uv run python -m aad.tests.control.carla_sim
 
 
 import carla
