@@ -144,3 +144,20 @@ git push origin master
 - Test module paths - Updated from `code.tests` → `aad.tests`
 - Commands updated - All to use `uv run python`
 - Stray syntax errors removed from notebooks
+
+
+# newest user findings
+a) search any .py and .ipynb files for string "code/", to find any remaining references to the old code directory structure. Fix it to say "aad/" instead
+b) Search in the book directory for any remaining references to the old code directory structure. Fix it to say "aad/" instead. this might be in markdown files also
+c) search in the book directory for any commands that say "run python" and replace it with "uv run python". I guess also look in the comments of all .py and .ipynb files, where there might be comments that say "please run python" and replace it with "please run uv run python"
+
+d) in carla_sim.py it looks like it is night. can you make it day? maybe there is some problem since we upgraded to carla 0.9.16 (by the way also search in the whole code base for 0.9.* and see if we incorrectly talk about the wrong carla version)
+
+e) Since our main dependency pytorch is so huge, we can make the optional dependencies required. This will make the installation process more straightforward and won't make a big difference anyway. When you do this change search for "uv sync --extra" and change the command to "uv sync" (since we are not using extra dependencies anymore after this change)
+
+progress:
+a) [ ]
+b) [ ]
+c) [ ]
+d) [x] Fixed - Created get_weather_clear_noon() function in carla_util.py; updated 3 files (control/carla_sim.py, camera_calibration/carla_sim.py, collect_data.py) to use daytime preset
+e) [ ]

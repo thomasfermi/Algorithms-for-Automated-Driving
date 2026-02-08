@@ -1,13 +1,13 @@
+import queue
+
 import carla
+import numpy as np
 import pygame
 
-import queue
-import numpy as np
 
 def carla_vec_to_np_array(vec):
-    return np.array([vec.x,
-                     vec.y,
-                     vec.z])
+    return np.array([vec.x, vec.y, vec.z])
+
 
 class CarlaSyncMode(object):
     """
@@ -24,16 +24,19 @@ class CarlaSyncMode(object):
         self.world = world
         self.sensors = sensors
         self.frame = None
-        self.delta_seconds = 1.0 / kwargs.get('fps', 20)
+        self.delta_seconds = 1.0 / kwargs.get("fps", 20)
         self._queues = []
         self._settings = None
 
     def __enter__(self):
         self._settings = self.world.get_settings()
-        self.frame = self.world.apply_settings(carla.WorldSettings(
-            no_rendering_mode=False,
-            synchronous_mode=True,
-            fixed_delta_seconds=self.delta_seconds))
+        self.frame = self.world.apply_settings(
+            carla.WorldSettings(
+                no_rendering_mode=False,
+                synchronous_mode=True,
+                fixed_delta_seconds=self.delta_seconds,
+            )
+        )
 
         def make_queue(register_event):
             q = queue.Queue()
@@ -61,7 +64,6 @@ class CarlaSyncMode(object):
                 return data
 
 
-
 def carla_img_to_array(image):
     array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
     array = np.reshape(array, (image.height, image.width, 4))
@@ -80,6 +82,7 @@ def draw_image(surface, image, blend=False):
         image_surface.set_alpha(100)
     surface.blit(image_surface, (0, 0))
 
+
 def draw_image_np(surface, image, blend=False):
     array = image
     image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
@@ -97,9 +100,30 @@ def should_quit():
                 return True
     return False
 
+
 def find_weather_presets():
     import re
-    rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
-    name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
-    presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+
+    rgx = re.compile(".+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)")
+    name = lambda x: " ".join(m.group(0) for m in rgx.finditer(x))
+    presets = [x for x in dir(carla.WeatherParameters) if re.match("[A-Z].+", x)]
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
+
+
+def get_weather_clear_noon():
+    """Get the Clear Noon weather preset for daytime simulation.
+    Returns carla.WeatherParameters.ClearNoon if available, otherwise first preset.
+    """
+    return carla.WeatherParameters.ClearNoon
+
+
+def get_weather_clear_noon_with_name():
+    """Get the Clear Noon weather preset with its formatted name string.
+    Returns tuple of (preset, name_string) where name_string has spaces replaced with underscores.
+    """
+    weather_presets = find_weather_presets()
+    for preset, name in weather_presets:
+        if "clear" in name.lower() and "noon" in name.lower():
+            return preset, name.replace(" ", "_")
+    # Fallback to first preset
+    return weather_presets[0][0], weather_presets[0][1].replace(" ", "_")

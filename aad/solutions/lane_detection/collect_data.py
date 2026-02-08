@@ -19,7 +19,7 @@ from datetime import datetime
 from aad.util.carla_util import (
     carla_vec_to_np_array,
     CarlaSyncMode,
-    find_weather_presets,
+    get_weather_clear_noon_with_name,
     draw_image,
     should_quit,
 )
@@ -200,8 +200,7 @@ def main():
         spawn_waypoint = m.get_waypoint(start_pose.location)
 
         # set weather to sunny
-        weather_preset, weather_preset_str = find_weather_presets()[0]
-        weather_preset_str = weather_preset_str.replace(" ", "_")
+        weather_preset, weather_preset_str = get_weather_clear_noon_with_name()
         world.set_weather(weather_preset)
         simulation_identifier = (
             town_string + "_" + weather_preset_str + "_" + date_time_string
