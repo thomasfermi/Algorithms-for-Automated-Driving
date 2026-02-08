@@ -26,41 +26,14 @@ Open [Google Drive](https://drive.google.com/drive/my-drive). Create a new folde
 
 ### Using uv (recommended)
 
-If you don't have uv, install it:
-```bash
-pip install uv
-```
+If you don't have uv, install it: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/).
 
-Then set up the environment:
+Then set up the environment (this will take very long, since it needs to download all dependencies and pytorch for deep learning is huge):
 ```bash
 cd Algorithms-for-Automated-Driving
 uv sync
 ```
 
-Activate the virtual environment or use `uv run`:
-```bash
-# Option 1: Activate the venv
-source .venv/bin/activate  # Linux/macOS
-.venv\Scripts\activate      # Windows
-
-# Option 2: Run commands directly with uv
-uv run jupyter lab
-```
-
-### Using conda (legacy)
-
-If you prefer conda/mamba:
-```bash
-# With conda
-conda create -n aad python=3.10
-conda activate aad
-pip install -e .
-
-# Or with mamba (faster)
-mamba create -n aad python=3.10
-mamba activate aad
-pip install -e .
-```
 
 `````
 
@@ -102,13 +75,15 @@ Open the repo folder:
 ```bash
 code Algorithms-for-Automated-Driving
 ```
+To select the `.venv` Python interpreter (which `uv sync` created for you), open the Command Palette (`Ctrl+Shift+P`) and type "Python: Select Interpreter". Choose the `.venv` interpreter.
+Then you can edit and run notebooks inside VS Code.
 
-Start Jupyter Lab to edit notebooks:
+Alternative: Start Jupyter Lab to edit notebooks:
 ```bash
 uv run jupyter lab
 ```
 
-Then navigate to the exercise notebook specified in the book. In VS Code, select the `.venv` Python interpreter when opening notebooks.
+
 
 ````
 
