@@ -24,7 +24,6 @@ Open [Google Drive](https://drive.google.com/drive/my-drive). Create a new folde
 
 `````{tab} Local installation
 
-### Using uv (recommended)
 
 If you don't have uv, install it: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/).
 
