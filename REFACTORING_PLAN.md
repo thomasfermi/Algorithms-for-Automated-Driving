@@ -33,17 +33,8 @@ Migrated from conda/pixi-based setup to modern **uv** package manager with conso
 git clone https://github.com/thomasfermi/Algorithms-for-Automated-Driving.git
 cd Algorithms-for-Automated-Driving
 
-# Base installation
+# Installation (all dependencies included)
 uv sync
-
-# With Carla (optional)
-uv sync --extra carla
-
-# With book tools (optional)
-uv sync --extra book
-
-# Everything
-uv sync --all-extras
 ```
 
 ## Building the Book
@@ -160,4 +151,4 @@ a) [x] Fixed - Searched .py and .ipynb files; found outdated paths in 2 Colab no
 b) [x] Fixed - Verified no "code/" refs in book .md files; checked .ipynb files (no issues found)
 c) [x] Fixed - Updated PurePursuit.md (2 instances of `python -m aad...` → `uv run python -m aad...`); verified all other commands already use `uv run`
 d) [x] Fixed - Created get_weather_clear_noon() function in carla_util.py; updated 3 files (control/carla_sim.py, camera_calibration/carla_sim.py, collect_data.py) to use daytime preset
-e) [ ]
+e) [x] Fixed - Moved carla and book from optional extras to required dependencies in pyproject.toml; updated all documentation (INSTALLATION.md, CarlaInstallation.md, REFACTORING_PLAN.md) to remove `--extra` flags

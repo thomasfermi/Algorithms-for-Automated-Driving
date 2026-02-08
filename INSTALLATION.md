@@ -8,8 +8,6 @@ This project uses **uv** for fast, reliable Python dependency management.
 
 ## Quick Start
 
-### Base Installation (No Extras)
-
 ```bash
 git clone https://github.com/thomasfermi/Algorithms-for-Automated-Driving.git
 cd Algorithms-for-Automated-Driving
@@ -21,28 +19,14 @@ uv sync
 uv run python -c "from aad.exercises.lane_detection import CameraGeometry; print('✓ Works!')"
 ```
 
-### With Carla Simulator (Optional)
+All dependencies including Carla and Jupyter Book are included by default.
+
+**Note:** The Carla Python package is just the client API. To use the simulator, you still need to download and run the [Carla simulator server in version 0.9.16](https://github.com/carla-simulator/carla/releases/tag/0.9.16).
+
+To build the Jupyter Book:
 
 ```bash
-uv sync --extra carla
-uv run python -c "import carla; print(carla.__version__)"
-```
-
-**Important:** The Carla Python package is just the client API. You still need to download and run the [Carla simulator server in version 0.9.16](https://github.com/carla-simulator/carla/releases/tag/0.9.16).
-
-### With Book Tools (Optional)
-
-```bash
-uv sync --extra book
-
-# Build the Jupyter Book
-jupyter-book build book/
-```
-
-### With Everything
-
-```bash
-uv sync --all-extras
+uv run jupyter-book build book/
 ```
 
 ## Development Workflow
@@ -149,12 +133,12 @@ from aad.util.geometry_util import rotation_matrix
 
 ### "No module named 'carla'"
 
-- Install with extras: `uv sync --extra carla`
-- Carla server must be running separately
+- Ensure `uv sync` was run in the repo root
+- Carla server must be running separately if using the simulator
 
 ### "No module named 'jupyter_book'"
 
-- Install with extras: `uv sync --extra book`
+- Ensure `uv sync` was run in the repo root
 
 ### Dependency conflicts
 

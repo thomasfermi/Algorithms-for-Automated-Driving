@@ -26,17 +26,11 @@ dependencies = [
   "imageio",
   "imageio-ffmpeg",
   "fastseg==0.1.2",
-]
-
-[project.optional-dependencies]
-carla = [
   "carla==0.9.16",
+  "jupyter-book==1.0.4.post1",
+  "sphinx>=7.0,<8",
+  "sphinx_inline_tabs>=2022.1",
 ]
-book = [
-   "jupyter-book==1.0.4.post1",
-   "sphinx>=7.0,<8",
-   "sphinx_inline_tabs>=2022.1",
- ]
 
 [tool.setuptools]
 packages = ["aad"]

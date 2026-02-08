@@ -4,13 +4,13 @@ Carla is an **optional** component. You only need it if you plan to run simulati
 
 ## Installation
 
-The Carla Python API is installed as an optional dependency:
+The Carla Python API is installed by default as part of `uv sync`:
 
 ```bash
-uv sync --extra carla
+uv sync
 ```
 
-This installs Carla 0.9.16.
+This installs Carla 0.9.16 automatically.
 
 ## Important: Carla Server
 
@@ -32,12 +32,3 @@ cd CARLA_0.9.16
 ```
 
 In another terminal, run your Python scripts that import carla.
-
-## Troubleshooting
-
-**"No module named 'carla'"**
-- Install with: `uv sync --extra carla`
-
-**"Failed to connect to Carla server"**
-- Ensure Carla simulator is running (see above)
-- Default connection: `localhost:2000`
