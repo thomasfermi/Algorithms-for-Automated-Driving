@@ -12,17 +12,17 @@ git clone https://github.com/thomasfermi/Algorithms-for-Automated-Driving.git
 
 Or visit [the GitHub repo](https://github.com/thomasfermi/Algorithms-for-Automated-Driving), click "Code", and download the zip.
 
-````{tab} Local installation
+```{tab} Local installation
 Nothing more to do.
-````
+```
 
-````{tab} Google Colab
+```{tab} Google Colab
 Open [Google Drive](https://drive.google.com/drive/my-drive). Create a new folder called "aad". Upload the repo contents to this folder (you can skip the `book` folder).
-````
+```
 
 ## Python environment
 
-`````{tab} Local installation
+````{tab} Local installation
 
 
 If you don't have uv, install it: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/).
@@ -34,18 +34,17 @@ uv sync
 ```
 
 
-`````
+````
 
-`````{tab} Google Colab
-Most libraries are pre-installed. If you need something, just import it—Colab will suggest installation if needed.
+```{tab} Google Colab
+Use the Colab-optimized notebooks (`*_colab.ipynb` versions) designed for the Google Colab environment. These notebooks:
+- Automatically detect Colab and mount your Google Drive
+- Use `sys.path` to import the aad package
+- Avoid dependency conflicts with Colab's Python version
 
-For the aad package, install in your first cell:
-```python
-import subprocess
-import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", "/content/drive/MyDrive/path-to-aad"])
+All setup is automatic—just run the first two cells to mount and navigate.
+If any package is missing, add a cell with !pip install xyz, where xyz is the name of your missing package.
 ```
-`````
 
 ## Navigating the exercises
 
@@ -87,13 +86,23 @@ uv run jupyter lab
 
 ````
 
-````{tab} Google Colab
+```{tab} Google Colab
 
-Open [Google Drive](https://drive.google.com/drive/my-drive), navigate to your `aad` folder, and double-click a `.ipynb` file. At the top, click "Open with Google Colaboratory".
+Always use the **Colab-optimized notebooks** (`*_colab.ipynb` filenames):
+- In `aad/tests/` → use `*_colab.ipynb` files
+- In `aad/exercises/` → use `*_colab.ipynb` files
+- In `aad/solutions/` → use `*_colab.ipynb` files
 
-The first cells mount your Google Drive. After that, you can edit Python files via the folder icon in the left sidebar, and save with Ctrl+S.
+To open:
+1. Navigate to your `aad` folder in [Google Drive](https://drive.google.com/drive/my-drive)
+2. Find the `*_colab.ipynb` file you want
+3. Double-click → "Open with Google Colaboratory"
+4. Run the first two cells (they mount your drive and navigate automatically)
+5. Edit Python files via the folder icon in the left sidebar (Ctrl+S to save)
 
-````
+The regular `.ipynb` files are for local use only (they require `uv` and absolute imports).
+
+```
 
 ## Getting help
 
