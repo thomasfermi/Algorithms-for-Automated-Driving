@@ -2,17 +2,30 @@
 title: Algorithms for Automated Driving
 author: <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
 
+# THEME MODE CONFIGURATION
+# =======================
+# Light mode is enforced via three mechanisms to work around a Sphinx Book Theme 1.1.4 bug
+# where dark/light mode toggle state does not persist across page navigation in Firefox:
+#
+# 1. recursive_update: true - Forces Sphinx config options to apply correctly
+# 2. hide-theme-toggle.css - Hides the theme switcher button from the UI entirely
+# 3. force-light-mode.js - Clears localStorage and forces light mode on every page load
+#
+# The bug occurs because the theme JavaScript reads localStorage on each page load,
+# overriding the hardcoded HTML data-theme attribute. The custom JavaScript prevents
+# users from accidentally enabling dark mode which would then appear inconsistently.
+
 
 logo: car_sketch_wide.png
 
-html: 
+html:
   favicon: car_sketch.png
   home_page_in_navbar : false
   use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
+  extra_css: _static/hide-theme-toggle.css
   extra_footer: <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-  google_analytics_id: UA-183782120-1
   
 repository:
   url: "https://github.com/thomasfermi/Algorithms-for-Automated-Driving"
@@ -28,10 +41,15 @@ launch_buttons:
 sphinx:
   extra_extensions:
       - sphinx_inline_tabs
+  recursive_update: true
   config:    
     html_show_copyright: false
+    html_context:
+      default_mode: light
+    html_theme_options:
+      navbar_end: ["navbar-icon-links"]
     html_js_files:
-    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+      - _static/force-light-mode.js
 
 bibtex_bibfiles:
     - references.bib

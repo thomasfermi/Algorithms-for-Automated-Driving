@@ -1,0 +1,12 @@
+/* Hide the theme switcher button completely */
+[aria-label="light/dark"],
+.theme-switcher,
+.pst-theme-switcher {
+  display: none !important;
+}
+
+/* Hide any light/dark mode toggle buttons */
+button[aria-label*="light"],
+button[aria-label*="dark"] {
+  display: none !important;
+}
