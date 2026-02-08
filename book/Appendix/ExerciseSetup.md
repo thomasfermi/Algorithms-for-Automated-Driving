@@ -64,9 +64,10 @@ Algorithms-for-Automated-Driving/
 
 Work on exercises by editing files in `aad/exercises/`. Test your code using notebooks in `aad/tests/`.
 
+### Editing code
+
 ````{tab} Local installation
 
-### Editing code
 
 We recommend [Visual Studio Code](https://code.visualstudio.com/), which has good Jupyter notebook support.
 
