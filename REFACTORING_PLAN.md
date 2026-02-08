@@ -156,8 +156,8 @@ d) in carla_sim.py it looks like it is night. can you make it day? maybe there i
 e) Since our main dependency pytorch is so huge, we can make the optional dependencies required. This will make the installation process more straightforward and won't make a big difference anyway. When you do this change search for "uv sync --extra" and change the command to "uv sync" (since we are not using extra dependencies anymore after this change)
 
 progress:
-a) [ ]
-b) [ ]
-c) [ ]
+a) [x] Fixed - Searched .py and .ipynb files; found outdated paths in 2 Colab notebooks (lane_segmentation.ipynb in exercises and solutions)
+b) [x] Fixed - Verified no "code/" refs in book .md files; checked .ipynb files (no issues found)
+c) [x] Fixed - Updated PurePursuit.md (2 instances of `python -m aad...` → `uv run python -m aad...`); verified all other commands already use `uv run`
 d) [x] Fixed - Created get_weather_clear_noon() function in carla_util.py; updated 3 files (control/carla_sim.py, camera_calibration/carla_sim.py, collect_data.py) to use daytime preset
 e) [ ]
