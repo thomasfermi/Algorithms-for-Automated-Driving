@@ -24,10 +24,10 @@ jobs:
       with:
         version: "latest"
 
-    # Install dependencies with uv (includes book extras)
+    # Install dependencies with uv
     - name: Install dependencies
       run: |
-        uv sync --extra book
+        uv sync
 
     # Build the book
     - name: Build the book
